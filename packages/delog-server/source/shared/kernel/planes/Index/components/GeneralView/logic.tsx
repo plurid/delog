@@ -4,6 +4,7 @@
 
     import {
         PluridIconApps,
+        PluridIconFrame,
         PluridIconContact,
         PluridIconCommand,
         PluridIconInfo,
@@ -43,6 +44,7 @@
 // #region module
 export const generalSelectors = [
     'projects',
+    'spaces',
     'notifiers',
     'testers',
     'records',
@@ -51,6 +53,7 @@ export const generalSelectors = [
 
 export const generalSelectorsIcons = {
     projects: PluridIconApps,
+    spaces: PluridIconFrame,
     notifiers: PluridIconContact,
     testers: PluridIconCommand,
     records: PluridIconInfo,
