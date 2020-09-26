@@ -5,6 +5,7 @@
     import {
         PluridIconApps,
         PluridIconFrame,
+        PluridIconEdit,
         PluridIconContact,
         PluridIconCommand,
         PluridIconInfo,
@@ -45,6 +46,7 @@
 export const generalSelectors = [
     'projects',
     'spaces',
+    'formats',
     'notifiers',
     'testers',
     'records',
@@ -54,6 +56,7 @@ export const generalSelectors = [
 export const generalSelectorsIcons = {
     projects: PluridIconApps,
     spaces: PluridIconFrame,
+    formats: PluridIconEdit,
     notifiers: PluridIconContact,
     testers: PluridIconCommand,
     records: PluridIconInfo,
