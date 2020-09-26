@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@apollo/client@^3.2.1":
+"@apollo/client@^3.1.5", "@apollo/client@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.2.1.tgz#178dfcc1eb3a35052df8f2bd44be195b78f56e93"
   integrity sha512-w1EdCf3lvSwsxG2zbn8Rm31nPh9gQrB7u61BnU1QCM5BNIfOxiuuldzGNMHi5kI9KleisFvZl/9OA7pEkVg/yw==
@@ -664,6 +664,18 @@
   integrity sha512-Uv6h1sT+0DrblvIrolFtbvM1FgWm+/sy4B3pvLp67Zys+thcukzS5ekn7HsZFGpWP4Q3fYJCljbWQE/XivMRLw==
   dependencies:
     mkdirp "^1.0.4"
+
+"@plurid/delog@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.0.tgz#949049093f594a15bdf40970981657681e170b92"
+  integrity sha512-f60C0lBud9nEnTsSjj79eXxyMDqhfJ77chAD8F91Y9cmddZfpiHRZsV7cgtn9FnFgDOeGChGsa11dr//A3zFJw==
+  dependencies:
+    "@apollo/client" "^3.1.5"
+    "@plurid/plurid-functions" "^0.1.15"
+    cross-fetch "^3.0.6"
+    graphql "^15.3.0"
+    graphql-tag "^2.11.0"
+    subscriptions-transport-ws "^0.9.18"
 
 "@plurid/plurid-data@^0.1.159":
   version "0.1.159"
