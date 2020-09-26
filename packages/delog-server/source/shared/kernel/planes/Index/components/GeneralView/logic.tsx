@@ -27,6 +27,12 @@
 
     // #region internal
     import ProjectsView from './components/ProjectsView';
+    import SpacesView from './components/SpacesView';
+    import FormatsView from './components/FormatsView';
+    import NotifiersView from './components/NotifiersView';
+    import TestersView from './components/TestersView';
+    import RecordsView from './components/RecordsView';
+    import TestsView from './components/TestsView';
 
     import {
         StyledGeneralView,
@@ -75,15 +81,39 @@ export const renderSelectedView = (
                     setGeneralView={setGeneralView}
                 />
             );
-        case 'records':
+        case 'spaces':
             return (
-                <ProjectsView
+                <SpacesView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'formats':
+            return (
+                <FormatsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'notifiers':
+            return (
+                <NotifiersView
                     setGeneralView={setGeneralView}
                 />
             );
         case 'testers':
             return (
-                <ProjectsView
+                <TestersView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'records':
+            return (
+                <RecordsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'tests':
+            return (
+                <TestsView
                     setGeneralView={setGeneralView}
                 />
             );
