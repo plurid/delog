@@ -1,6 +1,10 @@
 // #region imports
     // #region external
     import delog from '../';
+
+    import {
+        logLevels,
+    } from '#data/constants';
     // #endregion external
 // #endregion imports
 
@@ -16,6 +20,17 @@ describe('delog - simple', () => {
         delog({
             endpoint,
             token,
+
+            project: 'project-name',
+            space: 'space-name',
+
+            level: logLevels.trace,
+            method: 'method-name',
+            format: '%TIME %TEXT',
+            sharedID: 'one',
+            sharedOrder: 0,
+            extradata: JSON.stringify({one: 'two'}),
+
             text: 'works',
         });
     });

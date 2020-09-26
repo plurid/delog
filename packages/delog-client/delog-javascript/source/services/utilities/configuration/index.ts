@@ -66,7 +66,7 @@ const getConfiguration = (
         level: data.level || logLevels.info,
         method: data.method || '',
         sharedID: data.sharedID || '',
-        sharedOrder: data.sharedOrder || -1,
+        sharedOrder: data.sharedOrder ?? -1,
         error: stringifyError(data.error),
         extradata: data.extradata || '',
 
