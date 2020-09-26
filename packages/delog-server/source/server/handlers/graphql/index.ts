@@ -13,7 +13,7 @@
     // #region external
     import {
         Context,
-        PerformerLogic,
+        DelogLogic,
     } from '#server/data/interfaces';
 
     import {
@@ -40,10 +40,6 @@
     import {
         getPrivateOwner,
     } from '#server/logic/privateUsage';
-
-    import {
-        handleWebhooks,
-    } from '#server/logic/webhooks';
     // #endregion external
 // #endregion imports
 
@@ -52,7 +48,7 @@
 // #region module
 const setupGraphQLServer = async (
     instance: Application,
-    logic?: PerformerLogic,
+    logic?: DelogLogic,
 ) => {
     const playground = {
         faviconUrl: GRAPHQL_FAVICON,
@@ -75,23 +71,9 @@ const setupGraphQLServer = async (
             res,
         }: any) => {
             const {
-                providers,
-                imagenes,
-                notifiers,
-                repositories,
-                webhooks,
                 projects,
-                secrets,
-                triggers,
-                deployers,
-                builds,
-                deploys,
-            } = await loadData();
 
-            handleWebhooks(
-                webhooks,
-                instance,
-            );
+            } = await loadData();
 
             const privateOwnerIdentonym = privateUsage
                 ? getPrivateOwner(req)
@@ -103,17 +85,7 @@ const setupGraphQLServer = async (
 
                 instance,
 
-                providers,
-                imagenes,
-                notifiers,
-                repositories,
-                webhooks,
                 projects,
-                secrets,
-                triggers,
-                deployers,
-                builds,
-                deploys,
 
                 customLogicUsage,
 

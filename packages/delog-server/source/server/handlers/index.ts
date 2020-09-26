@@ -6,12 +6,8 @@
 
     // #region external
     import {
-        PerformerLogic,
+        DelogLogic,
     } from '#server/data/interfaces';
-
-    import {
-        BuildQueueWatcher,
-    } from '#server/logic/queue';
     // #endregion external
 
 
@@ -19,7 +15,6 @@
     import setupGlobal from './global';
     import setupMiddleware from './middleware';
     import setupGraphQL from './graphql';
-    import setupWebhooks from './webhooks';
     // #endregion internal
 // #endregion imports
 
@@ -28,7 +23,7 @@
 // #region module
 const setupHandlers = (
     server: PluridServer,
-    logic?: PerformerLogic,
+    logic?: DelogLogic,
 ) => {
     const instance = server.instance();
 
@@ -41,12 +36,6 @@ const setupHandlers = (
         instance,
         logic,
     );
-    setupWebhooks(
-        instance,
-    );
-
-    const buildQueue = new BuildQueueWatcher();
-    buildQueue.startWatcher();
 }
 // #endregion module
 

@@ -92,12 +92,6 @@ const getUsageType = async (
 const getSetup = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {
-    const dispatchSetActiveProviderID: typeof actions.data.setActiveProviderID = (
-        providerID,
-    ) => dispatch(
-        actions.data.setActiveProviderID(providerID),
-    );
-
     const dispatchSetProjects: typeof actions.data.setProjects = (
         projects,
     ) => dispatch(

@@ -90,7 +90,7 @@ const generateProject = async (
 
 
         // #region logic usage
-        const logic = request.performerLogic;
+        const logic = request.delogLogic;
 
         if (customLogicUsage && logic) {
             logger.log(

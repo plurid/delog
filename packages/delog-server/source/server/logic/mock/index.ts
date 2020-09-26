@@ -8,7 +8,7 @@
 
     // #region external
     import {
-        PerformerLogic,
+        DelogLogic,
     } from '#server/data/interfaces';
 
     import {
@@ -22,21 +22,11 @@
 
 
 // #region module
-const performerLogic: PerformerLogic = {
+const delogLogic: DelogLogic = {
     getCurrentOwner: async () => {
         return {
             id: uuid.generate(),
-            providers: [],
-            imagenes: [],
-            notifiers: [],
-            repositories: [],
-            webhooks: [],
             projects: [],
-            secrets: [],
-            triggers: [],
-            deployers: [],
-            builds: [],
-            deploys: [],
         };
     },
     checkOwnerToken: async (
@@ -57,61 +47,6 @@ const performerLogic: PerformerLogic = {
         };
     },
 
-    provider: {
-        register: async (
-            input,
-        ) => {
-            return undefined;
-        },
-        deregister: async (
-            input,
-        ) => {
-            return true;
-        },
-    },
-
-    imagene: {
-        register: async (
-            input,
-        ) => {
-            return undefined;
-        },
-        deregister: async (
-            id,
-        ) => {
-            return true;
-        },
-    },
-
-    notifier: {
-        register: async (
-            input,
-        ) => {
-            return undefined;
-        },
-        deregister: async (
-            id,
-        ) => {
-            return true;
-        },
-    },
-
-    builds: {
-        clear: async () => {
-            return true;
-        },
-        getByID: async (
-            id,
-        ) => {
-            return undefined;
-        },
-        getBuildLog: async (
-            id,
-        ) => {
-            return undefined;
-        },
-    },
-
     logger: new Logger(logLevel),
 };
 // #endregion module
@@ -119,5 +54,5 @@ const performerLogic: PerformerLogic = {
 
 
 // #region exports
-export default performerLogic;
+export default delogLogic;
 // #endregion exports

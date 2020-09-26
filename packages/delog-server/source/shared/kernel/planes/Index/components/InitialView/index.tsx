@@ -9,7 +9,7 @@
 
 
     // #region external
-    import performerLogo from '../../assets/performer-logo.png';
+    import delogLogo from '../../assets/delog-logo.png';
     // #endregion external
 
 
@@ -40,18 +40,18 @@ const InitialView: React.FC<InitialViewProperties> = (
         <StyledInitialView>
             <div>
                 <img
-                    src={performerLogo}
-                    alt="performer logo"
+                    src={delogLogo}
+                    alt="delog logo"
                     height={250}
                 />
             </div>
 
             <h1>
-                performer
+                delog
             </h1>
 
             <h2>
-                Cloud-Native Continuous Integration/Continuous Delivery Build Pipeline
+                Cloud-Native Logger
             </h2>
 
             <div

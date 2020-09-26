@@ -18,7 +18,7 @@
     } from '../notifier';
 
     import {
-        PerformerLogic,
+        DelogLogic,
     } from '../logic';
 
     import {
@@ -32,7 +32,7 @@
 
 // #region module
 export interface Context {
-    request: PerformerRequest;
+    request: DelogRequest;
     response: Response;
 
     instance: Application;
@@ -50,8 +50,8 @@ export interface Context {
 }
 
 
-export type PerformerRequest = Request & {
-    performerLogic: PerformerLogic | undefined;
+export type DelogRequest = Request & {
+    delogLogic: DelogLogic | undefined;
     rawBody: string | undefined;
 }
 // #endregion module

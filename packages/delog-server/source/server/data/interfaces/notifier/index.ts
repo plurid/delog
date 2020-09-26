@@ -83,32 +83,14 @@ export interface Notification {
     status: 'SUCCESS' | 'ERROR';
     kind: 'REGISTER' | 'DEREGISTER';
     entity:
-        | 'PROVIDER' | 'IMAGENE' | 'REPOSITORY' | 'WEBHOOK' | 'PROJECT' | 'SECRET' | 'TRIGGER' | 'DEPLOYER'
-        | 'BUILD' | 'DEPLOY';
+        | 'PROJECT';
     data: string;
 }
 
 export type NotificationType =
-    | 'REGISTER_PROVIDER'
-    | 'DEREGISTER_PROVIDER'
-    | 'REGISTER_IMAGENE'
-    | 'DEREGISTER_IMAGENE'
-    | 'REGISTER_REPOSITORY'
-    | 'DEREGISTER_REPOSITORY'
-    | 'REGISTER_WEBHOOK'
-    | 'DEREGISTER_WEBHOOK'
     | 'REGISTER_PROJECT'
-    | 'DEREGISTER_PROJECT'
-    | 'REGISTER_SECRET'
-    | 'DEREGISTER_SECRET'
-    | 'REGISTER_TRIGGER'
-    | 'DEREGISTER_TRIGGER'
-    | 'REGISTER_DEPLOYER'
-    | 'DEREGISTER_DEPLOYER'
-    | 'REGISTER_BUILD'
-    | 'DEREGISTER_BUILD'
-    | 'REGISTER_DEPLOY'
-    | 'DEREGISTER_DEPLOY';
+    | 'DEREGISTER_PROJECT';
+
 
 export type NotificationTypes = Record<NotificationType, NotificationType>;
 // #endregion module

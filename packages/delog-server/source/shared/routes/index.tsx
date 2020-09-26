@@ -10,7 +10,6 @@
 
     // #region external
     import IndexPlane from '#kernel-planes/Index';
-    import BuildPlane from '#kernel-planes/Build';
     import NotFoundPlane from '#kernel-planes/NotFound';
 
     import Head from '#kernel-components/Head';
@@ -34,13 +33,6 @@ const indexRoute: PluridRoute = {
             component: {
                 kind: 'react',
                 element: IndexPlane,
-            },
-        },
-        {
-            value: '/build/:id',
-            component: {
-                kind: 'react',
-                element: BuildPlane,
             },
         },
     ],

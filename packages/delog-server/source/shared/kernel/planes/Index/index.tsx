@@ -17,7 +17,6 @@
 
     // #region internal
     import InitialView from './components/InitialView';
-    import SetupView from './components/SetupView';
     import GeneralView from './components/GeneralView';
     import PrivateView from './components/PrivateView';
 
@@ -63,11 +62,6 @@ const Index: React.FC<IndexProperties> = (
         case 'initial':
             renderView = (
                 <InitialView />
-            );
-            break;
-        case 'setup':
-            renderView = (
-                <SetupView />
             );
             break;
         case 'general':

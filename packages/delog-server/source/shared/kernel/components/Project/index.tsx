@@ -7,10 +7,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        GENERATE_PROJECT,
-    } from '@plurid/performer-requests';
     // #endregion libraries
 
 
@@ -22,6 +18,10 @@
     import {
         addEntityMutation,
     } from '#kernel-services/logic/mutations';
+
+    import {
+        GENERATE_PROJECT,
+    } from '#kernel-services/graphql/mutate';
 
     import {
         StyledPluridTextline,

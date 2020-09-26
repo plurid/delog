@@ -13,16 +13,7 @@ const getSetup = async (
     context: Context,
 ) => {
     const {
-        providers,
-        imagenes,
-        webhooks,
-        repositories,
         projects,
-        secrets,
-        triggers,
-        deployers,
-        builds,
-        deploys,
         privateUsage,
         privateOwnerIdentonym,
     } = context;
@@ -38,16 +29,7 @@ const getSetup = async (
         return {
             status: true,
             data: {
-                providers,
-                imagenes,
-                webhooks,
-                repositories,
                 projects,
-                secrets,
-                triggers,
-                deployers,
-                builds,
-                deploys,
             },
         };
     }
@@ -56,16 +38,7 @@ const getSetup = async (
     return {
         status: true,
         data: {
-            providers,
-            imagenes,
-            webhooks,
-            repositories,
             projects,
-            secrets,
-            triggers,
-            deployers,
-            builds,
-            deploys,
         },
     };
 }

@@ -12,16 +12,17 @@
         PluridPureButton,
     } from '@plurid/plurid-ui-react';
 
-    import {
-        LOGIN,
-    } from '@plurid/performer-requests';
     // #endregion libraries
 
 
     // #region external
-    import performerLogo from '../../assets/performer-logo.png';
+    import delogLogo from '../../assets/delog-logo.png';
 
     import client from '#kernel-services/graphql/client';
+
+    import {
+        LOGIN,
+    } from '#kernel-services/graphql/mutate';
 
     import {
         StyledPluridTextline,
@@ -153,14 +154,14 @@ const PrivateView: React.FC<PrivateViewProperties> = (
         <StyledPrivateView>
             <div>
                 <img
-                    src={performerLogo}
-                    alt="performer logo"
+                    src={delogLogo}
+                    alt="delog logo"
                     height={250}
                 />
             </div>
 
             <h1>
-                performer private usage
+                delog private usage
             </h1>
 
             <StyledLoginButtons>

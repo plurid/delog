@@ -12,23 +12,19 @@
         Theme,
     } from '@plurid/plurid-themes';
 
-    import {
-        LOGOUT
-    } from '@plurid/performer-requests';
     // #endregion libraries
 
 
     // #region external
     import {
-        Trigger,
-        Webhook,
-    } from '#server/data/interfaces';
-
-    import {
-        PERFORMER_MANUAL_LINK,
+        DELOG_MANUAL_LINK,
     } from '#kernel-data/constants';
 
     import client from '#kernel-services/graphql/client';
+
+    import {
+        LOGOUT
+    } from '#kernel-services/graphql/mutate';
 
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
@@ -53,16 +49,11 @@ export interface GeneralViewOwnProperties {
 export interface GeneralViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateActiveProviderID: string;
-    stateDataTriggers: Trigger[],
-    stateDataWebhooks: Webhook[],
     stateIndexGeneralSelector: string;
     stateIndexGeneralView: string;
     stateViewCompactSelectors: boolean;
     stateViewOwnerID: string;
     stateViewUsageType: string;
-    stateViewIndexEditTriggerID: string;
-    stateViewIndexEditWebhookID: string;
 }
 
 export interface GeneralViewDispatchProperties {
@@ -85,16 +76,11 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateActiveProviderID,
-        stateDataTriggers,
-        stateDataWebhooks,
         stateIndexGeneralSelector,
         stateIndexGeneralView,
         stateViewCompactSelectors,
         stateViewOwnerID,
         stateViewUsageType,
-        stateViewIndexEditTriggerID,
-        stateViewIndexEditWebhookID,
         // #endregion state
 
         // #region dispatch
@@ -118,7 +104,7 @@ const GeneralView: React.FC<GeneralViewProperties> = (
 
     // #region handlers
     const openManual = () => {
-        window.open(PERFORMER_MANUAL_LINK, '_blank');
+        window.open(DELOG_MANUAL_LINK, '_blank');
     }
 
     const logout = async () => {
@@ -169,14 +155,6 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         id: string,
     ) => {
         switch (entity) {
-            case 'trigger': {
-                const trigger = stateDataTriggers.find(trigger => trigger.id === id);
-                return trigger;
-            }
-            case 'webhook': {
-                const webhook = stateDataWebhooks.find(webhook => webhook.id === id);
-                return webhook;
-            }
             default:
                 return;
         }
@@ -198,9 +176,6 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         stateViewCompactSelectors,
         stateViewUsageType,
         stateViewOwnerID,
-        stateActiveProviderID,
-        stateViewIndexEditTriggerID,
-        stateViewIndexEditWebhookID,
         openManual,
         logout,
         findEntityByID,
@@ -222,16 +197,11 @@ const mapStateToProperties = (
 ): GeneralViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateActiveProviderID: selectors.data.getActiveProviderID(state),
-    stateDataTriggers: selectors.data.getTriggers(state),
-    stateDataWebhooks: selectors.data.getWebhooks(state),
     stateIndexGeneralSelector: selectors.view.getIndexGeneralSelector(state),
     stateIndexGeneralView: selectors.view.getIndexGeneralView(state),
     stateViewCompactSelectors: selectors.view.getViewCompactSelectors(state),
     stateViewOwnerID: selectors.view.getViewOwnerID(state),
     stateViewUsageType: selectors.view.getViewUsageType(state),
-    stateViewIndexEditTriggerID: selectors.view.getIndexEditTriggerID(state),
-    stateViewIndexEditWebhookID: selectors.view.getIndexEditWebhookID(state),
 });
 
 

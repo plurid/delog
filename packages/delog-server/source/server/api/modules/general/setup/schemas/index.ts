@@ -22,16 +22,7 @@ export const types = gql`
     }
 
     type Setup {
-        providers: [Provider!]
-        imagenes: [Imagene!]
-        repositories: [Repository!]
-        webhooks: [Webhook!]
         projects: [Project!]
-        secrets: [Secret!]
-        triggers: [Trigger!]
-        deployers: [Deployer!]
-        builds: [Build!]
-        deploys: [Deploy!]
     }
 `;
 // #endregion module

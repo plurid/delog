@@ -3,8 +3,6 @@
     import fs, {
         promises as promisesFS,
     } from 'fs';
-
-    import ncp from 'ncp';
     // #endregion libraries
 
 
@@ -29,28 +27,6 @@ export const makeDirectorySync = (
 ) => {
     fs.mkdirSync(directory, {
         recursive: true,
-    });
-}
-
-
-/**
- * Copy a directory and all its contents from `source` to `destination`.
- *
- * @param source
- * @param destination
- */
-export const copyDirectory = async (
-    source: string,
-    destination: string,
-) => {
-    return new Promise((resolve, reject) => {
-        ncp(source, destination, (error) => {
-            if (error) {
-                // reject(0);
-            }
-
-            resolve();
-        });
     });
 }
 
