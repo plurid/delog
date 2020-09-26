@@ -32,17 +32,18 @@
 const defaultConfiguration: RequiredDelogData = {
     groundLevel: GROUND_LEVEL,
 
-    format: FORMAT || '',
+    format: FORMAT,
 
-    endpoint: ENDPOINT || '',
-    token: TOKEN || '',
+    endpoint: ENDPOINT,
+    token: TOKEN,
 
-    project: PROJECT || '',
-    space: SPACE || '',
+    project: PROJECT,
+    space: SPACE,
 
     level: logLevels.info,
     method: '',
     sharedID: '',
+    sharedOrder: -1,
     error: '',
     extradata: '',
 

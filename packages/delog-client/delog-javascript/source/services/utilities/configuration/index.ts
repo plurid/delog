@@ -1,12 +1,15 @@
 // #region imports
     // #region external
     import {
+        GROUND_LEVEL,
+
+        FORMAT,
+
         ENDPOINT,
         TOKEN,
+
         PROJECT,
         SPACE,
-        GROUND_LEVEL,
-        FORMAT,
 
         logLevels,
         defaultConfiguration,
@@ -51,17 +54,18 @@ const getConfiguration = (
     const configuration: RequiredDelogData = {
         groundLevel: GROUND_LEVEL,
 
-        format: data.format || FORMAT || '',
+        format: data.format || FORMAT,
 
-        endpoint: data.endpoint || ENDPOINT || '',
-        token: data.token || TOKEN || '',
+        endpoint: data.endpoint || ENDPOINT,
+        token: data.token || TOKEN,
 
-        project: data.project || PROJECT || '',
-        space: data.space || SPACE || '',
+        project: data.project || PROJECT,
+        space: data.space || SPACE,
 
         level: data.level || logLevels.info,
         method: data.method || '',
         sharedID: data.sharedID || '',
+        sharedOrder: data.sharedOrder || -1,
         error: stringifyError(data.error),
         extradata: data.extradata || '',
 

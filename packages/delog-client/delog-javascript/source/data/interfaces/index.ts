@@ -34,6 +34,15 @@ export interface DelogData {
      */
     sharedID?: string;
 
+    /**
+     * If using the `sharedID`, the logs can be assigned an ordering number.
+     * If not given, the logs will be ordered by time.
+     *
+     * The value should be greater than 0. If two or more logs have the same value,
+     * they will be ordered by time.
+     */
+    sharedOrder?: number;
+
     error?: Error;
 
     /**

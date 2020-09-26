@@ -38,6 +38,7 @@ const delog = async (
         level,
         method,
         sharedID,
+        sharedOrder,
         error,
         extradata,
 
@@ -77,6 +78,7 @@ const delog = async (
             level,
             method,
             sharedID,
+            sharedOrder,
             error,
             extradata,
 

@@ -13,11 +13,11 @@ const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || logLevels
 
 const FORMAT = process.env.DELOG_FORMAT || '%TIME %SPACE %LEVEL %TEXT';
 
-const ENDPOINT = process.env.DELOG_ENDPOINT;
-const TOKEN = process.env.DELOG_TOKEN;
+const ENDPOINT = process.env.DELOG_ENDPOINT || '';
+const TOKEN = process.env.DELOG_TOKEN || '';
 
-const PROJECT = process.env.DELOG_PROJECT;
-const SPACE = process.env.DELOG_SPACE;
+const PROJECT = process.env.DELOG_PROJECT || '';
+const SPACE = process.env.DELOG_SPACE || '';
 // #endregion module
 
 
