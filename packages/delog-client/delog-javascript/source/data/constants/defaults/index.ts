@@ -19,6 +19,10 @@
     import {
         logLevels
     } from '../levels';
+
+    import {
+        now,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -43,6 +47,8 @@ const defaultConfiguration: RequiredDelogData = {
     extradata: '',
 
     text: '',
+
+    time: now(),
 };
 // #endregion module
 

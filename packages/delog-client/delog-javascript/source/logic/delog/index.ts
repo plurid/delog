@@ -38,9 +38,12 @@ const delog = async (
         level,
         method,
         sharedID,
+        error,
         extradata,
 
         text,
+
+        time,
     } = configuration;
 
 
@@ -66,18 +69,20 @@ const delog = async (
         );
 
         const input = {
-            endpoint,
-            token,
+            format,
+
             project,
             space,
-            format,
 
             level,
             method,
             sharedID,
+            error,
             extradata,
 
             text,
+
+            time,
         };
 
         const mutation = await graphql.mutate({
