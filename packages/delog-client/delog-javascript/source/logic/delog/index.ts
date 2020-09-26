@@ -11,6 +11,7 @@
 
     import {
         getConfiguration,
+        stringifyError,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports
@@ -18,7 +19,7 @@
 
 
 // #region module
-const delog = (
+const delog = async (
     data: string | DelogData,
 ) => {
     const configuration = getConfiguration(data);
@@ -26,50 +27,78 @@ const delog = (
     const {
         groundLevel,
 
-        endpoint,
-        token,
-        project,
-        package: packagName,
         format,
 
-        method,
+        endpoint,
+        token,
+
+        project,
+        space,
+
         level,
-        state,
+        method,
+        sharedID,
+        extradata,
+
+        text,
     } = configuration;
 
-    // if (groundLevel > level) {
-    //     return;
-    // }
 
-    const graphql = client(
-        endpoint,
-        token,
-    );
+    if (!endpoint) {
+        console.log('Delog Error :: An endpoint is required.');
+        return;
+    }
 
-    const input = {
-        endpoint,
-        token,
-        project,
-        package: packagName,
-        format,
+    if (!token) {
+        console.log('Delog Error :: A token is required.');
+        return;
+    }
 
-        method,
-        level,
-        state,
-    };
+
+    if (groundLevel > level) {
+        return;
+    }
 
     try {
-        graphql.mutate({
+        const graphql = client(
+            endpoint,
+            token,
+        );
+
+        const input = {
+            endpoint,
+            token,
+            project,
+            space,
+            format,
+
+            level,
+            method,
+            sharedID,
+            extradata,
+
+            text,
+        };
+
+        const mutation = await graphql.mutate({
             mutation: LOG,
             variables: {
                 input,
             },
         });
-    } catch (error) {
-        console.log(error);
-    }
 
-    return;
+        const response = mutation.data.delogMutationLog;
+
+        if (!response.status) {
+            return;
+        }
+
+        return true;
+    } catch (error) {
+        console.log('Delog Error ::', stringifyError(error));
+
+        return;
+    }
 }
 // #endregion module
 

@@ -10,8 +10,10 @@
 
 // #region module
 const LOG = gql`
-    mutation LOG($input: DelogInputLog!) {
-        status
+    mutation DelogMutationLog($input: DelogInputLog!) {
+        delogMutationLog(input: $input) {
+            status
+        }
     }
 `;
 // #endregion module

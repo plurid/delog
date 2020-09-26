@@ -4,15 +4,22 @@
         ENDPOINT,
         TOKEN,
         PROJECT,
-        PACKAGE,
+        SPACE,
         GROUND_LEVEL,
         FORMAT,
+
+        logLevels,
+        defaultConfiguration,
     } from '#data/constants';
 
     import {
         DelogData,
         RequiredDelogData,
     } from '#data/interfaces';
+
+    import {
+        stringifyError,
+    } from '../stringifyError';
     // #endregion external
 // #endregion imports
 
@@ -23,36 +30,33 @@ const getConfiguration = (
     data: string | DelogData,
 ) => {
     if (typeof data === 'string') {
-        const defaultConfiguration = {
-            groundLevel: GROUND_LEVEL || '',
-
-            endpoint: ENDPOINT || '',
-            token: TOKEN || '',
-            project: PROJECT || '',
-            package: PACKAGE || '',
-            format: FORMAT || '',
-
-            method: '',
-            level: '',
-            state: '',
+        const configuration: RequiredDelogData = {
+            ...defaultConfiguration,
+            text: data,
         };
 
-        return defaultConfiguration;
+        return configuration;
     }
 
 
     const configuration: RequiredDelogData = {
-        groundLevel: GROUND_LEVEL || '',
+        groundLevel: GROUND_LEVEL,
+
+        format: data.format || FORMAT || '',
 
         endpoint: data.endpoint || ENDPOINT || '',
         token: data.token || TOKEN || '',
-        project: data.project || PROJECT || '',
-        package: data.package || PACKAGE || '',
-        format: data.format || FORMAT || '',
 
-        method: data.method,
-        level: data.level,
-        state: data.state,
+        project: data.project || PROJECT || '',
+        space: data.space || SPACE || '',
+
+        level: data.level || logLevels.info,
+        method: data.method || '',
+        sharedID: data.sharedID || '',
+        error: stringifyError(data.error),
+        extradata: data.extradata || '',
+
+        text: data.text,
     };
 
     return configuration;
