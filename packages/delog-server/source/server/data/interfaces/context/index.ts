@@ -38,6 +38,7 @@ export interface Context {
     instance: Application;
 
     projects: Project[];
+    records: any[];
 
     customLogicUsage: boolean;
 

@@ -86,6 +86,7 @@ const setupGraphQLServer = async (
                 instance,
 
                 projects,
+                records: [],
 
                 customLogicUsage,
 

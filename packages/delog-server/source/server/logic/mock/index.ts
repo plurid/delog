@@ -27,6 +27,7 @@ const delogLogic: DelogLogic = {
         return {
             id: uuid.generate(),
             projects: [],
+            records: [],
         };
     },
     checkOwnerToken: async (

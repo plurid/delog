@@ -32,6 +32,7 @@ export interface ProjectSharer {
 export interface DelogOwner {
     id: string;
     projects: Project[];
+    records: any[];
 }
 
 
