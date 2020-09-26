@@ -1,3 +1,4 @@
+// #region module
 export interface DelogData {
     // Configuration optionals
     format?: string;
@@ -58,7 +59,9 @@ export interface DelogData {
 }
 
 
-export type RequiredDelogData = Required<Omit<DelogData, 'error'>> & {
+export type RequiredDelogData = Required<
+    Omit<DelogData, 'error'>
+> & {
     groundLevel: number;
 
     error: string;
@@ -106,3 +109,4 @@ export interface DelogInputLog {
 
     time: number;
 }
+// #endregion module
