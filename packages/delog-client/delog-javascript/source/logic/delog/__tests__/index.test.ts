@@ -1,6 +1,6 @@
 // #region imports
     // #region external
-    import devlog from '../';
+    import delog from '../';
     // #endregion external
 // #endregion imports
 
@@ -11,9 +11,9 @@ const endpoint = 'http://localhost:56965/delog';
 const token = '__TESTS__';
 
 
-describe('devlog - simple', () => {
+describe('delog - simple', () => {
     it('works', () => {
-        devlog({
+        delog({
             endpoint,
             token,
             text: 'works',
