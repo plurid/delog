@@ -1,0 +1,29 @@
+{
+    #packages
+    #package
+    #commit
+    yarnWorkspace false
+    runFrom ../
+}
+
+
+packages [
+    ./packages/delog-client/delog-javascript
+    ./packages/delog-server
+]
+
+package {
+    manager yarn
+    publisher npm
+}
+
+yarnWorkspace false
+
+commit {
+    engine git
+    combine true
+    root ''
+    fullFolder false
+    divider ' > '
+    message setup: package
+}

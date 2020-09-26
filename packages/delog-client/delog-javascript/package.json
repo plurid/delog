@@ -1,0 +1,64 @@
+{
+    "name": "@plurid/delog",
+    "version": "0.0.0",
+    "description": "Cloud-Native Logger Client",
+    "keywords": [
+        "delog",
+        "client"
+    ],
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/delog"
+    },
+    "bugs": {
+        "email": "source@plurid.com",
+        "url": "https://github.com/plurid/delog/issues"
+    },
+    "homepage": "https://github.com/plurid/delog/blob/master/packages/delog-client/delog-javascript/README.md",
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12.0.0"
+    },
+    "main": "distribution/index.js",
+    "module": "distribution/index.es.js",
+    "typings": "distribution/index.d.ts",
+    "files": [
+        "distribution"
+    ],
+    "scripts": {
+        "test": "jest -c ./configurations/jest.config.js --coverage ./source",
+        "start": "rollup -c ./scripts/rollup.config.ts -w",
+        "build.removeTests": "rm -rf `find ./distribution/ -type d -name __tests__`",
+        "build.development": "rollup -c ./scripts/rollup.config.ts && yarn build.removeTests",
+        "build": "rollup -c ./scripts/rollup.config.ts && yarn build.removeTests",
+        "prebuild": "rm -rf distribution",
+        "prepublishOnly": "yarn build"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.1.5",
+        "@plurid/plurid-functions": "^0.1.15",
+        "cross-fetch": "^3.0.6",
+        "graphql": "^15.3.0",
+        "graphql-tag": "^2.11.0",
+        "subscriptions-transport-ws": "^0.9.18"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^15.0.0",
+        "@rollup/plugin-node-resolve": "^9.0.0",
+        "@types/node": "^14.10.1",
+        "@typescript-eslint/eslint-plugin": "^4.1.0",
+        "@typescript-eslint/parser": "^4.1.0",
+        "eslint": "^7.9.0",
+        "jest": "^26.4.2",
+        "jest-config": "^26.4.2",
+        "rollup": "^2.26.11",
+        "rollup-plugin-typescript2": "^0.27.2",
+        "ts-jest": "^26.3.0",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.2"
+    }
+}

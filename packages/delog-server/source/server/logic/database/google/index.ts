@@ -1,0 +1,93 @@
+// #region imports
+    // #region external
+    import {
+        Database,
+        DatabaseGet,
+        DatabaseGetAll,
+        DatabaseQuery,
+        DatabaseStore,
+        DatabaseUpdate,
+        DatabaseObliterate,
+        DatabaseObliterateAll,
+    } from '#server/data/interfaces';
+    // #endregion external
+// #endregion imports
+
+
+
+// #region module
+const get: DatabaseGet = async (
+    entity,
+    id,
+) => {
+    return;
+}
+
+
+const getAll: DatabaseGetAll = async (
+    entity,
+) => {
+    return [];
+}
+
+
+const query: DatabaseQuery = async (
+    entity,
+    field,
+    value,
+) => {
+    return;
+}
+
+
+const store: DatabaseStore = async (
+    entity,
+    id,
+    data,
+) => {
+    return;
+}
+
+
+const update: DatabaseUpdate = async (
+    entity,
+    id,
+    field,
+    value,
+) => {
+    return;
+}
+
+
+const obliterate: DatabaseObliterate = async (
+    entity,
+    id,
+) => {
+    return;
+}
+
+
+const obliterateAll: DatabaseObliterateAll = async (
+    entity,
+) => {
+    return;
+}
+
+
+
+const googleDatabase: Database = {
+    get,
+    getAll,
+    query,
+    store,
+    update,
+    obliterate,
+    obliterateAll,
+};
+// #endregion module
+
+
+
+// #region exports
+export default googleDatabase;
+// #endregion exports
