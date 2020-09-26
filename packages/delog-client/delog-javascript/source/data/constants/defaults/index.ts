@@ -22,7 +22,7 @@
 
     import {
         now,
-    } from '#services/utilities';
+    } from '#services/utilities/time';
     // #endregion external
 // #endregion imports
 
