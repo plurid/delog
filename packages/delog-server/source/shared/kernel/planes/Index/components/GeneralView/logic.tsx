@@ -4,6 +4,8 @@
 
     import {
         PluridIconApps,
+        PluridIconInfo,
+        PluridIconCommand,
         PluridIconArrowRight,
         PluridIconDocuments,
         PluridIconExternalLink,
@@ -40,11 +42,13 @@
 export const generalSelectors = [
     'projects',
     'records',
+    'testers',
 ];
 
 export const generalSelectorsIcons = {
     projects: PluridIconApps,
-    records: PluridIconApps,
+    records: PluridIconInfo,
+    testers: PluridIconCommand,
 };
 
 
@@ -54,6 +58,18 @@ export const renderSelectedView = (
 ) => {
     switch (stateIndexGeneralSelector) {
         case 'projects':
+            return (
+                <ProjectsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'records':
+            return (
+                <ProjectsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'testers':
             return (
                 <ProjectsView
                     setGeneralView={setGeneralView}
