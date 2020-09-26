@@ -2,6 +2,7 @@
     // #region external
     import {
         DelogData,
+        DelogInputLog,
     } from '#data/interfaces';
 
     import {
@@ -72,7 +73,7 @@ const delog = async (
             token,
         );
 
-        const input = {
+        const input: DelogInputLog = {
             format,
 
             project,

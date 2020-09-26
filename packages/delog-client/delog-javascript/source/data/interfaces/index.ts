@@ -85,3 +85,24 @@ export interface DelogContext {
     suite?: string;
     scenario?: string;
 }
+
+
+export interface DelogInputLog {
+    format: string;
+
+    project: string;
+    space: string;
+
+    level: number;
+    method: string;
+    sharedID: string;
+    sharedOrder: number;
+    error: string;
+    extradata: string;
+
+    context: DelogContext;
+
+    text: string;
+
+    time: number;
+}
