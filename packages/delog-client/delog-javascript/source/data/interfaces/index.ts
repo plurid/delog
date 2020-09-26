@@ -81,7 +81,7 @@ export interface LogLevels {
 
 
 export interface DelogContext {
-    mode: 'TESTING' | 'LOGGING';
-    suite: string;
-    scenario: string;
+    mode?: 'TESTING' | 'LOGGING';
+    suite?: string;
+    scenario?: string;
 }

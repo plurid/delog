@@ -65,6 +65,7 @@ const delog = async (
         return;
     }
 
+
     try {
         const graphql = client(
             endpoint,
