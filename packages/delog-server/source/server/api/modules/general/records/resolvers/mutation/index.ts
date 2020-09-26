@@ -1,4 +1,11 @@
 // #region imports
+    // #region libraries
+    import {
+        DelogInputLog,
+    } from '@plurid/delog';
+    // #endregion libraries
+
+
     // #region external
     import {
         Context,
@@ -17,7 +24,7 @@
 export default {
     delogMutationLog: (
         _: any,
-        { input }: InputOf<any>,
+        { input }: InputOf<DelogInputLog>,
         context: Context,
     ) => Records.Mutation.log(
         input,

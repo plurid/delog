@@ -1,4 +1,11 @@
 // #region imports
+    // #region libraries
+    import {
+        DelogInputLog,
+    } from '@plurid/delog';
+    // #endregion libraries
+
+
     // #region external
     import {
         Context,
@@ -21,7 +28,7 @@ export const logLogs = generateMethodLogs('log');
 
 
 const log = async (
-    input: any,
+    input: DelogInputLog,
     context: Context,
 ) => {
     // #region context unpack
@@ -50,8 +57,26 @@ const log = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            format,
+
+            project,
+            space,
+
+            level,
+            method,
+            sharedID,
+            sharedOrder,
+            error,
+            extradata,
+
+            context,
+
+            text,
+
+            time,
         } = input;
+
+        console.log('input', input);
         // #endregion input unpack
 
 
@@ -73,7 +98,7 @@ const log = async (
                 };
             }
 
-            await registerRecord(name);
+            // await registerRecord(text);
 
             logger.log(
                 logLogs.infoSuccessPrivateUsage,
@@ -96,7 +121,7 @@ const log = async (
                 logLevels.trace,
             );
 
-            await registerRecord(name);
+            // await registerRecord(text);
 
             logger.log(
                 logLogs.infoEndCustomLogicUsage,
@@ -111,7 +136,7 @@ const log = async (
 
 
         // #region public usage
-        await registerRecord(name);
+        // await registerRecord(text);
 
         logger.log(
             logLogs.infoSuccess,
