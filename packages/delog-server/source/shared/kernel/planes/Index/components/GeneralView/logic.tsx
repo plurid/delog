@@ -22,6 +22,10 @@
     import delogLogo from '../../assets/delog-logo.png';
 
     import Project from '#kernel-components/Project';
+    import Space from '#kernel-components/Space';
+    import Format from '#kernel-components/Format';
+    import Notifier from '#kernel-components/Notifier';
+    import Tester from '#kernel-components/Tester';
     // #endregion external
 
 
@@ -265,6 +269,66 @@ export const renderGeneralView = (
                         dispatchAddEntity({
                             type: 'project',
                             data: project,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'generate-space':
+            return (
+                <Space
+                    theme={stateInteractionTheme}
+                    action={(space) => {
+                        dispatchAddEntity({
+                            type: 'space',
+                            data: space,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'generate-format':
+            return (
+                <Format
+                    theme={stateInteractionTheme}
+                    action={(format) => {
+                        dispatchAddEntity({
+                            type: 'format',
+                            data: format,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'generate-notifier':
+            return (
+                <Notifier
+                    theme={stateInteractionTheme}
+                    action={(notifier) => {
+                        dispatchAddEntity({
+                            type: 'notifier',
+                            data: notifier,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'generate-tester':
+            return (
+                <Tester
+                    theme={stateInteractionTheme}
+                    action={(tester) => {
+                        dispatchAddEntity({
+                            type: 'tester',
+                            data: tester,
                         });
 
                         setGeneralView('general');
