@@ -13,6 +13,7 @@
 
         logLevels,
         defaultConfiguration,
+        defaultContext,
     } from '#data/constants';
 
     import {
@@ -68,6 +69,10 @@ const getConfiguration = (
         sharedOrder: data.sharedOrder || -1,
         error: stringifyError(data.error),
         extradata: data.extradata || '',
+
+        context: data.context || {
+            ...defaultContext,
+        },
 
         text: data.text,
 

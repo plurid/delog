@@ -2,6 +2,7 @@
     // #region external
     import {
         RequiredDelogData,
+        DelogContext,
     } from '#data/interfaces';
 
     import {
@@ -29,6 +30,13 @@
 
 
 // #region module
+const defaultContext: DelogContext = {
+    mode: 'LOGGING',
+    scenario: '',
+    suite: '',
+};
+
+
 const defaultConfiguration: RequiredDelogData = {
     groundLevel: GROUND_LEVEL,
 
@@ -47,6 +55,10 @@ const defaultConfiguration: RequiredDelogData = {
     error: '',
     extradata: '',
 
+    context: {
+        ...defaultContext,
+    },
+
     text: '',
 
     time: now(),
@@ -58,5 +70,6 @@ const defaultConfiguration: RequiredDelogData = {
 // #region exports
 export {
     defaultConfiguration,
+    defaultContext,
 };
 // #endregion exports

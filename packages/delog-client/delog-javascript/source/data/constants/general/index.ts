@@ -26,10 +26,12 @@ const SPACE = process.env.DELOG_SPACE || '';
 export {
     GROUND_LEVEL,
 
+    FORMAT,
+
     ENDPOINT,
     TOKEN,
+
     PROJECT,
     SPACE,
-    FORMAT,
 };
 // #endregion exports

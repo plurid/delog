@@ -42,6 +42,8 @@ const delog = async (
         error,
         extradata,
 
+        context,
+
         text,
 
         time,
@@ -81,6 +83,8 @@ const delog = async (
             sharedOrder,
             error,
             extradata,
+
+            context,
 
             text,
 

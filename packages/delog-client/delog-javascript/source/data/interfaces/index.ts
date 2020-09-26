@@ -51,6 +51,9 @@ export interface DelogData {
     extradata?: string;
 
 
+    context?: DelogContext;
+
+
     text: string;
 }
 
@@ -73,4 +76,12 @@ export interface LogLevels {
     debug: number;
     trace: number;
     all: number;
+}
+
+
+
+export interface DelogContext {
+    mode: 'TESTING' | 'LOGGING';
+    suite: string;
+    scenario: string;
 }
