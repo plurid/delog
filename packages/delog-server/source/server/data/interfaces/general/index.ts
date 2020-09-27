@@ -29,6 +29,51 @@ export interface ProjectSharer {
 }
 
 
+export interface Token {
+    id: string;
+    value: string;
+    ownedBy: string;
+}
+
+export type ClientToken = Omit<Token, 'value'> & {
+    startsWith: string;
+}
+
+
+export interface Space {
+    id: string;
+    name: string;
+    ownedBy: string;
+}
+
+
+export interface Format {
+    id: string;
+    value: string;
+    ownedBy: string;
+}
+
+
+export interface Tester {
+    id: string;
+}
+
+
+export interface Record {
+    id: string;
+}
+
+
+export interface Record {
+    id: string;
+}
+
+
+export interface Test {
+    id: string;
+}
+
+
 export interface DelogOwner {
     id: string;
     projects: Project[];
