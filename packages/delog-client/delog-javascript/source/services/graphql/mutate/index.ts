@@ -9,9 +9,9 @@
 
 
 // #region module
-const LOG = gql`
-    mutation DelogMutationLog($input: DelogInputLog!) {
-        delogMutationLog(input: $input) {
+const RECORD = gql`
+    mutation DelogMutationRecord($input: DelogInputRecord!) {
+        delogMutationRecord(input: $input) {
             status
         }
     }
@@ -22,6 +22,6 @@ const LOG = gql`
 
 // #region exports
 export {
-    LOG,
+    RECORD,
 };
 // #endregion exports

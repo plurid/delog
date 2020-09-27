@@ -2,12 +2,12 @@
     // #region external
     import {
         DelogData,
-        DelogInputLog,
+        DelogInputRecord,
     } from '#data/interfaces';
 
     import {
         client,
-        LOG,
+        RECORD,
     } from '#services/graphql';
 
     import {
@@ -73,7 +73,7 @@ const delog = async (
             token,
         );
 
-        const input: DelogInputLog = {
+        const input: DelogInputRecord = {
             format,
 
             project,
@@ -94,7 +94,7 @@ const delog = async (
         };
 
         const mutation = await graphql.mutate({
-            mutation: LOG,
+            mutation: RECORD,
             variables: {
                 input,
             },

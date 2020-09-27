@@ -90,7 +90,7 @@ export interface DelogContext {
 }
 
 
-export interface DelogInputLog {
+export interface DelogInputRecord {
     format: string;
 
     project: string;
