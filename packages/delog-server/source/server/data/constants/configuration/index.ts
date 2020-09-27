@@ -35,4 +35,10 @@ export const PRIVATE_TOKEN = process.env.DESERVE_PRIVATE_TOKEN || '';
 
 export const IN_CONTAINER_USAGE = process.env.DESERVE_IN_CONTAINER_USAGE === 'true';
 export const IN_CONTAINER_HOST_BIND = process.env.DESERVE_IN_CONTAINER_HOST_BIND || '';
+
+
+
+export const MONGO_USERNAME = process.env.DESERVE_MONGO_USERNAME || '';
+export const MONGO_PASSWORD = process.env.DESERVE_MONGO_PASSWORD || '';
+export const MONGO_ADDRESS = process.env.DESERVE_MONGO_ADDRESS || '';
 // #endregion module

@@ -7,6 +7,7 @@
     // #region external
     import {
         Database,
+        DatabaseInitialize,
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
@@ -36,6 +37,11 @@ const resolveDataPath = (
         default:
             return '';
     }
+}
+
+
+const initialize: DatabaseInitialize = async () => {
+    return true;
 }
 
 
@@ -167,6 +173,7 @@ const obliterateAll: DatabaseObliterateAll = async (
 
 
 const filesystemDatabase: Database = {
+    initialize,
     get,
     getAll,
     query,

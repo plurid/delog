@@ -2,20 +2,24 @@
 export type DatabaseType =
     | DatabaseTypeFilesystem
     | DatabaseTypeAmazon
-    | DatabaseTypeGoogle;
+    | DatabaseTypeGoogle
+    | DatabaseTypeMongo;
 
 export type DatabaseTypeFilesystem = 'filesystem';
 export type DatabaseTypeAmazon = 'amazon';
 export type DatabaseTypeGoogle = 'google';
+export type DatabaseTypeMongo = 'mongo';
 
 export interface DatabaseTypeData {
     filesystem: DatabaseTypeFilesystem;
     amazon: DatabaseTypeAmazon;
     google: DatabaseTypeGoogle;
+    mongo: DatabaseTypeMongo;
 }
 
 
 export interface Database {
+    initialize: DatabaseInitialize;
     get: DatabaseGet;
     getAll: DatabaseGetAll;
     query: DatabaseQuery;
@@ -24,6 +28,10 @@ export interface Database {
     obliterate: DatabaseObliterate;
     obliterateAll: DatabaseObliterateAll;
 }
+
+
+export type DatabaseInitialize = () => Promise<boolean>;
+
 
 export type DatabaseGet = (
     entity: string,

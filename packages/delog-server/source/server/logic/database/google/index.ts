@@ -2,6 +2,7 @@
     // #region external
     import {
         Database,
+        DatabaseInitialize,
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
@@ -16,6 +17,11 @@
 
 
 // #region module
+const initialize: DatabaseInitialize = async () => {
+    return true;
+}
+
+
 const get: DatabaseGet = async (
     entity,
     id,
@@ -76,6 +82,7 @@ const obliterateAll: DatabaseObliterateAll = async (
 
 
 const googleDatabase: Database = {
+    initialize,
     get,
     getAll,
     query,

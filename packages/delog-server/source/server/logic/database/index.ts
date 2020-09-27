@@ -9,10 +9,12 @@
     } from '#server/data/interfaces';
     // #endregion external
 
+
     // #region internal
     import filesystemDatabase from './filesystem';
     import amazonDatabase from './amazon';
     import googleDatabase from './google';
+    import mongoDatabase from './mongo';
     // #endregion internal
 // #endregion imports
 
@@ -48,6 +50,13 @@ class Database {
                     entity,
                     id,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.get(
+                    entity,
+                    id,
+                );
+            default:
+                return;
         }
     }
 
@@ -67,6 +76,12 @@ class Database {
                 return googleDatabase.getAll(
                     entity,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.getAll(
+                    entity,
+                );
+            default:
+                return;
         }
     }
 
@@ -94,6 +109,14 @@ class Database {
                     field,
                     value,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.query(
+                    entity,
+                    field,
+                    value,
+                );
+            default:
+                return;
         }
     }
 
@@ -121,6 +144,14 @@ class Database {
                     id,
                     data,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.store(
+                    entity,
+                    id,
+                    data,
+                );
+            default:
+                return;
         }
     }
 
@@ -152,6 +183,15 @@ class Database {
                     field,
                     value,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.update(
+                    entity,
+                    id,
+                    field,
+                    value,
+                );
+            default:
+                return;
         }
     }
 
@@ -175,6 +215,13 @@ class Database {
                     entity,
                     id,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.obliterate(
+                    entity,
+                    id,
+                );
+            default:
+                return;
         }
     }
 
@@ -194,6 +241,12 @@ class Database {
                 return googleDatabase.obliterateAll(
                     entity,
                 );
+            case databaseType.mongo:
+                return mongoDatabase.obliterateAll(
+                    entity,
+                );
+            default:
+                return;
         }
     }
 }
