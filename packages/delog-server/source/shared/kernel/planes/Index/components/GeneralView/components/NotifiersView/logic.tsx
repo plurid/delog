@@ -10,7 +10,7 @@
 
     // #region external
     import {
-        Project,
+        ClientNotifier,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -18,25 +18,25 @@
 
 
 // #region module
-export const projectRowRenderer = (
-    project: Project,
-    handleProjectObliterate: (
+export const notifierRowRenderer = (
+    notifier: ClientNotifier,
+    handleNotifierObliterate: (
         id: string,
     ) => void,
 ) => {
     const {
         id,
-        name
-    } = project;
+        type,
+    } = notifier;
 
     return (
         <>
             <div>
-                {name}
+                {type}
             </div>
 
             <PluridIconDelete
-                atClick={() => handleProjectObliterate(id)}
+                atClick={() => handleNotifierObliterate(id)}
             />
         </>
     );
@@ -44,19 +44,19 @@ export const projectRowRenderer = (
 
 
 export const createSearchTerms = (
-    projects: Project[],
+    notifiers: ClientNotifier[],
 ) => {
-    const searchTerms = projects.map(
-        project => {
+    const searchTerms = notifiers.map(
+        notifier => {
             const {
                 id,
-                name
-            } = project;
+                type,
+            } = notifier;
 
             const searchTerm = {
                 id,
                 data: [
-                    name.toLowerCase(),
+                    type.toLowerCase(),
                 ],
             };
 

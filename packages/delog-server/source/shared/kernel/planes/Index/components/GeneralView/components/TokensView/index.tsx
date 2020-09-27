@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Project,
+        ClientToken,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -48,7 +48,7 @@
 
     // #region internal
     import {
-        projectRowRenderer,
+        tokenRowRenderer,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -57,7 +57,7 @@
 
 
 // #region module
-export interface ProjectsViewOwnProperties {
+export interface TokensViewOwnProperties {
     // #region required
         // #region values
         // #endregion values
@@ -76,22 +76,22 @@ export interface ProjectsViewOwnProperties {
     // #endregion optional
 }
 
-export interface ProjectsViewStateProperties {
+export interface TokensViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateProjects: Project[];
+    stateTokens: ClientToken[];
 }
 
-export interface ProjectsViewDispatchProperties {
+export interface TokensViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
 }
 
-export type ProjectsViewProperties = ProjectsViewOwnProperties
-    & ProjectsViewStateProperties
-    & ProjectsViewDispatchProperties;
+export type TokensViewProperties = TokensViewOwnProperties
+    & TokensViewStateProperties
+    & TokensViewDispatchProperties;
 
-const ProjectsView: React.FC<ProjectsViewProperties> = (
+const TokensView: React.FC<TokensViewProperties> = (
     properties,
 ) => {
     // #region properties
@@ -116,7 +116,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateProjects,
+        stateTokens,
         // #endregion state
 
         // #region dispatch
@@ -128,12 +128,12 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 
     // #region handlers
-    const handleProjectObliterate = async (
+    const handleTokenObliterate = async (
         id: string,
     ) => {
         try {
             dispatchRemoveEntity({
-                type: 'project',
+                type: 'token',
                 id,
             });
 
@@ -156,14 +156,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
     // #region state
     const [searchTerms, setSearchTerms] = useState(
-        createSearchTerms(stateProjects),
+        createSearchTerms(stateTokens),
     );
 
     const [filteredRows, setFilteredRows] = useState(
-        stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        stateTokens.map(
+            token => tokenRowRenderer(
+                token,
+                handleTokenObliterate,
             ),
         ),
     );
@@ -181,23 +181,23 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             value,
         );
 
-        const filteredProjects = stateProjects.filter(stateProject => {
-            if (filterIDs.includes(stateProject.id)) {
+        const filteredTokens = stateTokens.filter(stateToken => {
+            if (filterIDs.includes(stateToken.id)) {
                 return true;
             }
 
             return false;
         });
 
-        const sortedProjects = filteredProjects.sort(
+        const sortedTokens = filteredTokens.sort(
             compareValues('name'),
         );
 
         setFilteredRows(
-            sortedProjects.map(
-                project => projectRowRenderer(
-                    project,
-                    handleProjectObliterate,
+            sortedTokens.map(
+                token => tokenRowRenderer(
+                    token,
+                    handleTokenObliterate,
                 ),
             ),
         );
@@ -208,19 +208,19 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     // #region effects
     useEffect(() => {
         const searchTerms = createSearchTerms(
-            stateProjects,
+            stateTokens,
         );
-        const filteredRows = stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        const filteredRows = stateTokens.map(
+            token => tokenRowRenderer(
+                token,
+                handleTokenObliterate,
             ),
         );
 
         setSearchTerms(searchTerms);
         setFilteredRows(filteredRows);
     }, [
-        stateProjects,
+        stateTokens,
     ]);
     // #endregion effects
 
@@ -244,11 +244,11 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             rowTemplate="auto 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
-            noRows="no projects"
+            noRows="no tokens"
 
-            actionButtonText="Generate Format"
+            actionButtonText="Generate Token"
             actionButtonClick={() => {
-                setGeneralView('generate-project');
+                setGeneralView('generate-token');
             }}
 
             filterUpdate={filterUpdate}
@@ -263,16 +263,16 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ProjectsViewStateProperties => ({
+): TokensViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateProjects: selectors.data.getProjects(state),
+    stateTokens: selectors.data.getTokens(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ProjectsViewDispatchProperties => ({
+): TokensViewDispatchProperties => ({
     dispatch,
     dispatchRemoveEntity: (
         payload,
@@ -282,14 +282,14 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedProjectsView = connect(
+const ConnectedTokensView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
-)(ProjectsView);
+)(TokensView);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedProjectsView;
+export default ConnectedTokensView;
 // #endregion exports

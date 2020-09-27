@@ -10,7 +10,7 @@
 
     // #region external
     import {
-        Project,
+        ClientToken,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -18,25 +18,25 @@
 
 
 // #region module
-export const projectRowRenderer = (
-    project: Project,
-    handleProjectObliterate: (
+export const tokenRowRenderer = (
+    token: ClientToken,
+    handleTokenObliterate: (
         id: string,
     ) => void,
 ) => {
     const {
         id,
-        name
-    } = project;
+        startsWith,
+    } = token;
 
     return (
         <>
             <div>
-                {name}
+                {startsWith}
             </div>
 
             <PluridIconDelete
-                atClick={() => handleProjectObliterate(id)}
+                atClick={() => handleTokenObliterate(id)}
             />
         </>
     );
@@ -44,19 +44,19 @@ export const projectRowRenderer = (
 
 
 export const createSearchTerms = (
-    projects: Project[],
+    tokens: ClientToken[],
 ) => {
-    const searchTerms = projects.map(
-        project => {
+    const searchTerms = tokens.map(
+        token => {
             const {
                 id,
-                name
-            } = project;
+                startsWith,
+            } = token;
 
             const searchTerm = {
                 id,
                 data: [
-                    name.toLowerCase(),
+                    startsWith.toLowerCase(),
                 ],
             };
 

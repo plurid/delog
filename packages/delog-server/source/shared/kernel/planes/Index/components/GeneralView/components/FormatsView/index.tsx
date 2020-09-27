@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Project,
+        Format,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -48,7 +48,7 @@
 
     // #region internal
     import {
-        projectRowRenderer,
+        formatRowRenderer,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -57,7 +57,7 @@
 
 
 // #region module
-export interface ProjectsViewOwnProperties {
+export interface FormatsViewOwnProperties {
     // #region required
         // #region values
         // #endregion values
@@ -76,22 +76,22 @@ export interface ProjectsViewOwnProperties {
     // #endregion optional
 }
 
-export interface ProjectsViewStateProperties {
+export interface FormatsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateProjects: Project[];
+    stateFormats: Format[];
 }
 
-export interface ProjectsViewDispatchProperties {
+export interface FormatsViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
 }
 
-export type ProjectsViewProperties = ProjectsViewOwnProperties
-    & ProjectsViewStateProperties
-    & ProjectsViewDispatchProperties;
+export type FormatsViewProperties = FormatsViewOwnProperties
+    & FormatsViewStateProperties
+    & FormatsViewDispatchProperties;
 
-const ProjectsView: React.FC<ProjectsViewProperties> = (
+const FormatsView: React.FC<FormatsViewProperties> = (
     properties,
 ) => {
     // #region properties
@@ -116,7 +116,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateProjects,
+        stateFormats,
         // #endregion state
 
         // #region dispatch
@@ -128,12 +128,12 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 
     // #region handlers
-    const handleProjectObliterate = async (
+    const handleFormatObliterate = async (
         id: string,
     ) => {
         try {
             dispatchRemoveEntity({
-                type: 'project',
+                type: 'format',
                 id,
             });
 
@@ -156,14 +156,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
     // #region state
     const [searchTerms, setSearchTerms] = useState(
-        createSearchTerms(stateProjects),
+        createSearchTerms(stateFormats),
     );
 
     const [filteredRows, setFilteredRows] = useState(
-        stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        stateFormats.map(
+            format => formatRowRenderer(
+                format,
+                handleFormatObliterate,
             ),
         ),
     );
@@ -181,23 +181,23 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             value,
         );
 
-        const filteredProjects = stateProjects.filter(stateProject => {
-            if (filterIDs.includes(stateProject.id)) {
+        const filteredFormats = stateFormats.filter(stateFormat => {
+            if (filterIDs.includes(stateFormat.id)) {
                 return true;
             }
 
             return false;
         });
 
-        const sortedProjects = filteredProjects.sort(
+        const sortedFormats = filteredFormats.sort(
             compareValues('name'),
         );
 
         setFilteredRows(
-            sortedProjects.map(
-                project => projectRowRenderer(
-                    project,
-                    handleProjectObliterate,
+            sortedFormats.map(
+                format => formatRowRenderer(
+                    format,
+                    handleFormatObliterate,
                 ),
             ),
         );
@@ -208,19 +208,19 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     // #region effects
     useEffect(() => {
         const searchTerms = createSearchTerms(
-            stateProjects,
+            stateFormats,
         );
-        const filteredRows = stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        const filteredRows = stateFormats.map(
+            format => formatRowRenderer(
+                format,
+                handleFormatObliterate,
             ),
         );
 
         setSearchTerms(searchTerms);
         setFilteredRows(filteredRows);
     }, [
-        stateProjects,
+        stateFormats,
     ]);
     // #endregion effects
 
@@ -244,11 +244,11 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             rowTemplate="auto 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
-            noRows="no projects"
+            noRows="no formats"
 
             actionButtonText="Generate Format"
             actionButtonClick={() => {
-                setGeneralView('generate-project');
+                setGeneralView('generate-format');
             }}
 
             filterUpdate={filterUpdate}
@@ -263,16 +263,16 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ProjectsViewStateProperties => ({
+): FormatsViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateProjects: selectors.data.getProjects(state),
+    stateFormats: selectors.data.getFormats(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ProjectsViewDispatchProperties => ({
+): FormatsViewDispatchProperties => ({
     dispatch,
     dispatchRemoveEntity: (
         payload,
@@ -282,14 +282,14 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedProjectsView = connect(
+const ConnectedFormatsView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
-)(ProjectsView);
+)(FormatsView);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedProjectsView;
+export default ConnectedFormatsView;
 // #endregion exports

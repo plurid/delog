@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Project,
+        Tester,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -48,7 +48,7 @@
 
     // #region internal
     import {
-        projectRowRenderer,
+        testerRowRenderer,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -57,7 +57,7 @@
 
 
 // #region module
-export interface ProjectsViewOwnProperties {
+export interface TestersViewOwnProperties {
     // #region required
         // #region values
         // #endregion values
@@ -76,22 +76,22 @@ export interface ProjectsViewOwnProperties {
     // #endregion optional
 }
 
-export interface ProjectsViewStateProperties {
+export interface TestersViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateProjects: Project[];
+    stateTesters: Tester[];
 }
 
-export interface ProjectsViewDispatchProperties {
+export interface TestersViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
 }
 
-export type ProjectsViewProperties = ProjectsViewOwnProperties
-    & ProjectsViewStateProperties
-    & ProjectsViewDispatchProperties;
+export type TestersViewProperties = TestersViewOwnProperties
+    & TestersViewStateProperties
+    & TestersViewDispatchProperties;
 
-const ProjectsView: React.FC<ProjectsViewProperties> = (
+const TestersView: React.FC<TestersViewProperties> = (
     properties,
 ) => {
     // #region properties
@@ -116,7 +116,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateProjects,
+        stateTesters,
         // #endregion state
 
         // #region dispatch
@@ -128,12 +128,12 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 
     // #region handlers
-    const handleProjectObliterate = async (
+    const handleTesterObliterate = async (
         id: string,
     ) => {
         try {
             dispatchRemoveEntity({
-                type: 'project',
+                type: 'tester',
                 id,
             });
 
@@ -156,14 +156,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
     // #region state
     const [searchTerms, setSearchTerms] = useState(
-        createSearchTerms(stateProjects),
+        createSearchTerms(stateTesters),
     );
 
     const [filteredRows, setFilteredRows] = useState(
-        stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        stateTesters.map(
+            tester => testerRowRenderer(
+                tester,
+                handleTesterObliterate,
             ),
         ),
     );
@@ -181,23 +181,23 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             value,
         );
 
-        const filteredProjects = stateProjects.filter(stateProject => {
-            if (filterIDs.includes(stateProject.id)) {
+        const filteredTesters = stateTesters.filter(stateTester => {
+            if (filterIDs.includes(stateTester.id)) {
                 return true;
             }
 
             return false;
         });
 
-        const sortedProjects = filteredProjects.sort(
+        const sortedTesters = filteredTesters.sort(
             compareValues('name'),
         );
 
         setFilteredRows(
-            sortedProjects.map(
-                project => projectRowRenderer(
-                    project,
-                    handleProjectObliterate,
+            sortedTesters.map(
+                tester => testerRowRenderer(
+                    tester,
+                    handleTesterObliterate,
                 ),
             ),
         );
@@ -208,19 +208,19 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     // #region effects
     useEffect(() => {
         const searchTerms = createSearchTerms(
-            stateProjects,
+            stateTesters,
         );
-        const filteredRows = stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        const filteredRows = stateTesters.map(
+            tester => testerRowRenderer(
+                tester,
+                handleTesterObliterate,
             ),
         );
 
         setSearchTerms(searchTerms);
         setFilteredRows(filteredRows);
     }, [
-        stateProjects,
+        stateTesters,
     ]);
     // #endregion effects
 
@@ -244,11 +244,11 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             rowTemplate="auto 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
-            noRows="no projects"
+            noRows="no testers"
 
             actionButtonText="Generate Tester"
             actionButtonClick={() => {
-                setGeneralView('generate-project');
+                setGeneralView('generate-tester');
             }}
 
             filterUpdate={filterUpdate}
@@ -263,16 +263,16 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ProjectsViewStateProperties => ({
+): TestersViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateProjects: selectors.data.getProjects(state),
+    stateTesters: selectors.data.getTesters(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ProjectsViewDispatchProperties => ({
+): TestersViewDispatchProperties => ({
     dispatch,
     dispatchRemoveEntity: (
         payload,
@@ -282,14 +282,14 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedProjectsView = connect(
+const ConnectedTestersView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
-)(ProjectsView);
+)(TestersView);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedProjectsView;
+export default ConnectedTestersView;
 // #endregion exports

@@ -2,6 +2,13 @@
     // #region libraries
     import {
         Project,
+        ClientToken,
+        Space,
+        Format,
+        ClientNotifier,
+        Tester,
+        Record,
+        Test,
     } from '#server/data/interfaces';
     // #endregion libraries
 // #endregion imports
@@ -10,7 +17,12 @@
 
 // #region module
 export type AddableEntityType =
-    | 'project';
+    | 'project'
+    | 'token'
+    | 'space'
+    | 'format'
+    | 'notifier'
+    | 'tester';
 
 export const ADD_ENTITY = 'ADD_ENTITY';
 export interface AddEntityPayload {
@@ -24,7 +36,12 @@ export interface AddEntityAction {
 
 
 export type RemovableEntityType =
-    | 'project';
+    | 'project'
+    | 'token'
+    | 'space'
+    | 'format'
+    | 'notifier'
+    | 'tester';
 
 export const REMOVE_ENTITY = 'REMOVE_ENTITY';
 export interface RemoveEntityPayload {
@@ -54,6 +71,13 @@ export interface ClearDataAction {
 
 export interface State {
     projects: Project[];
+    tokens: ClientToken[];
+    spaces: Space[];
+    formats: Format[];
+    notifiers: ClientNotifier[];
+    testers: Tester[];
+    records: Record[];
+    tests: Test[];
 }
 
 

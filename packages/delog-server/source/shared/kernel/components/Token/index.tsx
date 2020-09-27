@@ -12,7 +12,7 @@
 
     // #region external
     import {
-        Project as IProject,
+        Token as IToken,
     } from '#server/data/interfaces';
 
     import {
@@ -33,7 +33,7 @@
 
     // #region internal
     import {
-        StyledProject,
+        StyledToken,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -41,7 +41,7 @@
 
 
 // #region module
-export interface ProjectProperties {
+export interface TokenProperties {
     // #region required
         // #region values
         theme: Theme;
@@ -49,7 +49,7 @@ export interface ProjectProperties {
 
         // #region methods
         action: (
-            project: IProject,
+            token: IToken,
         ) => void;
         // #endregion methods
     // #endregion required
@@ -64,7 +64,7 @@ export interface ProjectProperties {
     // #endregion optional
 }
 
-const Project: React.FC<ProjectProperties> = (
+const Token: React.FC<TokenProperties> = (
     properties,
 ) => {
     // #region properties
@@ -93,28 +93,28 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region state
     const [
-        projectName,
-        setProjectName,
+        tokenName,
+        setTokenName,
     ] = useState('');
     // #endregion state
 
 
     // #region handlers
-    const addProject = async () => {
-        if (!projectName) {
+    const addToken = async () => {
+        if (!tokenName) {
             return;
         }
 
-        const project: IProject | undefined = await addEntityMutation(
+        const token: IToken | undefined = await addEntityMutation(
             {
-                value: projectName,
+                value: tokenName,
             },
             GENERATE_PROJECT,
-            'generateProject',
+            'generateToken',
         );
 
-        if (project) {
-            action(project);
+        if (token) {
+            action(token);
         }
     }
     // #endregion handlers
@@ -122,22 +122,22 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region render
     return (
-        <StyledProject
+        <StyledToken
             theme={theme}
         >
             <div>
                 <h1>
-                    add project
+                    add token
                 </h1>
 
                 <div>
                     <StyledPluridTextline
-                        text={projectName}
+                        text={tokenName}
                         placeholder="name"
-                        atChange={(event) => setProjectName(event.target.value)}
+                        atChange={(event) => setTokenName(event.target.value)}
                         atKeyDown={(event) => {
                             if (event.key === 'Enter') {
-                                addProject();
+                                addToken();
                             }
                         }}
                         spellCheck={false}
@@ -151,10 +151,10 @@ const Project: React.FC<ProjectProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Project"
-                        atClick={() => addProject()}
+                        text="Add Token"
+                        atClick={() => addToken()}
                         level={2}
-                        disabled={!projectName}
+                        disabled={!tokenName}
                     />
                 </div>
 
@@ -169,7 +169,7 @@ const Project: React.FC<ProjectProperties> = (
                     </div>
                 )}
             </div>
-        </StyledProject>
+        </StyledToken>
     );
     // #endregion render
 }
@@ -178,5 +178,5 @@ const Project: React.FC<ProjectProperties> = (
 
 
 // #region exports
-export default Project;
+export default Token;
 // #endregion exports

@@ -10,7 +10,7 @@
 
     // #region external
     import {
-        Project,
+        Space,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -18,16 +18,16 @@
 
 
 // #region module
-export const projectRowRenderer = (
-    project: Project,
-    handleProjectObliterate: (
+export const spaceRowRenderer = (
+    space: Space,
+    handleSpaceObliterate: (
         id: string,
     ) => void,
 ) => {
     const {
         id,
-        name
-    } = project;
+        name,
+    } = space;
 
     return (
         <>
@@ -36,7 +36,7 @@ export const projectRowRenderer = (
             </div>
 
             <PluridIconDelete
-                atClick={() => handleProjectObliterate(id)}
+                atClick={() => handleSpaceObliterate(id)}
             />
         </>
     );
@@ -44,14 +44,14 @@ export const projectRowRenderer = (
 
 
 export const createSearchTerms = (
-    projects: Project[],
+    spaces: Space[],
 ) => {
-    const searchTerms = projects.map(
-        project => {
+    const searchTerms = spaces.map(
+        space => {
             const {
                 id,
-                name
-            } = project;
+                name,
+            } = space;
 
             const searchTerm = {
                 id,

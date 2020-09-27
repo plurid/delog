@@ -12,7 +12,7 @@
 
     // #region external
     import {
-        Project as IProject,
+        Format as IFormat,
     } from '#server/data/interfaces';
 
     import {
@@ -33,7 +33,7 @@
 
     // #region internal
     import {
-        StyledProject,
+        StyledFormat,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -41,7 +41,7 @@
 
 
 // #region module
-export interface ProjectProperties {
+export interface FormatProperties {
     // #region required
         // #region values
         theme: Theme;
@@ -49,7 +49,7 @@ export interface ProjectProperties {
 
         // #region methods
         action: (
-            project: IProject,
+            format: IFormat,
         ) => void;
         // #endregion methods
     // #endregion required
@@ -64,7 +64,7 @@ export interface ProjectProperties {
     // #endregion optional
 }
 
-const Project: React.FC<ProjectProperties> = (
+const Format: React.FC<FormatProperties> = (
     properties,
 ) => {
     // #region properties
@@ -93,28 +93,28 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region state
     const [
-        projectName,
-        setProjectName,
+        formatName,
+        setFormatName,
     ] = useState('');
     // #endregion state
 
 
     // #region handlers
-    const addProject = async () => {
-        if (!projectName) {
+    const addFormat = async () => {
+        if (!formatName) {
             return;
         }
 
-        const project: IProject | undefined = await addEntityMutation(
+        const format: IFormat | undefined = await addEntityMutation(
             {
-                value: projectName,
+                value: formatName,
             },
             GENERATE_PROJECT,
-            'generateProject',
+            'generateFormat',
         );
 
-        if (project) {
-            action(project);
+        if (format) {
+            action(format);
         }
     }
     // #endregion handlers
@@ -122,22 +122,22 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region render
     return (
-        <StyledProject
+        <StyledFormat
             theme={theme}
         >
             <div>
                 <h1>
-                    add project
+                    add format
                 </h1>
 
                 <div>
                     <StyledPluridTextline
-                        text={projectName}
+                        text={formatName}
                         placeholder="name"
-                        atChange={(event) => setProjectName(event.target.value)}
+                        atChange={(event) => setFormatName(event.target.value)}
                         atKeyDown={(event) => {
                             if (event.key === 'Enter') {
-                                addProject();
+                                addFormat();
                             }
                         }}
                         spellCheck={false}
@@ -151,10 +151,10 @@ const Project: React.FC<ProjectProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Project"
-                        atClick={() => addProject()}
+                        text="Add Format"
+                        atClick={() => addFormat()}
                         level={2}
-                        disabled={!projectName}
+                        disabled={!formatName}
                     />
                 </div>
 
@@ -169,7 +169,7 @@ const Project: React.FC<ProjectProperties> = (
                     </div>
                 )}
             </div>
-        </StyledProject>
+        </StyledFormat>
     );
     // #endregion render
 }
@@ -178,5 +178,5 @@ const Project: React.FC<ProjectProperties> = (
 
 
 // #region exports
-export default Project;
+export default Format;
 // #endregion exports

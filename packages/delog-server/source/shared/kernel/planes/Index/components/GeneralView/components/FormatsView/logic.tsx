@@ -10,7 +10,7 @@
 
     // #region external
     import {
-        Project,
+        Format,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -18,25 +18,25 @@
 
 
 // #region module
-export const projectRowRenderer = (
-    project: Project,
-    handleProjectObliterate: (
+export const formatRowRenderer = (
+    format: Format,
+    handleFormatObliterate: (
         id: string,
     ) => void,
 ) => {
     const {
         id,
-        name
-    } = project;
+        value,
+    } = format;
 
     return (
         <>
             <div>
-                {name}
+                {value}
             </div>
 
             <PluridIconDelete
-                atClick={() => handleProjectObliterate(id)}
+                atClick={() => handleFormatObliterate(id)}
             />
         </>
     );
@@ -44,19 +44,19 @@ export const projectRowRenderer = (
 
 
 export const createSearchTerms = (
-    projects: Project[],
+    formats: Format[],
 ) => {
-    const searchTerms = projects.map(
-        project => {
+    const searchTerms = formats.map(
+        format => {
             const {
                 id,
-                name
-            } = project;
+                value,
+            } = format;
 
             const searchTerm = {
                 id,
                 data: [
-                    name.toLowerCase(),
+                    value.toLowerCase(),
                 ],
             };
 

@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Project,
+        ClientNotifier,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -48,7 +48,7 @@
 
     // #region internal
     import {
-        projectRowRenderer,
+        notifierRowRenderer,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -57,7 +57,7 @@
 
 
 // #region module
-export interface ProjectsViewOwnProperties {
+export interface NotifiersViewOwnProperties {
     // #region required
         // #region values
         // #endregion values
@@ -76,22 +76,22 @@ export interface ProjectsViewOwnProperties {
     // #endregion optional
 }
 
-export interface ProjectsViewStateProperties {
+export interface NotifiersViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateProjects: Project[];
+    stateNotifiers: ClientNotifier[];
 }
 
-export interface ProjectsViewDispatchProperties {
+export interface NotifiersViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
 }
 
-export type ProjectsViewProperties = ProjectsViewOwnProperties
-    & ProjectsViewStateProperties
-    & ProjectsViewDispatchProperties;
+export type NotifiersViewProperties = NotifiersViewOwnProperties
+    & NotifiersViewStateProperties
+    & NotifiersViewDispatchProperties;
 
-const ProjectsView: React.FC<ProjectsViewProperties> = (
+const NotifiersView: React.FC<NotifiersViewProperties> = (
     properties,
 ) => {
     // #region properties
@@ -116,7 +116,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateProjects,
+        stateNotifiers,
         // #endregion state
 
         // #region dispatch
@@ -128,12 +128,12 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 
     // #region handlers
-    const handleProjectObliterate = async (
+    const handleNotifierObliterate = async (
         id: string,
     ) => {
         try {
             dispatchRemoveEntity({
-                type: 'project',
+                type: 'notifier',
                 id,
             });
 
@@ -156,14 +156,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
     // #region state
     const [searchTerms, setSearchTerms] = useState(
-        createSearchTerms(stateProjects),
+        createSearchTerms(stateNotifiers),
     );
 
     const [filteredRows, setFilteredRows] = useState(
-        stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        stateNotifiers.map(
+            notifier => notifierRowRenderer(
+                notifier,
+                handleNotifierObliterate,
             ),
         ),
     );
@@ -181,23 +181,23 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             value,
         );
 
-        const filteredProjects = stateProjects.filter(stateProject => {
-            if (filterIDs.includes(stateProject.id)) {
+        const filteredNotifiers = stateNotifiers.filter(stateNotifier => {
+            if (filterIDs.includes(stateNotifier.id)) {
                 return true;
             }
 
             return false;
         });
 
-        const sortedProjects = filteredProjects.sort(
+        const sortedNotifiers = filteredNotifiers.sort(
             compareValues('name'),
         );
 
         setFilteredRows(
-            sortedProjects.map(
-                project => projectRowRenderer(
-                    project,
-                    handleProjectObliterate,
+            sortedNotifiers.map(
+                notifier => notifierRowRenderer(
+                    notifier,
+                    handleNotifierObliterate,
                 ),
             ),
         );
@@ -208,19 +208,19 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     // #region effects
     useEffect(() => {
         const searchTerms = createSearchTerms(
-            stateProjects,
+            stateNotifiers,
         );
-        const filteredRows = stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        const filteredRows = stateNotifiers.map(
+            notifier => notifierRowRenderer(
+                notifier,
+                handleNotifierObliterate,
             ),
         );
 
         setSearchTerms(searchTerms);
         setFilteredRows(filteredRows);
     }, [
-        stateProjects,
+        stateNotifiers,
     ]);
     // #endregion effects
 
@@ -244,11 +244,11 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             rowTemplate="auto 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
-            noRows="no projects"
+            noRows="no notifiers"
 
             actionButtonText="Generate Notifier"
             actionButtonClick={() => {
-                setGeneralView('generate-project');
+                setGeneralView('generate-notifier');
             }}
 
             filterUpdate={filterUpdate}
@@ -263,16 +263,16 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ProjectsViewStateProperties => ({
+): NotifiersViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateProjects: selectors.data.getProjects(state),
+    stateNotifiers: selectors.data.getNotifiers(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ProjectsViewDispatchProperties => ({
+): NotifiersViewDispatchProperties => ({
     dispatch,
     dispatchRemoveEntity: (
         payload,
@@ -282,14 +282,14 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedProjectsView = connect(
+const ConnectedNotifiersView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
-)(ProjectsView);
+)(NotifiersView);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedProjectsView;
+export default ConnectedNotifiersView;
 // #endregion exports

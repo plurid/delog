@@ -11,11 +11,11 @@
 
 
 // #region module
-export interface IStyledProject {
+export interface IStyledFormat {
     theme: Theme;
 }
 
-export const StyledProject = styled.div<IStyledProject>`
+export const StyledFormat = styled.div<IStyledFormat>`
     display: grid;
     place-content: center;
     text-align: center;

@@ -12,7 +12,7 @@
 
     // #region external
     import {
-        Project as IProject,
+        Space as ISpace,
     } from '#server/data/interfaces';
 
     import {
@@ -33,7 +33,7 @@
 
     // #region internal
     import {
-        StyledProject,
+        StyledSpace,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -41,7 +41,7 @@
 
 
 // #region module
-export interface ProjectProperties {
+export interface SpaceProperties {
     // #region required
         // #region values
         theme: Theme;
@@ -49,7 +49,7 @@ export interface ProjectProperties {
 
         // #region methods
         action: (
-            project: IProject,
+            space: ISpace,
         ) => void;
         // #endregion methods
     // #endregion required
@@ -64,7 +64,7 @@ export interface ProjectProperties {
     // #endregion optional
 }
 
-const Project: React.FC<ProjectProperties> = (
+const Space: React.FC<SpaceProperties> = (
     properties,
 ) => {
     // #region properties
@@ -93,28 +93,28 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region state
     const [
-        projectName,
-        setProjectName,
+        spaceName,
+        setSpaceName,
     ] = useState('');
     // #endregion state
 
 
     // #region handlers
-    const addProject = async () => {
-        if (!projectName) {
+    const addSpace = async () => {
+        if (!spaceName) {
             return;
         }
 
-        const project: IProject | undefined = await addEntityMutation(
+        const space: ISpace | undefined = await addEntityMutation(
             {
-                value: projectName,
+                value: spaceName,
             },
             GENERATE_PROJECT,
-            'generateProject',
+            'generateSpace',
         );
 
-        if (project) {
-            action(project);
+        if (space) {
+            action(space);
         }
     }
     // #endregion handlers
@@ -122,22 +122,22 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region render
     return (
-        <StyledProject
+        <StyledSpace
             theme={theme}
         >
             <div>
                 <h1>
-                    add project
+                    add space
                 </h1>
 
                 <div>
                     <StyledPluridTextline
-                        text={projectName}
+                        text={spaceName}
                         placeholder="name"
-                        atChange={(event) => setProjectName(event.target.value)}
+                        atChange={(event) => setSpaceName(event.target.value)}
                         atKeyDown={(event) => {
                             if (event.key === 'Enter') {
-                                addProject();
+                                addSpace();
                             }
                         }}
                         spellCheck={false}
@@ -151,10 +151,10 @@ const Project: React.FC<ProjectProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Project"
-                        atClick={() => addProject()}
+                        text="Add Space"
+                        atClick={() => addSpace()}
                         level={2}
-                        disabled={!projectName}
+                        disabled={!spaceName}
                     />
                 </div>
 
@@ -169,7 +169,7 @@ const Project: React.FC<ProjectProperties> = (
                     </div>
                 )}
             </div>
-        </StyledProject>
+        </StyledSpace>
     );
     // #endregion render
 }
@@ -178,5 +178,5 @@ const Project: React.FC<ProjectProperties> = (
 
 
 // #region exports
-export default Project;
+export default Space;
 // #endregion exports

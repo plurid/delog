@@ -9,6 +9,13 @@
 // #region module
 const initialState: Types.State = {
     projects: [],
+    tokens: [],
+    spaces: [],
+    formats: [],
+    notifiers: [],
+    testers: [],
+    records: [],
+    tests: [],
 };
 // #endregion module
 

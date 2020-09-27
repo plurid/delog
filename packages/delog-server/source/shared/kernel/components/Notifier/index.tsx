@@ -12,7 +12,7 @@
 
     // #region external
     import {
-        Project as IProject,
+        Notifier as INotifier,
     } from '#server/data/interfaces';
 
     import {
@@ -33,7 +33,7 @@
 
     // #region internal
     import {
-        StyledProject,
+        StyledNotifier,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -41,7 +41,7 @@
 
 
 // #region module
-export interface ProjectProperties {
+export interface NotifierProperties {
     // #region required
         // #region values
         theme: Theme;
@@ -49,7 +49,7 @@ export interface ProjectProperties {
 
         // #region methods
         action: (
-            project: IProject,
+            notifier: INotifier,
         ) => void;
         // #endregion methods
     // #endregion required
@@ -64,7 +64,7 @@ export interface ProjectProperties {
     // #endregion optional
 }
 
-const Project: React.FC<ProjectProperties> = (
+const Notifier: React.FC<NotifierProperties> = (
     properties,
 ) => {
     // #region properties
@@ -93,28 +93,28 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region state
     const [
-        projectName,
-        setProjectName,
+        notifierName,
+        setNotifierName,
     ] = useState('');
     // #endregion state
 
 
     // #region handlers
-    const addProject = async () => {
-        if (!projectName) {
+    const addNotifier = async () => {
+        if (!notifierName) {
             return;
         }
 
-        const project: IProject | undefined = await addEntityMutation(
+        const notifier: INotifier | undefined = await addEntityMutation(
             {
-                value: projectName,
+                value: notifierName,
             },
             GENERATE_PROJECT,
-            'generateProject',
+            'generateNotifier',
         );
 
-        if (project) {
-            action(project);
+        if (notifier) {
+            action(notifier);
         }
     }
     // #endregion handlers
@@ -122,22 +122,22 @@ const Project: React.FC<ProjectProperties> = (
 
     // #region render
     return (
-        <StyledProject
+        <StyledNotifier
             theme={theme}
         >
             <div>
                 <h1>
-                    add project
+                    add notifier
                 </h1>
 
                 <div>
                     <StyledPluridTextline
-                        text={projectName}
+                        text={notifierName}
                         placeholder="name"
-                        atChange={(event) => setProjectName(event.target.value)}
+                        atChange={(event) => setNotifierName(event.target.value)}
                         atKeyDown={(event) => {
                             if (event.key === 'Enter') {
-                                addProject();
+                                addNotifier();
                             }
                         }}
                         spellCheck={false}
@@ -151,10 +151,10 @@ const Project: React.FC<ProjectProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Project"
-                        atClick={() => addProject()}
+                        text="Add Notifier"
+                        atClick={() => addNotifier()}
                         level={2}
-                        disabled={!projectName}
+                        disabled={!notifierName}
                     />
                 </div>
 
@@ -169,7 +169,7 @@ const Project: React.FC<ProjectProperties> = (
                     </div>
                 )}
             </div>
-        </StyledProject>
+        </StyledNotifier>
     );
     // #endregion render
 }
@@ -178,5 +178,5 @@ const Project: React.FC<ProjectProperties> = (
 
 
 // #region exports
-export default Project;
+export default Notifier;
 // #endregion exports

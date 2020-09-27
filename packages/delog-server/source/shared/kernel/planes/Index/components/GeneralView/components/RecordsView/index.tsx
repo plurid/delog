@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Project,
+        Record,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -48,7 +48,7 @@
 
     // #region internal
     import {
-        projectRowRenderer,
+        recordRowRenderer,
         createSearchTerms,
     } from './logic';
     // #endregion internal
@@ -57,7 +57,7 @@
 
 
 // #region module
-export interface ProjectsViewOwnProperties {
+export interface RecordsViewOwnProperties {
     // #region required
         // #region values
         // #endregion values
@@ -76,22 +76,22 @@ export interface ProjectsViewOwnProperties {
     // #endregion optional
 }
 
-export interface ProjectsViewStateProperties {
+export interface RecordsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateProjects: Project[];
+    stateRecords: Record[];
 }
 
-export interface ProjectsViewDispatchProperties {
+export interface RecordsViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
 }
 
-export type ProjectsViewProperties = ProjectsViewOwnProperties
-    & ProjectsViewStateProperties
-    & ProjectsViewDispatchProperties;
+export type RecordsViewProperties = RecordsViewOwnProperties
+    & RecordsViewStateProperties
+    & RecordsViewDispatchProperties;
 
-const ProjectsView: React.FC<ProjectsViewProperties> = (
+const RecordsView: React.FC<RecordsViewProperties> = (
     properties,
 ) => {
     // #region properties
@@ -116,7 +116,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
-        stateProjects,
+        stateRecords,
         // #endregion state
 
         // #region dispatch
@@ -128,14 +128,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 
     // #region handlers
-    const handleProjectObliterate = async (
+    const handleRecordObliterate = async (
         id: string,
     ) => {
         try {
-            dispatchRemoveEntity({
-                type: 'project',
-                id,
-            });
+            // dispatchRemoveEntity({
+            //     type: 'record',
+            //     id,
+            // });
 
             const input = {
                 value: id,
@@ -156,14 +156,14 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
     // #region state
     const [searchTerms, setSearchTerms] = useState(
-        createSearchTerms(stateProjects),
+        createSearchTerms(stateRecords),
     );
 
     const [filteredRows, setFilteredRows] = useState(
-        stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        stateRecords.map(
+            record => recordRowRenderer(
+                record,
+                handleRecordObliterate,
             ),
         ),
     );
@@ -181,23 +181,23 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             value,
         );
 
-        const filteredProjects = stateProjects.filter(stateProject => {
-            if (filterIDs.includes(stateProject.id)) {
+        const filteredRecords = stateRecords.filter(stateRecord => {
+            if (filterIDs.includes(stateRecord.id)) {
                 return true;
             }
 
             return false;
         });
 
-        const sortedProjects = filteredProjects.sort(
+        const sortedRecords = filteredRecords.sort(
             compareValues('name'),
         );
 
         setFilteredRows(
-            sortedProjects.map(
-                project => projectRowRenderer(
-                    project,
-                    handleProjectObliterate,
+            sortedRecords.map(
+                record => recordRowRenderer(
+                    record,
+                    handleRecordObliterate,
                 ),
             ),
         );
@@ -208,19 +208,19 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     // #region effects
     useEffect(() => {
         const searchTerms = createSearchTerms(
-            stateProjects,
+            stateRecords,
         );
-        const filteredRows = stateProjects.map(
-            project => projectRowRenderer(
-                project,
-                handleProjectObliterate,
+        const filteredRows = stateRecords.map(
+            record => recordRowRenderer(
+                record,
+                handleRecordObliterate,
             ),
         );
 
         setSearchTerms(searchTerms);
         setFilteredRows(filteredRows);
     }, [
-        stateProjects,
+        stateRecords,
     ]);
     // #endregion effects
 
@@ -244,7 +244,7 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
             rowTemplate="auto 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
-            noRows="no projects"
+            noRows="no records"
 
             filterUpdate={filterUpdate}
             refresh={() => {
@@ -258,16 +258,16 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ProjectsViewStateProperties => ({
+): RecordsViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateProjects: selectors.data.getProjects(state),
+    stateRecords: selectors.data.getRecords(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ProjectsViewDispatchProperties => ({
+): RecordsViewDispatchProperties => ({
     dispatch,
     dispatchRemoveEntity: (
         payload,
@@ -277,14 +277,14 @@ const mapDispatchToProperties = (
 });
 
 
-const ConnectedProjectsView = connect(
+const ConnectedRecordsView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
-)(ProjectsView);
+)(RecordsView);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedProjectsView;
+export default ConnectedRecordsView;
 // #endregion exports
