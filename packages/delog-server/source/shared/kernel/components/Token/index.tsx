@@ -20,7 +20,7 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        GENERATE_PROJECT,
+        GENERATE_TOKEN,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -107,9 +107,9 @@ const Token: React.FC<TokenProperties> = (
 
         const token: IToken | undefined = await addEntityMutation(
             {
-                value: tokenName,
+                name: tokenName,
             },
-            GENERATE_PROJECT,
+            GENERATE_TOKEN,
             'generateToken',
         );
 

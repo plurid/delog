@@ -20,7 +20,7 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        GENERATE_PROJECT,
+        GENERATE_NOTIFIER,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -109,7 +109,7 @@ const Notifier: React.FC<NotifierProperties> = (
             {
                 value: notifierName,
             },
-            GENERATE_PROJECT,
+            GENERATE_NOTIFIER,
             'generateNotifier',
         );
 

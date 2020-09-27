@@ -20,7 +20,7 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        GENERATE_PROJECT,
+        GENERATE_SPACE,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -107,9 +107,9 @@ const Space: React.FC<SpaceProperties> = (
 
         const space: ISpace | undefined = await addEntityMutation(
             {
-                value: spaceName,
+                name: spaceName,
             },
-            GENERATE_PROJECT,
+            GENERATE_SPACE,
             'generateSpace',
         );
 

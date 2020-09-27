@@ -20,7 +20,7 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        GENERATE_PROJECT,
+        GENERATE_TESTER,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -107,9 +107,9 @@ const Tester: React.FC<TesterProperties> = (
 
         const tester: ITester | undefined = await addEntityMutation(
             {
-                value: testerName,
+                name: testerName,
             },
-            GENERATE_PROJECT,
+            GENERATE_TESTER,
             'generateTester',
         );
 

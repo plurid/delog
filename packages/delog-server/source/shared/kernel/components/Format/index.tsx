@@ -20,7 +20,7 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        GENERATE_PROJECT,
+        GENERATE_FORMAT,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -109,7 +109,7 @@ const Format: React.FC<FormatProperties> = (
             {
                 value: formatName,
             },
-            GENERATE_PROJECT,
+            GENERATE_FORMAT,
             'generateFormat',
         );
 
