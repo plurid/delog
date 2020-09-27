@@ -70,7 +70,15 @@ const get: DatabaseGet = async (
         return;
     }
 
-    return;
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        return;
+    } catch (error) {
+        return;
+    }
 }
 
 
@@ -82,7 +90,15 @@ const getAll: DatabaseGetAll = async (
         return [];
     }
 
-    return [];
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        return [];
+    } catch (error) {
+        return [];
+    }
 }
 
 
@@ -96,7 +112,15 @@ const query: DatabaseQuery = async (
         return;
     }
 
-    return;
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 
@@ -137,7 +161,15 @@ const update: DatabaseUpdate = async (
         return;
     }
 
-    return;
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 
@@ -178,7 +210,15 @@ const obliterateAll: DatabaseObliterateAll = async (
         return;
     }
 
-    return;
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        return;
+    } catch (error) {
+        return;
+    }
 }
 
 
