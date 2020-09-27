@@ -100,7 +100,7 @@ const delog = async (
             },
         });
 
-        const response = mutation.data.delogMutationLog;
+        const response = mutation.data.delogMutationRecord;
 
         if (!response.status) {
             return;
