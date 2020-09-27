@@ -22,7 +22,7 @@ export const mutations = gql`
 
 
 export const types = gql`
-    type ResponseLogs {
+    type ResponseRecords {
         status: Boolean!
         error: Error
         data: [Record!]

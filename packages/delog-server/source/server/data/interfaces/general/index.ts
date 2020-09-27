@@ -77,6 +77,9 @@ export interface Test {
 export interface DelogOwner {
     id: string;
     projects: Project[];
+    tokens: Token[];
+    spaces: Space[];
+    formats: Format[];
     records: any[];
 }
 

@@ -6,8 +6,8 @@
     } from '#server/data/interfaces';
 
     import {
-        deregisterProject,
-    } from '#server/logic/projects';
+        deregisterFormat,
+    } from '#server/logic/formats';
 
     import {
         generateMethodLogs,
@@ -18,10 +18,10 @@
 
 
 // #region module
-export const obliterateProjectLogs = generateMethodLogs('obliterateProject');
+export const obliterateFormatLogs = generateMethodLogs('obliterateFormat');
 
 
-const obliterateProject = async (
+const obliterateFormat = async (
     input: InputValueString,
     context: Context,
 ) => {
@@ -42,7 +42,7 @@ const obliterateProject = async (
 
     // #region log start
     logger.log(
-        obliterateProjectLogs.infoStart,
+        obliterateFormatLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -59,13 +59,13 @@ const obliterateProject = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                obliterateProjectLogs.infoHandlePrivateUsage,
+                obliterateFormatLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    obliterateProjectLogs.infoEndPrivateUsage,
+                    obliterateFormatLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,10 +74,10 @@ const obliterateProject = async (
                 };
             }
 
-            await deregisterProject(name);
+            await deregisterFormat(name);
 
             logger.log(
-                obliterateProjectLogs.infoSuccessPrivateUsage,
+                obliterateFormatLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -93,14 +93,14 @@ const obliterateProject = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                obliterateProjectLogs.infoHandleCustomLogicUsage,
+                obliterateFormatLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            await deregisterProject(name);
+            await deregisterFormat(name);
 
             logger.log(
-                obliterateProjectLogs.infoEndCustomLogicUsage,
+                obliterateFormatLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
@@ -112,10 +112,10 @@ const obliterateProject = async (
 
 
         // #region public usage
-        await deregisterProject(name);
+        await deregisterFormat(name);
 
         logger.log(
-            obliterateProjectLogs.infoSuccess,
+            obliterateFormatLogs.infoSuccess,
             logLevels.info,
         );
 
@@ -126,7 +126,7 @@ const obliterateProject = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            obliterateProjectLogs.errorEnd,
+            obliterateFormatLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -142,5 +142,5 @@ const obliterateProject = async (
 
 
 // #region exports
-export default obliterateProject;
+export default obliterateFormat;
 // #endregion exports

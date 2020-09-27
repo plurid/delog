@@ -27,6 +27,9 @@ const delogLogic: DelogLogic = {
         return {
             id: uuid.generate(),
             projects: [],
+            tokens: [],
+            spaces: [],
+            formats: [],
             records: [],
         };
     },

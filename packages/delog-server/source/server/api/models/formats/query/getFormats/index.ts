@@ -13,9 +13,9 @@
 
 
 // #region module
-export const getProjectsLogs = generateMethodLogs('getProjects');
+export const getFormatsLogs = generateMethodLogs('getFormats');
 
-const getProjects = async (
+const getFormats = async (
     context: Context,
 ) => {
     // #region context unpack
@@ -36,7 +36,7 @@ const getProjects = async (
 
     // #region log start
     logger.log(
-        getProjectsLogs.infoStart,
+        getFormatsLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -46,13 +46,13 @@ const getProjects = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                getProjectsLogs.infoHandlePrivateUsage,
+                getFormatsLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    getProjectsLogs.infoEndPrivateUsage,
+                    getFormatsLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -62,7 +62,7 @@ const getProjects = async (
             }
 
             logger.log(
-                getProjectsLogs.infoSuccessPrivateUsage,
+                getFormatsLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -81,7 +81,7 @@ const getProjects = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                getProjectsLogs.infoHandleCustomLogicUsage,
+                getFormatsLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
@@ -99,7 +99,7 @@ const getProjects = async (
 
         // #region public usage
         logger.log(
-            getProjectsLogs.infoSuccessCustomLogicUsage,
+            getFormatsLogs.infoSuccessCustomLogicUsage,
             logLevels.info,
         );
 
@@ -113,7 +113,7 @@ const getProjects = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            getProjectsLogs.errorEnd,
+            getFormatsLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -129,5 +129,5 @@ const getProjects = async (
 
 
 // #region exports
-export default getProjects;
+export default getFormats;
 // #endregion exports

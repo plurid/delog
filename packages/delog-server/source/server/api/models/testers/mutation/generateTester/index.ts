@@ -6,8 +6,8 @@
     } from '#server/data/interfaces';
 
     import {
-        registerProject,
-    } from '#server/logic/projects';
+        registerTester,
+    } from '#server/logic/testers';
 
     import {
         generateMethodLogs,
@@ -18,10 +18,10 @@
 
 
 // #region module
-export const generateProjectLogs = generateMethodLogs('generateProject');
+export const generateTesterLogs = generateMethodLogs('generateTester');
 
 
-const generateProject = async (
+const generateTester = async (
     input: InputValueString,
     context: Context,
 ) => {
@@ -42,7 +42,7 @@ const generateProject = async (
 
     // #region log start
     logger.log(
-        generateProjectLogs.infoStart,
+        generateTesterLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -59,13 +59,13 @@ const generateProject = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                generateProjectLogs.infoHandlePrivateUsage,
+                generateTesterLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    generateProjectLogs.infoEndPrivateUsage,
+                    generateTesterLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,10 +74,10 @@ const generateProject = async (
                 };
             }
 
-            const project = await registerProject(name);
+            const project = await registerTester(name);
 
             logger.log(
-                generateProjectLogs.infoSuccessPrivateUsage,
+                generateTesterLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -94,14 +94,14 @@ const generateProject = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                generateProjectLogs.infoHandleCustomLogicUsage,
+                generateTesterLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            const project = await registerProject(name);
+            const project = await registerTester(name);
 
             logger.log(
-                generateProjectLogs.infoEndCustomLogicUsage,
+                generateTesterLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
@@ -114,10 +114,10 @@ const generateProject = async (
 
 
         // #region public usage
-        const project = await registerProject(name);
+        const project = await registerTester(name);
 
         logger.log(
-            generateProjectLogs.infoSuccess,
+            generateTesterLogs.infoSuccess,
             logLevels.info,
         );
 
@@ -129,7 +129,7 @@ const generateProject = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            generateProjectLogs.errorEnd,
+            generateTesterLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -145,5 +145,5 @@ const generateProject = async (
 
 
 // #region exports
-export default generateProject;
+export default generateTester;
 // #endregion exports

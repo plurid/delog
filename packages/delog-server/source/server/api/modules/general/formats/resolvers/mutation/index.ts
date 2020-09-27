@@ -7,7 +7,7 @@
     } from '#server/data/interfaces';
 
     import {
-        Projects,
+        Formats,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -16,19 +16,19 @@
 
 // #region exports
 export default {
-    generateProject: (
+    generateFormat: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.generateProject(
+    ) => Formats.Mutation.generateFormat(
         input,
         context,
     ),
-    obliterateProject: (
+    obliterateFormat: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.obliterateProject(
+    ) => Formats.Mutation.obliterateFormat(
         input,
         context,
     ),

@@ -7,7 +7,7 @@
     } from '#server/data/interfaces';
 
     import {
-        Projects,
+        Testers,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -16,19 +16,19 @@
 
 // #region exports
 export default {
-    generateProject: (
+    generateTester: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.generateProject(
+    ) => Testers.Mutation.generateTester(
         input,
         context,
     ),
-    obliterateProject: (
+    obliterateTester: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.obliterateProject(
+    ) => Testers.Mutation.obliterateTester(
         input,
         context,
     ),

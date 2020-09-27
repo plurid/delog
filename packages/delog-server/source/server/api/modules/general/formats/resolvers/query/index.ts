@@ -5,7 +5,7 @@
     } from '#server/data/interfaces';
 
     import {
-        Projects,
+        Formats,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -14,11 +14,11 @@
 
 // #region exports
 export default {
-    getProjects: (
+    getFormats: (
         _: any,
         __: any,
         context: Context,
-    ) => Projects.Query.getProjects(
+    ) => Formats.Query.getFormats(
         context,
     ),
 };

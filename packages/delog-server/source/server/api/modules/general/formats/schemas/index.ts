@@ -9,35 +9,42 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getProjects: ResponseProjects!
+        getFormats: ResponseFormats!
     }
 `;
 
 
 export const mutations = gql`
     extend type Mutation {
-        generateProject(input: InputValueString!): ResponseProject!
-        obliterateProject(input: InputValueString!): Response!
+        generateFormat(input: InputGenerateFormat!): ResponseFormat!
+        obliterateFormat(input: InputValueString!): Response!
     }
 `;
 
 
 export const types = gql`
-    type ResponseProject {
+    type ResponseFormat {
         status: Boolean!
         error: Error
-        data: Project
+        data: Format
     }
 
-    type ResponseProjects {
+    type ResponseFormats {
         status: Boolean!
         error: Error
-        data: [Project!]
+        data: [Format!]
     }
 
-    type Project {
+    type Format {
         id: String!
-        name: String!
+        value: String!
+    }
+`;
+
+
+export const inputs = gql`
+    input InputGenerateFormat {
+        valu: String!
     }
 `;
 // #endregion module
@@ -49,5 +56,6 @@ export default gql`
     ${queries}
     ${mutations}
     ${types}
+    ${inputs}
 `;
 // #endregion exports
