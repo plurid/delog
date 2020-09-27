@@ -1,15 +1,18 @@
 // #region imports
     // #region external
     import storage from '#server/services/storage';
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-const setup = () => {
+const setup = async () => {
     try {
-        storage.generateLocations();
+        await storage.generateLocations();
+
+        await database.initialize();
     } catch (error) {
         return;
     }

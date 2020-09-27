@@ -21,18 +21,18 @@
 
 
 // #region module
-const setupHandlers = (
+const setupHandlers = async (
     server: PluridServer,
     logic?: DelogLogic,
 ) => {
     const instance = server.instance();
 
-    setupGlobal();
-    setupMiddleware(
+    await setupGlobal();
+    await setupMiddleware(
         instance,
         logic,
     );
-    setupGraphQL(
+    await setupGraphQL(
         instance,
         logic,
     );

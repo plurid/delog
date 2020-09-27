@@ -98,7 +98,7 @@ const record = async (
                 };
             }
 
-            // await registerRecord(text);
+            await registerRecord(text);
 
             logger.log(
                 logLogs.infoSuccessPrivateUsage,
@@ -121,7 +121,7 @@ const record = async (
                 logLevels.trace,
             );
 
-            // await registerRecord(text);
+            await registerRecord(text);
 
             logger.log(
                 logLogs.infoEndCustomLogicUsage,
@@ -136,7 +136,7 @@ const record = async (
 
 
         // #region public usage
-        // await registerRecord(text);
+        await registerRecord(text);
 
         logger.log(
             logLogs.infoSuccess,

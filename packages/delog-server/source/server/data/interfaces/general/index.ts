@@ -61,11 +61,7 @@ export interface Tester {
 
 export interface Record {
     id: string;
-}
-
-
-export interface Record {
-    id: string;
+    text: string;
 }
 
 

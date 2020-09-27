@@ -30,6 +30,21 @@ class Database {
         this.type = type;
     }
 
+    public initialize() {
+        switch (this.type) {
+            case databaseType.filesystem:
+                return filesystemDatabase.initialize();
+            case databaseType.amazon:
+                return amazonDatabase.initialize();
+            case databaseType.google:
+                return googleDatabase.initialize();
+            case databaseType.mongo:
+                return mongoDatabase.initialize();
+            default:
+                return;
+        }
+    }
+
     public get(
         entity: string,
         id: string,

@@ -8,7 +8,7 @@
 
     // #region external
     import {
-        Project,
+        Record,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -19,22 +19,22 @@
 
 // #region module
 const registerRecord = async (
-    name: string,
+    text: string,
 ) => {
     const id = uuid.generate();
 
-    const project: Project = {
+    const record: Record = {
         id,
-        name,
+        text,
     };
 
     await database.store(
-        'project',
+        'records',
         id,
-        project,
+        record,
     );
 
-    return project;
+    return record;
 }
 
 
@@ -43,7 +43,7 @@ const deregisterRecord = async (
 ) => {
     try {
         await database.obliterate(
-            'project',
+            'records',
             id,
         );
     } catch (error) {

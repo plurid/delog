@@ -41,6 +41,9 @@ const createConnection = async () => {
 
         const connection = await MongoClient.connect(
             uri,
+            {
+                useUnifiedTopology: true,
+            },
         );
 
         return connection;
@@ -102,10 +105,22 @@ const store: DatabaseStore = async (
 ) => {
     if (!connection) {
         console.log(mongoNoConnectionError);
-        return;
+        return false;
     }
 
-    return;
+    try {
+        const database = connection.db('delog');
+
+        const collection = database.collection(entity);
+
+        await collection.insertOne(
+            data,
+        );
+
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 
