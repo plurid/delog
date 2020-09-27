@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import getLogs from './getLogs';
+    import getRecords from './getRecords';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    getLogs,
+    getRecords,
 };
 // #endregion exports

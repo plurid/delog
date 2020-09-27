@@ -2,7 +2,12 @@
     // #region external
     import {
         Context,
+        InputGenerateSpace,
     } from '#server/data/interfaces';
+
+    import {
+        registerSpace,
+    } from '#server/logic/spaces';
 
     import {
         generateMethodLogs,
@@ -13,14 +18,15 @@
 
 
 // #region module
-export const getProjectsLogs = generateMethodLogs('getProjects');
+export const generateSpaceLogs = generateMethodLogs('generateSpace');
 
-const getProjects = async (
+
+const generateSpace = async (
+    input: InputGenerateSpace,
     context: Context,
 ) => {
     // #region context unpack
     const {
-        projects,
         request,
 
         privateUsage,
@@ -36,23 +42,30 @@ const getProjects = async (
 
     // #region log start
     logger.log(
-        getProjectsLogs.infoStart,
+        generateSpaceLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
 
 
     try {
+        // #region input unpack
+        const {
+            name,
+        } = input;
+        // #endregion input unpack
+
+
         // #region private usage
         if (privateUsage) {
             logger.log(
-                getProjectsLogs.infoHandlePrivateUsage,
+                generateSpaceLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    getProjectsLogs.infoEndPrivateUsage,
+                    generateSpaceLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -61,16 +74,16 @@ const getProjects = async (
                 };
             }
 
+            const space = await registerSpace(name);
+
             logger.log(
-                getProjectsLogs.infoSuccessPrivateUsage,
+                generateSpaceLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
-                data: [
-                    ...projects,
-                ],
+                data: space,
             };
         }
         // #endregion private usage
@@ -81,39 +94,42 @@ const getProjects = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                getProjectsLogs.infoHandleCustomLogicUsage,
+                generateSpaceLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            const owner = await logic.getCurrentOwner();
+            const space = await registerSpace(name);
+
+            logger.log(
+                generateSpaceLogs.infoEndCustomLogicUsage,
+                logLevels.info,
+            );
 
             return {
                 status: true,
-                data: [
-                    ...owner.projects,
-                ],
+                data: space,
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
+        const space = await registerSpace(name);
+
         logger.log(
-            getProjectsLogs.infoSuccessCustomLogicUsage,
+            generateSpaceLogs.infoSuccess,
             logLevels.info,
         );
 
         return {
             status: true,
-            data: [
-                ...projects,
-            ],
+            data: space,
         };
         // #endregion public usage
     } catch (error) {
         // #region error handle
         logger.log(
-            getProjectsLogs.errorEnd,
+            generateSpaceLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -129,5 +145,5 @@ const getProjects = async (
 
 
 // #region exports
-export default getProjects;
+export default generateSpace;
 // #endregion exports

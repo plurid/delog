@@ -1,7 +1,7 @@
 // #region imports
     // #region internal
-    import generateProject from './generateProject';
-    import obliterateProject from './obliterateProject';
+    import generateFormat from './generateFormat';
+    import obliterateFormat from './obliterateFormat';
     // #endregion internal
 // #endregion imports
 
@@ -9,7 +9,7 @@
 
 // #region exports
 export default {
-    generateProject,
-    obliterateProject,
+    generateFormat,
+    obliterateFormat,
 };
 // #endregion exports

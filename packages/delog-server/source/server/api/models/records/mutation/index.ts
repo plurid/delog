@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import log from './log';
+    import record from './record';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    log,
+    record,
 };
 // #endregion exports

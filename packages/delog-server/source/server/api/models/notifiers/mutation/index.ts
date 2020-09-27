@@ -1,7 +1,7 @@
 // #region imports
     // #region internal
-    import generateProject from './generateProject';
-    import obliterateProject from './obliterateProject';
+    import generateNotifier from './generateNotifier';
+    import obliterateNotifier from './obliterateNotifier';
     // #endregion internal
 // #endregion imports
 
@@ -9,7 +9,7 @@
 
 // #region exports
 export default {
-    generateProject,
-    obliterateProject,
+    generateNotifier,
+    obliterateNotifier,
 };
 // #endregion exports

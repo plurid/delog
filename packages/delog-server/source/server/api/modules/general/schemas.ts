@@ -2,6 +2,7 @@
     // #region internal
     import owner from './owner/schemas';
     import projects from './projects/schemas';
+    import tokens from './tokens/schemas';
     import spaces from './spaces/schemas';
     import formats from './formats/schemas';
     import notifiers from './notifiers/schemas';
@@ -18,6 +19,7 @@
 export default [
     owner,
     projects,
+    tokens,
     // spaces,
     // formats,
     // notifiers,

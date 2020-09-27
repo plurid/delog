@@ -1,7 +1,7 @@
 // #region imports
     // #region libraries
     import {
-        DelogInputLog,
+        DelogInputRecord,
     } from '@plurid/delog';
     // #endregion libraries
 
@@ -27,8 +27,8 @@
 export const logLogs = generateMethodLogs('log');
 
 
-const log = async (
-    input: DelogInputLog,
+const record = async (
+    input: DelogInputRecord,
     context: Context,
 ) => {
     // #region context unpack
@@ -166,5 +166,5 @@ const log = async (
 
 
 // #region exports
-export default log;
+export default record;
 // #endregion exports

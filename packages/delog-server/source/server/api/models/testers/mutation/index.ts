@@ -1,7 +1,7 @@
 // #region imports
     // #region internal
-    import generateProject from './generateProject';
-    import obliterateProject from './obliterateProject';
+    import generateTester from './generateTester';
+    import obliterateTester from './obliterateTester';
     // #endregion internal
 // #endregion imports
 
@@ -9,7 +9,7 @@
 
 // #region exports
 export default {
-    generateProject,
-    obliterateProject,
+    generateTester,
+    obliterateTester,
 };
 // #endregion exports

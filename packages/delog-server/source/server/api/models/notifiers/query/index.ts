@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import getProjects from './getProjects';
+    import getNotifiers from './getNotifiers';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    getProjects,
+    getNotifiers,
 };
 // #endregion exports

@@ -5,7 +5,7 @@
     } from '#server/data/interfaces';
 
     import {
-        Projects,
+        Spaces,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -14,11 +14,11 @@
 
 // #region exports
 export default {
-    getProjects: (
+    getSpaces: (
         _: any,
         __: any,
         context: Context,
-    ) => Projects.Query.getProjects(
+    ) => Spaces.Query.getSpaces(
         context,
     ),
 };

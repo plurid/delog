@@ -9,41 +9,42 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getSpaces: ResponseSpaces!
+        getTokens: ResponseTokens!
     }
 `;
 
 
 export const mutations = gql`
     extend type Mutation {
-        generateSpace(input: InputGenerateSpace!): ResponseSpace!
-        obliterateSpace(input: InputValueString!): Response!
+        generateToken(input: InputGenerateToken!): ResponseToken!
+        obliterateToken(input: InputValueString!): Response!
     }
 `;
 
 
 export const types = gql`
-    type ResponseSpace {
+    type ResponseToken {
         status: Boolean!
         error: Error
-        data: Space
+        data: Token
     }
 
-    type ResponseSpaces {
+    type ResponseTokens {
         status: Boolean!
         error: Error
-        data: [Space!]
+        data: [Token!]
     }
 
-    type Space {
-        id: String!
+    type Token {
+        id: ID!
         name: String!
+        startsWith: String!
     }
 `;
 
 
 export const inputs = gql`
-    input InputGenerateSpace {
+    input InputGenerateToken {
         name: String!
     }
 `;

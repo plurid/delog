@@ -9,14 +9,14 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getLogs: ResponseLogs!
+        getRecords: ResponseRecords!
     }
 `;
 
 
 export const mutations = gql`
     extend type Mutation {
-        delogMutationLog(input: DelogInputLog!): Response!
+        delogMutationRecord(input: DelogInputRecord!): Response!
     }
 `;
 
@@ -25,10 +25,10 @@ export const types = gql`
     type ResponseLogs {
         status: Boolean!
         error: Error
-        data: [Log!]
+        data: [Record!]
     }
 
-    type Log {
+    type Record {
         format: String!
 
         project: String!
@@ -57,7 +57,7 @@ export const types = gql`
 
 
 export const inputs = gql`
-    input DelogInputLog {
+    input DelogInputRecord {
         format: String!
 
         project: String!

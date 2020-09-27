@@ -7,6 +7,7 @@
     // #region internal
     import owner from './owner/resolvers';
     import projects from './projects/resolvers';
+    import tokens from './tokens/resolvers';
     import spaces from './spaces/resolvers';
     import formats from './formats/resolvers';
     import notifiers from './notifiers/resolvers';
@@ -36,6 +37,7 @@ const generateResolvers = (
 const resolvers = generateResolvers(
     owner,
     projects,
+    tokens,
     // spaces,
     // formats,
     // notifiers,

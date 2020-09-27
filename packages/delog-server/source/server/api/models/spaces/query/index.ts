@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import getProjects from './getProjects';
+    import getSpaces from './getSpaces';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    getProjects,
+    getSpaces,
 };
 // #endregion exports

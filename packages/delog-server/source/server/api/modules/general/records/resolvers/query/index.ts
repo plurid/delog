@@ -14,11 +14,11 @@
 
 // #region exports
 export default {
-    getLogs: (
+    getRecords: (
         _: any,
         __: any,
         context: Context,
-    ) => Records.Query.getLogs(
+    ) => Records.Query.getRecords(
         context,
     ),
 };

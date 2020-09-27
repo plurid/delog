@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import getFormats from './getFormats';
+    import getTokens from './getTokens';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    getFormats,
+    getTokens,
 };
 // #endregion exports

@@ -1,6 +1,7 @@
 // #region imports
     // #region internal
-    import getFormats from './getFormats';
+    import generateToken from './generateToken';
+    import obliterateToken from './obliterateToken';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +9,7 @@
 
 // #region exports
 export default {
-    getFormats,
+    generateToken,
+    obliterateToken,
 };
 // #endregion exports

@@ -2,12 +2,7 @@
     // #region external
     import {
         Context,
-        InputValueString,
     } from '#server/data/interfaces';
-
-    import {
-        registerProject,
-    } from '#server/logic/projects';
 
     import {
         generateMethodLogs,
@@ -18,15 +13,14 @@
 
 
 // #region module
-export const generateProjectLogs = generateMethodLogs('generateProject');
+export const getTokensLogs = generateMethodLogs('getTokens');
 
-
-const generateProject = async (
-    input: InputValueString,
+const getTokens = async (
     context: Context,
 ) => {
     // #region context unpack
     const {
+        projects,
         request,
 
         privateUsage,
@@ -42,30 +36,23 @@ const generateProject = async (
 
     // #region log start
     logger.log(
-        generateProjectLogs.infoStart,
+        getTokensLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
 
 
     try {
-        // #region input unpack
-        const {
-            value: name,
-        } = input;
-        // #endregion input unpack
-
-
         // #region private usage
         if (privateUsage) {
             logger.log(
-                generateProjectLogs.infoHandlePrivateUsage,
+                getTokensLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    generateProjectLogs.infoEndPrivateUsage,
+                    getTokensLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,16 +61,16 @@ const generateProject = async (
                 };
             }
 
-            const project = await registerProject(name);
-
             logger.log(
-                generateProjectLogs.infoSuccessPrivateUsage,
+                getTokensLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
-                data: project,
+                data: [
+                    ...projects,
+                ],
             };
         }
         // #endregion private usage
@@ -94,42 +81,39 @@ const generateProject = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                generateProjectLogs.infoHandleCustomLogicUsage,
+                getTokensLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            const project = await registerProject(name);
-
-            logger.log(
-                generateProjectLogs.infoEndCustomLogicUsage,
-                logLevels.info,
-            );
+            const owner = await logic.getCurrentOwner();
 
             return {
                 status: true,
-                data: project,
+                data: [
+                    ...owner.projects,
+                ],
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
-        const project = await registerProject(name);
-
         logger.log(
-            generateProjectLogs.infoSuccess,
+            getTokensLogs.infoSuccessCustomLogicUsage,
             logLevels.info,
         );
 
         return {
             status: true,
-            data: project,
+            data: [
+                ...projects,
+            ],
         };
         // #endregion public usage
     } catch (error) {
         // #region error handle
         logger.log(
-            generateProjectLogs.errorEnd,
+            getTokensLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -145,5 +129,5 @@ const generateProject = async (
 
 
 // #region exports
-export default generateProject;
+export default getTokens;
 // #endregion exports

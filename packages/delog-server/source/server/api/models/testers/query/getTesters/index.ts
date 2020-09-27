@@ -13,9 +13,9 @@
 
 
 // #region module
-export const getProjectsLogs = generateMethodLogs('getProjects');
+export const getTestersLogs = generateMethodLogs('getTesters');
 
-const getProjects = async (
+const getTesters = async (
     context: Context,
 ) => {
     // #region context unpack
@@ -36,7 +36,7 @@ const getProjects = async (
 
     // #region log start
     logger.log(
-        getProjectsLogs.infoStart,
+        getTestersLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -46,13 +46,13 @@ const getProjects = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                getProjectsLogs.infoHandlePrivateUsage,
+                getTestersLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    getProjectsLogs.infoEndPrivateUsage,
+                    getTestersLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -62,7 +62,7 @@ const getProjects = async (
             }
 
             logger.log(
-                getProjectsLogs.infoSuccessPrivateUsage,
+                getTestersLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -81,7 +81,7 @@ const getProjects = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                getProjectsLogs.infoHandleCustomLogicUsage,
+                getTestersLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
@@ -99,7 +99,7 @@ const getProjects = async (
 
         // #region public usage
         logger.log(
-            getProjectsLogs.infoSuccessCustomLogicUsage,
+            getTestersLogs.infoSuccessCustomLogicUsage,
             logLevels.info,
         );
 
@@ -113,7 +113,7 @@ const getProjects = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            getProjectsLogs.errorEnd,
+            getTestersLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -129,5 +129,5 @@ const getProjects = async (
 
 
 // #region exports
-export default getProjects;
+export default getTesters;
 // #endregion exports

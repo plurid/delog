@@ -1,6 +1,7 @@
 // #region imports
     // #region internal
-    import getFormats from './getFormats';
+    import Query from './query';
+    import Mutation from './mutation';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +9,7 @@
 
 // #region exports
 export default {
-    getFormats,
+    Query,
+    Mutation,
 };
 // #endregion exports

@@ -4,11 +4,11 @@
         Context,
         InputOf,
         InputValueString,
-        InputGenerateSpace,
+        InputGenerateToken,
     } from '#server/data/interfaces';
 
     import {
-        Spaces,
+        Tokens,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -17,19 +17,19 @@
 
 // #region exports
 export default {
-    generateSpace: (
+    generateToken: (
         _: any,
-        { input }: InputOf<InputGenerateSpace>,
+        { input }: InputOf<InputGenerateToken>,
         context: Context,
-    ) => Spaces.Mutation.generateSpace(
+    ) => Tokens.Mutation.generateToken(
         input,
         context,
     ),
-    obliterateSpace: (
+    obliterateToken: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Spaces.Mutation.obliterateSpace(
+    ) => Tokens.Mutation.obliterateToken(
         input,
         context,
     ),

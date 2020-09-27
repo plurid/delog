@@ -7,4 +7,14 @@ export interface InputOf<T> {
 export interface InputValueString {
     value: string;
 }
+
+
+export interface InputGenerateToken {
+    name: string;
+}
+
+
+export interface InputGenerateSpace {
+    name: string;
+}
 // #endregion module

@@ -2,12 +2,12 @@
     // #region external
     import {
         Context,
-        InputValueString,
+        InputGenerateToken,
     } from '#server/data/interfaces';
 
     import {
-        deregisterProject,
-    } from '#server/logic/projects';
+        registerToken,
+    } from '#server/logic/tokens';
 
     import {
         generateMethodLogs,
@@ -18,11 +18,11 @@
 
 
 // #region module
-export const obliterateProjectLogs = generateMethodLogs('obliterateProject');
+export const generateTokenLogs = generateMethodLogs('generateToken');
 
 
-const obliterateProject = async (
-    input: InputValueString,
+const generateToken = async (
+    input: InputGenerateToken,
     context: Context,
 ) => {
     // #region context unpack
@@ -42,7 +42,7 @@ const obliterateProject = async (
 
     // #region log start
     logger.log(
-        obliterateProjectLogs.infoStart,
+        generateTokenLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -51,7 +51,7 @@ const obliterateProject = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            name,
         } = input;
         // #endregion input unpack
 
@@ -59,13 +59,13 @@ const obliterateProject = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                obliterateProjectLogs.infoHandlePrivateUsage,
+                generateTokenLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    obliterateProjectLogs.infoEndPrivateUsage,
+                    generateTokenLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,15 +74,16 @@ const obliterateProject = async (
                 };
             }
 
-            await deregisterProject(name);
+            const token = await registerToken(name);
 
             logger.log(
-                obliterateProjectLogs.infoSuccessPrivateUsage,
+                generateTokenLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
+                data: token,
             };
         }
         // #endregion private usage
@@ -93,40 +94,42 @@ const obliterateProject = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                obliterateProjectLogs.infoHandleCustomLogicUsage,
+                generateTokenLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            await deregisterProject(name);
+            const token = await registerToken(name);
 
             logger.log(
-                obliterateProjectLogs.infoEndCustomLogicUsage,
+                generateTokenLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
+                data: token,
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
-        await deregisterProject(name);
+        const token = await registerToken(name);
 
         logger.log(
-            obliterateProjectLogs.infoSuccess,
+            generateTokenLogs.infoSuccess,
             logLevels.info,
         );
 
         return {
             status: true,
+            data: token,
         };
         // #endregion public usage
     } catch (error) {
         // #region error handle
         logger.log(
-            obliterateProjectLogs.errorEnd,
+            generateTokenLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -142,5 +145,5 @@ const obliterateProject = async (
 
 
 // #region exports
-export default obliterateProject;
+export default generateToken;
 // #endregion exports
