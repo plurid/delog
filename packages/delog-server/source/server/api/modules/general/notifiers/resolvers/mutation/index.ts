@@ -7,7 +7,7 @@
     } from '#server/data/interfaces';
 
     import {
-        Projects,
+        Notifiers,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -16,19 +16,19 @@
 
 // #region exports
 export default {
-    generateProject: (
+    generateNotifier: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.generateProject(
+    ) => Notifiers.Mutation.generateNotifier(
         input,
         context,
     ),
-    obliterateProject: (
+    obliterateNotifier: (
         _: any,
         { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Projects.Mutation.obliterateProject(
+    ) => Notifiers.Mutation.obliterateNotifier(
         input,
         context,
     ),

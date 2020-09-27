@@ -9,33 +9,33 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getProjects: ResponseProjects!
+        getNotifiers: ResponseNotifiers!
     }
 `;
 
 
 export const mutations = gql`
     extend type Mutation {
-        generateProject(input: InputValueString!): ResponseProject!
-        obliterateProject(input: InputValueString!): Response!
+        generateNotifier(input: InputValueString!): ResponseNotifier!
+        obliterateNotifier(input: InputValueString!): Response!
     }
 `;
 
 
 export const types = gql`
-    type ResponseProject {
+    type ResponseNotifier {
         status: Boolean!
         error: Error
-        data: Project
+        data: Notifier
     }
 
-    type ResponseProjects {
+    type ResponseNotifiers {
         status: Boolean!
         error: Error
-        data: [Project!]
+        data: [Notifier!]
     }
 
-    type Project {
+    type Notifier {
         id: String!
         name: String!
     }

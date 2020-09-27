@@ -38,12 +38,12 @@ const resolvers = generateResolvers(
     owner,
     projects,
     tokens,
-    // spaces,
-    // formats,
-    // notifiers,
-    // testers,
+    spaces,
+    formats,
+    notifiers,
+    testers,
     records,
-    // tests,
+    tests,
     setup,
 );
 // #endregion module

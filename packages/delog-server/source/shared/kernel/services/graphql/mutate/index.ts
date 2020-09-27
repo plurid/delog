@@ -39,6 +39,167 @@ export const OBLITERATE_PROJECT = gql`
 `;
 
 
+export const GENERATE_TOKEN = gql`
+    mutation GenerateToken($input: InputGenerateToken!) {
+        generateToken(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+                startsWith
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_TOKEN = gql`
+    mutation ObliterateToken($input: InputValueString!) {
+        obliterateToken(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const GENERATE_SPACE = gql`
+    mutation GenerateSpace($input: InputGenerateSpace!) {
+        generateSpace(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_SPACE = gql`
+    mutation ObliterateSpace($input: InputValueString!) {
+        obliterateSpace(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const GENERATE_FORMAT = gql`
+    mutation GenerateFormat($input: InputGenerateFormat!) {
+        generateFormat(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                value
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_FORMAT = gql`
+    mutation ObliterateFormat($input: InputValueString!) {
+        obliterateFormat(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const GENERATE_NOTIFIER = gql`
+    mutation GenerateNotifier($input: InputValueString!) {
+        generateNotifier(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_NOTIFIER = gql`
+    mutation ObliterateNotifier($input: InputValueString!) {
+        obliterateNotifier(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const GENERATE_TESTER = gql`
+    mutation GenerateTester($input: InputValueString!) {
+        generateTester(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_TESTER = gql`
+    mutation ObliterateTester($input: InputValueString!) {
+        obliterateTester(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 export const LOGIN = gql`
     mutation Login($input: InputLogin!) {
         login(input: $input) {
