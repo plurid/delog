@@ -34,6 +34,8 @@ let connection: MongoClient | undefined;
 
 const mongoNoConnectionError = 'Delog Error :: No mongo connection.';
 
+const DATABASE = 'delog';
+
 
 const createConnection = async () => {
     try {
@@ -109,7 +111,7 @@ const store: DatabaseStore = async (
     }
 
     try {
-        const database = connection.db('delog');
+        const database = connection.db(DATABASE);
 
         const collection = database.collection(entity);
 
@@ -148,7 +150,23 @@ const obliterate: DatabaseObliterate = async (
         return;
     }
 
-    return;
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        const deletion = await collection.deleteOne({
+            id,
+        });
+
+        if (deletion.deletedCount !== 1) {
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 
