@@ -1,5 +1,5 @@
 {
-    "name": "@plurid/delog",
+    "name": "@plurid/delog-server",
     "version": "0.0.0",
     "description": "Cloud-Native Logger Server",
     "keywords": [
