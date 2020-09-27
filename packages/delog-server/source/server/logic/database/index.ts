@@ -81,7 +81,7 @@ class Database {
                     entity,
                 );
             default:
-                return;
+                return [];
         }
     }
 
