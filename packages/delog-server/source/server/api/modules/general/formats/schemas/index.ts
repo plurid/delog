@@ -44,7 +44,7 @@ export const types = gql`
 
 export const inputs = gql`
     input InputGenerateFormat {
-        valu: String!
+        value: String!
     }
 `;
 // #endregion module
