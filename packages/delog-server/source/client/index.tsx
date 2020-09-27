@@ -17,11 +17,11 @@
 //     navigator.serviceWorker.register('/service-worker.js');
 // }
 
-const performerApp = document.getElementById('delog-application');
+const delogApp = document.getElementById('delog-application');
 
 
 ReactDOM.hydrate(
     <Client />,
-    performerApp,
+    delogApp,
 );
 // #endregion module
