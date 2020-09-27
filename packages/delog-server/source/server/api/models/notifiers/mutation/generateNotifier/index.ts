@@ -6,8 +6,8 @@
     } from '#server/data/interfaces';
 
     import {
-        registerProject,
-    } from '#server/logic/operators/projects';
+        registerNotifier,
+    } from '#server/logic/operators/notifiers';
 
     import {
         generateMethodLogs,
@@ -18,10 +18,10 @@
 
 
 // #region module
-export const generateProjectLogs = generateMethodLogs('generateProject');
+export const generateNotifierLogs = generateMethodLogs('generateNotifier');
 
 
-const generateProject = async (
+const generateNotifier = async (
     input: InputValueString,
     context: Context,
 ) => {
@@ -42,7 +42,7 @@ const generateProject = async (
 
     // #region log start
     logger.log(
-        generateProjectLogs.infoStart,
+        generateNotifierLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -59,13 +59,13 @@ const generateProject = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                generateProjectLogs.infoHandlePrivateUsage,
+                generateNotifierLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    generateProjectLogs.infoEndPrivateUsage,
+                    generateNotifierLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,16 +74,16 @@ const generateProject = async (
                 };
             }
 
-            const project = await registerProject(name);
+            const notifier = await registerNotifier(name);
 
             logger.log(
-                generateProjectLogs.infoSuccessPrivateUsage,
+                generateNotifierLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
-                data: project,
+                data: notifier,
             };
         }
         // #endregion private usage
@@ -94,42 +94,42 @@ const generateProject = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                generateProjectLogs.infoHandleCustomLogicUsage,
+                generateNotifierLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            const project = await registerProject(name);
+            const notifier = await registerNotifier(name);
 
             logger.log(
-                generateProjectLogs.infoEndCustomLogicUsage,
+                generateNotifierLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
-                data: project,
+                data: notifier,
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
-        const project = await registerProject(name);
+        const notifier = await registerNotifier(name);
 
         logger.log(
-            generateProjectLogs.infoSuccess,
+            generateNotifierLogs.infoSuccess,
             logLevels.info,
         );
 
         return {
             status: true,
-            data: project,
+            data: notifier,
         };
         // #endregion public usage
     } catch (error) {
         // #region error handle
         logger.log(
-            generateProjectLogs.errorEnd,
+            generateNotifierLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -145,5 +145,5 @@ const generateProject = async (
 
 
 // #region exports
-export default generateProject;
+export default generateNotifier;
 // #endregion exports
