@@ -4,6 +4,7 @@
 
     import {
         PluridIconApps,
+        PluridIconLocked,
         PluridIconFrame,
         PluridIconEdit,
         PluridIconContact,
@@ -22,6 +23,7 @@
     import delogLogo from '../../assets/delog-logo.png';
 
     import Project from '#kernel-components/Project';
+    import Token from '#kernel-components/Token';
     import Space from '#kernel-components/Space';
     import Format from '#kernel-components/Format';
     import Notifier from '#kernel-components/Notifier';
@@ -31,6 +33,7 @@
 
     // #region internal
     import ProjectsView from './components/ProjectsView';
+    import TokensView from './components/TokensView';
     import SpacesView from './components/SpacesView';
     import FormatsView from './components/FormatsView';
     import NotifiersView from './components/NotifiersView';
@@ -55,6 +58,7 @@
 // #region module
 export const generalSelectors = [
     'projects',
+    'tokens',
     'spaces',
     'formats',
     'notifiers',
@@ -65,6 +69,7 @@ export const generalSelectors = [
 
 export const generalSelectorsIcons = {
     projects: PluridIconApps,
+    tokens: PluridIconLocked,
     spaces: PluridIconFrame,
     formats: PluridIconEdit,
     notifiers: PluridIconContact,
@@ -82,6 +87,12 @@ export const renderSelectedView = (
         case 'projects':
             return (
                 <ProjectsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'tokens':
+            return (
+                <TokensView
                     setGeneralView={setGeneralView}
                 />
             );
@@ -264,6 +275,21 @@ export const renderGeneralView = (
         case 'generate-project':
             return (
                 <Project
+                    theme={stateInteractionTheme}
+                    action={(project) => {
+                        dispatchAddEntity({
+                            type: 'project',
+                            data: project,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'generate-token':
+            return (
+                <Token
                     theme={stateInteractionTheme}
                     action={(project) => {
                         dispatchAddEntity({
