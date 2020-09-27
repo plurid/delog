@@ -7,7 +7,7 @@
 
     import {
         registerTester,
-    } from '#server/logic/testers';
+    } from '#server/logic/operators/testers';
 
     import {
         generateMethodLogs,

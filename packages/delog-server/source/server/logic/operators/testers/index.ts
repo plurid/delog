@@ -8,7 +8,7 @@
 
     // #region external
     import {
-        Format,
+        Tester,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -18,33 +18,31 @@
 
 
 // #region module
-const registerFormat = async (
-    value: string,
+const registerTester = async (
+    name: string,
 ) => {
     const id = uuid.generate();
 
-    const space: Format = {
+    const tester: Tester = {
         id,
-        value,
-        ownedBy: '',
     };
 
     await database.store(
-        'space',
+        'testers',
         id,
-        space,
+        tester,
     );
 
-    return space;
+    return tester;
 }
 
 
-const deregisterFormat = async (
+const deregisterTester = async (
     id: string,
 ) => {
     try {
         await database.obliterate(
-            'space',
+            'testers',
             id,
         );
     } catch (error) {
@@ -57,7 +55,7 @@ const deregisterFormat = async (
 
 // #region exports
 export {
-    registerFormat,
-    deregisterFormat,
+    registerTester,
+    deregisterTester,
 };
 // #endregion exports

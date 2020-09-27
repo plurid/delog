@@ -4,7 +4,7 @@
         DATABASE_TYPE,
     } from '#server/data/constants';
 
-    import Database from '#server/logic/database';
+    import Database from '#server/logic/persisters/database';
     // #endregion external
 // #endregion imports
 

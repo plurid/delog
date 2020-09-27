@@ -7,7 +7,7 @@
 
     import {
         registerSpace,
-    } from '#server/logic/spaces';
+    } from '#server/logic/operators/spaces';
 
     import {
         generateMethodLogs,

@@ -29,7 +29,7 @@ const registerProject = async (
     };
 
     await database.store(
-        'project',
+        'projects',
         id,
         project,
     );
@@ -43,7 +43,7 @@ const deregisterProject = async (
 ) => {
     try {
         await database.obliterate(
-            'project',
+            'projects',
             id,
         );
     } catch (error) {

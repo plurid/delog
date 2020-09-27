@@ -7,7 +7,7 @@
 
     import {
         deregisterProject,
-    } from '#server/logic/projects';
+    } from '#server/logic/operators/projects';
 
     import {
         generateMethodLogs,

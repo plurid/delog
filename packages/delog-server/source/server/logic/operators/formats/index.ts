@@ -8,7 +8,7 @@
 
     // #region external
     import {
-        Token,
+        Format,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -18,33 +18,33 @@
 
 
 // #region module
-const registerToken = async (
+const registerFormat = async (
     value: string,
 ) => {
     const id = uuid.generate();
 
-    const token: Token = {
+    const format: Format = {
         id,
-        ownedBy: '',
         value,
+        ownedBy: '',
     };
 
     await database.store(
-        'token',
+        'formats',
         id,
-        token,
+        format,
     );
 
-    return token;
+    return format;
 }
 
 
-const deregisterToken = async (
+const deregisterFormat = async (
     id: string,
 ) => {
     try {
         await database.obliterate(
-            'token',
+            'formats',
             id,
         );
     } catch (error) {
@@ -57,7 +57,7 @@ const deregisterToken = async (
 
 // #region exports
 export {
-    registerToken,
-    deregisterToken,
+    registerFormat,
+    deregisterFormat,
 };
 // #endregion exports

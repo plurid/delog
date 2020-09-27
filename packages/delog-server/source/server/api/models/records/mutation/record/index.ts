@@ -13,7 +13,7 @@
 
     import {
         registerRecord,
-    } from '#server/logic/records';
+    } from '#server/logic/operators/records';
 
     import {
         generateMethodLogs,

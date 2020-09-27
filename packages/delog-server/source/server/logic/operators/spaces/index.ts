@@ -30,7 +30,7 @@ const registerSpace = async (
     };
 
     await database.store(
-        'space',
+        'spaces',
         id,
         space,
     );
@@ -44,7 +44,7 @@ const deregisterSpace = async (
 ) => {
     try {
         await database.obliterate(
-            'space',
+            'spaces',
             id,
         );
     } catch (error) {

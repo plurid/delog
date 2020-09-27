@@ -21,7 +21,7 @@
         BASE_PATH_PROJECTS,
     } from '#server/data/constants';
 
-    import filesystemStorage from '#server/logic/storage/filesystem';
+    import filesystemStorage from '#server/logic/persisters/storage/filesystem';
     // #endregion external
 // #endregion imports
 

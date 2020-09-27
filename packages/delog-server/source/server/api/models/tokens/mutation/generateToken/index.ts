@@ -7,7 +7,7 @@
 
     import {
         registerToken,
-    } from '#server/logic/tokens';
+    } from '#server/logic/operators/tokens';
 
     import {
         generateMethodLogs,

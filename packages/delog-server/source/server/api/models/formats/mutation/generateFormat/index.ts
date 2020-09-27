@@ -7,7 +7,7 @@
 
     import {
         registerFormat,
-    } from '#server/logic/formats';
+    } from '#server/logic/operators/formats';
 
     import {
         generateMethodLogs,

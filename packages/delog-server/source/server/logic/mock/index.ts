@@ -15,7 +15,7 @@
         logLevel,
     } from '#server/data/constants';
 
-    import Logger from '#server/logic/logger';
+    import Logger from '#server/logic/persisters/logger';
     // #endregion external
 // #endregion imports
 

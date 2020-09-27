@@ -4,7 +4,7 @@
         STORAGE_TYPE,
     } from '#server/data/constants';
 
-    import Storage from '#server/logic/storage';
+    import Storage from '#server/logic/persisters/storage';
     // #endregion external
 // #endregion imports
 
