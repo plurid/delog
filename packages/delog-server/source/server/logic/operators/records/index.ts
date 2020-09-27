@@ -19,14 +19,14 @@
 
 // #region module
 const registerRecord = async (
-    text: string,
+    data: any,
 ) => {
     const id = uuid.generate();
 
     const record: Record = {
         id,
-        text,
         ownedBy: '',
+        ...data,
     };
 
     await database.store(

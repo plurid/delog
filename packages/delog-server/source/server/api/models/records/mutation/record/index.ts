@@ -75,9 +75,28 @@ const record = async (
 
             time,
         } = input;
-
-        console.log('input', input);
         // #endregion input unpack
+
+
+        const record = {
+            format,
+
+            project,
+            space,
+
+            level,
+            method,
+            sharedID,
+            sharedOrder,
+            error,
+            extradata,
+
+            context,
+
+            text,
+
+            time,
+        };
 
 
         // #region private usage
@@ -98,7 +117,7 @@ const record = async (
                 };
             }
 
-            await registerRecord(text);
+            await registerRecord(record);
 
             logger.log(
                 logLogs.infoSuccessPrivateUsage,
@@ -121,7 +140,7 @@ const record = async (
                 logLevels.trace,
             );
 
-            await registerRecord(text);
+            await registerRecord(record);
 
             logger.log(
                 logLogs.infoEndCustomLogicUsage,
@@ -136,7 +155,7 @@ const record = async (
 
 
         // #region public usage
-        await registerRecord(text);
+        await registerRecord(record);
 
         logger.log(
             logLogs.infoSuccess,

@@ -1,9 +1,16 @@
 // #region imports
     // #region libraries
     import {
+        DelogInputRecord,
+    } from '@plurid/delog';
+    // #endregion libraries
+
+
+    // #region external
+    import {
         Notifier,
     } from '../notifier';
-    // #endregion libraries
+    // #endregion external
 // #endregion imports
 
 
@@ -61,7 +68,7 @@ export interface Tester {
 }
 
 
-export interface Record {
+export type Record = DelogInputRecord & {
     id: string;
     text: string;
 
