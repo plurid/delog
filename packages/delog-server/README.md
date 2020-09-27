@@ -36,7 +36,30 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 
 ### Contents
 
++ [Testing](testing)
 + [Packages](#packages)
+
+
+
+## Testing
+
+The `delog server` can use MongoDB as a database. For testing purposes, mongo can run in a docker container.
+
+```
+docker pull mongo
+```
+
+```
+docker run -d  --name mongo-delog \
+    -p 56966:27017 -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=1234 mongo
+```
+
+Connect to the mongo instance with
+
+```
+mongodb://admin:1234@localhost:56966/?authSource=admin
+```
 
 
 
