@@ -25,6 +25,7 @@ const registerTester = async (
 
     const tester: Tester = {
         id,
+        ownedBy: '',
     };
 
     await database.store(

@@ -12,6 +12,7 @@
 export interface Project {
     id: string;
     name: string;
+    ownedBy: string;
 
     // generatedBy: string;
     // generatedAt: number;
@@ -56,17 +57,22 @@ export interface Format {
 
 export interface Tester {
     id: string;
+    ownedBy: string;
 }
 
 
 export interface Record {
     id: string;
     text: string;
+
+    ownedBy: string;
 }
 
 
 export interface Test {
     id: string;
+
+    ownedBy: string;
 }
 
 

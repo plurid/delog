@@ -26,6 +26,7 @@ const registerRecord = async (
     const record: Record = {
         id,
         text,
+        ownedBy: '',
     };
 
     await database.store(

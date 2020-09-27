@@ -26,6 +26,7 @@ const registerProject = async (
     const project: Project = {
         id,
         name,
+        ownedBy: '',
     };
 
     await database.store(
