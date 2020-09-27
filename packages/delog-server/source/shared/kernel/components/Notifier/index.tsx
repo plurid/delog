@@ -107,7 +107,7 @@ const Notifier: React.FC<NotifierProperties> = (
 
         const notifier: INotifier | undefined = await addEntityMutation(
             {
-                value: notifierName,
+                name: notifierName,
             },
             GENERATE_NOTIFIER,
             'generateNotifier',

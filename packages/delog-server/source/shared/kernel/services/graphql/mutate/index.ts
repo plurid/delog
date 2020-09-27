@@ -137,7 +137,7 @@ export const OBLITERATE_FORMAT = gql`
 
 
 export const GENERATE_NOTIFIER = gql`
-    mutation GenerateNotifier($input: InputValueString!) {
+    mutation GenerateNotifier($input: InputGenerateNotifier!) {
         generateNotifier(input: $input) {
             status
             error {
@@ -169,7 +169,7 @@ export const OBLITERATE_NOTIFIER = gql`
 
 
 export const GENERATE_TESTER = gql`
-    mutation GenerateTester($input: InputValueString!) {
+    mutation GenerateTester($input: InputGenerateTester!) {
         generateTester(input: $input) {
             status
             error {

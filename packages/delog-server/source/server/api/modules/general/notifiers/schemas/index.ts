@@ -16,7 +16,7 @@ export const queries = gql`
 
 export const mutations = gql`
     extend type Mutation {
-        generateNotifier(input: InputValueString!): ResponseNotifier!
+        generateNotifier(input: InputGenerateNotifier!): ResponseNotifier!
         obliterateNotifier(input: InputValueString!): Response!
     }
 `;
@@ -40,6 +40,13 @@ export const types = gql`
         name: String!
     }
 `;
+
+
+export const inputs = gql`
+    input InputGenerateNotifier {
+        name: String!
+    }
+`;
 // #endregion module
 
 
@@ -49,5 +56,6 @@ export default gql`
     ${queries}
     ${mutations}
     ${types}
+    ${inputs}
 `;
 // #endregion exports

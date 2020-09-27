@@ -74,7 +74,7 @@ const generateFormat = async (
                 };
             }
 
-            const project = await registerFormat(name);
+            const format = await registerFormat(name);
 
             logger.log(
                 generateFormatLogs.infoSuccessPrivateUsage,
@@ -83,7 +83,7 @@ const generateFormat = async (
 
             return {
                 status: true,
-                data: project,
+                data: format,
             };
         }
         // #endregion private usage
@@ -98,7 +98,7 @@ const generateFormat = async (
                 logLevels.trace,
             );
 
-            const project = await registerFormat(name);
+            const format = await registerFormat(name);
 
             logger.log(
                 generateFormatLogs.infoEndCustomLogicUsage,
@@ -107,14 +107,14 @@ const generateFormat = async (
 
             return {
                 status: true,
-                data: project,
+                data: format,
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
-        const project = await registerFormat(name);
+        const format = await registerFormat(name);
 
         logger.log(
             generateFormatLogs.infoSuccess,
@@ -123,7 +123,7 @@ const generateFormat = async (
 
         return {
             status: true,
-            data: project,
+            data: format,
         };
         // #endregion public usage
     } catch (error) {
