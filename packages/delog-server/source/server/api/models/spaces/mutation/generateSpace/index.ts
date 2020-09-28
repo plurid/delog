@@ -74,7 +74,10 @@ const generateSpace = async (
                 };
             }
 
-            const space = await registerSpace(name);
+            const space = await registerSpace(
+                name,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 generateSpaceLogs.infoSuccessPrivateUsage,
@@ -98,7 +101,10 @@ const generateSpace = async (
                 logLevels.trace,
             );
 
-            const space = await registerSpace(name);
+            const space = await registerSpace(
+                name,
+                '',
+            );
 
             logger.log(
                 generateSpaceLogs.infoEndCustomLogicUsage,
@@ -114,7 +120,10 @@ const generateSpace = async (
 
 
         // #region public usage
-        const space = await registerSpace(name);
+        const space = await registerSpace(
+            name,
+            '',
+        );
 
         logger.log(
             generateSpaceLogs.infoSuccess,

@@ -29,7 +29,7 @@
     import client from '#kernel-services/graphql/client';
 
     import {
-        OBLITERATE_PROJECT,
+        OBLITERATE_FORMAT,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -142,7 +142,7 @@ const FormatsView: React.FC<FormatsViewProperties> = (
             };
 
             await client.mutate({
-                mutation: OBLITERATE_PROJECT,
+                mutation: OBLITERATE_FORMAT,
                 variables: {
                     input,
                 },

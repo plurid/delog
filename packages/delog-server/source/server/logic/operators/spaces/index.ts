@@ -20,13 +20,14 @@
 // #region module
 const registerSpace = async (
     name: string,
+    ownedBy: string,
 ) => {
     const id = uuid.generate();
 
     const space: Space = {
         id,
         name,
-        ownedBy: '',
+        ownedBy,
     };
 
     await database.store(

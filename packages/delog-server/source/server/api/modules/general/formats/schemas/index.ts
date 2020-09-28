@@ -39,6 +39,10 @@ export const types = gql`
         id: String!
         value: String!
     }
+
+    extend type Owner {
+        formats: [Format!]!
+    }
 `;
 
 

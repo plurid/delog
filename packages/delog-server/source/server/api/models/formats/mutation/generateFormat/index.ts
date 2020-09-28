@@ -74,7 +74,10 @@ const generateFormat = async (
                 };
             }
 
-            const format = await registerFormat(name);
+            const format = await registerFormat(
+                name,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 generateFormatLogs.infoSuccessPrivateUsage,
@@ -98,7 +101,10 @@ const generateFormat = async (
                 logLevels.trace,
             );
 
-            const format = await registerFormat(name);
+            const format = await registerFormat(
+                name,
+                '',
+            );
 
             logger.log(
                 generateFormatLogs.infoEndCustomLogicUsage,
@@ -114,7 +120,10 @@ const generateFormat = async (
 
 
         // #region public usage
-        const format = await registerFormat(name);
+        const format = await registerFormat(
+            name,
+            '',
+        );
 
         logger.log(
             generateFormatLogs.infoSuccess,

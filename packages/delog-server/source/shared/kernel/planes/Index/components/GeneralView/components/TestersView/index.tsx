@@ -29,7 +29,7 @@
     import client from '#kernel-services/graphql/client';
 
     import {
-        OBLITERATE_PROJECT,
+        OBLITERATE_TESTER,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -142,7 +142,7 @@ const TestersView: React.FC<TestersViewProperties> = (
             };
 
             await client.mutate({
-                mutation: OBLITERATE_PROJECT,
+                mutation: OBLITERATE_TESTER,
                 variables: {
                     input,
                 },

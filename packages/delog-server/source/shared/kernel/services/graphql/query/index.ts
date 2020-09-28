@@ -27,6 +27,14 @@ export const GET_CURRENT_OWNER = gql`
                     name
                     startsWith
                 }
+                spaces {
+                    id
+                    name
+                }
+                formats {
+                    id
+                    value
+                }
             }
         }
     }

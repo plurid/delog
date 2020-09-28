@@ -20,13 +20,14 @@
 // #region module
 const registerFormat = async (
     value: string,
+    ownedBy: string,
 ) => {
     const id = uuid.generate();
 
     const format: Format = {
         id,
         value,
-        ownedBy: '',
+        ownedBy,
     };
 
     await database.store(

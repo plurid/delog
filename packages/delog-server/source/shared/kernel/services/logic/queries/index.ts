@@ -37,12 +37,7 @@ const getCurrentOwner = async (
     ) => dispatch(
         actions.view.setViewOwnerID(payload),
     );
-    const dispatchSetProjects: typeof actions.data.addEntities = (
-        payload,
-    ) => dispatch(
-        actions.data.addEntities(payload),
-    );
-    const dispatchSetTokens: typeof actions.data.addEntities = (
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
         payload,
     ) => dispatch(
         actions.data.addEntities(payload),
@@ -51,6 +46,7 @@ const getCurrentOwner = async (
 
     const query = await client.query({
         query: GET_CURRENT_OWNER,
+        fetchPolicy: 'no-cache',
     });
 
     const response = query.data.getCurrentOwner;
@@ -63,16 +59,26 @@ const getCurrentOwner = async (
         id,
         projects,
         tokens,
+        spaces,
+        formats,
     } = graphql.deleteTypenames(response.data);
 
     dispatchSetOwnedID(id);
-    dispatchSetProjects({
+    dispatchDataAddEntities({
         type: 'projects',
         data: projects,
     });
-    dispatchSetTokens({
+    dispatchDataAddEntities({
         type: 'tokens',
         data: tokens,
+    });
+    dispatchDataAddEntities({
+        type: 'spaces',
+        data: spaces,
+    });
+    dispatchDataAddEntities({
+        type: 'formats',
+        data: formats,
     });
 
 

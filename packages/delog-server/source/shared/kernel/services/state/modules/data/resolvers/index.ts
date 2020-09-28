@@ -28,6 +28,18 @@ export const addEntity = (
     let tokens = [
         ...newState.tokens,
     ];
+    let spaces = [
+        ...newState.spaces,
+    ];
+    let formats = [
+        ...newState.formats,
+    ];
+    let notifiers = [
+        ...newState.notifiers,
+    ];
+    let testers = [
+        ...newState.testers,
+    ];
 
 
     switch (type) {
@@ -47,6 +59,38 @@ export const addEntity = (
                 },
             ]
             break;
+        case 'space':
+            spaces = [
+                ...spaces,
+                {
+                    ...data,
+                },
+            ]
+            break;
+        case 'format':
+            formats = [
+                ...formats,
+                {
+                    ...data,
+                },
+            ]
+            break;
+        case 'notifier':
+            notifiers = [
+                ...notifiers,
+                {
+                    ...data,
+                },
+            ]
+            break;
+        case 'tester':
+            testers = [
+                ...testers,
+                {
+                    ...data,
+                },
+            ]
+            break;
     }
 
     return {
@@ -56,6 +100,18 @@ export const addEntity = (
         ],
         tokens: [
             ...tokens,
+        ],
+        spaces: [
+            ...spaces,
+        ],
+        formats: [
+            ...formats,
+        ],
+        notifiers: [
+            ...notifiers,
+        ],
+        testers: [
+            ...testers,
         ],
     };
 }
@@ -80,6 +136,18 @@ export const removeEntity = (
     let tokens = [
         ...newState.tokens,
     ];
+    let spaces = [
+        ...newState.spaces,
+    ];
+    let formats = [
+        ...newState.formats,
+    ];
+    let notifiers = [
+        ...newState.notifiers,
+    ];
+    let testers = [
+        ...newState.testers,
+    ];
 
 
     switch (type) {
@@ -92,6 +160,26 @@ export const removeEntity = (
                 token => token.id !== id
             );
             break;
+        case 'space':
+            spaces = spaces.filter(
+                space => space.id !== id
+            );
+            break;
+        case 'format':
+            formats = formats.filter(
+                format => format.id !== id
+            );
+            break;
+        case 'notifier':
+            notifiers = notifiers.filter(
+                notifier => notifier.id !== id
+            );
+            break;
+        case 'tester':
+            testers = testers.filter(
+                tester => tester.id !== id
+            );
+            break;
     }
 
     return {
@@ -101,6 +189,18 @@ export const removeEntity = (
         ],
         tokens: [
             ...tokens,
+        ],
+        spaces: [
+            ...spaces,
+        ],
+        formats: [
+            ...formats,
+        ],
+        notifiers: [
+            ...notifiers,
+        ],
+        testers: [
+            ...testers,
         ],
     };
 }
@@ -122,22 +222,51 @@ export const addEntities = (
     let projects = [
         ...newState.projects,
     ];
-
     let tokens = [
         ...newState.tokens,
+    ];
+    let spaces = [
+        ...newState.spaces,
+    ];
+    let formats = [
+        ...newState.formats,
+    ];
+    let notifiers = [
+        ...newState.notifiers,
+    ];
+    let testers = [
+        ...newState.testers,
     ];
 
 
     switch (type) {
         case 'projects':
             projects = [
-                ...projects,
                 ...data,
             ];
             break;
         case 'tokens':
             tokens = [
-                ...tokens,
+                ...data,
+            ];
+            break;
+        case 'spaces':
+            spaces = [
+                ...data,
+            ];
+            break;
+        case 'formats':
+            formats = [
+                ...data,
+            ];
+            break;
+        case 'notifiers':
+            notifiers = [
+                ...data,
+            ];
+            break;
+        case 'testers':
+            testers = [
                 ...data,
             ];
             break;
@@ -150,6 +279,18 @@ export const addEntities = (
         ],
         tokens: [
             ...tokens,
+        ],
+        spaces: [
+            ...spaces,
+        ],
+        formats: [
+            ...formats,
+        ],
+        notifiers: [
+            ...notifiers,
+        ],
+        testers: [
+            ...testers,
         ],
     };
 }

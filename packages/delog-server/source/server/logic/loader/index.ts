@@ -4,6 +4,8 @@
         Project,
         Token,
         ClientToken,
+        Space,
+        Format,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -55,6 +57,31 @@ export const loadTokens = async (
 }
 
 
+export const loadSpaces = async (
+    ownerID: string
+) => {
+    const spaces: Space[] = await database.query(
+        'spaces',
+        'ownedBy',
+        ownerID,
+    );
+
+    return spaces;
+}
+
+
+export const loadFormats = async (
+    ownerID: string
+) => {
+    const formats: Format[] = await database.query(
+        'formats',
+        'ownedBy',
+        ownerID,
+    );
+
+    return formats;
+}
+
 
 const loadData = async (
     ownerID: string | undefined,
@@ -63,6 +90,8 @@ const loadData = async (
         return {
             projects: [],
             tokens: [],
+            spaces: [],
+            formats: [],
         };
     }
 
@@ -74,9 +103,19 @@ const loadData = async (
         ownerID,
     );
 
+    const spaces = await loadSpaces(
+        ownerID,
+    );
+
+    const formats = await loadFormats(
+        ownerID,
+    );
+
     const data = {
         projects,
         tokens,
+        spaces,
+        formats,
     };
 
     return data;

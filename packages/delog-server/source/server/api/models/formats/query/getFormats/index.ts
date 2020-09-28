@@ -20,7 +20,7 @@ const getFormats = async (
 ) => {
     // #region context unpack
     const {
-        projects,
+        formats,
         request,
 
         privateUsage,
@@ -69,7 +69,7 @@ const getFormats = async (
             return {
                 status: true,
                 data: [
-                    ...projects,
+                    ...formats,
                 ],
             };
         }
@@ -90,7 +90,7 @@ const getFormats = async (
             return {
                 status: true,
                 data: [
-                    ...owner.projects,
+                    ...owner.formats,
                 ],
             };
         }
@@ -106,7 +106,7 @@ const getFormats = async (
         return {
             status: true,
             data: [
-                ...projects,
+                ...formats,
             ],
         };
         // #endregion public usage

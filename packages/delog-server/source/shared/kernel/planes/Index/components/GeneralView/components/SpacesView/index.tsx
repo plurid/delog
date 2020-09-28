@@ -29,7 +29,7 @@
     import client from '#kernel-services/graphql/client';
 
     import {
-        OBLITERATE_PROJECT,
+        OBLITERATE_SPACE,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -142,7 +142,7 @@ const SpacesView: React.FC<SpacesViewProperties> = (
             };
 
             await client.mutate({
-                mutation: OBLITERATE_PROJECT,
+                mutation: OBLITERATE_SPACE,
                 variables: {
                     input,
                 },
