@@ -33,7 +33,7 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        getSetup,
+        getCurrentOwner,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -253,7 +253,7 @@ const SpacesView: React.FC<SpacesViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getSetup(dispatch);
+                getCurrentOwner(dispatch);
             }}
         />
     );

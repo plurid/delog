@@ -1,10 +1,6 @@
 // #region imports
     // #region external
     import * as Types from '../types';
-
-    import {
-        Project,
-    } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
 
@@ -31,12 +27,12 @@ export const removeEntity = (
 }
 
 
-export const setProjects = (
-    projects: Project[],
-): Types.SetProjectsAction => {
+export const addEntities = (
+    payload: Types.AddEntitiesPayload,
+): Types.AddEntitiesAction => {
     return {
-        type: Types.SET_PROJECTS,
-        payload: projects,
+        type: Types.ADD_ENTITIES,
+        payload,
     };
 }
 
@@ -53,7 +49,7 @@ export const clearData = (): Types.ClearDataAction => {
 const actions = {
     addEntity,
     removeEntity,
-    setProjects,
+    addEntities,
     clearData,
 };
 // #endregion module

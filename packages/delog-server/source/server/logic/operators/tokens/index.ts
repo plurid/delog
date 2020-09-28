@@ -19,15 +19,19 @@
 
 // #region module
 const registerToken = async (
-    value: string,
+    name: string,
     ownedBy: string,
 ) => {
     const id = uuid.generate();
+    const value = uuid.generate() + uuid.generate();
+    const startsWith = value.slice(0, 7);
 
     const token: Token = {
         id,
+        name,
         value,
         ownedBy,
+        startsWith,
     };
 
     await database.store(

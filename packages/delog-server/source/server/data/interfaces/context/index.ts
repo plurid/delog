@@ -11,7 +11,7 @@
     // #region external
     import {
         Project,
-        Token,
+        ClientToken,
         Space,
         Format,
     } from '../general';
@@ -41,7 +41,7 @@ export interface Context {
     instance: Application;
 
     projects: Project[];
-    tokens: Token[];
+    tokens: ClientToken[];
     spaces: Space[];
     formats: Format[];
     records: any[];

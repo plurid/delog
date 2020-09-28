@@ -39,13 +39,13 @@ export interface ProjectSharer {
 
 export interface Token {
     id: string;
+    name: string;
     value: string;
     ownedBy: string;
-}
-
-export type ClientToken = Omit<Token, 'value'> & {
     startsWith: string;
 }
+
+export type ClientToken = Omit<Token, 'value' | 'ownedBy'>;
 
 
 export interface Space {

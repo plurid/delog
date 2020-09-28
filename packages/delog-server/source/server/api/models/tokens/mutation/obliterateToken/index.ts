@@ -51,7 +51,7 @@ const obliterateToken = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            value,
         } = input;
         // #endregion input unpack
 
@@ -74,7 +74,7 @@ const obliterateToken = async (
                 };
             }
 
-            await deregisterToken(name);
+            await deregisterToken(value);
 
             logger.log(
                 obliterateTokenLogs.infoSuccessPrivateUsage,
@@ -97,7 +97,7 @@ const obliterateToken = async (
                 logLevels.trace,
             );
 
-            await deregisterToken(name);
+            await deregisterToken(value);
 
             logger.log(
                 obliterateTokenLogs.infoEndCustomLogicUsage,
@@ -112,7 +112,7 @@ const obliterateToken = async (
 
 
         // #region public usage
-        await deregisterToken(name);
+        await deregisterToken(value);
 
         logger.log(
             obliterateTokenLogs.infoSuccess,

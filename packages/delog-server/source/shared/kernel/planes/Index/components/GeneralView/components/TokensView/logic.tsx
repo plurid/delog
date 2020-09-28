@@ -26,11 +26,16 @@ export const tokenRowRenderer = (
 ) => {
     const {
         id,
+        name,
         startsWith,
     } = token;
 
     return (
         <>
+            <div>
+                {name}
+            </div>
+
             <div>
                 {startsWith}
             </div>
@@ -50,12 +55,14 @@ export const createSearchTerms = (
         token => {
             const {
                 id,
+                name,
                 startsWith,
             } = token;
 
             const searchTerm = {
                 id,
                 data: [
+                    name.toLowerCase(),
                     startsWith.toLowerCase(),
                 ],
             };

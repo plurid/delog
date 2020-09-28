@@ -7,26 +7,6 @@
 
 
 // #region module
-export const GET_SETUP = gql`
-    query GetSetup {
-        getSetup {
-            status
-            error {
-                type
-                path
-                message
-            }
-            data {
-                projects {
-                    id
-                    name
-                }
-            }
-        }
-    }
-`;
-
-
 export const GET_CURRENT_OWNER = gql`
     query GetCurrentOwner {
         getCurrentOwner {
@@ -41,6 +21,11 @@ export const GET_CURRENT_OWNER = gql`
                 projects {
                     id
                     name
+                }
+                tokens {
+                    id
+                    name
+                    startsWith
                 }
             }
         }

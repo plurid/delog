@@ -51,6 +51,7 @@ export const GENERATE_TOKEN = gql`
             data {
                 id
                 name
+                value
                 startsWith
             }
         }

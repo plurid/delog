@@ -15,7 +15,6 @@
     import {
         GET_CURRENT_OWNER,
         GET_USAGE_TYPE,
-        GET_SETUP,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -31,24 +30,53 @@
  * @param setViewOwnerID
  */
 const getCurrentOwner = async (
-    setViewOwnerID: typeof actions.view.setViewOwnerID,
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {
+    const dispatchSetOwnedID: typeof actions.view.setViewOwnerID = (
+        payload,
+    ) => dispatch(
+        actions.view.setViewOwnerID(payload),
+    );
+    const dispatchSetProjects: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+    const dispatchSetTokens: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+
     const query = await client.query({
         query: GET_CURRENT_OWNER,
     });
 
     const response = query.data.getCurrentOwner;
 
-    if (response.status) {
-        const owner = graphql.deleteTypenames(
-            response.data,
-        );
-
-        setViewOwnerID(owner.id);
-        return true;
+    if (!response.status) {
+        return false;
     }
 
-    return;
+    const {
+        id,
+        projects,
+        tokens,
+    } = graphql.deleteTypenames(response.data);
+
+    dispatchSetOwnedID(id);
+    dispatchSetProjects({
+        type: 'projects',
+        data: projects,
+    });
+    dispatchSetTokens({
+        type: 'tokens',
+        data: tokens,
+    });
+
+
+    return true;
 }
 
 
@@ -82,41 +110,6 @@ const getUsageType = async (
 
     return;
 }
-
-
-/**
- * Get data.
- *
- * @param dispatch
- */
-const getSetup = async (
-    dispatch: ThunkDispatch<{}, {}, AnyAction>,
-) => {
-    const dispatchSetProjects: typeof actions.data.setProjects = (
-        projects,
-    ) => dispatch(
-        actions.data.setProjects(projects),
-    );
-
-
-    const setupQuery = await client.query({
-        query: GET_SETUP,
-        fetchPolicy: 'no-cache',
-    });
-
-    const response = setupQuery.data.getSetup;
-
-    if (!response.status) {
-        return;
-    }
-
-    const {
-
-        projects,
-    } = graphql.deleteTypenames(response.data);
-
-    dispatchSetProjects(projects);
-}
 // #endregion module
 
 
@@ -125,6 +118,5 @@ const getSetup = async (
 export {
     getCurrentOwner,
     getUsageType,
-    getSetup,
 };
 // #endregion exports

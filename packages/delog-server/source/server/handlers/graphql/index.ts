@@ -76,6 +76,7 @@ const setupGraphQLServer = async (
 
             const {
                 projects,
+                tokens,
             } = await loadData(
                 privateOwnerIdentonym,
             );
@@ -87,7 +88,7 @@ const setupGraphQLServer = async (
                 instance,
 
                 projects,
-                tokens: [],
+                tokens,
                 spaces: [],
                 formats: [],
                 records: [],

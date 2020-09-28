@@ -29,11 +29,11 @@
     import client from '#kernel-services/graphql/client';
 
     import {
-        OBLITERATE_PROJECT,
+        OBLITERATE_TOKEN,
     } from '#kernel-services/graphql/mutate';
 
     import {
-        getSetup,
+        getCurrentOwner,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -142,7 +142,7 @@ const TokensView: React.FC<TokensViewProperties> = (
             };
 
             await client.mutate({
-                mutation: OBLITERATE_PROJECT,
+                mutation: OBLITERATE_TOKEN,
                 variables: {
                     input,
                 },
@@ -232,6 +232,10 @@ const TokensView: React.FC<TokensViewProperties> = (
                 name
             </div>
 
+            <div>
+                starts with
+            </div>
+
             <div />
         </>
     );
@@ -241,7 +245,7 @@ const TokensView: React.FC<TokensViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="auto 30px"
+            rowTemplate="2fr 240px 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no tokens"
@@ -253,13 +257,13 @@ const TokensView: React.FC<TokensViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getSetup(dispatch);
+                getCurrentOwner(dispatch);
             }}
         />
     );
     // #endregion render
 }
-
+name
 
 const mapStateToProperties = (
     state: AppState,

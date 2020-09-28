@@ -29,7 +29,7 @@
     } from '#kernel-services/styled';
 
     import {
-        getSetup,
+        getCurrentOwner,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -59,7 +59,6 @@ export interface PrivateViewStateProperties {
 export interface PrivateViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>;
     dispatchSetViewType: typeof actions.view.setViewType;
-    dispatchViewOwnerID: typeof actions.view.setViewOwnerID;
 }
 
 export type PrivateViewProperties = PrivateViewOwnProperties
@@ -74,7 +73,6 @@ const PrivateView: React.FC<PrivateViewProperties> = (
         // #region dispatch
         dispatch,
         dispatchSetViewType,
-        dispatchViewOwnerID,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -125,11 +123,8 @@ const PrivateView: React.FC<PrivateViewProperties> = (
                 return;
             }
 
-            await getSetup(dispatch);
+            await getCurrentOwner(dispatch);
 
-            const owner = response.data;
-
-            dispatchViewOwnerID(owner.id);
             dispatchSetViewType({
                 type: 'indexView',
                 value: 'general',
@@ -218,11 +213,6 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch(
         actions.view.setViewType(payload),
-    ),
-    dispatchViewOwnerID: (
-        payload,
-    ) => dispatch(
-        actions.view.setViewOwnerID(payload),
     ),
 });
 

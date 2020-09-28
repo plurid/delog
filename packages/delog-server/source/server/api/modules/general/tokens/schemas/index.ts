@@ -9,7 +9,7 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getTokens: ResponseTokens!
+        getTokens: ResponseClientTokens!
     }
 `;
 
@@ -29,16 +29,27 @@ export const types = gql`
         data: Token
     }
 
-    type ResponseTokens {
+    type ResponseClientTokens {
         status: Boolean!
         error: Error
-        data: [Token!]
+        data: [ClientToken!]
     }
 
     type Token {
         id: ID!
         name: String!
+        value: String!
         startsWith: String!
+    }
+
+    type ClientToken {
+        id: ID!
+        name: String!
+        startsWith: String!
+    }
+
+    extend type Owner {
+        tokens: [ClientToken!]!
     }
 `;
 

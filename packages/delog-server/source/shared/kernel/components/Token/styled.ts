@@ -21,4 +21,11 @@ export const StyledToken = styled.div<IStyledToken>`
     text-align: center;
     min-height: 700px;
 `;
+
+
+export const StyledTokenValue = styled.div`
+    font-size: 1.1rem;
+    line-height: 2;
+    user-select: all;
+`;
 // #endregion module

@@ -291,10 +291,10 @@ export const renderGeneralView = (
             return (
                 <Token
                     theme={stateInteractionTheme}
-                    action={(project) => {
+                    action={(token) => {
                         dispatchAddEntity({
-                            type: 'project',
-                            data: project,
+                            type: 'token',
+                            data: token,
                         });
 
                         setGeneralView('general');

@@ -54,10 +54,22 @@ export interface RemoveEntityAction {
 }
 
 
-export const SET_PROJECTS = 'SET_PROJECTS';
-export interface SetProjectsAction {
-    type: typeof SET_PROJECTS;
-    payload: Project[];
+export type AddableEntitiesType =
+    | 'projects'
+    | 'tokens'
+    | 'spaces'
+    | 'formats'
+    | 'notifiers'
+    | 'testers';
+
+export const ADD_ENTITIES = 'ADD_ENTITIES';
+export interface AddEntitiesPayload {
+    type: AddableEntitiesType;
+    data: any[];
+}
+export interface AddEntitiesAction {
+    type: typeof ADD_ENTITIES;
+    payload: AddEntitiesPayload;
 }
 
 
@@ -84,6 +96,6 @@ export interface State {
 export type Actions =
     | AddEntityAction
     | RemoveEntityAction
-    | SetProjectsAction
+    | AddEntitiesAction
     | ClearDataAction;
 // #endregion module

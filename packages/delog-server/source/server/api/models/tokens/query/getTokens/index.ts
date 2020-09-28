@@ -20,7 +20,7 @@ const getTokens = async (
 ) => {
     // #region context unpack
     const {
-        projects,
+        tokens,
         request,
 
         privateUsage,
@@ -69,7 +69,7 @@ const getTokens = async (
             return {
                 status: true,
                 data: [
-                    ...projects,
+                    ...tokens,
                 ],
             };
         }
@@ -90,7 +90,7 @@ const getTokens = async (
             return {
                 status: true,
                 data: [
-                    ...owner.projects,
+                    ...owner.tokens,
                 ],
             };
         }
@@ -106,7 +106,7 @@ const getTokens = async (
         return {
             status: true,
             data: [
-                ...projects,
+                ...tokens,
             ],
         };
         // #endregion public usage

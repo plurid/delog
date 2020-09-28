@@ -20,7 +20,6 @@
     import {
         getCurrentOwner,
         getUsageType,
-        getSetup,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -52,7 +51,6 @@ export interface HomeDispatchProperties {
     dispatchSetViewLoading: typeof actions.view.setViewLoading;
     dispatchSetViewType: typeof actions.view.setViewType;
     dispatchSetViewUsageType: typeof actions.view.setViewUsageType;
-    dispatchSetViewOwnerID: typeof actions.view.setViewOwnerID;
 }
 
 export type HomeProperties = HomeOwnProperties
@@ -74,7 +72,6 @@ const Home: React.FC<HomeProperties> = (
         dispatchSetViewLoading,
         dispatchSetViewType,
         dispatchSetViewUsageType,
-        dispatchSetViewOwnerID,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -91,11 +88,8 @@ const Home: React.FC<HomeProperties> = (
                 indexView = usageType;
             }
 
-            /** Get setup */
-            await getSetup(dispatch);
-
             /** Get current owner */
-            const ownerSet = await getCurrentOwner(dispatchSetViewOwnerID);
+            const ownerSet = await getCurrentOwner(dispatch);
             if (ownerSet) {
                 indexView = 'general';
             }
@@ -149,11 +143,6 @@ const mapDispatchToProperties = (
         usageType,
     ) => dispatch(
         actions.view.setViewUsageType(usageType),
-    ),
-    dispatchSetViewOwnerID: (
-        id,
-    ) => dispatch(
-        actions.view.setViewOwnerID(id),
     ),
 });
 

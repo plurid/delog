@@ -63,12 +63,19 @@ export const removeEntity = (
     let projects = [
         ...newState.projects,
     ];
+    let tokens = [
+        ...newState.tokens,
+    ];
 
 
     switch (type) {
         case 'project':
             projects = projects.filter(
                 project => project.id !== id
+            );
+        case 'token':
+            tokens = tokens.filter(
+                token => token.id !== id
             );
             break;
     }
@@ -78,21 +85,61 @@ export const removeEntity = (
         projects: [
             ...projects,
         ],
-    };
-}
-
-
-export const setProjects = (
-    state: Types.State,
-    action: Types.SetProjectsAction,
-): Types.State => {
-    return {
-        ...state,
-        projects: [
-            ...action.payload,
+        tokens: [
+            ...tokens,
         ],
     };
 }
+
+
+export const addEntities = (
+    state: Types.State,
+    action: Types.AddEntitiesAction,
+): Types.State => {
+    const {
+        type,
+        data,
+    } = action.payload;
+
+    const newState = {
+        ...state,
+    };
+
+    let projects = [
+        ...newState.projects,
+    ];
+
+    let tokens = [
+        ...newState.tokens,
+    ];
+
+
+    switch (type) {
+        case 'projects':
+            projects = [
+                ...projects,
+                ...data,
+            ];
+            break;
+        case 'tokens':
+            tokens = [
+                ...tokens,
+                ...data,
+            ];
+            break;
+    }
+
+    return {
+        ...newState,
+        projects: [
+            ...projects,
+        ],
+        tokens: [
+            ...tokens,
+        ],
+    };
+}
+
 
 
 export const clearData = (
@@ -109,7 +156,7 @@ export const clearData = (
 const resolvers = {
     addEntity,
     removeEntity,
-    setProjects,
+    addEntities,
     clearData,
 };
 // #endregion module
