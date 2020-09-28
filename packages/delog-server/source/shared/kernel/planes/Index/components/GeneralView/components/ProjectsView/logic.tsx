@@ -3,12 +3,7 @@
     import React from 'react';
 
     import {
-        clipboard,
-    } from '@plurid/plurid-functions';
-
-    import {
         PluridIconDelete,
-        PluridIconCopy,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -17,6 +12,8 @@
     import {
         Project,
     } from '#server/data/interfaces';
+
+    import CopyableField from '#kernel-components/CopyableField';
     // #endregion external
 // #endregion imports
 
@@ -36,16 +33,9 @@ export const projectRowRenderer = (
 
     return (
         <>
-            <div>
-                <PluridIconCopy
-                    atClick={() => clipboard.copy(id)}
-                    style={{
-                        marginRight: '1rem',
-                    }}
-                />
-
-                {id}
-            </div>
+            <CopyableField
+                data={id}
+            />
 
             <div>
                 {name}
