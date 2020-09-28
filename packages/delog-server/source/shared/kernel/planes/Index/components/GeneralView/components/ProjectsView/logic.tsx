@@ -37,10 +37,6 @@ export const projectRowRenderer = (
     return (
         <>
             <div>
-                {name}
-            </div>
-
-            <div>
                 <PluridIconCopy
                     atClick={() => clipboard.copy(id)}
                     style={{
@@ -49,6 +45,10 @@ export const projectRowRenderer = (
                 />
 
                 {id}
+            </div>
+
+            <div>
+                {name}
             </div>
 
             <PluridIconDelete

@@ -229,11 +229,11 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                name
+                id
             </div>
 
             <div>
-                id
+                name
             </div>
 
             <div />
