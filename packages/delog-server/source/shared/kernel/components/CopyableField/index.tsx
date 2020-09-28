@@ -1,6 +1,10 @@
 // #region imports
     // #region libraries
-    import React from 'react';
+    import React, {
+        useRef,
+        useState,
+        useEffect,
+    } from 'react';
 
     import {
         clipboard,
@@ -15,6 +19,7 @@
     // #region internal
     import {
         StyledCopyableField,
+        StyledData,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -35,17 +40,64 @@ const CopyableField: React.FC<CopyableFieldProperties> = (
     } = properties;
     // #endregion properties
 
+
+    // #region references
+    const mounted = useRef(true);
+    // #endregion references
+
+
+    // #region state
+    const [
+        showData,
+        setShowData,
+    ] = useState(true);
+    // #endregion state
+
+
+    // #region effects
+    useEffect(() => {
+        if (showData) {
+            setTimeout(() => {
+                if (!mounted.current) {
+                    return;
+                }
+
+                setShowData(true);
+            }, 2000);
+        }
+    }, [
+        showData,
+    ]);
+
+    useEffect(() => {
+        return () => {
+            mounted.current = false;
+        }
+    }, []);
+    // #endregion effects
+
+
     // #region render
     return (
         <StyledCopyableField>
             <PluridIconCopy
-                atClick={() => clipboard.copy(data)}
-                style={{
-                    marginRight: '1rem',
+                atClick={() => {
+                    clipboard.copy(data);
+                    setShowData(false);
                 }}
             />
 
-            {data}
+            <StyledData>
+                {showData ? (
+                    <>
+                        {data}
+                    </>
+                ) : (
+                    <>
+                        copied
+                    </>
+                )}
+            </StyledData>
         </StyledCopyableField>
     );
     // #endregion render
