@@ -57,8 +57,8 @@
 
 // #region module
 export const generalSelectors = [
-    'projects',
     'tokens',
+    'projects',
     'spaces',
     'formats',
     'notifiers',
@@ -68,8 +68,8 @@ export const generalSelectors = [
 ];
 
 export const generalSelectorsIcons = {
-    projects: PluridIconApps,
     tokens: PluridIconLocked,
+    projects: PluridIconApps,
     spaces: PluridIconFrame,
     formats: PluridIconEdit,
     notifiers: PluridIconContact,

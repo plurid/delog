@@ -33,7 +33,8 @@ export const GET_CURRENT_OWNER = gql`
                 }
                 formats {
                     id
-                    value
+                    identifier
+                    transform
                 }
             }
         }

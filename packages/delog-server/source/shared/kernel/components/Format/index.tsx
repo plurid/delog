@@ -116,7 +116,7 @@ const Format: React.FC<FormatProperties> = (
 
         const format: IFormat | undefined = await addEntityMutation(
             {
-                identifer: formatIdentifier,
+                identifier: formatIdentifier,
                 transform: formatTransform,
             },
             GENERATE_FORMAT,

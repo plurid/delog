@@ -229,7 +229,11 @@ const FormatsView: React.FC<FormatsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                name
+                identifier
+            </div>
+
+            <div>
+                transform
             </div>
 
             <div />

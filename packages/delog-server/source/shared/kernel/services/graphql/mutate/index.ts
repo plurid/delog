@@ -116,7 +116,8 @@ export const GENERATE_FORMAT = gql`
             }
             data {
                 id
-                value
+                identifier
+                transform
             }
         }
     }

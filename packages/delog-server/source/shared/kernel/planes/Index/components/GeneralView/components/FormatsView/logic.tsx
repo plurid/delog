@@ -27,7 +27,7 @@ export const formatRowRenderer = (
     const {
         id,
         identifier,
-        ownedBy,
+        transform,
     } = format;
 
     return (
@@ -37,7 +37,7 @@ export const formatRowRenderer = (
             </div>
 
             <div>
-                {ownedBy}
+                {transform}
             </div>
 
             <PluridIconDelete
