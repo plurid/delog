@@ -70,14 +70,15 @@ const setupGraphQLServer = async (
             req,
             res,
         }: any) => {
-            const {
-                projects,
-
-            } = await loadData();
-
             const privateOwnerIdentonym = privateUsage
                 ? getPrivateOwner(req)
                 : '';
+
+            const {
+                projects,
+            } = await loadData(
+                privateOwnerIdentonym,
+            );
 
             const context: Context = {
                 request: req,

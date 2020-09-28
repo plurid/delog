@@ -117,9 +117,16 @@ const query: DatabaseQuery = async (
 
         const collection = database.collection(entity);
 
-        return true;
+        const filter: any = {};
+        filter[field] = value;
+
+        const cursor = collection.find(filter);
+
+        const items = await cursor.toArray();
+
+        return items;
     } catch (error) {
-        return false;
+        return [];
     }
 }
 

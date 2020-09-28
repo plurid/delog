@@ -38,6 +38,10 @@ export const GET_CURRENT_OWNER = gql`
             }
             data {
                 id
+                projects {
+                    id
+                    name
+                }
             }
         }
     }

@@ -39,6 +39,10 @@ export const types = gql`
         id: String!
         name: String!
     }
+
+    extend type Owner {
+        projects: [Project!]!
+    }
 `;
 // #endregion module
 

@@ -9,33 +9,33 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getProjects: ResponseProjects!
+        getTests: ResponseTests!
     }
 `;
 
 
-export const mutations = gql`
-    extend type Mutation {
-        generateProject(input: InputValueString!): ResponseProject!
-        obliterateProject(input: InputValueString!): Response!
-    }
-`;
+// export const mutations = gql`
+//     extend type Mutation {
+//         generateTest(input: InputValueString!): ResponseTest!
+//         obliterateTest(input: InputValueString!): Response!
+//     }
+// `;
 
 
 export const types = gql`
-    type ResponseProject {
+    type ResponseTest {
         status: Boolean!
         error: Error
-        data: Project
+        data: Test
     }
 
-    type ResponseProjects {
+    type ResponseTests {
         status: Boolean!
         error: Error
-        data: [Project!]
+        data: [Test!]
     }
 
-    type Project {
+    type Test {
         id: String!
         name: String!
     }
@@ -47,7 +47,6 @@ export const types = gql`
 // #region exports
 export default gql`
     ${queries}
-    ${mutations}
     ${types}
 `;
 // #endregion exports

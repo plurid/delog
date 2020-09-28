@@ -20,13 +20,14 @@
 // #region module
 const registerProject = async (
     name: string,
+    ownerID: string,
 ) => {
     const id = uuid.generate();
 
     const project: Project = {
         id,
         name,
-        ownedBy: '',
+        ownedBy: ownerID,
     };
 
     await database.store(

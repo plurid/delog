@@ -11,16 +11,32 @@
 
 
 // #region module
-export const loadProjects = async () => {
-    const projects: Project[] = await database.getAll('projects');
+export const loadProjects = async (
+    ownerID: string
+) => {
+    const projects: Project[] = await database.query(
+        'projects',
+        'ownedBy',
+        ownerID,
+    );
 
-    return projects || [];
+    return projects;
 }
 
 
 
-const loadData = async () => {
-    const projects = await loadProjects();
+const loadData = async (
+    ownerID: string | undefined,
+) => {
+    if (!ownerID) {
+        return {
+            projects: [],
+        };
+    }
+
+    const projects = await loadProjects(
+        ownerID,
+    );
 
     const data = {
         projects,
