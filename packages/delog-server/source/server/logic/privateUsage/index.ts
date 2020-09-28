@@ -54,8 +54,6 @@ const getPrivateOwner = async (
             if (token === '__TESTS__') {
                 return PRIVATE_OWNER_IDENTONYM;
             }
-
-            return;
         }
 
         if (PRIVATE_USAGE) {

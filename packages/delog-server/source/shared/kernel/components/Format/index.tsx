@@ -25,10 +25,12 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -127,6 +129,14 @@ const Format: React.FC<FormatProperties> = (
             action(format);
         }
     }
+
+    const handleEnter = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === 'Enter') {
+            addFormat();
+        }
+    }
     // #endregion handlers
 
 
@@ -152,69 +162,45 @@ const Format: React.FC<FormatProperties> = (
         <StyledFormat
             theme={theme}
         >
+            <StyledH1>
+                generate format
+            </StyledH1>
+
+            <InputLine
+                name="identifier"
+                text={formatIdentifier}
+                theme={theme}
+                atChange={(event) => setFormatIdentifier(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="transform"
+                text={formatTransform}
+                theme={theme}
+                atChange={(event) => setFormatTransform(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
             <div>
-                <h1>
-                    generate format
-                </h1>
-
-                <div>
-                    <StyledPluridTextline
-                        text={formatIdentifier}
-                        placeholder="identifier"
-                        atChange={(event) => setFormatIdentifier(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addFormat();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridTextline
-                        text={formatTransform}
-                        placeholder="transform"
-                        atChange={(event) => setFormatTransform(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addFormat();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridPureButton
-                        text="Generate Format"
-                        atClick={() => addFormat()}
-                        level={2}
-                        disabled={!validFormat}
-                    />
-                </div>
-
-                {cancel && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
-                )}
+                <StyledPluridPureButton
+                    text="Generate Format"
+                    atClick={() => addFormat()}
+                    level={2}
+                    disabled={!validFormat}
+                />
             </div>
+
+            {cancel && (
+                <div>
+                    <StyledPluridLinkButton
+                        text="cancel"
+                        atClick={() => cancel()}
+                        theme={theme}
+                        level={2}
+                    />
+                </div>
+            )}
         </StyledFormat>
     );
     // #endregion render

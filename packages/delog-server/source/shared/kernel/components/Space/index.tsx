@@ -25,10 +25,12 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -127,6 +129,14 @@ const Space: React.FC<SpaceProperties> = (
             action(space);
         }
     }
+
+    const handleEnter = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === 'Enter') {
+            addSpace();
+        }
+    }
     // #endregion handlers
 
 
@@ -152,69 +162,45 @@ const Space: React.FC<SpaceProperties> = (
         <StyledSpace
             theme={theme}
         >
+            <StyledH1>
+                generate space
+            </StyledH1>
+
+            <InputLine
+                name="name"
+                text={spaceName}
+                theme={theme}
+                atChange={(event) => setSpaceName(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="project"
+                text={spaceProject}
+                theme={theme}
+                atChange={(event) => setSpaceProject(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
             <div>
-                <h1>
-                    generate space
-                </h1>
-
-                <div>
-                    <StyledPluridTextline
-                        text={spaceName}
-                        placeholder="name"
-                        atChange={(event) => setSpaceName(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addSpace();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridTextline
-                        text={spaceProject}
-                        placeholder="project"
-                        atChange={(event) => setSpaceProject(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addSpace();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridPureButton
-                        text="Generate Space"
-                        atClick={() => addSpace()}
-                        level={2}
-                        disabled={!validSpace}
-                    />
-                </div>
-
-                {cancel && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
-                )}
+                <StyledPluridPureButton
+                    text="Generate Space"
+                    atClick={() => addSpace()}
+                    level={2}
+                    disabled={!validSpace}
+                />
             </div>
+
+            {cancel && (
+                <div>
+                    <StyledPluridLinkButton
+                        text="cancel"
+                        atClick={() => cancel()}
+                        theme={theme}
+                        level={2}
+                    />
+                </div>
+            )}
         </StyledSpace>
     );
     // #endregion render

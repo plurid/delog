@@ -13,14 +13,19 @@
 
 
 // #region module
+export const StyledH1 = styled.h1`
+    margin-bottom: 2rem;
+`;
+
+
 export const StyledPluridTextline = styled(PluridTextline)`
-    margin: 20px auto;
     width: 350px;
 `;
 
 
 export const StyledPluridPureButton = styled(PluridPureButton)`
-    margin: 20px auto;
+    margin: 1rem auto;
+    margin-top: 4rem;
     width: 250px;
 `;
 

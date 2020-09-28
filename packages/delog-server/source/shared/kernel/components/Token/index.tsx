@@ -1,7 +1,6 @@
 // #region imports
     // #region libraries
     import React, {
-        useEffect,
         useState,
     } from 'react';
 
@@ -34,10 +33,12 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -149,6 +150,14 @@ const Token: React.FC<TokenProperties> = (
             setClientToken(clientToken);
         }
     }
+
+    const handleEnter = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === 'Enter') {
+            addToken();
+        }
+    }
     // #endregion handlers
 
 
@@ -157,101 +166,88 @@ const Token: React.FC<TokenProperties> = (
         <StyledToken
             theme={theme}
         >
-            <div>
-                {tokenValue === '' && (
-                    <>
-                        <h1>
-                            generate token
-                        </h1>
+            {tokenValue === '' && (
+                <>
+                    <StyledH1>
+                        generate token
+                    </StyledH1>
 
+                    <InputLine
+                        name="name"
+                        text={tokenName}
+                        theme={theme}
+                        atChange={(event) => setTokenName(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <div>
+                        <StyledPluridPureButton
+                            text="Generate Token"
+                            atClick={() => addToken()}
+                            level={2}
+                            disabled={!tokenName}
+                        />
+                    </div>
+
+                    {cancel && (
                         <div>
-                            <StyledPluridTextline
-                                text={tokenName}
-                                placeholder="name"
-                                atChange={(event) => setTokenName(event.target.value)}
-                                atKeyDown={(event) => {
-                                    if (event.key === 'Enter') {
-                                        addToken();
-                                    }
-                                }}
-                                spellCheck={false}
-                                autoCapitalize="false"
-                                autoComplete="false"
-                                autoCorrect="false"
+                            <StyledPluridLinkButton
+                                text="cancel"
+                                atClick={() => cancel()}
                                 theme={theme}
                                 level={2}
                             />
                         </div>
+                    )}
+                </>
+            )}
 
-                        <div>
-                            <StyledPluridPureButton
-                                text="Generate Token"
-                                atClick={() => addToken()}
-                                level={2}
-                                disabled={!tokenName}
-                            />
-                        </div>
+            {tokenValue !== '' && (
+                <>
+                    <StyledH1>
+                        token added
+                    </StyledH1>
 
-                        {cancel && (
-                            <div>
-                                <StyledPluridLinkButton
-                                    text="cancel"
-                                    atClick={() => cancel()}
-                                    theme={theme}
-                                    level={2}
-                                />
-                            </div>
-                        )}
-                    </>
-                )}
-
-                {tokenValue !== '' && (
-                    <>
-                        <h1>
-                            token added
-                        </h1>
-
+                    <div
+                        style={{
+                            margin: '4rem 0',
+                        }}
+                    >
                         <div
                             style={{
-                                margin: '4rem 0',
+                                marginBottom: '1rem',
                             }}
                         >
-                            <div
-                                style={{
-                                    marginBottom: '1rem',
-                                }}
-                            >
-                                save the token value
-                            </div>
-
-                            <StyledTokenValue>
-                                <PluridIconCopy
-                                    atClick={() => clipboard.copy(tokenValue)}
-                                    style={{
-                                        marginRight: '1rem',
-                                    }}
-                                />
-
-                                {tokenValue}
-                            </StyledTokenValue>
+                            save the token value
                         </div>
 
-                        <StyledPluridPureButton
-                            text="Value Saved"
-                            atClick={() => {
-                                if (clientToken) {
-                                    action(clientToken);
-                                }
+                        <StyledTokenValue>
+                            <PluridIconCopy
+                                atClick={() => clipboard.copy(tokenValue)}
+                                style={{
+                                    marginRight: '1rem',
+                                }}
+                            />
 
-                                if (cancel) {
-                                    cancel();
-                                }
-                            }}
-                            level={2}
-                        />
-                    </>
-                )}
-            </div>
+                            {tokenValue}
+                        </StyledTokenValue>
+                    </div>
+
+                    <StyledPluridPureButton
+                        text="Value Saved"
+                        atClick={() => {
+                            if (clientToken) {
+                                action(clientToken);
+                            }
+
+                            if (cancel) {
+                                cancel();
+                            }
+                        }}
+                        level={2}
+                    />
+                </>
+            )}
         </StyledToken>
     );
     // #endregion render

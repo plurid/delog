@@ -24,10 +24,12 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -117,6 +119,14 @@ const Project: React.FC<ProjectProperties> = (
             action(project);
         }
     }
+
+    const handleEnter = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === 'Enter') {
+            addProject();
+        }
+    }
     // #endregion handlers
 
 
@@ -125,50 +135,37 @@ const Project: React.FC<ProjectProperties> = (
         <StyledProject
             theme={theme}
         >
-            <div>
-                <h1>
-                    generate project
-                </h1>
+            <StyledH1>
+                generate project
+            </StyledH1>
 
+            <InputLine
+                name="name"
+                text={projectName}
+                theme={theme}
+                atChange={(event) => setProjectName(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <div>
+                <StyledPluridPureButton
+                    text="Generate Project"
+                    atClick={() => addProject()}
+                    level={2}
+                    disabled={!projectName}
+                />
+            </div>
+
+            {cancel && (
                 <div>
-                    <StyledPluridTextline
-                        text={projectName}
-                        placeholder="name"
-                        atChange={(event) => setProjectName(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addProject();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
+                    <StyledPluridLinkButton
+                        text="cancel"
+                        atClick={() => cancel()}
                         theme={theme}
                         level={2}
                     />
                 </div>
-
-                <div>
-                    <StyledPluridPureButton
-                        text="Generate Project"
-                        atClick={() => addProject()}
-                        level={2}
-                        disabled={!projectName}
-                    />
-                </div>
-
-                {cancel && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
-                )}
-            </div>
+            )}
         </StyledProject>
     );
     // #endregion render

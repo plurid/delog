@@ -24,10 +24,12 @@
     } from '#kernel-services/graphql/mutate';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -117,6 +119,14 @@ const Notifier: React.FC<NotifierProperties> = (
             action(notifier);
         }
     }
+
+    const handleEnter = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === 'Enter') {
+            addNotifier();
+        }
+    }
     // #endregion handlers
 
 
@@ -125,50 +135,37 @@ const Notifier: React.FC<NotifierProperties> = (
         <StyledNotifier
             theme={theme}
         >
-            <div>
-                <h1>
-                    generate notifier
-                </h1>
+            <StyledH1>
+                generate notifier
+            </StyledH1>
 
+            <InputLine
+                name="name"
+                text={notifierName}
+                theme={theme}
+                atChange={(event) => setNotifierName(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <div>
+                <StyledPluridPureButton
+                    text="Generate Notifier"
+                    atClick={() => addNotifier()}
+                    level={2}
+                    disabled={!notifierName}
+                />
+            </div>
+
+            {cancel && (
                 <div>
-                    <StyledPluridTextline
-                        text={notifierName}
-                        placeholder="name"
-                        atChange={(event) => setNotifierName(event.target.value)}
-                        atKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                addNotifier();
-                            }
-                        }}
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
+                    <StyledPluridLinkButton
+                        text="cancel"
+                        atClick={() => cancel()}
                         theme={theme}
                         level={2}
                     />
                 </div>
-
-                <div>
-                    <StyledPluridPureButton
-                        text="Generate Notifier"
-                        atClick={() => addNotifier()}
-                        level={2}
-                        disabled={!notifierName}
-                    />
-                </div>
-
-                {cancel && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
-                )}
-            </div>
+            )}
         </StyledNotifier>
     );
     // #endregion render
