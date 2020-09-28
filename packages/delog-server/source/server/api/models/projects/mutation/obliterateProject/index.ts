@@ -51,7 +51,7 @@ const obliterateProject = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            value,
         } = input;
         // #endregion input unpack
 
@@ -74,7 +74,7 @@ const obliterateProject = async (
                 };
             }
 
-            await deregisterProject(name);
+            await deregisterProject(value);
 
             logger.log(
                 obliterateProjectLogs.infoSuccessPrivateUsage,
@@ -97,7 +97,7 @@ const obliterateProject = async (
                 logLevels.trace,
             );
 
-            await deregisterProject(name);
+            await deregisterProject(value);
 
             logger.log(
                 obliterateProjectLogs.infoEndCustomLogicUsage,
@@ -112,7 +112,7 @@ const obliterateProject = async (
 
 
         // #region public usage
-        await deregisterProject(name);
+        await deregisterProject(value);
 
         logger.log(
             obliterateProjectLogs.infoSuccess,

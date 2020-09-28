@@ -74,7 +74,10 @@ const generateToken = async (
                 };
             }
 
-            const token = await registerToken(name);
+            const token = await registerToken(
+                name,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 generateTokenLogs.infoSuccessPrivateUsage,
@@ -98,7 +101,10 @@ const generateToken = async (
                 logLevels.trace,
             );
 
-            const token = await registerToken(name);
+            const token = await registerToken(
+                name,
+                '',
+            );
 
             logger.log(
                 generateTokenLogs.infoEndCustomLogicUsage,
@@ -114,7 +120,10 @@ const generateToken = async (
 
 
         // #region public usage
-        const token = await registerToken(name);
+        const token = await registerToken(
+            name,
+            '',
+        );
 
         logger.log(
             generateTokenLogs.infoSuccess,

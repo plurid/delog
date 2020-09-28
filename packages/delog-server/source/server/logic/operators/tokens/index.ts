@@ -20,13 +20,14 @@
 // #region module
 const registerToken = async (
     value: string,
+    ownedBy: string,
 ) => {
     const id = uuid.generate();
 
     const token: Token = {
         id,
-        ownedBy: '',
         value,
+        ownedBy,
     };
 
     await database.store(
