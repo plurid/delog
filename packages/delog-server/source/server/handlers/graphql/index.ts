@@ -71,7 +71,7 @@ const setupGraphQLServer = async (
             res,
         }: any) => {
             const privateOwnerIdentonym = privateUsage
-                ? getPrivateOwner(req)
+                ? await getPrivateOwner(req)
                 : '';
 
             const {

@@ -10,11 +10,14 @@
     import {
         COOKIE_PRIVATE_TOKEN,
 
+        PRIVATE_USAGE,
         PRIVATE_TOKEN,
         PRIVATE_OWNER_IDENTONYM,
 
         TEST_MODE,
     } from '#server/data/constants';
+
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -41,7 +44,7 @@ const getToken = (
 }
 
 
-const getPrivateOwner = (
+const getPrivateOwner = async (
     request: Request,
 ) => {
     try {
@@ -51,13 +54,29 @@ const getPrivateOwner = (
             if (token === '__TESTS__') {
                 return PRIVATE_OWNER_IDENTONYM;
             }
-        }
 
-        if (token !== PRIVATE_TOKEN) {
             return;
         }
 
-        return PRIVATE_OWNER_IDENTONYM;
+        if (PRIVATE_USAGE) {
+            if (token === PRIVATE_TOKEN) {
+                return PRIVATE_OWNER_IDENTONYM;
+            }
+
+            return;
+        }
+
+        const ownerToken = await database.query(
+            'tokens',
+            'value',
+            token,
+        );
+
+        if (ownerToken) {
+            return ownerToken.ownedBy;
+        }
+
+        return;
     } catch (error) {
         return;
     }
