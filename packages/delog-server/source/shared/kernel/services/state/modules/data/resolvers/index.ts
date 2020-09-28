@@ -25,6 +25,9 @@ export const addEntity = (
     let projects = [
         ...newState.projects,
     ];
+    let tokens = [
+        ...newState.tokens,
+    ];
 
 
     switch (type) {
@@ -36,12 +39,23 @@ export const addEntity = (
                 },
             ]
             break;
+        case 'token':
+            tokens = [
+                ...tokens,
+                {
+                    ...data,
+                },
+            ]
+            break;
     }
 
     return {
         ...newState,
         projects: [
             ...projects,
+        ],
+        tokens: [
+            ...tokens,
         ],
     };
 }
