@@ -2,7 +2,9 @@
     // #region external
     import {
         Context,
-        InputValueString,
+        InputGenerateNotifier,
+        ClientNotifier,
+        NotifierType,
     } from '#server/data/interfaces';
 
     import {
@@ -22,7 +24,7 @@ export const generateNotifierLogs = generateMethodLogs('generateNotifier');
 
 
 const generateNotifier = async (
-    input: InputValueString,
+    input: InputGenerateNotifier,
     context: Context,
 ) => {
     // #region context unpack
@@ -51,9 +53,15 @@ const generateNotifier = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            type,
+            data,
         } = input;
         // #endregion input unpack
+
+        const values: any = {
+            type: type as NotifierType,
+            data: JSON.parse(data),
+        };
 
 
         // #region private usage
@@ -74,7 +82,10 @@ const generateNotifier = async (
                 };
             }
 
-            const notifier = await registerNotifier(name);
+            const notifier = await registerNotifier(
+                values,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 generateNotifierLogs.infoSuccessPrivateUsage,
@@ -98,7 +109,10 @@ const generateNotifier = async (
                 logLevels.trace,
             );
 
-            const notifier = await registerNotifier(name);
+            const notifier = await registerNotifier(
+                values,
+                '',
+            );
 
             logger.log(
                 generateNotifierLogs.infoEndCustomLogicUsage,
@@ -114,7 +128,10 @@ const generateNotifier = async (
 
 
         // #region public usage
-        const notifier = await registerNotifier(name);
+        const notifier = await registerNotifier(
+            values,
+            '',
+        );
 
         logger.log(
             generateNotifierLogs.infoSuccess,

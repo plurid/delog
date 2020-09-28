@@ -3,6 +3,7 @@
     import {
         Context,
         InputOf,
+        InputGenerateNotifier,
         InputValueString,
     } from '#server/data/interfaces';
 
@@ -18,7 +19,7 @@
 export default {
     generateNotifier: (
         _: any,
-        { input }: InputOf<InputValueString>,
+        { input }: InputOf<InputGenerateNotifier>,
         context: Context,
     ) => Notifiers.Mutation.generateNotifier(
         input,

@@ -14,14 +14,19 @@ export interface InputGenerateToken {
 }
 
 
+export interface InputGenerateSpace {
+    name: string;
+    project: string;
+}
+
 export interface InputGenerateFormat {
     identifier: string;
     transform: string;
 }
 
 
-export interface InputGenerateSpace {
-    name: string;
-    project: string;
+export interface InputGenerateNotifier {
+    type: string;
+    data: string;
 }
 // #endregion module

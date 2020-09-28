@@ -44,7 +44,8 @@ export const types = gql`
 
 export const inputs = gql`
     input InputGenerateNotifier {
-        name: String!
+        type: String!
+        data: String!
     }
 `;
 // #endregion module

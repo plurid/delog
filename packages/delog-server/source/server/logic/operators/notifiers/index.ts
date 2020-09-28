@@ -8,7 +8,7 @@
 
     // #region external
     import {
-        Notifier,
+        ClientNotifier,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -19,13 +19,15 @@
 
 // #region module
 const registerNotifier = async (
-    value: string,
+    value: ClientNotifier,
+    ownerID: string,
 ) => {
     const id = uuid.generate();
 
     const notifier: any = {
+        ...value,
         id,
-        name: value,
+        ownerID,
     };
 
     await database.store(
