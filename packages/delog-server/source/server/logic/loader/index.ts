@@ -6,6 +6,7 @@
         ClientToken,
         Space,
         Format,
+        ClientNotifier,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -83,6 +84,32 @@ export const loadFormats = async (
 }
 
 
+export const loadNotifiers = async (
+    ownerID: string
+) => {
+    const notifiers: ClientNotifier[] = await database.query(
+        'notifiers',
+        'ownedBy',
+        ownerID,
+    );
+
+    return [];
+}
+
+
+export const loadTesters = async (
+    ownerID: string
+) => {
+    const testers: ClientNotifier[] = await database.query(
+        'testers',
+        'ownedBy',
+        ownerID,
+    );
+
+    return [];
+}
+
+
 const loadData = async (
     ownerID: string | undefined,
 ) => {
@@ -92,6 +119,8 @@ const loadData = async (
             tokens: [],
             spaces: [],
             formats: [],
+            notifiers: [],
+            testers: [],
         };
     }
 
@@ -111,11 +140,22 @@ const loadData = async (
         ownerID,
     );
 
+    const notifiers = await loadNotifiers(
+        ownerID,
+    );
+
+    const testers = await loadTesters(
+        ownerID,
+    );
+
+
     const data = {
         projects,
         tokens,
         spaces,
         formats,
+        notifiers,
+        testers,
     };
 
     return data;

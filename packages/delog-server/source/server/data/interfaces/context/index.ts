@@ -14,10 +14,11 @@
         ClientToken,
         Space,
         Format,
+        Tester,
     } from '../general';
 
     import {
-        Notifier,
+        ClientNotifier,
     } from '../notifier';
 
     import {
@@ -44,7 +45,8 @@ export interface Context {
     tokens: ClientToken[];
     spaces: Space[];
     formats: Format[];
-    records: any[];
+    notifiers: ClientNotifier[];
+    testers: Tester[];
 
     customLogicUsage: boolean;
 
