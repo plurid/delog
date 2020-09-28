@@ -19,6 +19,7 @@ export interface InputGenerateSpace {
     project: string;
 }
 
+
 export interface InputGenerateFormat {
     identifier: string;
     transform: string;

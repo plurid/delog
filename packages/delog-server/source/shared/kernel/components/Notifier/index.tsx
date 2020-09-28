@@ -30,12 +30,15 @@
     } from '#kernel-services/styled';
 
     import InputLine from '../InputLine';
+    import InputSwitch from '../InputSwitch';
     // #endregion external
 
 
     // #region internal
     import {
         StyledNotifier,
+        StyledSelectors,
+        StyledSelector,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -95,8 +98,46 @@ const Notifier: React.FC<NotifierProperties> = (
 
     // #region state
     const [
+        notifierType,
+        setNotifierType,
+    ] = useState('');
+    const [
         notifierName,
         setNotifierName,
+    ] = useState('');
+
+    const [
+        notifierEndpoint,
+        setNotifierEndpoint,
+    ] = useState('');
+    const [
+        notifierSecret,
+        setNotifierSecret,
+    ] = useState('');
+
+    const [
+        notifierHost,
+        setNotifierHost,
+    ] = useState('');
+    const [
+        notifierPort,
+        setNotifierPort,
+    ] = useState('');
+    const [
+        notifierSecure,
+        setNotifierSecure,
+    ] = useState(false);
+    const [
+        notifierUsername,
+        setNotifierUsername,
+    ] = useState('');
+    const [
+        notifierPassword,
+        setNotifierPassword,
+    ] = useState('');
+    const [
+        notifierSender,
+        setNotifierSender,
     ] = useState('');
     // #endregion state
 
@@ -139,13 +180,96 @@ const Notifier: React.FC<NotifierProperties> = (
                 generate notifier
             </StyledH1>
 
-            <InputLine
-                name="name"
-                text={notifierName}
-                theme={theme}
-                atChange={(event) => setNotifierName(event.target.value)}
-                atKeyDown={handleEnter}
-            />
+            <StyledSelectors>
+                <StyledSelector
+                    theme={theme}
+                    selected={notifierType === 'api'}
+                    onClick={() => setNotifierType('api')}
+                >
+                    api
+                </StyledSelector>
+
+                <StyledSelector
+                    theme={theme}
+                    selected={notifierType === 'email'}
+                    onClick={() => setNotifierType('email')}
+                >
+                    email
+                </StyledSelector>
+            </StyledSelectors>
+
+
+            {notifierType === 'api' && (
+                <>
+                    <InputLine
+                        name="endpoint"
+                        text={notifierEndpoint}
+                        theme={theme}
+                        atChange={(event) => setNotifierEndpoint(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <InputLine
+                        name="secret"
+                        text={notifierSecret}
+                        theme={theme}
+                        atChange={(event) => setNotifierSecret(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+                </>
+            )}
+
+
+            {notifierType === 'email' && (
+                <>
+                    <InputLine
+                        name="host"
+                        text={notifierHost}
+                        theme={theme}
+                        atChange={(event) => setNotifierHost(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <InputLine
+                        name="port"
+                        text={notifierPort}
+                        theme={theme}
+                        atChange={(event) => setNotifierPort(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <InputSwitch
+                        name="secure"
+                        checked={notifierSecure}
+                        theme={theme}
+                        atChange={() => setNotifierSecure(secure => !secure)}
+                    />
+
+                    <InputLine
+                        name="username"
+                        text={notifierUsername}
+                        theme={theme}
+                        atChange={(event) => setNotifierUsername(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <InputLine
+                        name="password"
+                        text={notifierPassword}
+                        theme={theme}
+                        atChange={(event) => setNotifierPassword(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+
+                    <InputLine
+                        name="sender"
+                        text={notifierSender}
+                        theme={theme}
+                        atChange={(event) => setNotifierSender(event.target.value)}
+                        atKeyDown={handleEnter}
+                    />
+                </>
+            )}
 
             <div>
                 <StyledPluridPureButton
@@ -157,14 +281,12 @@ const Notifier: React.FC<NotifierProperties> = (
             </div>
 
             {cancel && (
-                <div>
-                    <StyledPluridLinkButton
-                        text="cancel"
-                        atClick={() => cancel()}
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
+                <StyledPluridLinkButton
+                    text="cancel"
+                    atClick={() => cancel()}
+                    theme={theme}
+                    level={2}
+                />
             )}
         </StyledNotifier>
     );
