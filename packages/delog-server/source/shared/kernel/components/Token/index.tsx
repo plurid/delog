@@ -161,7 +161,7 @@ const Token: React.FC<TokenProperties> = (
                 {tokenValue === '' && (
                     <>
                         <h1>
-                            add token
+                            generate token
                         </h1>
 
                         <div>
@@ -185,7 +185,7 @@ const Token: React.FC<TokenProperties> = (
 
                         <div>
                             <StyledPluridPureButton
-                                text="Add Token"
+                                text="Generate Token"
                                 atClick={() => addToken()}
                                 level={2}
                                 disabled={!tokenName}

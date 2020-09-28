@@ -51,6 +51,7 @@ export type ClientToken = Omit<Token, 'value' | 'ownedBy'>;
 export interface Space {
     id: string;
     name: string;
+    project: string;
     ownedBy: string;
 }
 

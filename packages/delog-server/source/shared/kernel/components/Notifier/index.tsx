@@ -127,7 +127,7 @@ const Notifier: React.FC<NotifierProperties> = (
         >
             <div>
                 <h1>
-                    add notifier
+                    generate notifier
                 </h1>
 
                 <div>
@@ -151,7 +151,7 @@ const Notifier: React.FC<NotifierProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Notifier"
+                        text="Generate Notifier"
                         atClick={() => addNotifier()}
                         level={2}
                         disabled={!notifierName}

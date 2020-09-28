@@ -85,6 +85,7 @@ export const GENERATE_SPACE = gql`
             data {
                 id
                 name
+                project
             }
         }
     }

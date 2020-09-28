@@ -154,7 +154,7 @@ const Format: React.FC<FormatProperties> = (
         >
             <div>
                 <h1>
-                    add format
+                    generate format
                 </h1>
 
                 <div>
@@ -197,7 +197,7 @@ const Format: React.FC<FormatProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Format"
+                        text="Generate Format"
                         atClick={() => addFormat()}
                         level={2}
                         disabled={!validFormat}

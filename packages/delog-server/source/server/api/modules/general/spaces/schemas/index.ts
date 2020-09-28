@@ -49,6 +49,7 @@ export const types = gql`
 export const inputs = gql`
     input InputGenerateSpace {
         name: String!
+        project: String!
     }
 `;
 // #endregion module

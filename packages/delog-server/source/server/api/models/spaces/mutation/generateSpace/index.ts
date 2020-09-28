@@ -52,8 +52,15 @@ const generateSpace = async (
         // #region input unpack
         const {
             name,
+            project,
         } = input;
         // #endregion input unpack
+
+
+        const data = {
+            name,
+            project,
+        };
 
 
         // #region private usage
@@ -75,7 +82,7 @@ const generateSpace = async (
             }
 
             const space = await registerSpace(
-                name,
+                data,
                 privateOwnerIdentonym,
             );
 
@@ -102,7 +109,7 @@ const generateSpace = async (
             );
 
             const space = await registerSpace(
-                name,
+                data,
                 '',
             );
 
@@ -121,7 +128,7 @@ const generateSpace = async (
 
         // #region public usage
         const space = await registerSpace(
-            name,
+            data,
             '',
         );
 

@@ -22,5 +22,6 @@ export interface InputGenerateFormat {
 
 export interface InputGenerateSpace {
     name: string;
+    project: string;
 }
 // #endregion module

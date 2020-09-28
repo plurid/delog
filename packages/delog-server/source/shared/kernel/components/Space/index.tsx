@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -96,12 +97,20 @@ const Space: React.FC<SpaceProperties> = (
         spaceName,
         setSpaceName,
     ] = useState('');
+    const [
+        spaceProject,
+        setSpaceProject,
+    ] = useState('');
+    const [
+        validSpace,
+        setValidSpace,
+    ] = useState(false);
     // #endregion state
 
 
     // #region handlers
     const addSpace = async () => {
-        if (!spaceName) {
+        if (!validSpace) {
             return;
         }
 
@@ -120,6 +129,23 @@ const Space: React.FC<SpaceProperties> = (
     // #endregion handlers
 
 
+    // #region effects
+    useEffect(() => {
+        if (
+            spaceName
+            && spaceProject
+        ) {
+            setValidSpace(true);
+        } else {
+            setValidSpace(false);
+        }
+    }, [
+        spaceName,
+        spaceProject,
+    ]);
+    // #endregion effects
+
+
     // #region render
     return (
         <StyledSpace
@@ -127,7 +153,7 @@ const Space: React.FC<SpaceProperties> = (
         >
             <div>
                 <h1>
-                    add space
+                    generate space
                 </h1>
 
                 <div>
@@ -150,11 +176,30 @@ const Space: React.FC<SpaceProperties> = (
                 </div>
 
                 <div>
+                    <StyledPluridTextline
+                        text={spaceProject}
+                        placeholder="project"
+                        atChange={(event) => setSpaceProject(event.target.value)}
+                        atKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                addSpace();
+                            }
+                        }}
+                        spellCheck={false}
+                        autoCapitalize="false"
+                        autoComplete="false"
+                        autoCorrect="false"
+                        theme={theme}
+                        level={2}
+                    />
+                </div>
+
+                <div>
                     <StyledPluridPureButton
-                        text="Add Space"
+                        text="Generate Space"
                         atClick={() => addSpace()}
                         level={2}
-                        disabled={!spaceName}
+                        disabled={!validSpace}
                     />
                 </div>
 

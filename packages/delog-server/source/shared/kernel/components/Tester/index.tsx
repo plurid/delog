@@ -127,7 +127,7 @@ const Tester: React.FC<TesterProperties> = (
         >
             <div>
                 <h1>
-                    add tester
+                    generate tester
                 </h1>
 
                 <div>
@@ -151,7 +151,7 @@ const Tester: React.FC<TesterProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Tester"
+                        text="Generate Tester"
                         atClick={() => addTester()}
                         level={2}
                         disabled={!testerName}

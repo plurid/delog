@@ -9,6 +9,7 @@
     // #region external
     import {
         Space,
+        InputGenerateSpace,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -19,14 +20,20 @@
 
 // #region module
 const registerSpace = async (
-    name: string,
+    input: InputGenerateSpace,
     ownedBy: string,
 ) => {
+    const {
+        name,
+        project,
+    } = input;
+
     const id = uuid.generate();
 
     const space: Space = {
         id,
         name,
+        project,
         ownedBy,
     };
 

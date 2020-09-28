@@ -127,7 +127,7 @@ const Project: React.FC<ProjectProperties> = (
         >
             <div>
                 <h1>
-                    add project
+                    generate project
                 </h1>
 
                 <div>
@@ -151,7 +151,7 @@ const Project: React.FC<ProjectProperties> = (
 
                 <div>
                     <StyledPluridPureButton
-                        text="Add Project"
+                        text="Generate Project"
                         atClick={() => addProject()}
                         level={2}
                         disabled={!projectName}
