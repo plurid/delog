@@ -3,7 +3,12 @@
     import React from 'react';
 
     import {
+        clipboard,
+    } from '@plurid/plurid-functions';
+
+    import {
         PluridIconDelete,
+        PluridIconCopy,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -35,6 +40,17 @@ export const projectRowRenderer = (
                 {name}
             </div>
 
+            <div>
+                <PluridIconCopy
+                    atClick={() => clipboard.copy(id)}
+                    style={{
+                        marginRight: '1rem',
+                    }}
+                />
+
+                {id}
+            </div>
+
             <PluridIconDelete
                 atClick={() => handleProjectObliterate(id)}
             />
@@ -50,13 +66,14 @@ export const createSearchTerms = (
         project => {
             const {
                 id,
-                name
+                name,
             } = project;
 
             const searchTerm = {
                 id,
                 data: [
                     name.toLowerCase(),
+                    id.toLowerCase(),
                 ],
             };
 

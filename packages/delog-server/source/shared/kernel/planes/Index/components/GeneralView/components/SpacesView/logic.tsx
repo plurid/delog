@@ -3,7 +3,12 @@
     import React from 'react';
 
     import {
+        clipboard,
+    } from '@plurid/plurid-functions';
+
+    import {
         PluridIconDelete,
+        PluridIconCopy,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
@@ -35,6 +40,17 @@ export const spaceRowRenderer = (
                 {name}
             </div>
 
+            <div>
+                <PluridIconCopy
+                    atClick={() => clipboard.copy(id)}
+                    style={{
+                        marginRight: '1rem',
+                    }}
+                />
+
+                {id}
+            </div>
+
             <PluridIconDelete
                 atClick={() => handleSpaceObliterate(id)}
             />
@@ -57,6 +73,7 @@ export const createSearchTerms = (
                 id,
                 data: [
                     name.toLowerCase(),
+                    id.toLowerCase(),
                 ],
             };
 

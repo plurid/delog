@@ -78,7 +78,7 @@ const record = async (
         // #endregion input unpack
 
 
-        const record = {
+        const record: any = {
             format,
 
             project,
@@ -116,6 +116,8 @@ const record = async (
                     status: false,
                 };
             }
+
+            record.ownedBy = privateOwnerIdentonym;
 
             await registerRecord(record);
 
