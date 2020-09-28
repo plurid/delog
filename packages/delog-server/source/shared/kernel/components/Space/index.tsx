@@ -117,6 +117,7 @@ const Space: React.FC<SpaceProperties> = (
         const space: ISpace | undefined = await addEntityMutation(
             {
                 name: spaceName,
+                project: spaceProject,
             },
             GENERATE_SPACE,
             'generateSpace',

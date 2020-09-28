@@ -29,6 +29,7 @@ export const spaceRowRenderer = (
     const {
         id,
         name,
+        project,
     } = space;
 
     return (
@@ -42,7 +43,7 @@ export const spaceRowRenderer = (
             </div>
 
             <div>
-                project
+                {project}
             </div>
 
             <PluridIconDelete
@@ -61,13 +62,15 @@ export const createSearchTerms = (
             const {
                 id,
                 name,
+                project,
             } = space;
 
             const searchTerm = {
                 id,
                 data: [
-                    name.toLowerCase(),
                     id.toLowerCase(),
+                    name.toLowerCase(),
+                    project.toLowerCase(),
                 ],
             };
 

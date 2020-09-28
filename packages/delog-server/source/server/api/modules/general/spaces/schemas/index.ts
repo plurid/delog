@@ -38,6 +38,7 @@ export const types = gql`
     type Space {
         id: String!
         name: String!
+        project: String!
     }
 
     extend type Owner {

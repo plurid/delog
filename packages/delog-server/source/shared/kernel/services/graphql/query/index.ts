@@ -30,6 +30,7 @@ export const GET_CURRENT_OWNER = gql`
                 spaces {
                     id
                     name
+                    project
                 }
                 formats {
                     id
