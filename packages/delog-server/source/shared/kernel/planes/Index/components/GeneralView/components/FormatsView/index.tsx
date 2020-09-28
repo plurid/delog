@@ -241,7 +241,7 @@ const FormatsView: React.FC<FormatsViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="auto 30px"
+            rowTemplate="2fr 2fr 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no formats"

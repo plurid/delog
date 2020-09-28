@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -93,21 +94,30 @@ const Format: React.FC<FormatProperties> = (
 
     // #region state
     const [
-        formatName,
-        setFormatName,
+        formatIdentifier,
+        setFormatIdentifier,
     ] = useState('');
+    const [
+        formatTransform,
+        setFormatTransform,
+    ] = useState('');
+    const [
+        validFormat,
+        setValidFormat,
+    ] = useState(false);
     // #endregion state
 
 
     // #region handlers
     const addFormat = async () => {
-        if (!formatName) {
+        if (!validFormat) {
             return;
         }
 
         const format: IFormat | undefined = await addEntityMutation(
             {
-                value: formatName,
+                identifer: formatIdentifier,
+                transform: formatTransform,
             },
             GENERATE_FORMAT,
             'generateFormat',
@@ -118,6 +128,23 @@ const Format: React.FC<FormatProperties> = (
         }
     }
     // #endregion handlers
+
+
+    // #region effects
+    useEffect(() => {
+        if (
+            formatIdentifier
+            && formatTransform
+        ) {
+            setValidFormat(true);
+        } else {
+            setValidFormat(false);
+        }
+    }, [
+        formatIdentifier,
+        formatTransform,
+    ]);
+    // #endregion effects
 
 
     // #region render
@@ -132,9 +159,28 @@ const Format: React.FC<FormatProperties> = (
 
                 <div>
                     <StyledPluridTextline
-                        text={formatName}
-                        placeholder="name"
-                        atChange={(event) => setFormatName(event.target.value)}
+                        text={formatIdentifier}
+                        placeholder="identifier"
+                        atChange={(event) => setFormatIdentifier(event.target.value)}
+                        atKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                addFormat();
+                            }
+                        }}
+                        spellCheck={false}
+                        autoCapitalize="false"
+                        autoComplete="false"
+                        autoCorrect="false"
+                        theme={theme}
+                        level={2}
+                    />
+                </div>
+
+                <div>
+                    <StyledPluridTextline
+                        text={formatTransform}
+                        placeholder="transform"
+                        atChange={(event) => setFormatTransform(event.target.value)}
                         atKeyDown={(event) => {
                             if (event.key === 'Enter') {
                                 addFormat();
@@ -154,7 +200,7 @@ const Format: React.FC<FormatProperties> = (
                         text="Add Format"
                         atClick={() => addFormat()}
                         level={2}
-                        disabled={!formatName}
+                        disabled={!validFormat}
                     />
                 </div>
 

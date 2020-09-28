@@ -57,7 +57,8 @@ export interface Space {
 
 export interface Format {
     id: string;
-    value: string;
+    identifier: string;
+    transform: string;
     ownedBy: string;
 }
 

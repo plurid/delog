@@ -14,6 +14,12 @@ export interface InputGenerateToken {
 }
 
 
+export interface InputGenerateFormat {
+    identifier: string;
+    transform: string;
+}
+
+
 export interface InputGenerateSpace {
     name: string;
 }

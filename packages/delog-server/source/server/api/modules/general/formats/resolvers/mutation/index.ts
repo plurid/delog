@@ -3,6 +3,7 @@
     import {
         Context,
         InputOf,
+        InputGenerateFormat,
         InputValueString,
     } from '#server/data/interfaces';
 
@@ -18,7 +19,7 @@
 export default {
     generateFormat: (
         _: any,
-        { input }: InputOf<InputValueString>,
+        { input }: InputOf<InputGenerateFormat>,
         context: Context,
     ) => Formats.Mutation.generateFormat(
         input,

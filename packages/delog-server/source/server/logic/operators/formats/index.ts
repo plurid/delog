@@ -9,6 +9,7 @@
     // #region external
     import {
         Format,
+        InputGenerateFormat,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -19,14 +20,20 @@
 
 // #region module
 const registerFormat = async (
-    value: string,
+    input: InputGenerateFormat,
     ownedBy: string,
 ) => {
+    const {
+        identifier,
+        transform,
+    } = input;
+
     const id = uuid.generate();
 
     const format: Format = {
         id,
-        value,
+        identifier,
+        transform,
         ownedBy,
     };
 

@@ -2,7 +2,7 @@
     // #region external
     import {
         Context,
-        InputValueString,
+        InputGenerateFormat,
     } from '#server/data/interfaces';
 
     import {
@@ -22,7 +22,7 @@ export const generateFormatLogs = generateMethodLogs('generateFormat');
 
 
 const generateFormat = async (
-    input: InputValueString,
+    input: InputGenerateFormat,
     context: Context,
 ) => {
     // #region context unpack
@@ -51,9 +51,15 @@ const generateFormat = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            identifier,
+            transform,
         } = input;
         // #endregion input unpack
+
+        const data = {
+            identifier,
+            transform,
+        };
 
 
         // #region private usage
@@ -75,7 +81,7 @@ const generateFormat = async (
             }
 
             const format = await registerFormat(
-                name,
+                data,
                 privateOwnerIdentonym,
             );
 
@@ -102,7 +108,7 @@ const generateFormat = async (
             );
 
             const format = await registerFormat(
-                name,
+                data,
                 '',
             );
 
@@ -121,7 +127,7 @@ const generateFormat = async (
 
         // #region public usage
         const format = await registerFormat(
-            name,
+            data,
             '',
         );
 

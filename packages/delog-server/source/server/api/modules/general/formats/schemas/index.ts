@@ -37,7 +37,8 @@ export const types = gql`
 
     type Format {
         id: String!
-        value: String!
+        identifier: String!
+        transform: String!
     }
 
     extend type Owner {

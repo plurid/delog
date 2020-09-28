@@ -26,13 +26,18 @@ export const formatRowRenderer = (
 ) => {
     const {
         id,
-        value,
+        identifier,
+        ownedBy,
     } = format;
 
     return (
         <>
             <div>
-                {value}
+                {identifier}
+            </div>
+
+            <div>
+                {ownedBy}
             </div>
 
             <PluridIconDelete
@@ -50,13 +55,15 @@ export const createSearchTerms = (
         format => {
             const {
                 id,
-                value,
+                identifier,
+                transform,
             } = format;
 
             const searchTerm = {
                 id,
                 data: [
-                    value.toLowerCase(),
+                    identifier.toLowerCase(),
+                    transform.toLowerCase(),
                 ],
             };
 
