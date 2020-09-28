@@ -26,6 +26,5 @@ export const StyledToken = styled.div<IStyledToken>`
 export const StyledTokenValue = styled.div`
     font-size: 1.1rem;
     line-height: 2;
-    user-select: all;
 `;
 // #endregion module

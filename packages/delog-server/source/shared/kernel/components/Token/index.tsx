@@ -7,14 +7,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        clipboard,
-    } from '@plurid/plurid-functions';
-
-    import {
-        PluridIconCopy,
-    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
@@ -39,6 +31,7 @@
     } from '#kernel-services/styled';
 
     import InputLine from '../InputLine';
+    import CopyableField from '../CopyableField';
     // #endregion external
 
 
@@ -222,14 +215,9 @@ const Token: React.FC<TokenProperties> = (
                         </div>
 
                         <StyledTokenValue>
-                            <PluridIconCopy
-                                atClick={() => clipboard.copy(tokenValue)}
-                                style={{
-                                    marginRight: '1rem',
-                                }}
+                            <CopyableField
+                                data={tokenValue}
                             />
-
-                            {tokenValue}
                         </StyledTokenValue>
                     </div>
 
