@@ -58,31 +58,35 @@ const extractClientNotifierData = (
     type: any,
     data: any,
 ) => {
-    switch (type) {
-        case 'api': {
-            const apiData = {
-                endpoint: data.endpoint,
-                startsWith: data.token.slice(0, 7),
-            };
+    try {
+        switch (type) {
+            case 'api': {
+                const apiData = {
+                    endpoint: data.endpoint,
+                    startsWith: data.secret.slice(0, 7),
+                };
 
-            return JSON.stringify(apiData);
-        }
-        case 'email': {
-            const emailData = {
-                notifyTo: data.notifyTo,
-                authentication: {
-                    host: data.host,
-                    port: data.port,
-                    secure: data.secure,
-                    username: data.username,
-                    sender: data.sender,
-                },
-            };
+                return JSON.stringify(apiData);
+            }
+            case 'email': {
+                const emailData = {
+                    notifyTo: data.notifyTo,
+                    authentication: {
+                        host: data.host,
+                        port: data.port,
+                        secure: data.secure,
+                        username: data.username,
+                        sender: data.sender,
+                    },
+                };
 
-            return JSON.stringify(emailData);
+                return JSON.stringify(emailData);
+            }
+            default:
+                return '';
         }
-        default:
-            return '';
+    } catch (error) {
+        return '';
     }
 }
 // #endregion module

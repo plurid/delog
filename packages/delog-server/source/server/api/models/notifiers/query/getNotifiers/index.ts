@@ -90,7 +90,7 @@ const getNotifiers = async (
             return {
                 status: true,
                 data: [
-                    ...owner.projects,
+                    ...owner.notifiers,
                 ],
             };
         }

@@ -37,6 +37,13 @@ export const GET_CURRENT_OWNER = gql`
                     identifier
                     transform
                 }
+                notifiers {
+                    id
+                    name
+                    notifyOn
+                    type
+                    data
+                }
             }
         }
     }

@@ -100,6 +100,7 @@ export const loadNotifiers = async (
     const clientNotifiers = notifiers.map(notifier => {
         const {
             id,
+            name,
             notifyOn,
             type,
             data,
@@ -112,6 +113,7 @@ export const loadNotifiers = async (
 
         const clientNotifier = {
             id,
+            name,
             notifyOn,
             type,
             data: clientData,

@@ -42,6 +42,10 @@ export const types = gql`
         type: String!
         data: String!
     }
+
+    extend type Owner {
+        notifiers: [Notifier!]!
+    }
 `;
 
 

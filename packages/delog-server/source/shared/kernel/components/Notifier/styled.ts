@@ -41,6 +41,8 @@ export const StyledSelector = styled.div<IStyledSelector>`
     cursor: pointer;
     user-select: none;
     padding: 1.5rem;
+    border-radius: 4rem;
+
     background-color: ${
         ({
             theme,

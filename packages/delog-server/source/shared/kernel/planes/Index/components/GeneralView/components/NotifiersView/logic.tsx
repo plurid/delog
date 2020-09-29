@@ -26,6 +26,7 @@ export const notifierRowRenderer = (
 ) => {
     const {
         id,
+        name,
         type,
     } = notifier;
 
@@ -33,6 +34,10 @@ export const notifierRowRenderer = (
         <>
             <div>
                 {type}
+            </div>
+
+            <div>
+                {name}
             </div>
 
             <PluridIconDelete
@@ -50,12 +55,14 @@ export const createSearchTerms = (
         notifier => {
             const {
                 id,
+                name,
                 type,
             } = notifier;
 
             const searchTerm = {
                 id,
                 data: [
+                    name.toLowerCase(),
                     type.toLowerCase(),
                 ],
             };

@@ -11,6 +11,7 @@ export type ClientNotifier =
 
 export interface NotifierBase {
     id: string;
+    name: string;
     notifyOn: NotificationType[];
 }
 
