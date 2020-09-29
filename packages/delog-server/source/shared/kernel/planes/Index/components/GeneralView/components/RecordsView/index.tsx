@@ -26,14 +26,7 @@
 
     import EntityView from '#kernel-components/EntityView';
 
-    import client from '#kernel-services/graphql/client';
-
     import {
-        OBLITERATE_PROJECT,
-    } from '#kernel-services/graphql/mutate';
-
-    import {
-        getCurrentOwner,
         getRecords,
     } from '#kernel-services/logic/queries';
 
@@ -221,7 +214,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getCurrentOwner(dispatch);
+                getRecords(dispatch);
             }}
         />
     );

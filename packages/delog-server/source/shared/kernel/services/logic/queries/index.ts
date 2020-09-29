@@ -147,7 +147,7 @@ const getRecords = async (
             fetchPolicy: 'no-cache',
         });
 
-        const response = query.data.getCurrentOwner;
+        const response = query.data.getRecords;
 
         if (!response.status) {
             return false;
