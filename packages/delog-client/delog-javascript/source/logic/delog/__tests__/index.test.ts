@@ -16,7 +16,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it('works', () => {
+    it.only('works', () => {
         delog({
             endpoint,
             token,
