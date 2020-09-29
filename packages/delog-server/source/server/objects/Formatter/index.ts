@@ -31,7 +31,7 @@ const primitiveFormattingRules: FormattingRules = {
     TIME: (
         data,
     ) => {
-        const date = new Date(data.time);
+        const date = new Date(data.time * 1000);
 
         return date.toLocaleString();
     },
@@ -68,39 +68,45 @@ class Formatter {
     }
 
     /**
-     * Given a format string and the data, it returns the
+     * Given the data and optional extra formatting rules, it returns the formatted log.
+     *
      * @param value
      */
     format(
         extraFormattingRules?: FormattingRules,
     ) {
-        const formattingRules: FormattingRules = {
-            ...primitiveFormattingRules,
-            ...extraFormattingRules,
-        };
+        try {
+            const formattingRules: FormattingRules = {
+                ...primitiveFormattingRules,
+                ...extraFormattingRules,
+            };
 
-        const re = /(\$\w+)/gi;
-        const match = this.data.format.match(re);
+            const re = /(%\w+)/gi;
+            const match = this.data.format.match(re);
 
-        if (!match) {
-            return '';
-        }
-
-        const logString = this.data.format;
-
-        for (const element of match) {
-            const formattingRule = formattingRules[element];
-
-            if (!formattingRule) {
-                continue;
+            if (!match) {
+                return '';
             }
 
-            const formatResult = formattingRule(this.data);
+            let logString = this.data.format;
 
-            logString.replace(`%${element}`, formatResult);
+            for (const element of match) {
+                const value = element.replace('%', '');
+                const formattingRule = formattingRules[value];
+
+                if (!formattingRule) {
+                    continue;
+                }
+
+                const formatResult = formattingRule(this.data);
+
+                logString = logString.replace(element, formatResult);
+            }
+
+            return logString;
+        } catch (error) {
+            return '';
         }
-
-        return logString;
     }
 
     /**
@@ -112,7 +118,7 @@ class Formatter {
     nonPrimitives(
         value: string,
     ) {
-        const re = /(\$\w+)/gi;
+        const re = /(%\w+)/gi;
         const match = value.match(re);
 
         if (!match) {
