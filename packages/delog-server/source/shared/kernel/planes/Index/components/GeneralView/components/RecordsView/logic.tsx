@@ -10,6 +10,10 @@
 
     // #region external
     import {
+        logLevelsText,
+    } from '#server/data/constants/logger';
+
+    import {
         LoggedRecord,
     } from '#server/data/interfaces';
     // #endregion external
@@ -43,7 +47,7 @@ export const recordRowRenderer = (
             </div>
 
             <div>
-                {level}
+                {logLevelsText[level] || ''}
             </div>
 
             <div>
@@ -67,15 +71,19 @@ export const createSearchTerms = (
                 id,
                 project,
                 space,
-                text,
+                level,
+                log,
             } = record;
+
+            const levelText = logLevelsText[level] || '';
 
             const searchTerm = {
                 id,
                 data: [
                     project.toLowerCase(),
                     space.toLowerCase(),
-                    text.toLowerCase(),
+                    levelText,
+                    log.toLowerCase(),
                 ],
             };
 
