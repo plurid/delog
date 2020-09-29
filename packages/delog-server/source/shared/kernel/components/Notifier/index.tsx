@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -101,10 +102,6 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierType,
         setNotifierType,
     ] = useState('');
-    const [
-        notifierName,
-        setNotifierName,
-    ] = useState('');
 
     const [
         notifierEndpoint,
@@ -139,18 +136,44 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierSender,
         setNotifierSender,
     ] = useState('');
+
+    const [
+        validNotifier,
+        setValidNotifier,
+    ] = useState(false);
     // #endregion state
 
 
     // #region handlers
     const addNotifier = async () => {
-        if (!notifierName) {
+        if (!validNotifier) {
             return;
+        }
+
+        let data = {};
+
+        if (notifierType === 'api') {
+            data = {
+                endpoint: notifierEndpoint,
+                secret: notifierSecret,
+            };
+        }
+
+        if (notifierType === 'email') {
+            data = {
+                host: notifierHost,
+                port: notifierPort,
+                secure: notifierSecure,
+                username: notifierUsername,
+                password: notifierPassword,
+                sender: notifierSender,
+            };
         }
 
         const notifier: INotifier | undefined = await addEntityMutation(
             {
-                name: notifierName,
+                type: notifierType,
+                data: JSON.stringify(data),
             },
             GENERATE_NOTIFIER,
             'generateNotifier',
@@ -169,6 +192,45 @@ const Notifier: React.FC<NotifierProperties> = (
         }
     }
     // #endregion handlers
+
+
+    // #region effects
+    useEffect(() => {
+        if (notifierType === 'api') {
+            if (
+                notifierEndpoint
+                && notifierSecret
+            ) {
+                setValidNotifier(true);
+            } else {
+                setValidNotifier(false);
+            }
+        }
+
+        if (notifierType === 'email') {
+            if (
+                notifierHost
+                && notifierPort
+                && notifierUsername
+                && notifierPassword
+                && notifierSender
+            ) {
+                setValidNotifier(true);
+            } else {
+                setValidNotifier(false);
+            }
+        }
+    }, [
+        notifierType,
+        notifierEndpoint,
+        notifierSecret,
+        notifierHost,
+        notifierPort,
+        notifierUsername,
+        notifierPassword,
+        notifierSender,
+    ]);
+    // #endregion effects
 
 
     // #region render
@@ -276,7 +338,7 @@ const Notifier: React.FC<NotifierProperties> = (
                     text="Generate Notifier"
                     atClick={() => addNotifier()}
                     level={2}
-                    disabled={!notifierName}
+                    disabled={!validNotifier}
                 />
             </div>
 
