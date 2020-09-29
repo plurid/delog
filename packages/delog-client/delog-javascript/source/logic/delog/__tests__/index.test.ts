@@ -47,7 +47,7 @@ describe('delog - simple', () => {
 
                 level: logLevels.trace,
                 method: 'method-name',
-                format: '%TIME %TEXT',
+                format: '%LEVEL %TIME %TEXT',
                 sharedID: 'one',
                 sharedOrder: 0,
                 extradata: JSON.stringify({one: 'two'}),
