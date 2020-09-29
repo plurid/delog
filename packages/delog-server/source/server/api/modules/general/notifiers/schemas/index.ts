@@ -37,7 +37,8 @@ export const types = gql`
 
     type Notifier {
         id: String!
-        name: String!
+        type: String!
+        data: String!
     }
 `;
 

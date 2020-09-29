@@ -87,11 +87,12 @@ export interface Test {
 
 export interface DelogOwner {
     id: string;
-    projects: Project[];
     tokens: Token[];
+    projects: Project[];
     spaces: Space[];
     formats: Format[];
-    records: any[];
+    notifiers: any[];
+    testers: any[];
 }
 
 

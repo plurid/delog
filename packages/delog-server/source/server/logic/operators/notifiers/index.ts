@@ -20,14 +20,14 @@
 // #region module
 const registerNotifier = async (
     value: ClientNotifier,
-    ownerID: string,
+    ownedBy: string,
 ) => {
     const id = uuid.generate();
 
     const notifier: any = {
         ...value,
         id,
-        ownerID,
+        ownedBy,
     };
 
     await database.store(
@@ -52,6 +52,39 @@ const deregisterNotifier = async (
         return;
     }
 }
+
+
+const extractClientNotifierData = (
+    type: any,
+    data: any,
+) => {
+    switch (type) {
+        case 'api': {
+            const apiData = {
+                endpoint: data.endpoint,
+                startsWith: data.token.slice(0, 7),
+            };
+
+            return JSON.stringify(apiData);
+        }
+        case 'email': {
+            const emailData = {
+                notifyTo: data.notifyTo,
+                authentication: {
+                    host: data.host,
+                    port: data.port,
+                    secure: data.secure,
+                    username: data.username,
+                    sender: data.sender,
+                },
+            };
+
+            return JSON.stringify(emailData);
+        }
+        default:
+            return '';
+    }
+}
 // #endregion module
 
 
@@ -60,5 +93,6 @@ const deregisterNotifier = async (
 export {
     registerNotifier,
     deregisterNotifier,
+    extractClientNotifierData,
 };
 // #endregion exports

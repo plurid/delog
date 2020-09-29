@@ -9,6 +9,10 @@
         ClientNotifier,
     } from '#server/data/interfaces';
 
+    import {
+        extractClientNotifierData,
+    } from '#server/logic/operators/notifiers';
+
     import database from '#server/services/database';
     // #endregion external
 // #endregion imports
@@ -87,13 +91,36 @@ export const loadFormats = async (
 export const loadNotifiers = async (
     ownerID: string
 ) => {
-    const notifiers: ClientNotifier[] = await database.query(
+    const notifiers: any[] = await database.query(
         'notifiers',
         'ownedBy',
         ownerID,
     );
 
-    return [];
+    const clientNotifiers = notifiers.map(notifier => {
+        const {
+            id,
+            notifyOn,
+            type,
+            data,
+        } = notifier;
+
+        const clientData = extractClientNotifierData(
+            type,
+            data,
+        );
+
+        const clientNotifier = {
+            id,
+            notifyOn,
+            type,
+            data: clientData,
+        };
+
+        return clientNotifier;
+    });
+
+    return clientNotifiers;
 }
 
 

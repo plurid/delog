@@ -13,14 +13,14 @@
 
 
 // #region module
-export const getProjectsLogs = generateMethodLogs('getProjects');
+export const getNotifiersLogs = generateMethodLogs('getNotifiers');
 
-const getProjects = async (
+const getNotifiers = async (
     context: Context,
 ) => {
     // #region context unpack
     const {
-        projects,
+        notifiers,
         request,
 
         privateUsage,
@@ -36,7 +36,7 @@ const getProjects = async (
 
     // #region log start
     logger.log(
-        getProjectsLogs.infoStart,
+        getNotifiersLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -46,13 +46,13 @@ const getProjects = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                getProjectsLogs.infoHandlePrivateUsage,
+                getNotifiersLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    getProjectsLogs.infoEndPrivateUsage,
+                    getNotifiersLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -62,14 +62,14 @@ const getProjects = async (
             }
 
             logger.log(
-                getProjectsLogs.infoSuccessPrivateUsage,
+                getNotifiersLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
             return {
                 status: true,
                 data: [
-                    ...projects,
+                    ...notifiers,
                 ],
             };
         }
@@ -81,7 +81,7 @@ const getProjects = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                getProjectsLogs.infoHandleCustomLogicUsage,
+                getNotifiersLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
@@ -99,21 +99,21 @@ const getProjects = async (
 
         // #region public usage
         logger.log(
-            getProjectsLogs.infoSuccessCustomLogicUsage,
+            getNotifiersLogs.infoSuccessCustomLogicUsage,
             logLevels.info,
         );
 
         return {
             status: true,
             data: [
-                ...projects,
+                ...notifiers,
             ],
         };
         // #endregion public usage
     } catch (error) {
         // #region error handle
         logger.log(
-            getProjectsLogs.errorEnd,
+            getNotifiersLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -129,5 +129,5 @@ const getProjects = async (
 
 
 // #region exports
-export default getProjects;
+export default getNotifiers;
 // #endregion exports

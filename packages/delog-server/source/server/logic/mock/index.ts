@@ -26,11 +26,12 @@ const delogLogic: DelogLogic = {
     getCurrentOwner: async () => {
         return {
             id: uuid.generate(),
-            projects: [],
             tokens: [],
+            projects: [],
             spaces: [],
             formats: [],
-            records: [],
+            notifiers: [],
+            testers: [],
         };
     },
     checkOwnerToken: async (

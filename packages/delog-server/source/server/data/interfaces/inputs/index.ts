@@ -27,6 +27,7 @@ export interface InputGenerateFormat {
 
 
 export interface InputGenerateNotifier {
+    notifyOn: string[];
     type: string;
     data: string;
 }

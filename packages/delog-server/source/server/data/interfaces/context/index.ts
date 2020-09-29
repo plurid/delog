@@ -45,7 +45,8 @@ export interface Context {
     tokens: ClientToken[];
     spaces: Space[];
     formats: Format[];
-    notifiers: ClientNotifier[];
+    // notifiers: ClientNotifier[];
+    notifiers: any[];
     testers: Tester[];
 
     customLogicUsage: boolean;
