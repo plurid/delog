@@ -24,7 +24,7 @@ describe('delog - simple', () => {
             project: 'project-name',
             space: 'space-name',
 
-            level: logLevels.trace,
+            level: logLevels.error,
             method: 'method-name',
             format: '%TIME %TEXT',
             sharedID: 'one',
@@ -36,7 +36,7 @@ describe('delog - simple', () => {
     });
 
 
-    it.only('works - stress test', () => {
+    it('works - stress test', () => {
         for (let i = 0; i < 50; i++) {
             delog({
                 endpoint,
