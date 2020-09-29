@@ -13,6 +13,13 @@
         ClientNotifier,
     } from '#server/data/interfaces';
     // #endregion external
+
+
+    // #region internal
+    import {
+        StyledDetailLine,
+    } from './styled';
+    // #endregion internal
 // #endregion imports
 
 
@@ -22,23 +29,26 @@ export const dataRender = (
     type: string,
     data: string,
 ) => {
-    const parsed = JSON.parse(data);
-
     try {
+        const parsed = JSON.parse(data);
+
         switch (type) {
             case 'api':
                 return (
                     <>
-                        <div>
-                            endpoint: {parsed.endpoint}
-                        </div>
+                        <StyledDetailLine>
+                            endpoint
+                            <br/>
+                            {parsed.endpoint}
+                        </StyledDetailLine>
                     </>
                 );
             case 'email':
                 return (
                     <>
-                        <div>
-                            notify to: {parsed.notifyTo.map((notifyTo: string) => {
+                        <StyledDetailLine>
+                            notify to
+                            {parsed.notifyTo.map((notifyTo: string) => {
                                 return (
                                     <div
                                         key={notifyTo}
@@ -47,22 +57,37 @@ export const dataRender = (
                                     </div>
                                 );
                             })}
-                        </div>
-                        <div>
-                            host: {parsed.authentication.host}
-                        </div>
-                        <div>
-                            port: {parsed.authentication.port}
-                        </div>
-                        <div>
-                            secure: {parsed.authentication.secure}
-                        </div>
-                        <div>
-                            username: {parsed.authentication.username}
-                        </div>
-                        <div>
-                            sender: {parsed.authentication.sender}
-                        </div>
+                        </StyledDetailLine>
+
+                        <StyledDetailLine>
+                            host
+                            <br/>
+                            {parsed.authentication.host}
+                        </StyledDetailLine>
+
+                        <StyledDetailLine>
+                            port
+                            <br/>
+                            {parsed.authentication.port}
+                        </StyledDetailLine>
+
+                        <StyledDetailLine>
+                            secure
+                            <br/>
+                            {parsed.authentication.secure ? 'true' : 'false'}
+                        </StyledDetailLine>
+
+                        <StyledDetailLine>
+                            username
+                            <br/>
+                            {parsed.authentication.username}
+                        </StyledDetailLine>
+
+                        <StyledDetailLine>
+                            sender
+                            <br/>
+                            {parsed.authentication.sender}
+                        </StyledDetailLine>
                     </>
                 );
             default:

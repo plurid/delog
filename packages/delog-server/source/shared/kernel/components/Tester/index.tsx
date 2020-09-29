@@ -140,7 +140,7 @@ const Tester: React.FC<TesterProperties> = (
             </StyledH1>
 
             <InputLine
-                name="project"
+                name="name"
                 text={testerName}
                 theme={theme}
                 atChange={(event) => setTesterName(event.target.value)}
