@@ -249,7 +249,7 @@ const SpacesView: React.FC<SpacesViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="2fr 2fr 1fr 30px"
+            rowTemplate="2fr 2fr 2fr 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no spaces"

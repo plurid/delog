@@ -20,7 +20,7 @@ const getTesters = async (
 ) => {
     // #region context unpack
     const {
-        projects,
+        testers,
         request,
 
         privateUsage,
@@ -69,7 +69,7 @@ const getTesters = async (
             return {
                 status: true,
                 data: [
-                    ...projects,
+                    ...testers,
                 ],
             };
         }
@@ -90,7 +90,7 @@ const getTesters = async (
             return {
                 status: true,
                 data: [
-                    ...owner.projects,
+                    ...owner.testers,
                 ],
             };
         }
@@ -106,7 +106,7 @@ const getTesters = async (
         return {
             status: true,
             data: [
-                ...projects,
+                ...testers,
             ],
         };
         // #endregion public usage

@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -30,6 +31,7 @@
     } from '#kernel-services/styled';
 
     import InputLine from '../InputLine';
+    import InputBox from '../InputBox';
     // #endregion external
 
 
@@ -95,21 +97,36 @@ const Tester: React.FC<TesterProperties> = (
 
     // #region state
     const [
-        testerName,
-        setTesterName,
+        testerSuite,
+        setTesterSuite,
     ] = useState('');
+    const [
+        testerScenario,
+        setTesterScenario,
+    ] = useState('');
+    const [
+        testerConfiguration,
+        setTesterConfiguration,
+    ] = useState('');
+
+    const [
+        validTester,
+        setValidTester,
+    ] = useState(false);
     // #endregion state
 
 
     // #region handlers
     const addTester = async () => {
-        if (!testerName) {
+        if (!validTester) {
             return;
         }
 
         const tester: ITester | undefined = await addEntityMutation(
             {
-                name: testerName,
+                suite: testerSuite,
+                scenario: testerScenario,
+                configuration: testerConfiguration,
             },
             GENERATE_TESTER,
             'generateTester',
@@ -130,6 +147,25 @@ const Tester: React.FC<TesterProperties> = (
     // #endregion handlers
 
 
+    // #region effects
+    useEffect(() => {
+        if (
+            testerSuite
+            && testerScenario
+            && testerConfiguration
+        ) {
+            setValidTester(true);
+        } else {
+            setValidTester(false);
+        }
+    }, [
+        testerSuite,
+        testerScenario,
+        testerConfiguration,
+    ]);
+    // #endregion effects
+
+
     // #region render
     return (
         <StyledTester
@@ -140,11 +176,26 @@ const Tester: React.FC<TesterProperties> = (
             </StyledH1>
 
             <InputLine
-                name="name"
-                text={testerName}
+                name="suite"
+                text={testerSuite}
                 theme={theme}
-                atChange={(event) => setTesterName(event.target.value)}
+                atChange={(event) => setTesterSuite(event.target.value)}
                 atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="scenario"
+                text={testerScenario}
+                theme={theme}
+                atChange={(event) => setTesterScenario(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputBox
+                name="configuration"
+                text={testerConfiguration}
+                theme={theme}
+                atChange={(event) => setTesterConfiguration(event.target.value)}
             />
 
             <div>
@@ -152,7 +203,7 @@ const Tester: React.FC<TesterProperties> = (
                     text="Generate Tester"
                     atClick={() => addTester()}
                     level={2}
-                    disabled={!testerName}
+                    disabled={!validTester}
                 />
             </div>
 

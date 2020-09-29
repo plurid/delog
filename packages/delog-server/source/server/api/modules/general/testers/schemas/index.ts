@@ -37,14 +37,22 @@ export const types = gql`
 
     type Tester {
         id: String!
-        name: String!
+        suite: String!
+        scenario: String!
+        configuration: String!
+    }
+
+    extend type Owner {
+        testers: [Tester!]!
     }
 `;
 
 
 export const inputs = gql`
     input InputGenerateTester {
-        name: String!
+        suite: String!
+        scenario: String!
+        configuration: String!
     }
 `;
 // #endregion module

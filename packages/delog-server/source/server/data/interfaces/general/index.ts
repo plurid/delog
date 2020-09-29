@@ -66,6 +66,9 @@ export interface Format {
 
 export interface Tester {
     id: string;
+    suite: string;
+    scenario: string;
+    configuration: string,
     ownedBy: string;
 }
 

@@ -2,7 +2,7 @@
     // #region external
     import {
         Context,
-        InputValueString,
+        InputGenerateTester,
     } from '#server/data/interfaces';
 
     import {
@@ -22,7 +22,7 @@ export const generateTesterLogs = generateMethodLogs('generateTester');
 
 
 const generateTester = async (
-    input: InputValueString,
+    input: InputGenerateTester,
     context: Context,
 ) => {
     // #region context unpack
@@ -51,9 +51,18 @@ const generateTester = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            suite,
+            scenario,
+            configuration,
         } = input;
         // #endregion input unpack
+
+
+        const data: any = {
+            suite,
+            scenario,
+            configuration,
+        };
 
 
         // #region private usage
@@ -74,7 +83,10 @@ const generateTester = async (
                 };
             }
 
-            const project = await registerTester(name);
+            const project = await registerTester(
+                data,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 generateTesterLogs.infoSuccessPrivateUsage,
@@ -98,7 +110,10 @@ const generateTester = async (
                 logLevels.trace,
             );
 
-            const project = await registerTester(name);
+            const project = await registerTester(
+                data,
+                '',
+            );
 
             logger.log(
                 generateTesterLogs.infoEndCustomLogicUsage,
@@ -114,7 +129,10 @@ const generateTester = async (
 
 
         // #region public usage
-        const project = await registerTester(name);
+        const project = await registerTester(
+            data,
+            '',
+        );
 
         logger.log(
             generateTesterLogs.infoSuccess,

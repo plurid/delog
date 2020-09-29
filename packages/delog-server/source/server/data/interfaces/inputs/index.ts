@@ -32,4 +32,11 @@ export interface InputGenerateNotifier {
     type: string;
     data: string;
 }
+
+
+export interface InputGenerateTester {
+    suite: string;
+    scenario: string;
+    configuration: string;
+}
 // #endregion module

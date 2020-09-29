@@ -3,6 +3,7 @@
     import {
         Context,
         InputOf,
+        InputGenerateTester,
         InputValueString,
     } from '#server/data/interfaces';
 
@@ -18,7 +19,7 @@
 export default {
     generateTester: (
         _: any,
-        { input }: InputOf<InputValueString>,
+        { input }: InputOf<InputGenerateTester>,
         context: Context,
     ) => Testers.Mutation.generateTester(
         input,

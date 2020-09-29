@@ -9,6 +9,7 @@
     // #region external
     import {
         Tester,
+        InputGenerateFormat,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -19,13 +20,15 @@
 
 // #region module
 const registerTester = async (
-    name: string,
+    data: InputGenerateFormat,
+    ownedBy: string,
 ) => {
     const id = uuid.generate();
 
     const tester: Tester = {
+        ...data as any,
         id,
-        ownedBy: '',
+        ownedBy,
     };
 
     await database.store(
