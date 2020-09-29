@@ -64,6 +64,22 @@ docker build \
     .
 ```
 
+Run the container with `--network="host"` if running the database on the same host.
+
+```
+docker run \
+    --network="host" \
+    delog-server
+```
+
+Or run on a custom port (`8855`)
+
+```
+docker run \
+    -d -p 8855:56965 \
+    delog-server
+```
+
 
 
 ## Testing
@@ -75,7 +91,7 @@ docker pull mongo
 ```
 
 ```
-docker run -d  --name mongo-delog \
+docker run -d --name mongo-delog \
     -p 56966:27017 -e MONGO_INITDB_ROOT_USERNAME=admin \
     -e MONGO_INITDB_ROOT_PASSWORD=1234 mongo
 ```
@@ -85,6 +101,8 @@ Connect to the mongo instance with
 ```
 mongodb://admin:1234@localhost:56966/?authSource=admin
 ```
+
+to verify the connection.
 
 
 
