@@ -25,7 +25,7 @@ const fields = [
     'RECORDED_ERROR',
     'RECORDED_WARN',
     'TEST_FAIL',
-    'TEST_SUCCES',
+    'TEST_SUCCESS',
 ];
 
 // #region module

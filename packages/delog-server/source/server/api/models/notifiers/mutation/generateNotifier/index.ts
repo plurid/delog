@@ -53,6 +53,7 @@ const generateNotifier = async (
     try {
         // #region input unpack
         const {
+            name,
             notifyOn,
             type,
             data,
@@ -61,6 +62,7 @@ const generateNotifier = async (
 
 
         const values: any = {
+            name,
             notifyOn,
             type: type as NotifierType,
             data: JSON.parse(data),

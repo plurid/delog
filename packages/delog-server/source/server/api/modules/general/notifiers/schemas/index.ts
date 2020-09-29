@@ -37,6 +37,7 @@ export const types = gql`
 
     type Notifier {
         id: String!
+        name: String!
         notifyOn: [String!]!
         type: String!
         data: String!
@@ -46,6 +47,7 @@ export const types = gql`
 
 export const inputs = gql`
     input InputGenerateNotifier {
+        name: String!
         notifyOn: [String!]!
         type: String!
         data: String!

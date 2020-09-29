@@ -13,10 +13,6 @@
 
     // #region external
     import {
-        Notifier as INotifier,
-    } from '#server/data/interfaces';
-
-    import {
         addEntityMutation,
     } from '#kernel-services/logic/mutations';
 
@@ -58,7 +54,7 @@ export interface NotifierProperties {
 
         // #region methods
         action: (
-            notifier: INotifier,
+            notifier: any,
         ) => void;
         // #endregion methods
     // #endregion required
@@ -105,6 +101,10 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierType,
         setNotifierType,
     ] = useState('email');
+    const [
+        notifierName,
+        setNotifierName,
+    ] = useState('');
     const [
         notifyOn,
         setNotifierNotifyOn,
@@ -195,8 +195,9 @@ const Notifier: React.FC<NotifierProperties> = (
             };
         }
 
-        const notifier: INotifier | undefined = await addEntityMutation(
+        const notifier: any = await addEntityMutation(
             {
+                name: notifierName,
                 notifyOn,
                 type: notifierType,
                 data: JSON.stringify(data),
@@ -240,7 +241,8 @@ const Notifier: React.FC<NotifierProperties> = (
     useEffect(() => {
         if (notifierType === 'api') {
             if (
-                notifierEndpoint
+                notifierName
+                && notifierEndpoint
                 && notifierSecret
             ) {
                 setValidNotifier(true);
@@ -251,7 +253,8 @@ const Notifier: React.FC<NotifierProperties> = (
 
         if (notifierType === 'email') {
             if (
-                notifierHost
+                notifierName
+                && notifierHost
                 && notifierPort
                 && notifierUsername
                 && notifierPassword
@@ -265,6 +268,7 @@ const Notifier: React.FC<NotifierProperties> = (
         }
     }, [
         notifierType,
+        notifierName,
         notifierEndpoint,
         notifierSecret,
         notifierHost,
@@ -304,6 +308,14 @@ const Notifier: React.FC<NotifierProperties> = (
                 </StyledSelector>
             </StyledSelectors>
 
+
+            <InputLine
+                name="name"
+                text={notifierName}
+                theme={theme}
+                atChange={(event) => setNotifierName(event.target.value)}
+                atKeyDown={handleEnter}
+            />
 
             {notifierType === 'api' && (
                 <>
