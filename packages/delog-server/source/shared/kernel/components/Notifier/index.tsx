@@ -174,7 +174,15 @@ const Notifier: React.FC<NotifierProperties> = (
             const notifyToData = notifierNotifyTo
                 .replace(/,/g, '')
                 .split(/\n|\s/)
-                .map(notifier => notifier.trim());
+                .map(notifier => notifier.trim())
+                .filter(notifier => notifier !== '')
+                .reduce((data: string[], item: string) => {
+                    if (!data.includes(item)) {
+                        data.push(item);
+                    }
+
+                    return data;
+                }, []);
 
             data = {
                 host: notifierHost,
@@ -189,6 +197,7 @@ const Notifier: React.FC<NotifierProperties> = (
 
         const notifier: INotifier | undefined = await addEntityMutation(
             {
+                notifyOn,
                 type: notifierType,
                 data: JSON.stringify(data),
             },

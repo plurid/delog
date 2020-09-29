@@ -150,7 +150,9 @@ export const GENERATE_NOTIFIER = gql`
             }
             data {
                 id
-                name
+                notifyOn
+                type
+                data
             }
         }
     }
