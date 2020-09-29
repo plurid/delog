@@ -148,6 +148,12 @@ export const removeEntity = (
     let testers = [
         ...newState.testers,
     ];
+    let records = [
+        ...newState.records,
+    ];
+    let tests = [
+        ...newState.tests,
+    ];
 
 
     switch (type) {
@@ -180,6 +186,16 @@ export const removeEntity = (
                 tester => tester.id !== id
             );
             break;
+        case 'record':
+            records = records.filter(
+                record => record.id !== id
+            );
+            break;
+        case 'test':
+            tests = tests.filter(
+                test => test.id !== id
+            );
+            break;
     }
 
     return {
@@ -201,6 +217,12 @@ export const removeEntity = (
         ],
         testers: [
             ...testers,
+        ],
+        records: [
+            ...records,
+        ],
+        tests: [
+            ...tests,
         ],
     };
 }
