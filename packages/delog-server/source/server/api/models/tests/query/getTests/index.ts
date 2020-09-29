@@ -7,6 +7,8 @@
     import {
         generateMethodLogs,
     } from '#server/utilities';
+
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -20,7 +22,6 @@ const getTests = async (
 ) => {
     // #region context unpack
     const {
-        projects,
         request,
 
         privateUsage,
@@ -61,6 +62,12 @@ const getTests = async (
                 };
             }
 
+            const tests = await database.query(
+                'tests',
+                'ownedBy',
+                privateOwnerIdentonym,
+            );
+
             logger.log(
                 getTestsLogs.infoSuccessPrivateUsage,
                 logLevels.info,
@@ -69,7 +76,7 @@ const getTests = async (
             return {
                 status: true,
                 data: [
-                    ...projects,
+                    ...tests,
                 ],
             };
         }
@@ -85,12 +92,12 @@ const getTests = async (
                 logLevels.trace,
             );
 
-            const owner = await logic.getCurrentOwner();
+            // const owner = await logic.getCurrentOwner();
 
             return {
                 status: true,
                 data: [
-                    ...owner.projects,
+                    // ...owner.tests,
                 ],
             };
         }
@@ -106,7 +113,7 @@ const getTests = async (
         return {
             status: true,
             data: [
-                ...projects,
+                // ...tests,
             ],
         };
         // #endregion public usage

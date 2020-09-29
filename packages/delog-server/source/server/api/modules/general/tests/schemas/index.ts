@@ -37,7 +37,8 @@ export const types = gql`
 
     type Test {
         id: String!
-        name: String!
+        status: String!
+        tester: String!
     }
 `;
 // #endregion module

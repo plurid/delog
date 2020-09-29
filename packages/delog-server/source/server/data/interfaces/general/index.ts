@@ -83,7 +83,8 @@ export type Record = DelogInputRecord & {
 
 export interface Test {
     id: string;
-
+    status: string;
+    tester: string;
     ownedBy: string;
 }
 
@@ -95,7 +96,7 @@ export interface DelogOwner {
     spaces: Space[];
     formats: Format[];
     notifiers: any[];
-    testers: any[];
+    testers: Tester[];
 }
 
 
