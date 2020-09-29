@@ -129,13 +129,13 @@ export const loadNotifiers = async (
 export const loadTesters = async (
     ownerID: string
 ) => {
-    const testers: ClientNotifier[] = await database.query(
+    const testers: any[] = await database.query(
         'testers',
         'ownedBy',
         ownerID,
     );
 
-    return [];
+    return testers;
 }
 
 

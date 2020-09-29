@@ -185,7 +185,9 @@ export const GENERATE_TESTER = gql`
             }
             data {
                 id
-                name
+                suite
+                scenario
+                configuration
             }
         }
     }

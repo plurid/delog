@@ -44,6 +44,12 @@ export const GET_CURRENT_OWNER = gql`
                     type
                     data
                 }
+                testers {
+                    id
+                    suite
+                    scenario
+                    configuration
+                }
             }
         }
     }

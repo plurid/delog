@@ -26,12 +26,23 @@ export const testerRowRenderer = (
 ) => {
     const {
         id,
+        suite,
+        scenario,
+        configuration,
     } = tester;
 
     return (
         <>
             <div>
-                {/* {name} */}
+                {suite}
+            </div>
+
+            <div>
+                {scenario}
+            </div>
+
+            <div>
+                {configuration}
             </div>
 
             <PluridIconDelete
@@ -49,12 +60,17 @@ export const createSearchTerms = (
         tester => {
             const {
                 id,
+                suite,
+                scenario,
+                configuration,
             } = tester;
 
             const searchTerm = {
                 id,
                 data: [
-                    // name.toLowerCase(),
+                    suite.toLowerCase(),
+                    scenario.toLowerCase(),
+                    configuration.toLowerCase(),
                 ],
             };
 
