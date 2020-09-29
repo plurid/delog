@@ -51,6 +51,20 @@ const deregisterRecord = async (
         return;
     }
 }
+
+
+const deregisterRecords = async (
+    id: string,
+) => {
+    try {
+        await database.obliterate(
+            'records',
+            id,
+        );
+    } catch (error) {
+        return;
+    }
+}
 // #endregion module
 
 
@@ -59,5 +73,6 @@ const deregisterRecord = async (
 export {
     registerRecord,
     deregisterRecord,
+    deregisterRecords,
 };
 // #endregion exports

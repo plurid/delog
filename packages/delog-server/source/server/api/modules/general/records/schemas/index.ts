@@ -17,6 +17,7 @@ export const queries = gql`
 export const mutations = gql`
     extend type Mutation {
         delogMutationRecord(input: DelogInputRecord!): Response!
+        obliterateRecord(input: InputValueString!): Response!
     }
 `;
 

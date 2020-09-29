@@ -10,6 +10,7 @@
     import {
         Context,
         InputOf,
+        InputValueString,
     } from '#server/data/interfaces';
 
     import {
@@ -27,6 +28,14 @@ export default {
         { input }: InputOf<DelogInputRecord>,
         context: Context,
     ) => Records.Mutation.record(
+        input,
+        context,
+    ),
+    obliterateRecord: (
+        _: any,
+        { input }: InputOf<InputValueString>,
+        context: Context,
+    ) => Records.Mutation.obliterateRecord(
         input,
         context,
     ),

@@ -14,12 +14,11 @@ export const queries = gql`
 `;
 
 
-// export const mutations = gql`
-//     extend type Mutation {
-//         generateTest(input: InputValueString!): ResponseTest!
-//         obliterateTest(input: InputValueString!): Response!
-//     }
-// `;
+export const mutations = gql`
+    extend type Mutation {
+        obliterateTest(input: InputValueString!): Response!
+    }
+`;
 
 
 export const types = gql`
@@ -49,5 +48,6 @@ export const types = gql`
 export default gql`
     ${queries}
     ${types}
+    ${mutations}
 `;
 // #endregion exports

@@ -16,21 +16,13 @@
 
 // #region exports
 export default {
-    // generateTest: (
-    //     _: any,
-    //     { input }: InputOf<InputValueString>,
-    //     context: Context,
-    // ) => Tests.Mutation.generateTest(
-    //     input,
-    //     context,
-    // ),
-    // obliterateTest: (
-    //     _: any,
-    //     { input }: InputOf<InputValueString>,
-    //     context: Context,
-    // ) => Tests.Mutation.obliterateTest(
-    //     input,
-    //     context,
-    // ),
+    obliterateTest: (
+        _: any,
+        { input }: InputOf<InputValueString>,
+        context: Context,
+    ) => Tests.Mutation.obliterateTest(
+        input,
+        context,
+    ),
 };
 // #endregion exports
