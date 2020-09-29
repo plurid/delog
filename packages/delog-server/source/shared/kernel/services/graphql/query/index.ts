@@ -81,6 +81,8 @@ export const GET_RECORDS = gql`
                 message
             }
             data {
+                id
+
                 format
 
                 project

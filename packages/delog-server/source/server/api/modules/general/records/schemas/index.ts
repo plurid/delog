@@ -30,6 +30,8 @@ export const types = gql`
     }
 
     type Record {
+        id: String!
+
         format: String!
 
         project: String!
