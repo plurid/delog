@@ -28,6 +28,8 @@ export interface InputLineProperties {
     theme: any;
     atChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     atKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+    type?: 'text' | 'password' | undefined;
 }
 
 const InputLine: React.FC<InputLineProperties> = (
@@ -40,6 +42,7 @@ const InputLine: React.FC<InputLineProperties> = (
         atChange,
         atKeyDown,
         theme,
+        type,
     } = properties;
     // #endregion properties
 
@@ -57,6 +60,7 @@ const InputLine: React.FC<InputLineProperties> = (
 
             <StyledPluridTextline
                 text={text}
+                type={type}
                 placeholder={name}
                 atChange={atChange}
                 atKeyDown={atKeyDown}

@@ -11,7 +11,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
     // #endregion libraries
 
 

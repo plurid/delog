@@ -9,9 +9,12 @@
     import { ThunkDispatch } from 'redux-thunk';
 
     import {
+        Theme,
+    } from '@plurid/plurid-themes';
+
+    import {
         PluridPureButton,
     } from '@plurid/plurid-ui-react';
-
     // #endregion libraries
 
 
@@ -24,16 +27,14 @@
         LOGIN,
     } from '#kernel-services/graphql/mutate';
 
-    import {
-        StyledPluridTextline,
-    } from '#kernel-services/styled';
+    import InputLine from '#kernel-components/InputLine';
 
     import {
         getCurrentOwner,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
-    // import selectors from '#kernel-services/state/selectors';
+    import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
     // #endregion external
 
@@ -54,6 +55,8 @@ export interface PrivateViewOwnProperties {
 }
 
 export interface PrivateViewStateProperties {
+    stateGeneralTheme: Theme;
+    stateInteractionTheme: Theme;
 }
 
 export interface PrivateViewDispatchProperties {
@@ -70,6 +73,10 @@ const PrivateView: React.FC<PrivateViewProperties> = (
 ) => {
     // #region properties
     const {
+        // #region state
+        stateInteractionTheme,
+        // #endregion state
+
         // #region dispatch
         dispatch,
         dispatchSetViewType,
@@ -81,15 +88,15 @@ const PrivateView: React.FC<PrivateViewProperties> = (
     // #region state
     const [
         identonym,
-        setIdentonym
+        setIdentonym,
     ] = useState('');
     const [
         key,
-        setKey
+        setKey,
     ] = useState('');
     const [
         error,
-        setError
+        setError,
     ] = useState('');
     // #endregion state
 
@@ -160,21 +167,21 @@ const PrivateView: React.FC<PrivateViewProperties> = (
             </h1>
 
             <StyledLoginButtons>
-                <StyledPluridTextline
+                <InputLine
                     text={identonym}
-                    placeholder="identonym"
+                    name="identonym"
+                    theme={stateInteractionTheme}
                     atChange={(event) => setIdentonym(event.target.value)}
                     atKeyDown={(event) => handleEnter(event)}
-                    level={2}
                 />
 
-                <StyledPluridTextline
+                <InputLine
                     text={key}
-                    placeholder="key"
+                    name="key"
                     type="password"
+                    theme={stateInteractionTheme}
                     atChange={(event) => setKey(event.target.value)}
                     atKeyDown={(event) => handleEnter(event)}
-                    level={2}
                 />
 
                 <div
@@ -202,6 +209,8 @@ const PrivateView: React.FC<PrivateViewProperties> = (
 const mapStateToProperties = (
     state: AppState,
 ): PrivateViewStateProperties => ({
+    stateGeneralTheme: selectors.themes.getGeneralTheme(state),
+    stateInteractionTheme: selectors.themes.getInteractionTheme(state),
 });
 
 
