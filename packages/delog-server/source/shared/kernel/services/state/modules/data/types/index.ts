@@ -7,7 +7,7 @@
         Format,
         ClientNotifier,
         Tester,
-        Record,
+        LoggedRecord,
         Test,
     } from '#server/data/interfaces';
     // #endregion libraries
@@ -94,7 +94,7 @@ export interface State {
     formats: Format[];
     notifiers: ClientNotifier[];
     testers: Tester[];
-    records: Record[];
+    records: LoggedRecord[];
     tests: Test[];
 }
 

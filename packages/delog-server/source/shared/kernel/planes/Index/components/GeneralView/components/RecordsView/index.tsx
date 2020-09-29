@@ -21,7 +21,7 @@
     } from '#server/utilities/general';
 
     import {
-        Record,
+        LoggedRecord,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -79,7 +79,7 @@ export interface RecordsViewOwnProperties {
 export interface RecordsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateRecords: Record[];
+    stateRecords: LoggedRecord[];
 }
 
 export interface RecordsViewDispatchProperties {

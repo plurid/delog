@@ -104,6 +104,8 @@ export const GET_RECORDS = gql`
                 text
 
                 time
+
+                log
             }
         }
     }

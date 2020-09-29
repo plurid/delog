@@ -10,7 +10,7 @@
 
     // #region external
     import {
-        Record,
+        LoggedRecord,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -19,7 +19,7 @@
 
 // #region module
 export const recordRowRenderer = (
-    record: Record,
+    record: LoggedRecord,
     handleRecordObliterate: (
         id: string,
     ) => void,
@@ -29,7 +29,7 @@ export const recordRowRenderer = (
         project,
         space,
         level,
-        text,
+        log,
     } = record;
 
     return (
@@ -47,7 +47,7 @@ export const recordRowRenderer = (
             </div>
 
             <div>
-                {text}
+                {log}
             </div>
 
             <PluridIconDelete
@@ -59,7 +59,7 @@ export const recordRowRenderer = (
 
 
 export const createSearchTerms = (
-    records: Record[],
+    records: LoggedRecord[],
 ) => {
     const searchTerms = records.map(
         record => {
@@ -67,7 +67,6 @@ export const createSearchTerms = (
                 id,
                 project,
                 space,
-                level,
                 text,
             } = record;
 
