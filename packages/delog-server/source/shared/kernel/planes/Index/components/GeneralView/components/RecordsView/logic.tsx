@@ -26,11 +26,26 @@ export const recordRowRenderer = (
 ) => {
     const {
         id,
+        project,
+        space,
+        level,
         text,
     } = record;
 
     return (
         <>
+            <div>
+                {project}
+            </div>
+
+            <div>
+                {space}
+            </div>
+
+            <div>
+                {level}
+            </div>
+
             <div>
                 {text}
             </div>
@@ -50,12 +65,17 @@ export const createSearchTerms = (
         record => {
             const {
                 id,
+                project,
+                space,
+                level,
                 text,
             } = record;
 
             const searchTerm = {
                 id,
                 data: [
+                    project.toLowerCase(),
+                    space.toLowerCase(),
                     text.toLowerCase(),
                 ],
             };

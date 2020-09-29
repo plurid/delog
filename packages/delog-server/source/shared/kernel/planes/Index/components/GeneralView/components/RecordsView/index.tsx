@@ -195,7 +195,19 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                text
+                project
+            </div>
+
+            <div>
+                space
+            </div>
+
+            <div>
+                level
+            </div>
+
+            <div>
+                log
             </div>
 
             <div />
@@ -207,7 +219,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="auto 30px"
+            rowTemplate="0.5fr 0.5fr 60px 3fr 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no records"
