@@ -69,7 +69,7 @@ Run the container with `--network="host"` if running the database on the same ho
 ```
 docker run \
     --network="host" \
-    delog-server
+    -d delog-server
 ```
 
 Or run on a custom port (`8855`)
