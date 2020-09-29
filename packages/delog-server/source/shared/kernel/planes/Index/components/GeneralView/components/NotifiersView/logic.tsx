@@ -18,6 +18,66 @@
 
 
 // #region module
+export const dataRender = (
+    type: string,
+    data: string,
+) => {
+    const parsed = JSON.parse(data);
+
+    try {
+        switch (type) {
+            case 'api':
+                return (
+                    <>
+                        <div>
+                            endpoint: {parsed.endpoint}
+                        </div>
+                    </>
+                );
+            case 'email':
+                return (
+                    <>
+                        <div>
+                            notify to: {parsed.notifyTo.map((notifyTo: string) => {
+                                return (
+                                    <div
+                                        key={notifyTo}
+                                    >
+                                        {notifyTo}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <div>
+                            host: {parsed.authentication.host}
+                        </div>
+                        <div>
+                            port: {parsed.authentication.port}
+                        </div>
+                        <div>
+                            secure: {parsed.authentication.secure}
+                        </div>
+                        <div>
+                            username: {parsed.authentication.username}
+                        </div>
+                        <div>
+                            sender: {parsed.authentication.sender}
+                        </div>
+                    </>
+                );
+            default:
+                return (
+                    <></>
+                );
+        }
+    } catch (error) {
+        return (
+            <></>
+        );
+    }
+}
+
+
 export const notifierRowRenderer = (
     notifier: ClientNotifier,
     handleNotifierObliterate: (
@@ -28,6 +88,8 @@ export const notifierRowRenderer = (
         id,
         name,
         type,
+        notifyOn,
+        data,
     } = notifier;
 
     return (
@@ -38,6 +100,32 @@ export const notifierRowRenderer = (
 
             <div>
                 {name}
+            </div>
+
+            <div>
+                {notifyOn.map(notification => {
+                    const notificationText = notification.toLowerCase().replace('_', ' ');
+
+                    return (
+                        <div
+                            key={notification}
+                            style={{
+                                marginBottom: '0.3rem',
+                            }}
+                        >
+                            {notificationText}
+                        </div>
+                    );
+                })}
+            </div>
+
+            <div>
+                {
+                    dataRender(
+                        type,
+                        data as any,
+                    )
+                }
             </div>
 
             <PluridIconDelete

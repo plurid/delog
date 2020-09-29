@@ -244,6 +244,7 @@ const Notifier: React.FC<NotifierProperties> = (
                 notifierName
                 && notifierEndpoint
                 && notifierSecret
+                && notifyOn.length > 0
             ) {
                 setValidNotifier(true);
             } else {
@@ -260,6 +261,7 @@ const Notifier: React.FC<NotifierProperties> = (
                 && notifierPassword
                 && notifierSender
                 && notifierNotifyTo
+                && notifyOn.length > 0
             ) {
                 setValidNotifier(true);
             } else {
@@ -277,6 +279,7 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierPassword,
         notifierSender,
         notifierNotifyTo,
+        notifyOn,
     ]);
     // #endregion effects
 

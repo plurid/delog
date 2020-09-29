@@ -36,7 +36,20 @@ const registerNotifier = async (
         notifier,
     );
 
-    return notifier;
+    const clientData = extractClientNotifierData(
+        value.type,
+        value.data as any,
+    );
+
+    const clientNotifer = {
+        id,
+        name: value.name,
+        type: value.type,
+        notifyOn: value.notifyOn,
+        data: clientData,
+    };
+
+    return clientNotifer;
 }
 
 

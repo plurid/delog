@@ -236,6 +236,14 @@ const NotifiersView: React.FC<NotifiersViewProperties> = (
                 name
             </div>
 
+            <div>
+                notify on
+            </div>
+
+            <div>
+                details
+            </div>
+
             <div />
         </>
     );
@@ -245,7 +253,7 @@ const NotifiersView: React.FC<NotifiersViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="90px auto 30px"
+            rowTemplate="90px 1fr 2fr 3fr 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no notifiers"
