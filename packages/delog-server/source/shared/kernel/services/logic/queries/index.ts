@@ -16,6 +16,7 @@
         GET_CURRENT_OWNER,
         GET_USAGE_TYPE,
         GET_RECORDS,
+        GET_TESTS,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -131,7 +132,6 @@ const getUsageType = async (
 }
 
 
-
 const getRecords = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {
@@ -165,6 +165,41 @@ const getRecords = async (
         return false;
     }
 }
+
+
+const getTests = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+) => {
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+    try {
+        const query = await client.query({
+            query: GET_TESTS,
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.getTests;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const tests = graphql.deleteTypenames(response.data);
+
+        dispatchDataAddEntities({
+            type: 'tests',
+            data: tests,
+        });
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -174,5 +209,6 @@ export {
     getCurrentOwner,
     getUsageType,
     getRecords,
+    getTests,
 };
 // #endregion exports

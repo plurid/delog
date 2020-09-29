@@ -26,14 +26,8 @@
 
     import EntityView from '#kernel-components/EntityView';
 
-    import client from '#kernel-services/graphql/client';
-
     import {
-        OBLITERATE_PROJECT,
-    } from '#kernel-services/graphql/mutate';
-
-    import {
-        getCurrentOwner,
+        getTests,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -132,21 +126,6 @@ const TestsView: React.FC<TestsViewProperties> = (
         id: string,
     ) => {
         try {
-            // dispatchRemoveEntity({
-            //     type: 'test',
-            //     id,
-            // });
-
-            const input = {
-                value: id,
-            };
-
-            await client.mutate({
-                mutation: OBLITERATE_PROJECT,
-                variables: {
-                    input,
-                },
-            });
         } catch (error) {
             return;
         }
@@ -222,6 +201,10 @@ const TestsView: React.FC<TestsViewProperties> = (
     }, [
         stateTests,
     ]);
+
+    useEffect(() => {
+        getTests(dispatch);
+    }, []);
     // #endregion effects
 
 
@@ -229,7 +212,11 @@ const TestsView: React.FC<TestsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                name
+                status
+            </div>
+
+            <div>
+                tester
             </div>
 
             <div />
@@ -248,7 +235,7 @@ const TestsView: React.FC<TestsViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getCurrentOwner(dispatch);
+                getTests(dispatch);
             }}
         />
     );

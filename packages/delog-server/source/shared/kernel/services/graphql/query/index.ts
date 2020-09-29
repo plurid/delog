@@ -106,4 +106,23 @@ export const GET_RECORDS = gql`
         }
     }
 `;
+
+
+export const GET_TESTS = gql`
+    query GetTests {
+        getTests {
+            status
+            error {
+                path
+                type
+                message
+            }
+            data {
+                id
+                status
+                tester
+            }
+        }
+    }
+`;
 // #endregion module
