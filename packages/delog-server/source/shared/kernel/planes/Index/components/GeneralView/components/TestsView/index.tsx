@@ -26,6 +26,12 @@
 
     import EntityView from '#kernel-components/EntityView';
 
+    import client from '#kernel-services/graphql/client';
+
+    import {
+        OBLITERATE_TEST,
+    } from '#kernel-services/graphql/mutate';
+
     import {
         getTests,
     } from '#kernel-services/logic/queries';
@@ -90,23 +96,6 @@ const TestsView: React.FC<TestsViewProperties> = (
 ) => {
     // #region properties
     const {
-        // #region required
-            // #region values
-            // #endregion values
-
-            // #region methods
-            setGeneralView,
-            // #endregion methods
-        // #endregion required
-
-        // #region optional
-            // #region values
-            // #endregion values
-
-            // #region methods
-            // #endregion methods
-        // #endregion optional
-
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
@@ -126,6 +115,21 @@ const TestsView: React.FC<TestsViewProperties> = (
         id: string,
     ) => {
         try {
+            dispatchRemoveEntity({
+                type: 'test',
+                id,
+            });
+
+            const input = {
+                value: id,
+            };
+
+            await client.mutate({
+                mutation: OBLITERATE_TEST,
+                variables: {
+                    input,
+                },
+            });
         } catch (error) {
             return;
         }

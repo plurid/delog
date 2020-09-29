@@ -208,6 +208,34 @@ export const OBLITERATE_TESTER = gql`
 `;
 
 
+export const OBLITERATE_RECORD = gql`
+    mutation ObliterateRecord($input: InputValueString!) {
+        obliterateRecord(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_TEST = gql`
+    mutation ObliterateTest($input: InputValueString!) {
+        obliterateTest(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 export const LOGIN = gql`
     mutation Login($input: InputLogin!) {
         login(input: $input) {

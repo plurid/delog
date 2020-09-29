@@ -26,6 +26,12 @@
 
     import EntityView from '#kernel-components/EntityView';
 
+    import client from '#kernel-services/graphql/client';
+
+    import {
+        OBLITERATE_RECORD,
+    } from '#kernel-services/graphql/mutate';
+
     import {
         getRecords,
     } from '#kernel-services/logic/queries';
@@ -98,6 +104,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 
         // #region dispatch
         dispatch,
+        dispatchRemoveEntity,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -108,7 +115,21 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         id: string,
     ) => {
         try {
+            dispatchRemoveEntity({
+                type: 'record',
+                id,
+            });
 
+            const input = {
+                value: id,
+            };
+
+            await client.mutate({
+                mutation: OBLITERATE_RECORD,
+                variables: {
+                    input,
+                },
+            });
         } catch (error) {
             return;
         }
