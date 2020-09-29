@@ -34,5 +34,27 @@ describe('delog - simple', () => {
             text: 'works',
         });
     });
+
+
+    it.only('works - stress test', () => {
+        for (let i = 0; i < 50; i++) {
+            delog({
+                endpoint,
+                token,
+
+                project: 'project-name',
+                space: 'space-name',
+
+                level: logLevels.trace,
+                method: 'method-name',
+                format: '%TIME %TEXT',
+                sharedID: 'one',
+                sharedOrder: 0,
+                extradata: JSON.stringify({one: 'two'}),
+
+                text: 'works ' + i,
+            });
+        }
+    });
 });
 // #endregion module
