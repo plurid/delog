@@ -24,6 +24,8 @@ export interface InputSwitchProperties {
     checked: boolean;
     theme: any;
     atChange: () => void;
+
+    compact?: boolean;
 }
 
 const InputSwitch: React.FC<InputSwitchProperties> = (
@@ -35,13 +37,17 @@ const InputSwitch: React.FC<InputSwitchProperties> = (
         checked,
         atChange,
         theme,
+
+        compact,
     } = properties;
     // #endregion properties
 
 
     // #region render
     return (
-        <StyledInputSwitch>
+        <StyledInputSwitch
+            compact={compact}
+        >
             <PluridFormLeftRight>
                 <div
                     style={{

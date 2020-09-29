@@ -31,6 +31,7 @@
     } from '#kernel-services/styled';
 
     import InputLine from '../InputLine';
+    import InputBox from '../InputBox';
     import InputSwitch from '../InputSwitch';
     // #endregion external
 
@@ -41,6 +42,8 @@
         StyledSelectors,
         StyledSelector,
     } from './styled';
+
+    import NotifyOn from './components/NotifyOn';
     // #endregion internal
 // #endregion imports
 
@@ -101,7 +104,11 @@ const Notifier: React.FC<NotifierProperties> = (
     const [
         notifierType,
         setNotifierType,
-    ] = useState('');
+    ] = useState('email');
+    const [
+        notifyOn,
+        setNotifierNotifyOn,
+    ] = useState<string[]>([]);
 
     const [
         notifierEndpoint,
@@ -136,6 +143,10 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierSender,
         setNotifierSender,
     ] = useState('');
+    const [
+        notifierNotifyTo,
+        setNotifierNotifyTo,
+    ] = useState('');
 
     const [
         validNotifier,
@@ -160,6 +171,11 @@ const Notifier: React.FC<NotifierProperties> = (
         }
 
         if (notifierType === 'email') {
+            const notifyToData = notifierNotifyTo
+                .replace(/,/g, '')
+                .split(/\n|\s/)
+                .map(notifier => notifier.trim());
+
             data = {
                 host: notifierHost,
                 port: notifierPort,
@@ -167,6 +183,7 @@ const Notifier: React.FC<NotifierProperties> = (
                 username: notifierUsername,
                 password: notifierPassword,
                 sender: notifierSender,
+                notifyTo: notifyToData,
             };
         }
 
@@ -189,6 +206,22 @@ const Notifier: React.FC<NotifierProperties> = (
     ) => {
         if (event.key === 'Enter') {
             addNotifier();
+        }
+    }
+
+    const selectNotifyOn = (
+        element: string,
+    ) => {
+        if (notifyOn.includes(element)) {
+            const newElements = notifyOn.filter(el => el !== element);
+            setNotifierNotifyOn(newElements);
+        } else {
+            const newElements = [
+                ...notifyOn,
+                element,
+            ];
+
+            setNotifierNotifyOn(newElements);
         }
     }
     // #endregion handlers
@@ -214,6 +247,7 @@ const Notifier: React.FC<NotifierProperties> = (
                 && notifierUsername
                 && notifierPassword
                 && notifierSender
+                && notifierNotifyTo
             ) {
                 setValidNotifier(true);
             } else {
@@ -229,6 +263,7 @@ const Notifier: React.FC<NotifierProperties> = (
         notifierUsername,
         notifierPassword,
         notifierSender,
+        notifierNotifyTo,
     ]);
     // #endregion effects
 
@@ -330,8 +365,21 @@ const Notifier: React.FC<NotifierProperties> = (
                         atChange={(event) => setNotifierSender(event.target.value)}
                         atKeyDown={handleEnter}
                     />
+
+                    <InputBox
+                        name="notify to"
+                        text={notifierNotifyTo}
+                        theme={theme}
+                        atChange={(event) => setNotifierNotifyTo(event.target.value)}
+                    />
                 </>
             )}
+
+            <NotifyOn
+                theme={theme}
+                selected={notifyOn}
+                select={selectNotifyOn}
+            />
 
             <div>
                 <StyledPluridPureButton

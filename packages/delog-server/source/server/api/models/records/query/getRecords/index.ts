@@ -89,7 +89,7 @@ const getLogs = async (
             return {
                 status: true,
                 data: [
-                    ...owner.records,
+                    // ...owner.,
                 ],
             };
         }
