@@ -186,7 +186,8 @@ const PrivateView: React.FC<PrivateViewProperties> = (
 
                 <div
                     style={{
-                        minHeight: '30px'
+                        minHeight: '30px',
+                        marginTop: '2rem',
                     }}
                 >
                     {error}
