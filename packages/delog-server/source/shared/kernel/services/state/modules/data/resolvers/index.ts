@@ -161,6 +161,7 @@ export const removeEntity = (
             projects = projects.filter(
                 project => project.id !== id
             );
+            break;
         case 'token':
             tokens = tokens.filter(
                 token => token.id !== id
