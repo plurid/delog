@@ -60,8 +60,6 @@ const getPrivateOwner = async (
             if (token === PRIVATE_TOKEN) {
                 return PRIVATE_OWNER_IDENTONYM;
             }
-
-            return;
         }
 
         const ownerToken = await database.query(
@@ -70,8 +68,8 @@ const getPrivateOwner = async (
             token,
         );
 
-        if (ownerToken) {
-            return ownerToken.ownedBy;
+        if (ownerToken.length > 0) {
+            return ownerToken[0].ownedBy;
         }
 
         return;

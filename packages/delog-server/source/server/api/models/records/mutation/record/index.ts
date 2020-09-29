@@ -24,7 +24,7 @@
 
 
 // #region module
-export const logLogs = generateMethodLogs('log');
+export const recordLogs = generateMethodLogs('record');
 
 
 const record = async (
@@ -48,7 +48,7 @@ const record = async (
 
     // #region log start
     logger.log(
-        logLogs.infoStart,
+        recordLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -102,13 +102,13 @@ const record = async (
         // #region private usage
         if (privateUsage) {
             logger.log(
-                logLogs.infoHandlePrivateUsage,
+                recordLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    logLogs.infoEndPrivateUsage,
+                    recordLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -122,7 +122,7 @@ const record = async (
             await registerRecord(record);
 
             logger.log(
-                logLogs.infoSuccessPrivateUsage,
+                recordLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -138,14 +138,14 @@ const record = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                logLogs.infoHandleCustomLogicUsage,
+                recordLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
             await registerRecord(record);
 
             logger.log(
-                logLogs.infoEndCustomLogicUsage,
+                recordLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
@@ -157,10 +157,23 @@ const record = async (
 
 
         // #region public usage
+        if (!privateOwnerIdentonym) {
+            logger.log(
+                recordLogs.infoEnd,
+                logLevels.info,
+            );
+
+            return {
+                status: false,
+            };
+        }
+
+        record.ownedBy = privateOwnerIdentonym;
+
         await registerRecord(record);
 
         logger.log(
-            logLogs.infoSuccess,
+            recordLogs.infoSuccess,
             logLevels.info,
         );
 
@@ -171,7 +184,7 @@ const record = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            logLogs.errorEnd,
+            recordLogs.errorEnd,
             logLevels.error,
             error,
         );
