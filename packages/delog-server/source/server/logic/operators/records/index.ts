@@ -9,9 +9,12 @@
     // #region external
     import {
         Record,
+        LoggedRecord,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
+
+    import Formatter from '#server/objects/Formatter';
     // #endregion external
 // #endregion imports
 
@@ -29,10 +32,19 @@ const registerRecord = async (
         ...data,
     };
 
+    const formatter = new Formatter(record);
+
+    const log = formatter.format();
+
+    const loggedRecord: LoggedRecord = {
+        ...record,
+        log,
+    };
+
     await database.store(
         'records',
         id,
-        record,
+        loggedRecord,
     );
 
     return record;

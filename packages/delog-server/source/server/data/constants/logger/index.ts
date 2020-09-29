@@ -28,4 +28,13 @@ export const logLevels: LogLevels = {
     trace: LOG_LEVEL_TRACE,
     all: LOG_LEVEL_ALL,
 };
+
+export const logLevelsText = {
+    6: 'fatal',
+    5: 'error',
+    4: 'warn',
+    3: 'info',
+    2: 'debug',
+    1: 'trace',
+};
 // #endregion module

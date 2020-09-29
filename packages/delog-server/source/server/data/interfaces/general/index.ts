@@ -81,6 +81,11 @@ export type Record = DelogInputRecord & {
 }
 
 
+export type LoggedRecord = Record & {
+    log: string;
+}
+
+
 export interface Test {
     id: string;
     status: string;

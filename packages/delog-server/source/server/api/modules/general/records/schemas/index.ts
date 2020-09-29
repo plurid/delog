@@ -49,6 +49,8 @@ export const types = gql`
         text: String!
 
         time: Int!
+
+        log: String!
     }
 
     type DelogContext {

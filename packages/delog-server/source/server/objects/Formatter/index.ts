@@ -1,3 +1,16 @@
+// #region imports
+    // #region external
+    import {
+        Record as DelogRecord,
+    } from '#server/data/interfaces';
+
+    import {
+        logLevelsText,
+    } from '#server/data/constants';
+    // #endregion external
+// #endregion imports
+
+
 // #region module
 const FORMAT_PRIMITIVES: string[] = [
     'TIME',
@@ -7,15 +20,51 @@ const FORMAT_PRIMITIVES: string[] = [
 ];
 
 
+export type FormattingRule = (
+    data: DelogRecord,
+) => string;
+
+export type FormattingRules = Record<string, FormattingRule>;
+
+
+const primitiveFormattingRules: FormattingRules = {
+    TIME: (
+        data,
+    ) => {
+        const date = new Date(data.time);
+
+        return date.toLocaleString();
+    },
+    PROJECT: (
+        data,
+    ) => {
+        return data.project;
+    },
+    SPACE: (
+        data,
+    ) => {
+        return data.space;
+    },
+    LEVEL: (
+        data,
+    ) => {
+        return logLevelsText[data.level] || '';
+    },
+    TEXT: (
+        data,
+    ) => {
+        return data.text;
+    },
+}
+
+
 class Formatter {
-    private date: Date;
+    private data: DelogRecord;
 
     constructor(
-        time: number,
+        data: DelogRecord,
     ) {
-        const date = new Date(time);
-
-        this.date = date;
+        this.data = data;
     }
 
     /**
@@ -23,9 +72,35 @@ class Formatter {
      * @param value
      */
     format(
-        value: string,
+        extraFormattingRules?: FormattingRules,
     ) {
+        const formattingRules: FormattingRules = {
+            ...primitiveFormattingRules,
+            ...extraFormattingRules,
+        };
 
+        const re = /(\$\w+)/gi;
+        const match = this.data.format.match(re);
+
+        if (!match) {
+            return '';
+        }
+
+        const logString = this.data.format;
+
+        for (const element of match) {
+            const formattingRule = formattingRules[element];
+
+            if (!formattingRule) {
+                continue;
+            }
+
+            const formatResult = formattingRule(this.data);
+
+            logString.replace(`%${element}`, formatResult);
+        }
+
+        return logString;
     }
 
     /**
@@ -56,3 +131,9 @@ class Formatter {
     }
 }
 // #endregion module
+
+
+
+// #region exports
+export default Formatter;
+// #endregion exports
