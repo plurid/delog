@@ -26,12 +26,13 @@ export const recordRowRenderer = (
 ) => {
     const {
         id,
+        text,
     } = record;
 
     return (
         <>
             <div>
-                {/* {name} */}
+                {text}
             </div>
 
             <PluridIconDelete
@@ -49,12 +50,13 @@ export const createSearchTerms = (
         record => {
             const {
                 id,
+                text,
             } = record;
 
             const searchTerm = {
                 id,
                 data: [
-                    // name.toLowerCase(),
+                    text.toLowerCase(),
                 ],
             };
 

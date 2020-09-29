@@ -69,4 +69,41 @@ export const GET_USAGE_TYPE = gql`
         }
     }
 `;
+
+
+export const GET_RECORDS = gql`
+    query GetRecords {
+        getRecords {
+            status
+            error {
+                path
+                type
+                message
+            }
+            data {
+                format
+
+                project
+                space
+
+                level
+                method
+                sharedID
+                sharedOrder
+                error
+                extradata
+
+                context {
+                    mode
+                    suite
+                    scenario
+                }
+
+                text
+
+                time
+            }
+        }
+    }
+`;
 // #endregion module

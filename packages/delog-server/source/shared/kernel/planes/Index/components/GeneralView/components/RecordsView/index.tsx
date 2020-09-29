@@ -34,6 +34,7 @@
 
     import {
         getCurrentOwner,
+        getRecords,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -96,23 +97,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 ) => {
     // #region properties
     const {
-        // #region required
-            // #region values
-            // #endregion values
-
-            // #region methods
-            setGeneralView,
-            // #endregion methods
-        // #endregion required
-
-        // #region optional
-            // #region values
-            // #endregion values
-
-            // #region methods
-            // #endregion methods
-        // #endregion optional
-
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
@@ -121,7 +105,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 
         // #region dispatch
         dispatch,
-        dispatchRemoveEntity,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -132,21 +115,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         id: string,
     ) => {
         try {
-            // dispatchRemoveEntity({
-            //     type: 'record',
-            //     id,
-            // });
 
-            const input = {
-                value: id,
-            };
-
-            await client.mutate({
-                mutation: OBLITERATE_PROJECT,
-                variables: {
-                    input,
-                },
-            });
         } catch (error) {
             return;
         }
@@ -222,6 +191,10 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     }, [
         stateRecords,
     ]);
+
+    useEffect(() => {
+        getRecords(dispatch);
+    }, []);
     // #endregion effects
 
 
@@ -229,7 +202,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                name
+                text
             </div>
 
             <div />

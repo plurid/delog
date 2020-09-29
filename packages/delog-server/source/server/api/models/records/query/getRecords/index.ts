@@ -7,6 +7,8 @@
     import {
         generateMethodLogs,
     } from '#server/utilities';
+
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -65,10 +67,16 @@ const getLogs = async (
                 logLevels.info,
             );
 
+            const records = await database.query(
+                'records',
+                'ownedBy',
+                privateOwnerIdentonym,
+            );
+
             return {
                 status: true,
                 data: [
-                    ...[],
+                    ...records,
                 ],
             };
         }

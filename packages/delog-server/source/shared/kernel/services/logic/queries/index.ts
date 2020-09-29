@@ -15,6 +15,7 @@
     import {
         GET_CURRENT_OWNER,
         GET_USAGE_TYPE,
+        GET_RECORDS,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -43,55 +44,58 @@ const getCurrentOwner = async (
         actions.data.addEntities(payload),
     );
 
+    try {
+        const query = await client.query({
+            query: GET_CURRENT_OWNER,
+            fetchPolicy: 'no-cache',
+        });
 
-    const query = await client.query({
-        query: GET_CURRENT_OWNER,
-        fetchPolicy: 'no-cache',
-    });
+        const response = query.data.getCurrentOwner;
 
-    const response = query.data.getCurrentOwner;
+        if (!response.status) {
+            return false;
+        }
 
-    if (!response.status) {
+        const {
+            id,
+            projects,
+            tokens,
+            spaces,
+            formats,
+            notifiers,
+            testers,
+        } = graphql.deleteTypenames(response.data);
+
+        dispatchSetOwnedID(id);
+        dispatchDataAddEntities({
+            type: 'projects',
+            data: projects,
+        });
+        dispatchDataAddEntities({
+            type: 'tokens',
+            data: tokens,
+        });
+        dispatchDataAddEntities({
+            type: 'spaces',
+            data: spaces,
+        });
+        dispatchDataAddEntities({
+            type: 'formats',
+            data: formats,
+        });
+        dispatchDataAddEntities({
+            type: 'notifiers',
+            data: notifiers,
+        });
+        dispatchDataAddEntities({
+            type: 'testers',
+            data: testers,
+        });
+
+        return true;
+    } catch (error) {
         return false;
     }
-
-    const {
-        id,
-        projects,
-        tokens,
-        spaces,
-        formats,
-        notifiers,
-        testers,
-    } = graphql.deleteTypenames(response.data);
-
-    dispatchSetOwnedID(id);
-    dispatchDataAddEntities({
-        type: 'projects',
-        data: projects,
-    });
-    dispatchDataAddEntities({
-        type: 'tokens',
-        data: tokens,
-    });
-    dispatchDataAddEntities({
-        type: 'spaces',
-        data: spaces,
-    });
-    dispatchDataAddEntities({
-        type: 'formats',
-        data: formats,
-    });
-    dispatchDataAddEntities({
-        type: 'notifiers',
-        data: notifiers,
-    });
-    dispatchDataAddEntities({
-        type: 'testers',
-        data: testers,
-    });
-
-    return true;
 }
 
 
@@ -125,6 +129,42 @@ const getUsageType = async (
 
     return;
 }
+
+
+
+const getRecords = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+) => {
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+    try {
+        const query = await client.query({
+            query: GET_RECORDS,
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.getCurrentOwner;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const records = graphql.deleteTypenames(response.data);
+
+        dispatchDataAddEntities({
+            type: 'records',
+            data: records,
+        });
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -133,5 +173,6 @@ const getUsageType = async (
 export {
     getCurrentOwner,
     getUsageType,
+    getRecords,
 };
 // #endregion exports

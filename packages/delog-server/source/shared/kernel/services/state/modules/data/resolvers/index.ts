@@ -237,6 +237,12 @@ export const addEntities = (
     let testers = [
         ...newState.testers,
     ];
+    let records = [
+        ...newState.records,
+    ];
+    let tests = [
+        ...newState.tests,
+    ];
 
 
     switch (type) {
@@ -270,6 +276,16 @@ export const addEntities = (
                 ...data,
             ];
             break;
+        case 'records':
+            records = [
+                ...data,
+            ];
+            break;
+        case 'tests':
+            tests = [
+                ...data,
+            ];
+            break;
     }
 
     return {
@@ -291,6 +307,12 @@ export const addEntities = (
         ],
         testers: [
             ...testers,
+        ],
+        records: [
+            ...records,
+        ],
+        tests: [
+            ...tests,
         ],
     };
 }

@@ -22,7 +22,9 @@ export type AddableEntityType =
     | 'space'
     | 'format'
     | 'notifier'
-    | 'tester';
+    | 'tester'
+    | 'record'
+    | 'test';
 
 export const ADD_ENTITY = 'ADD_ENTITY';
 export interface AddEntityPayload {
@@ -41,7 +43,9 @@ export type RemovableEntityType =
     | 'space'
     | 'format'
     | 'notifier'
-    | 'tester';
+    | 'tester'
+    | 'record'
+    | 'test';
 
 export const REMOVE_ENTITY = 'REMOVE_ENTITY';
 export interface RemoveEntityPayload {
@@ -60,7 +64,9 @@ export type AddableEntitiesType =
     | 'spaces'
     | 'formats'
     | 'notifiers'
-    | 'testers';
+    | 'testers'
+    | 'records'
+    | 'tests';
 
 export const ADD_ENTITIES = 'ADD_ENTITIES';
 export interface AddEntitiesPayload {
