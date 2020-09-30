@@ -60,6 +60,7 @@ docker build \
     --build-arg DELOG_MONGO_USERNAME= \
     --build-arg DELOG_MONGO_PASSWORD= \
     --build-arg DELOG_MONGO_ADDRESS= \
+    --build-arg DELOG_MONGO_CONNECTION_STRING= \
     --build-arg DELOG_TEST_MODE=false \
     .
 ```
