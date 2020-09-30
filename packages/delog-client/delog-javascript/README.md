@@ -29,7 +29,7 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/ss-1.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-1.png" height="500px">
 </p>
 
 
