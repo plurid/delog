@@ -36,7 +36,7 @@
         "watch.server": "node scripts watch.server",
         "watch": "node scripts watch",
         "clean": "node scripts clean",
-        "clean.tests": "find ./distribution -type d -name '*__tests__' -exec rm -rf {} +",
+        "clean.tests": "find ./build -type d -name '*__tests__' -exec rm -rf {} +",
         "lint": "node scripts lint",
         "test": "node scripts test",
         "containerize.production": "node scripts containerize.production",
