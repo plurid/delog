@@ -23,6 +23,7 @@
         MONGO_USERNAME,
         MONGO_PASSWORD,
         MONGO_ADDRESS,
+        MONGO_CONNECTION_STRING,
     } from '#server/data/constants';
     // #endregion external
 // #endregion imports
@@ -39,7 +40,7 @@ const DATABASE = 'delog';
 
 const createConnection = async () => {
     try {
-        const uri = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_ADDRESS}`;
+        const uri = MONGO_CONNECTION_STRING || `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_ADDRESS}`;
 
         const connection = await MongoClient.connect(
             uri,
