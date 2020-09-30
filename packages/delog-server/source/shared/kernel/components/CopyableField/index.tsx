@@ -56,15 +56,15 @@ const CopyableField: React.FC<CopyableFieldProperties> = (
 
     // #region effects
     useEffect(() => {
-        if (showData) {
-            setTimeout(() => {
-                if (!mounted.current) {
-                    return;
-                }
+        setTimeout(() => {
+            if (!mounted.current) {
+                return;
+            }
 
+            if (!showData) {
                 setShowData(true);
-            }, 2000);
-        }
+            }
+        }, 2000);
     }, [
         showData,
     ]);
