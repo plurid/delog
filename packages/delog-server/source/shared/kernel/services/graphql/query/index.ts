@@ -72,8 +72,8 @@ export const GET_USAGE_TYPE = gql`
 
 
 export const GET_RECORDS = gql`
-    query GetRecords {
-        getRecords {
+    query GetRecords($input: InputQuery) {
+        getRecords(input: $input) {
             status
             error {
                 path
