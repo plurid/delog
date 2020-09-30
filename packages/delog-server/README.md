@@ -48,6 +48,7 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 docker build \
     -t delog-server \
     -f ./configurations/production.dockerfile \
+    --build-arg DELOG_ENDPOINT_GRAPHQL= \
     --build-arg DELOG_DATABASE_TYPE= \
     --build-arg DELOG_LOG_LEVEL= \
     --build-arg DELOG_QUIET= \
