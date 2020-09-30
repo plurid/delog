@@ -35,10 +35,9 @@
     // #region internal
     import {
         StyledNotifier,
-        StyledSelectors,
-        StyledSelector,
     } from './styled';
 
+    import Selectors from './components/Selectors';
     import NotifyOn from './components/NotifyOn';
     // #endregion internal
 // #endregion imports
@@ -293,24 +292,14 @@ const Notifier: React.FC<NotifierProperties> = (
                 generate notifier
             </StyledH1>
 
-            <StyledSelectors>
-                <StyledSelector
-                    theme={theme}
-                    selected={notifierType === 'api'}
-                    onClick={() => setNotifierType('api')}
-                >
-                    api
-                </StyledSelector>
-
-                <StyledSelector
-                    theme={theme}
-                    selected={notifierType === 'email'}
-                    onClick={() => setNotifierType('email')}
-                >
-                    email
-                </StyledSelector>
-            </StyledSelectors>
-
+            <Selectors
+                theme={theme}
+                selected={notifierType}
+                selectables={[
+                    'api', 'email',
+                ]}
+                select={(element) => setNotifierType(element)}
+            />
 
             <InputLine
                 name="name"
