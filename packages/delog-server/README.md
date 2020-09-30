@@ -48,6 +48,7 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 docker build \
     -t delog-server \
     -f ./configurations/production.dockerfile \
+    --build-arg PORT= \
     --build-arg DELOG_ENDPOINT_GRAPHQL= \
     --build-arg DELOG_DATABASE_TYPE= \
     --build-arg DELOG_LOG_LEVEL= \
@@ -57,7 +58,6 @@ docker build \
     --build-arg DELOG_PRIVATE_OWNER_IDENTONYM= \
     --build-arg DELOG_PRIVATE_OWNER_KEY= \
     --build-arg DELOG_PRIVATE_TOKEN= \
-    --build-arg DELOG_IN_CONTAINER_USAGE= \
     --build-arg DELOG_MONGO_USERNAME= \
     --build-arg DELOG_MONGO_PASSWORD= \
     --build-arg DELOG_MONGO_ADDRESS= \
