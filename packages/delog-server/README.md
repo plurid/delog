@@ -114,7 +114,7 @@ to verify the connection.
     <img src="https://img.shields.io/npm/v/@plurid/delog-server.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/delog][delog-server] • the server application
+[@plurid/delog-server][delog-server] • the server application
 
 [delog-server]: https://github.com/plurid/delog/tree/master/packages/delog-server
 
