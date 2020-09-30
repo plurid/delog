@@ -2,6 +2,7 @@
     // #region libraries
     import {
         MongoClient,
+        ObjectID,
     } from 'mongodb';
     // #endregion libraries
 
@@ -107,6 +108,7 @@ const query: DatabaseQuery = async (
     entity,
     field,
     value,
+    pagination,
 ) => {
     if (!connection) {
         console.log(mongoNoConnectionError);
@@ -121,8 +123,45 @@ const query: DatabaseQuery = async (
         const filter: any = {};
         filter[field] = value;
 
-        const cursor = collection.find(filter);
 
+        if (pagination) {
+            const {
+                start,
+                type,
+            } = pagination;
+
+            const count = pagination?.count || 20;
+
+            if (start) {
+                const item = await collection.findOne({
+                    'id': start,
+                });
+
+                if (item) {
+                    const lastID = new ObjectID(item._id);
+                    filter['_id'] = {
+                        '$gt': lastID,
+                    };
+                }
+            }
+            // console.log('filter', filter);
+
+            const sortType = type === 'last' ? -1 : 1;
+
+            const cursor = collection
+                .find(filter)
+                .sort({
+                    $natural: sortType,
+                }).limit(count);
+
+            const items = await cursor.toArray();
+            // console.log('items', items);
+
+            return items;
+        }
+
+
+        const cursor = collection.find(filter);
         const items = await cursor.toArray();
 
         return items;

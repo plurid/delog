@@ -48,7 +48,15 @@ export type DatabaseQuery = (
     entity: string,
     field: string,
     value: string,
+    pagination?: DatabasePagination,
 ) => Promise<any>;
+
+
+export interface DatabasePagination {
+    count: number;
+    type: 'last' | 'first';
+    start?: string;
+}
 
 
 export type DatabaseStore = (

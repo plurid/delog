@@ -6,6 +6,7 @@
 
     import {
         DatabaseType,
+        DatabasePagination,
     } from '#server/data/interfaces';
     // #endregion external
 
@@ -104,6 +105,7 @@ class Database {
         entity: string,
         field: string,
         value: string,
+        pagination?: DatabasePagination,
     ) {
         switch (this.type) {
             case databaseType.filesystem:
@@ -111,24 +113,28 @@ class Database {
                     entity,
                     field,
                     value,
+                    pagination,
                 );
             case databaseType.amazon:
                 return amazonDatabase.query(
                     entity,
                     field,
                     value,
+                    pagination,
                 );
             case databaseType.google:
                 return googleDatabase.query(
                     entity,
                     field,
                     value,
+                    pagination,
                 );
             case databaseType.mongo:
                 return mongoDatabase.query(
                     entity,
                     field,
                     value,
+                    pagination,
                 );
             default:
                 return;

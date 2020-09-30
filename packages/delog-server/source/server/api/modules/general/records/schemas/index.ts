@@ -9,7 +9,7 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getRecords: ResponseRecords!
+        getRecords(input: InputQuery): ResponseRecords!
     }
 `;
 
@@ -62,6 +62,11 @@ export const types = gql`
 
 
 export const inputs = gql`
+    input InputQuery {
+        count: Int
+        start: String
+    }
+
     input DelogInputRecord {
         format: String!
 

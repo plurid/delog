@@ -2,6 +2,7 @@
     // #region external
     import {
         Context,
+        InputQuery,
     } from '#server/data/interfaces';
 
     import {
@@ -18,6 +19,7 @@
 export const getRecordsLogs = generateMethodLogs('getRecords');
 
 const getRecords = async (
+    input: InputQuery | undefined,
     context: Context,
 ) => {
     // #region context unpack
@@ -44,6 +46,10 @@ const getRecords = async (
 
 
     try {
+        const count = input?.count || 20;
+        const start = input?.start;
+
+
         // #region private usage
         if (privateUsage) {
             logger.log(
@@ -71,12 +77,24 @@ const getRecords = async (
                 'records',
                 'ownedBy',
                 privateOwnerIdentonym,
+                {
+                    count,
+                    type: 'last',
+                    start,
+                },
             );
+
+
+            const sortedRecords = records.sort((a: any, b: any) => {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return (new Date(b.time * 1000) as any) - (new Date(a.time * 1000) as any);
+            });
 
             return {
                 status: true,
                 data: [
-                    ...records,
+                    ...sortedRecords,
                 ],
             };
         }

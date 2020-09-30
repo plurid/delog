@@ -9,6 +9,12 @@ export interface InputValueString {
 }
 
 
+export interface InputQuery {
+    count?: number;
+    start?: string;
+}
+
+
 export interface InputGenerateToken {
     name: string;
 }

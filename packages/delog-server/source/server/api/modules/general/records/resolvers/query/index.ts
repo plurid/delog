@@ -2,6 +2,8 @@
     // #region external
     import {
         Context,
+        InputOf,
+        InputQuery,
     } from '#server/data/interfaces';
 
     import {
@@ -16,9 +18,10 @@
 export default {
     getRecords: (
         _: any,
-        __: any,
+        { input }: InputOf<InputQuery | undefined>,
         context: Context,
     ) => Records.Query.getRecords(
+        input,
         context,
     ),
 };
