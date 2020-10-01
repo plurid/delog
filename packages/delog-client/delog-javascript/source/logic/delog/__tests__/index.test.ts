@@ -56,5 +56,33 @@ describe('delog - simple', () => {
             });
         }
     });
+
+
+    it('works - stress test timeout', async () => {
+        for (let i = 0; i < 30; i++) {
+            await new Promise((resolve, reject) => {
+                setTimeout(async () => {
+                    delog({
+                        endpoint,
+                        token,
+
+                        project: 'project-name',
+                        space: 'space-name',
+
+                        level: logLevels.trace,
+                        method: 'method-name',
+                        format: '%LEVEL %TIME %TEXT',
+                        sharedID: 'one',
+                        sharedOrder: 0,
+                        extradata: JSON.stringify({one: 'two'}),
+
+                        text: 'works ' + i,
+                    });
+
+                    resolve();
+                }, 1000);
+            })
+        }
+    });
 });
 // #endregion module
