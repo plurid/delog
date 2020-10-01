@@ -6,5 +6,4 @@ export * from './inputs';
 export * from './logger';
 export * from './logic';
 export * from './notifier';
-export * from './storage';
 // #endregion exports
