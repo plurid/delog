@@ -48,6 +48,7 @@ export const StyledEntityListContainer = styled.div`
 export interface IStyledEntityList {
     theme: Theme;
     header?: boolean;
+    loading?: boolean;
 }
 
 export const StyledEntityList = styled.ul<IStyledEntityList>`
@@ -66,6 +67,17 @@ export const StyledEntityList = styled.ul<IStyledEntityList>`
         ({
             theme,
         }: IStyledEntityList) => theme.boxShadowUmbraInset
+    };
+    opacity: ${
+        ({
+            loading,
+        }: IStyledEntityList) => {
+            if (loading) {
+                return '0.5';
+            }
+
+            return '1';
+        }
     };
 
     li:first-child {

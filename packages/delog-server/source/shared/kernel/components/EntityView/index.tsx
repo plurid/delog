@@ -13,6 +13,7 @@
     import {
         PluridTextline,
         PluridPureButton,
+        PluridSpinner,
     } from '@plurid/plurid-ui-react';
 
     import {
@@ -62,6 +63,7 @@ export interface EntityViewProperties {
         // #region values
         entities?: any[];
         actionButtonText?: string;
+        loading?: boolean;
         // #endregion values
 
         // #region methods
@@ -102,6 +104,7 @@ const EntityView: React.FC<EntityViewProperties> = (
             // #region values.
             entities,
             actionButtonText,
+            loading,
             // #endregion values
 
             // #region methods
@@ -192,6 +195,13 @@ const EntityView: React.FC<EntityViewProperties> = (
         <StyledEntityView
             theme={generalTheme}
         >
+            {loading
+            && (
+                <PluridSpinner
+                    theme={generalTheme}
+                />
+            )}
+
             <StyledEntityViewTop>
                 <div>
                     <PluridTextline
@@ -221,7 +231,9 @@ const EntityView: React.FC<EntityViewProperties> = (
                 </div>
 
                 <StyledTopButtons>
-                    {refresh && !refreshClicked && (
+                    {refresh
+                    && !refreshClicked
+                    && (
                         <PluridIconReset
                             atClick={() => {
                                 setRefreshClicked(true);
@@ -257,6 +269,7 @@ const EntityView: React.FC<EntityViewProperties> = (
                     <StyledEntityList
                         theme={generalTheme}
                         ref={entityList}
+                        loading={loading}
                     >
                         {rows.map(row => {
                             return (

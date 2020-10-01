@@ -135,28 +135,21 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             return;
         }
     }
-
-    const actionScrollBottom = (
-        records: any[],
-    ) => {
-        const last = records[records.length - 1];
-
-        const pagination: InputQuery = {
-            count: 5,
-            start: last?.id,
-        };
-
-        getRecords(dispatch, pagination);
-    }
     // #endregion handlers
 
 
     // #region state
-    const [searchTerms, setSearchTerms] = useState(
+    const [
+        searchTerms,
+        setSearchTerms,
+    ] = useState(
         createSearchTerms(stateRecords),
     );
 
-    const [filteredRows, setFilteredRows] = useState(
+    const [
+        filteredRows,
+        setFilteredRows,
+    ] = useState(
         stateRecords.map(
             record => recordRowRenderer(
                 record,
@@ -164,6 +157,11 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             ),
         ),
     );
+
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
     // #endregion state
 
 
@@ -198,6 +196,23 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 ),
             ),
         );
+    }
+
+    const actionScrollBottom = async (
+        records: any[],
+    ) => {
+        setLoading(true);
+
+        const last = records[records.length - 1];
+
+        const pagination: InputQuery = {
+            count: 10,
+            start: last?.id,
+        };
+
+        await getRecords(dispatch, pagination);
+
+        setLoading(false);
     }
     // #endregion handlers
 
@@ -260,6 +275,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             noRows="no records"
 
             entities={stateRecords}
+            loading={loading}
 
             filterUpdate={filterUpdate}
             refresh={() => {
