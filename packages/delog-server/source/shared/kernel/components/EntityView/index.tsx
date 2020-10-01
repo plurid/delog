@@ -63,7 +63,7 @@ export interface EntityViewProperties {
         // #region values
         entities?: any[];
         actionButtonText?: string;
-        loading?: boolean;
+        loading?: number;
         // #endregion values
 
         // #region methods

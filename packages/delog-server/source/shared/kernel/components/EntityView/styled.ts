@@ -48,7 +48,7 @@ export const StyledEntityListContainer = styled.div`
 export interface IStyledEntityList {
     theme: Theme;
     header?: boolean;
-    loading?: boolean;
+    loading?: number;
 }
 
 export const StyledEntityList = styled.ul<IStyledEntityList>`

@@ -275,7 +275,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             noRows="no records"
 
             entities={stateRecords}
-            loading={loading}
+            loading={loading ? 1 : 0}
 
             filterUpdate={filterUpdate}
             refresh={() => {
