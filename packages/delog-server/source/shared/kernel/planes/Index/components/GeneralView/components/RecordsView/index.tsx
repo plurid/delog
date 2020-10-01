@@ -22,6 +22,7 @@
 
     import {
         LoggedRecord,
+        InputQuery,
     } from '#server/data/interfaces';
 
     import EntityView from '#kernel-components/EntityView';
@@ -134,6 +135,19 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             return;
         }
     }
+
+    const actionScrollBottom = (
+        records: any[],
+    ) => {
+        const last = records[records.length - 1];
+
+        const pagination: InputQuery = {
+            count: 5,
+            start: last?.id,
+        };
+
+        getRecords(dispatch, pagination);
+    }
     // #endregion handlers
 
 
@@ -245,10 +259,14 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             rows={filteredRows}
             noRows="no records"
 
+            entities={stateRecords}
+
             filterUpdate={filterUpdate}
             refresh={() => {
                 getRecords(dispatch);
             }}
+
+            actionScrollBottom={actionScrollBottom}
         />
     );
     // #endregion render

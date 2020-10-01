@@ -10,6 +10,10 @@
 
 
     // #region external
+    import {
+        InputQuery,
+    } from '#server/data/interfaces';
+
     import client from '#kernel-services/graphql/client';
 
     import {
@@ -134,6 +138,7 @@ const getUsageType = async (
 
 const getRecords = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    pagination?: InputQuery,
 ) => {
     const dispatchDataAddEntities: typeof actions.data.addEntities = (
         payload,
@@ -142,9 +147,17 @@ const getRecords = async (
     );
 
     try {
+        const input = {
+            count: pagination?.count,
+            start: pagination?.start,
+        };
+
         const query = await client.query({
             query: GET_RECORDS,
             fetchPolicy: 'no-cache',
+            variables: {
+                input,
+            },
         });
 
         const response = query.data.getRecords;
@@ -158,6 +171,7 @@ const getRecords = async (
         dispatchDataAddEntities({
             type: 'records',
             data: records,
+            push: 'CONCATENATE',
         });
 
         return true;

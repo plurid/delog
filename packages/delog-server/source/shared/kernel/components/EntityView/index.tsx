@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
         useEffect,
     } from 'react';
@@ -17,6 +18,10 @@
     import {
         PluridIconReset,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        useThrottledCallback,
+    } from '@plurid/plurid-functions-react';
     // #endregion libraries
 
 
@@ -25,6 +30,7 @@
         StyledEntityView,
         StyledEntityViewTop,
         StyledTopButtons,
+        StyledEntityListContainer,
         StyledEntityList,
         StyledEntityListItem,
         StyledActionButton,
@@ -46,7 +52,15 @@ export interface EntityViewProperties {
         rowTemplate: string;
         rows: JSX.Element[];
         noRows: string;
+        // #endregion values
 
+        // #region methods
+        // #endregion methods
+    // #endregion required
+
+    // #region optional
+        // #region values
+        entities?: any[];
         actionButtonText?: string;
         // #endregion values
 
@@ -56,8 +70,12 @@ export interface EntityViewProperties {
             value: any,
         ) => void;
         refresh?: () => void;
+
+        actionScrollBottom?: (
+            entities: any[],
+        ) => void;
         // #endregion methods
-    // #endregion required
+    // #endregion optional
 }
 
 const EntityView: React.FC<EntityViewProperties> = (
@@ -74,7 +92,15 @@ const EntityView: React.FC<EntityViewProperties> = (
             rowTemplate,
             rows,
             noRows,
+            // #endregion values
 
+            // #region methods
+            // #endregion methods
+        // #endregion required
+
+        // #region optional
+            // #region values.
+            entities,
             actionButtonText,
             // #endregion values
 
@@ -82,10 +108,17 @@ const EntityView: React.FC<EntityViewProperties> = (
             actionButtonClick,
             filterUpdate,
             refresh,
+            actionScrollBottom,
             // #endregion methods
-        // #endregion required
+        // #endregion optional
     } = properties;
     // #endregion properties
+
+
+    // #region references
+    const bottomTimeout = useRef<number | null>();
+    const entityList = useRef<HTMLUListElement | null>(null);
+    // #endregion references
 
 
     // #region state
@@ -100,6 +133,24 @@ const EntityView: React.FC<EntityViewProperties> = (
     // #endregion state
 
 
+    // #region handlers
+    const handleScroll = useThrottledCallback(() => {
+        const element = entityList.current;
+
+        if (!element) {
+            return;
+        }
+
+        const scrolledAmount = element.scrollTop + element.getBoundingClientRect().height
+        const bottomReached = scrolledAmount >= element.scrollHeight;
+
+        if (bottomReached && actionScrollBottom && entities) {
+            actionScrollBottom(entities);
+        }
+    }, 1000);
+    // #endregion handlers
+
+
     // #region effects
     useEffect(() => {
         if (refreshClicked) {
@@ -109,6 +160,29 @@ const EntityView: React.FC<EntityViewProperties> = (
         }
     }, [
         refreshClicked,
+    ]);
+
+    /**
+     * Action at Bottom of List.
+     */
+    useEffect(() => {
+        bottomTimeout.current = setTimeout(() => {
+            if (entityList.current && actionScrollBottom) {
+                entityList.current.addEventListener('scroll', handleScroll);
+            }
+        }, 100);
+
+        return () => {
+            if (bottomTimeout.current) {
+                clearTimeout(bottomTimeout.current);
+            }
+
+            if (entityList.current && actionScrollBottom) {
+                entityList.current.removeEventListener('scroll', handleScroll);
+            }
+        }
+    }, [
+        entities,
     ]);
     // #endregion effects
 
@@ -166,16 +240,24 @@ const EntityView: React.FC<EntityViewProperties> = (
             )}
 
             {rows.length !== 0 && (
-                <StyledEntityList
+                <StyledEntityListContainer
                     theme={generalTheme}
                 >
-                    <ul>
+                    <StyledEntityList
+                        theme={generalTheme}
+                        header={true}
+                    >
                         <StyledEntityListItem
                             rowTemplate={rowTemplate}
                         >
                             {rowsHeader}
                         </StyledEntityListItem>
+                    </StyledEntityList>
 
+                    <StyledEntityList
+                        theme={generalTheme}
+                        ref={entityList}
+                    >
                         {rows.map(row => {
                             return (
                                 <StyledEntityListItem
@@ -186,8 +268,8 @@ const EntityView: React.FC<EntityViewProperties> = (
                                 </StyledEntityListItem>
                             );
                         })}
-                    </ul>
-                </StyledEntityList>
+                    </StyledEntityList>
+                </StyledEntityListContainer>
             )}
 
             {actionButtonText && (

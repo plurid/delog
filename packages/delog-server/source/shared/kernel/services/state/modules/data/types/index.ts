@@ -72,6 +72,7 @@ export const ADD_ENTITIES = 'ADD_ENTITIES';
 export interface AddEntitiesPayload {
     type: AddableEntitiesType;
     data: any[];
+    push?: string;
 }
 export interface AddEntitiesAction {
     type: typeof ADD_ENTITIES;

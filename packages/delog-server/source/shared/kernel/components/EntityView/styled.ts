@@ -1,6 +1,8 @@
 // #region imports
     // #region libraries
-    import styled from 'styled-components';
+    import styled, {
+        css,
+    } from 'styled-components';
 
     import {
         Theme,
@@ -39,45 +41,65 @@ export const StyledTopButtons = styled.div`
 `;
 
 
+export const StyledEntityListContainer = styled.div`
+`;
+
+
 export interface IStyledEntityList {
     theme: Theme;
+    header?: boolean;
 }
 
-export const StyledEntityList = styled.div<IStyledEntityList>`
-    ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        max-height: 530px;
-        overflow: auto;
+export const StyledEntityList = styled.ul<IStyledEntityList>`
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    max-height: 530px;
+    overflow: auto;
 
-        background-color: ${
-            ({
-                theme,
-            }: IStyledEntityList) => theme.backgroundColorSecondaryAlpha
-        };
-        box-shadow: ${
-            ({
-                theme,
-            }: IStyledEntityList) => theme.boxShadowUmbraInset
-        };
-    }
+    background-color: ${
+        ({
+            theme,
+        }: IStyledEntityList) => theme.backgroundColorSecondaryAlpha
+    };
+    box-shadow: ${
+        ({
+            theme,
+        }: IStyledEntityList) => theme.boxShadowUmbraInset
+    };
 
     li:first-child {
         background-color: ${
             ({
                 theme,
-            }: IStyledEntityList) => theme.backgroundColorTertiary
+                header,
+            }: IStyledEntityList) => {
+                if (header) {
+                    return theme.backgroundColorTertiary;
+                }
+
+                return 'initial';
+            }
         };
     }
 
-    li:hover:not(:first-child) {
-        background-color: ${
-            ({
-                theme,
-            }: IStyledEntityList) => theme.backgroundColorPrimary
-        };
-    }
+    ${({
+        header,
+    }: IStyledEntityList) => {
+        if (!header) {
+            return css`
+                li:hover:not(:first-child) {
+                    background-color: ${
+                        ({
+                            theme,
+                        }: IStyledEntityList) => theme.backgroundColorPrimary
+                    };
+                }
+            `
+        }
+
+        return;
+    }}
 `;
 
 

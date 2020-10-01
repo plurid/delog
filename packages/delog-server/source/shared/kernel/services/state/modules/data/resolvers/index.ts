@@ -236,6 +236,7 @@ export const addEntities = (
     const {
         type,
         data,
+        push,
     } = action.payload;
 
     const newState = {
@@ -300,9 +301,16 @@ export const addEntities = (
             ];
             break;
         case 'records':
-            records = [
-                ...data,
-            ];
+            if (push === 'CONCATENATE') {
+                records = [
+                    ...records,
+                    ...data,
+                ];
+            } else {
+                records = [
+                    ...data,
+                ];
+            }
             break;
         case 'tests':
             tests = [
