@@ -12,7 +12,6 @@
 
 
     // #region internal
-    import filesystemDatabase from './filesystem';
     import amazonDatabase from './amazon';
     import googleDatabase from './google';
     import mongoDatabase from './mongo';
@@ -33,8 +32,6 @@ class Database {
 
     public initialize() {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.initialize();
             case databaseType.amazon:
                 return amazonDatabase.initialize();
             case databaseType.google:
@@ -51,11 +48,6 @@ class Database {
         id: string,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.get(
-                    entity,
-                    id,
-                );
             case databaseType.amazon:
                 return amazonDatabase.get(
                     entity,
@@ -80,10 +72,6 @@ class Database {
         entity: string,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.getAll(
-                    entity,
-                );
             case databaseType.amazon:
                 return amazonDatabase.getAll(
                     entity,
@@ -108,13 +96,6 @@ class Database {
         pagination?: DatabasePagination,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.query(
-                    entity,
-                    field,
-                    value,
-                    pagination,
-                );
             case databaseType.amazon:
                 return amazonDatabase.query(
                     entity,
@@ -147,12 +128,6 @@ class Database {
         data: any,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.store(
-                    entity,
-                    id,
-                    data,
-                );
             case databaseType.amazon:
                 return amazonDatabase.store(
                     entity,
@@ -183,13 +158,6 @@ class Database {
         value: any,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.update(
-                    entity,
-                    id,
-                    field,
-                    value,
-                );
             case databaseType.amazon:
                 return amazonDatabase.update(
                     entity,
@@ -221,11 +189,6 @@ class Database {
         id: string,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.obliterate(
-                    entity,
-                    id,
-                );
             case databaseType.amazon:
                 return amazonDatabase.obliterate(
                     entity,
@@ -250,10 +213,6 @@ class Database {
         entity: string,
     ) {
         switch (this.type) {
-            case databaseType.filesystem:
-                return filesystemDatabase.obliterateAll(
-                    entity,
-                );
             case databaseType.amazon:
                 return amazonDatabase.obliterateAll(
                     entity,
