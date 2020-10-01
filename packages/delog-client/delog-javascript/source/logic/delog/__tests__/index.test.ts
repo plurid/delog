@@ -16,7 +16,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it.only('works', () => {
+    it('works', () => {
         delog({
             endpoint,
             token,
@@ -58,7 +58,9 @@ describe('delog - simple', () => {
     });
 
 
-    it('works - stress test timeout', async () => {
+    it.only('works - stress test timeout', async () => {
+        jest.setTimeout(60000);
+
         for (let i = 0; i < 30; i++) {
             await new Promise((resolve, reject) => {
                 setTimeout(async () => {
