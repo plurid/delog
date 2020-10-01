@@ -140,11 +140,10 @@ const query: DatabaseQuery = async (
                 if (item) {
                     const lastID = new ObjectID(item._id);
                     filter['_id'] = {
-                        '$gt': lastID,
+                        '$lt': lastID,
                     };
                 }
             }
-            // console.log('filter', filter);
 
             const sortType = type === 'last' ? -1 : 1;
 
@@ -155,7 +154,6 @@ const query: DatabaseQuery = async (
                 }).limit(count);
 
             const items = await cursor.toArray();
-            // console.log('items', items);
 
             return items;
         }
