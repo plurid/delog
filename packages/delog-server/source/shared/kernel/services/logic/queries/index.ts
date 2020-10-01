@@ -171,7 +171,7 @@ const getRecords = async (
         dispatchDataAddEntities({
             type: 'records',
             data: records,
-            push: 'CONCATENATE',
+            push: pagination ? 'CONCATENATE' : '',
         });
 
         return true;
