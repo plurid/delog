@@ -55,7 +55,7 @@ export const StyledEntityList = styled.ul<IStyledEntityList>`
     padding: 0;
     margin: 0;
     list-style: none;
-    max-height: 530px;
+    max-height: 520px;
     overflow: auto;
 
     background-color: ${
@@ -98,19 +98,19 @@ export const StyledEntityList = styled.ul<IStyledEntityList>`
     ${({
         header,
     }: IStyledEntityList) => {
-        if (!header) {
-            return css`
-                li:hover:not(:first-child) {
-                    background-color: ${
-                        ({
-                            theme,
-                        }: IStyledEntityList) => theme.backgroundColorPrimary
-                    };
-                }
-            `
+        if (header) {
+            return;
         }
 
-        return;
+        return css`
+            li:hover {
+                background-color: ${
+                    ({
+                        theme,
+                    }: IStyledEntityList) => theme.backgroundColorPrimary
+                };
+            }
+        `
     }}
 `;
 
