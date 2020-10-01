@@ -195,7 +195,7 @@ const EntityView: React.FC<EntityViewProperties> = (
         <StyledEntityView
             theme={generalTheme}
         >
-            {loading
+            {!!loading
             && (
                 <PluridSpinner
                     theme={generalTheme}
