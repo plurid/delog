@@ -4,7 +4,12 @@
 
     import {
         PluridIconDelete,
+        PluridIconInfo,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridLink,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -53,6 +58,15 @@ export const recordRowRenderer = (
             <div>
                 {log}
             </div>
+
+            <PluridLink
+                route={`/record/${id}`}
+                devisible={true}
+            >
+                <PluridIconInfo
+                    atClick={() => {}}
+                />
+            </PluridLink>
 
             <PluridIconDelete
                 atClick={() => handleRecordObliterate(id)}
