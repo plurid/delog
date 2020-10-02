@@ -4,6 +4,8 @@
         useRef,
         useState,
         useEffect,
+        forwardRef,
+        useImperativeHandle,
     } from 'react';
 
     import {
@@ -80,8 +82,15 @@ export interface EntityViewProperties {
     // #endregion optional
 }
 
-const EntityView: React.FC<EntityViewProperties> = (
+export interface EntityViewRefAttributes {
+    resetFilterValue: () => void;
+}
+
+export type EntityViewType = EntityViewProperties & React.RefAttributes<EntityViewRefAttributes>;
+
+const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
     properties,
+    reference,
 ) => {
     // #region properties
     const {
@@ -187,6 +196,16 @@ const EntityView: React.FC<EntityViewProperties> = (
     }, [
         entities,
     ]);
+
+
+    useImperativeHandle(
+        reference,
+        () => ({
+            resetFilterValue() {
+                setSearchValue('');
+            }
+        }),
+    )
     // #endregion effects
 
 
@@ -309,7 +328,7 @@ const EntityView: React.FC<EntityViewProperties> = (
         </StyledEntityView>
     );
     // #endregion render
-}
+});
 // #endregion module
 
 

@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
         useEffect,
     } from 'react';
@@ -29,7 +30,9 @@
         InputQuery,
     } from '#server/data/interfaces';
 
-    import EntityView from '#kernel-components/EntityView';
+    import EntityView, {
+        EntityViewRefAttributes,
+    } from '#kernel-components/EntityView';
 
     import client from '#kernel-services/graphql/client';
 
@@ -120,6 +123,11 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         // #endregion dispatch
     } = properties;
     // #endregion properties
+
+
+    // #region references
+    const entityView = useRef<EntityViewRefAttributes | null>(null);
+    // #endregion references
 
 
     // #region handlers
@@ -223,7 +231,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         });
 
         const sortedRecords = filteredRecords.sort(
-            compareValues('time'),
+            compareValues('time', 'desc'),
         );
 
         setFilteredRows(
@@ -263,6 +271,10 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 const ids = [
                     ...filterIDs,
                 ];
+
+                if (entityView.current) {
+                    entityView.current.resetFilterValue();
+                }
 
                 filterUpdate('');
 
@@ -350,6 +362,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     return (
         <>
             <EntityView
+                ref={entityView}
+
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
