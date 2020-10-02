@@ -139,6 +139,10 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         setSearchValue,
     ] = useState('');
     const [
+        filterLength,
+        setFilterLength,
+    ] = useState('SMALL');
+    const [
         refreshClicked,
         setRefreshClicked,
     ] = useState(false);
@@ -197,6 +201,22 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         entities,
     ]);
 
+    /**
+     * Filter length
+     */
+    useEffect(() => {
+        if (searchValue.length <= 30) {
+            if (filterLength !== 'SMALL') {
+                setFilterLength('SMALL');
+            }
+        } else {
+            if (filterLength !== 'LARGE') {
+                setFilterLength('LARGE');
+            }
+        }
+    }, [
+        searchValue,
+    ]);
 
     useImperativeHandle(
         reference,
@@ -253,7 +273,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                         autoCorrect="false"
                         level={2}
                         style={{
-                            width: '300px',
+                            width: filterLength === 'SMALL' ? '300px' : '600px',
                         }}
                     />
                 </div>
