@@ -59,7 +59,7 @@
     } from './logic';
 
     import {
-        StyledClearButton,
+        StyledObliterateButton,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -230,7 +230,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         setLoading(false);
     }
 
-    const clearRecords = async () => {
+    const obliterateRecords = async () => {
         try {
             // dispatchRemoveEntities({
             //     type: 'record',
@@ -324,16 +324,16 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             />
 
             {stateRecords.length > 0 && (
-                <StyledClearButton>
+                <StyledObliterateButton>
                     <PluridLinkButton
                         text={filterValue
-                            ? `clear all with filter '${filterValue}'`
-                            : 'clear'
+                            ? `obliterate all with filter '${filterValue}'`
+                            : 'obliterate all'
                         }
-                        atClick={() => clearRecords()}
+                        atClick={() => obliterateRecords()}
                         inline={true}
                     />
-                </StyledClearButton>
+                </StyledObliterateButton>
             )}
         </>
     );
