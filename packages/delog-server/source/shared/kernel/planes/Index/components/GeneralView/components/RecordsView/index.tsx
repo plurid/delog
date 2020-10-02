@@ -190,8 +190,22 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     const filterUpdate = (
         rawValue: string,
     ) => {
+        setFilterValue(rawValue);
+
+        if (!rawValue) {
+            setFilteredRows(
+                stateRecords.map(
+                    record => recordRowRenderer(
+                        record,
+                        handleRecordObliterate,
+                    ),
+                ),
+            );
+
+            return;
+        }
+
         const value = rawValue.toLowerCase();
-        setFilterValue(value);
 
         const filterIDs = getFilterIDs(
             searchTerms,
@@ -209,7 +223,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         });
 
         const sortedRecords = filteredRecords.sort(
-            compareValues('name'),
+            compareValues('time'),
         );
 
         setFilteredRows(
@@ -246,20 +260,19 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     const obliterateRecords = async () => {
         try {
             if (filterValue) {
-                dispatchRemoveEntities({
-                    type: 'records',
-                    ids: [
-                        ...filterIDs,
-                    ],
-                });
+                const ids = [
+                    ...filterIDs,
+                ];
 
                 filterUpdate('');
-                setFilterValue('');
+
+                dispatchRemoveEntities({
+                    type: 'records',
+                    ids,
+                });
 
                 const input = {
-                    ids: [
-                        ...filterIDs,
-                    ],
+                    ids,
                 };
 
                 await client.mutate({
@@ -360,8 +373,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 <StyledObliterateButton>
                     <PluridLinkButton
                         text={filterValue
-                            ? `obliterate all with filter '${filterValue}'`
-                            : 'obliterate all'
+                            ? `obliterate with filter '${filterValue}'`
+                            : 'obliterate'
                         }
                         atClick={() => obliterateRecords()}
                         inline={true}
