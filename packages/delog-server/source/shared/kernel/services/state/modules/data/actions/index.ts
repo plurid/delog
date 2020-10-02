@@ -37,6 +37,16 @@ export const addEntities = (
 }
 
 
+export const removeEntities = (
+    payload: Types.RemoveEntitiesPayload,
+): Types.RemoveEntitiesAction => {
+    return {
+        type: Types.REMOVE_ENTITIES,
+        payload,
+    };
+}
+
+
 export const clearData = (): Types.ClearDataAction => {
     return {
         type: Types.CLEAR_DATA,
@@ -50,6 +60,7 @@ const actions = {
     addEntity,
     removeEntity,
     addEntities,
+    removeEntities,
     clearData,
 };
 // #endregion module

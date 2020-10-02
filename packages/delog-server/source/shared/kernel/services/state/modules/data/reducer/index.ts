@@ -22,6 +22,8 @@ const reducer = (
             return resolvers.removeEntity(state, action);
         case Types.ADD_ENTITIES:
             return resolvers.addEntities(state, action);
+        case Types.REMOVE_ENTITIES:
+            return resolvers.removeEntities(state, action);
         case Types.CLEAR_DATA:
             return resolvers.clearData(state, action);
         default:

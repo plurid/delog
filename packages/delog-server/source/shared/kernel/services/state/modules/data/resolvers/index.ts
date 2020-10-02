@@ -349,6 +349,39 @@ export const addEntities = (
 }
 
 
+export const removeEntities = (
+    state: Types.State,
+    action: Types.RemoveEntitiesAction,
+): Types.State => {
+    const {
+        type,
+        ids,
+    } = action.payload;
+
+    const newState = {
+        ...state,
+    };
+
+    let records = [
+        ...newState.records,
+    ];
+
+
+    switch (type) {
+        case 'records':
+            records = records.filter(record => !ids.includes(record.id));
+            break;
+    }
+
+    return {
+        ...newState,
+        records: [
+            ...records,
+        ],
+    };
+}
+
+
 
 export const clearData = (
     state: Types.State,
@@ -365,6 +398,7 @@ const resolvers = {
     addEntity,
     removeEntity,
     addEntities,
+    removeEntities,
     clearData,
 };
 // #endregion module

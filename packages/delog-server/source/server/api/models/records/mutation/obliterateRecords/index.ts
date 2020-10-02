@@ -2,7 +2,7 @@
     // #region external
     import {
         Context,
-        InputClearRecords,
+        InputObliterateRecords,
     } from '#server/data/interfaces';
 
     import {
@@ -22,7 +22,7 @@ export const clearRecordsLogs = generateMethodLogs('clearRecords');
 
 
 const clearRecords = async (
-    input: InputClearRecords,
+    input: InputObliterateRecords,
     context: Context,
 ) => {
     // #region context unpack
@@ -52,8 +52,15 @@ const clearRecords = async (
         // #region input unpack
         const {
             filter,
+            ids,
         } = input;
         // #endregion input unpack
+
+
+        const data = {
+            filter,
+            ids,
+        };
 
 
         // #region private usage
@@ -76,7 +83,7 @@ const clearRecords = async (
 
             await deregisterRecords(
                 privateOwnerIdentonym,
-                filter,
+                data,
             );
 
             logger.log(
@@ -102,7 +109,7 @@ const clearRecords = async (
 
             await deregisterRecords(
                 '',
-                filter,
+                data,
             );
 
             logger.log(
@@ -120,7 +127,7 @@ const clearRecords = async (
         // #region public usage
         await deregisterRecords(
             '',
-            filter,
+            data,
         );
 
         logger.log(

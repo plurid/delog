@@ -10,6 +10,7 @@
     import {
         Record,
         LoggedRecord,
+        InputObliterateRecords,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -66,16 +67,31 @@ const deregisterRecord = async (
 
 const deregisterRecords = async (
     ownedBy: string,
-    filter?: string,
+    data?: InputObliterateRecords,
 ) => {
     try {
-        if (!filter) {
+        if (!data) {
             await database.obliterateAll(
                 'records',
                 {
                     ownedBy,
                 },
             );
+
+            return;
+        }
+
+        const {
+            // filter,
+            ids,
+        } = data;
+
+        if (ids) {
+            for (const id of ids) {
+                deregisterRecord(id);
+            }
+
+            return;
         }
 
         // remove based on filter

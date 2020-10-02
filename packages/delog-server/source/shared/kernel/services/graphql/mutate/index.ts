@@ -222,9 +222,9 @@ export const OBLITERATE_RECORD = gql`
 `;
 
 
-export const CLEAR_RECORDS = gql`
-    mutation ClearRecords($input: InputClearRecords) {
-        clearRecords(input: $input) {
+export const OBLITERATE_RECORDS = gql`
+    mutation ObliterateRecords($input: InputObliterateRecords) {
+        obliterateRecords(input: $input) {
             status
             error {
                 type

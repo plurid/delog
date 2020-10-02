@@ -11,7 +11,7 @@
         Context,
         InputOf,
         InputValueString,
-        InputClearRecords,
+        InputObliterateRecords,
     } from '#server/data/interfaces';
 
     import {
@@ -40,11 +40,11 @@ export default {
         input,
         context,
     ),
-    clearRecords: (
+    obliterateRecords: (
         _: any,
-        { input }: InputOf<InputClearRecords>,
+        { input }: InputOf<InputObliterateRecords>,
         context: Context,
-    ) => Records.Mutation.clearRecords(
+    ) => Records.Mutation.obliterateRecords(
         input,
         context,
     ),

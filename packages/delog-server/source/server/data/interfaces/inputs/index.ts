@@ -47,7 +47,8 @@ export interface InputGenerateTester {
 }
 
 
-export interface InputClearRecords {
+export interface InputObliterateRecords {
     filter?: string;
+    ids?: string[];
 }
 // #endregion module

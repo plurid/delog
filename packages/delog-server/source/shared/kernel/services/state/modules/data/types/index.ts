@@ -80,6 +80,20 @@ export interface AddEntitiesAction {
 }
 
 
+export type RemoveableEntitiesType =
+    | 'records';
+
+export const REMOVE_ENTITIES = 'REMOVE_ENTITIES';
+export interface RemoveEntitiesPayload {
+    type: RemoveableEntitiesType;
+    ids: string[];
+}
+export interface RemoveEntitiesAction {
+    type: typeof REMOVE_ENTITIES;
+    payload: RemoveEntitiesPayload;
+}
+
+
 export const CLEAR_DATA = 'CLEAR_DATA';
 export interface ClearDataAction {
     type: typeof CLEAR_DATA;
@@ -104,5 +118,6 @@ export type Actions =
     | AddEntityAction
     | RemoveEntityAction
     | AddEntitiesAction
+    | RemoveEntitiesAction
     | ClearDataAction;
 // #endregion module

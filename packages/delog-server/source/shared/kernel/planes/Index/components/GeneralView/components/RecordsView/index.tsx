@@ -35,7 +35,7 @@
 
     import {
         OBLITERATE_RECORD,
-        CLEAR_RECORDS,
+        OBLITERATE_RECORDS,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -95,6 +95,7 @@ export interface RecordsViewStateProperties {
 export interface RecordsViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
+    dispatchRemoveEntities: typeof actions.data.removeEntities;
 }
 
 export type RecordsViewProperties = RecordsViewOwnProperties
@@ -115,6 +116,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         // #region dispatch
         dispatch,
         dispatchRemoveEntity,
+        dispatchRemoveEntities,
         // #endregion dispatch
     } = properties;
     // #endregion properties
@@ -176,6 +178,11 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         filterValue,
         setFilterValue,
     ] = useState('');
+
+    const [
+        filterIDs,
+        setFilterIDs,
+    ] = useState<string[]>([]);
     // #endregion state
 
 
@@ -190,6 +197,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             searchTerms,
             value,
         );
+
+        setFilterIDs(filterIDs);
 
         const filteredRecords = stateRecords.filter(stateRecord => {
             if (filterIDs.includes(stateRecord.id)) {
@@ -227,25 +236,49 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 
         await getRecords(dispatch, pagination);
 
+        if (filterValue) {
+            filterUpdate(filterValue);
+        }
+
         setLoading(false);
     }
 
     const obliterateRecords = async () => {
         try {
-            // dispatchRemoveEntities({
-            //     type: 'record',
-            //     ids: [],
-            // });
+            if (filterValue) {
+                dispatchRemoveEntities({
+                    type: 'records',
+                    ids: [
+                        ...filterIDs,
+                    ],
+                });
 
-            const input = {
-            //     value: id,
-            };
+                filterUpdate('');
+                setFilterValue('');
+
+                const input = {
+                    ids: [
+                        ...filterIDs,
+                    ],
+                };
+
+                await client.mutate({
+                    mutation: OBLITERATE_RECORDS,
+                    variables: {
+                        input,
+                    },
+                });
+
+                return;
+            }
+
+            dispatchRemoveEntities({
+                type: 'records',
+                ids: stateRecords.map(record => record.id),
+            });
 
             await client.mutate({
-                mutation: CLEAR_RECORDS,
-                variables: {
-                    input,
-                },
+                mutation: OBLITERATE_RECORDS,
             });
         } catch (error) {
             return;
@@ -358,6 +391,11 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch (
         actions.data.removeEntity(payload),
+    ),
+    dispatchRemoveEntities: (
+        payload,
+    ) => dispatch (
+        actions.data.removeEntities(payload),
     ),
 });
 
