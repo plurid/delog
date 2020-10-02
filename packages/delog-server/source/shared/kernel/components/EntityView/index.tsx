@@ -218,6 +218,15 @@ const EntityView: React.FC<EntityViewProperties> = (
                                 filterUpdate(value);
                             }
                         }}
+                        atKeyDown={(event) => {
+                            if (event.key === 'Escape') {
+                                setSearchValue('');
+
+                                if (filterUpdate) {
+                                    filterUpdate('');
+                                }
+                            }
+                        }}
                         theme={interactionTheme}
                         spellCheck={false}
                         autoCapitalize="false"
