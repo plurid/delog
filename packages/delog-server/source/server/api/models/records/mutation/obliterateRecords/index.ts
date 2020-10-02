@@ -49,20 +49,6 @@ const clearRecords = async (
 
 
     try {
-        // #region input unpack
-        const {
-            filter,
-            ids,
-        } = input;
-        // #endregion input unpack
-
-
-        const data = {
-            filter,
-            ids,
-        };
-
-
         // #region private usage
         if (privateUsage) {
             logger.log(
@@ -83,7 +69,7 @@ const clearRecords = async (
 
             await deregisterRecords(
                 privateOwnerIdentonym,
-                data,
+                input,
             );
 
             logger.log(
@@ -109,7 +95,7 @@ const clearRecords = async (
 
             await deregisterRecords(
                 '',
-                data,
+                input,
             );
 
             logger.log(
@@ -127,7 +113,7 @@ const clearRecords = async (
         // #region public usage
         await deregisterRecords(
             '',
-            data,
+            input,
         );
 
         logger.log(
