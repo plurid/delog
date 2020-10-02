@@ -249,6 +249,7 @@ const obliterate: DatabaseObliterate = async (
 
 const obliterateAll: DatabaseObliterateAll = async (
     entity,
+    filter,
 ) => {
     if (!connection) {
         console.log(mongoNoConnectionError);
@@ -259,6 +260,14 @@ const obliterateAll: DatabaseObliterateAll = async (
         const database = connection.db(DATABASE);
 
         const collection = database.collection(entity);
+
+        if (!filter) {
+            await collection.drop();
+
+            return;
+        }
+
+        await collection.deleteMany(filter);
 
         return;
     } catch (error) {

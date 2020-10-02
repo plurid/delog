@@ -1,18 +1,12 @@
 // #region imports
-    // #region libraries
-    import {
-        DelogInputRecord,
-    } from '@plurid/delog';
-    // #endregion libraries
-
-
     // #region external
     import {
         Context,
+        InputClearRecords,
     } from '#server/data/interfaces';
 
     import {
-        registerRecord,
+        deregisterRecords,
     } from '#server/logic/operators/records';
 
     import {
@@ -24,11 +18,11 @@
 
 
 // #region module
-export const recordLogs = generateMethodLogs('record');
+export const clearRecordsLogs = generateMethodLogs('clearRecords');
 
 
-const record = async (
-    input: DelogInputRecord,
+const clearRecords = async (
+    input: InputClearRecords,
     context: Context,
 ) => {
     // #region context unpack
@@ -48,7 +42,7 @@ const record = async (
 
     // #region log start
     logger.log(
-        recordLogs.infoStart,
+        clearRecordsLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
@@ -57,58 +51,21 @@ const record = async (
     try {
         // #region input unpack
         const {
-            format,
-
-            project,
-            space,
-
-            level,
-            method,
-            sharedID,
-            sharedOrder,
-            error,
-            extradata,
-
-            context,
-
-            text,
-
-            time,
+            filter,
         } = input;
         // #endregion input unpack
-
-
-        const record: any = {
-            format,
-
-            project,
-            space,
-
-            level,
-            method,
-            sharedID,
-            sharedOrder,
-            error,
-            extradata,
-
-            context,
-
-            text,
-
-            time,
-        };
 
 
         // #region private usage
         if (privateUsage) {
             logger.log(
-                recordLogs.infoHandlePrivateUsage,
+                clearRecordsLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    recordLogs.infoEndPrivateUsage,
+                    clearRecordsLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -117,14 +74,13 @@ const record = async (
                 };
             }
 
-            record.ownedBy = privateOwnerIdentonym;
-
-            await registerRecord(
-                record,
+            await deregisterRecords(
+                privateOwnerIdentonym,
+                filter,
             );
 
             logger.log(
-                recordLogs.infoSuccessPrivateUsage,
+                clearRecordsLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -140,16 +96,17 @@ const record = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                recordLogs.infoHandleCustomLogicUsage,
+                clearRecordsLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            await registerRecord(
-                record,
+            await deregisterRecords(
+                '',
+                filter,
             );
 
             logger.log(
-                recordLogs.infoEndCustomLogicUsage,
+                clearRecordsLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
@@ -161,25 +118,13 @@ const record = async (
 
 
         // #region public usage
-        if (!privateOwnerIdentonym) {
-            logger.log(
-                recordLogs.infoEnd,
-                logLevels.info,
-            );
-
-            return {
-                status: false,
-            };
-        }
-
-        record.ownedBy = privateOwnerIdentonym;
-
-        await registerRecord(
-            record,
+        await deregisterRecords(
+            '',
+            filter,
         );
 
         logger.log(
-            recordLogs.infoSuccess,
+            clearRecordsLogs.infoSuccess,
             logLevels.info,
         );
 
@@ -190,7 +135,7 @@ const record = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            recordLogs.errorEnd,
+            clearRecordsLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -206,5 +151,5 @@ const record = async (
 
 
 // #region exports
-export default record;
+export default clearRecords;
 // #endregion exports

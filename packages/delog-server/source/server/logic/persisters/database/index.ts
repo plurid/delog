@@ -211,19 +211,23 @@ class Database {
 
     public obliterateAll(
         entity: string,
+        filter?: Record<string, string>,
     ) {
         switch (this.type) {
             case databaseType.amazon:
                 return amazonDatabase.obliterateAll(
                     entity,
+                    filter,
                 );
             case databaseType.google:
                 return googleDatabase.obliterateAll(
                     entity,
+                    filter,
                 );
             case databaseType.mongo:
                 return mongoDatabase.obliterateAll(
                     entity,
+                    filter,
                 );
             default:
                 return;

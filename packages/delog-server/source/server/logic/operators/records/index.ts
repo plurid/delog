@@ -28,7 +28,6 @@ const registerRecord = async (
 
     const record: Record = {
         id,
-        ownedBy: '',
         ...data,
     };
 
@@ -66,13 +65,20 @@ const deregisterRecord = async (
 
 
 const deregisterRecords = async (
-    id: string,
+    ownedBy: string,
+    filter?: string,
 ) => {
     try {
-        await database.obliterate(
-            'records',
-            id,
-        );
+        if (!filter) {
+            await database.obliterateAll(
+                'records',
+                {
+                    ownedBy,
+                },
+            );
+        }
+
+        // remove based on filter
     } catch (error) {
         return;
     }

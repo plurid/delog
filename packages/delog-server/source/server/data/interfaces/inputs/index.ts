@@ -45,4 +45,9 @@ export interface InputGenerateTester {
     scenario: string;
     configuration: string;
 }
+
+
+export interface InputClearRecords {
+    filter: string;
+}
 // #endregion module

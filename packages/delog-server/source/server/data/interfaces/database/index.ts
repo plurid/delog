@@ -82,5 +82,6 @@ export type DatabaseObliterate = (
 
 export type DatabaseObliterateAll = (
     entity: string,
+    filter?: Record<string, string>,
 ) => Promise<any>;
 // #endregion module

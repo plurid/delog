@@ -2,6 +2,7 @@
     // #region internal
     import record from './record';
     import obliterateRecord from './obliterateRecord';
+    import clearRecords from './clearRecords';
     // #endregion internal
 // #endregion imports
 
@@ -11,5 +12,6 @@
 export default {
     record,
     obliterateRecord,
+    clearRecords,
 };
 // #endregion exports

@@ -18,6 +18,7 @@ export const mutations = gql`
     extend type Mutation {
         delogMutationRecord(input: DelogInputRecord!): Response!
         obliterateRecord(input: InputValueString!): Response!
+        clearRecords(input: InputClearRecords): Response!
     }
 `;
 
@@ -91,6 +92,10 @@ export const inputs = gql`
         mode: String
         suite: String
         scenario: String
+    }
+
+    input InputClearRecords {
+        filter: String
     }
 `;
 // #endregion module
