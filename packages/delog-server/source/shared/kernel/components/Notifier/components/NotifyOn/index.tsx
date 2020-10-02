@@ -5,6 +5,10 @@
 
 
     // #region external
+    import {
+        notificationTypes,
+    } from '#server/data/constants/notifier';
+
     import InputSwitch from '#kernel-components/InputSwitch';
     // #endregion external
 
@@ -18,21 +22,13 @@
 
 
 
-const fields = [
-    'ENTITY_REGISTRATION',
-    'ENTITY_DEREGISTRATION',
-    'RECORDED_FATAL',
-    'RECORDED_ERROR',
-    'RECORDED_WARN',
-    'TEST_FAIL',
-    'TEST_SUCCESS',
-];
-
 // #region module
 export interface NotifyOnProperties {
     theme: any;
     selected: string[];
-    select: (element: string) => void;
+    select: (
+        element: string,
+    ) => void;
 }
 
 const NotifyOn: React.FC<NotifyOnProperties> = (
@@ -59,7 +55,7 @@ const NotifyOn: React.FC<NotifyOnProperties> = (
             </div>
 
             <ul>
-                {fields.map(field => {
+                {Object.values(notificationTypes).map(field => {
                     const fieldText = field
                         .toLowerCase()
                         .replace('_', ' ');
