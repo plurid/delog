@@ -19,6 +19,23 @@ const parseFilter = (
         return filter;
     }
 
+    if (groups.length === 1) {
+        // ensure that it is a string or a query search
+
+        const split = groups[0].split(':');
+
+        if (split.length > 2) {
+            return filter;
+        }
+
+        const key = split[0];
+        const value = split[1];
+
+        if (!key && !value) {
+            return filter;
+        }
+    }
+
     const projects = [];
     const spaces = [];
     const levels = [];
@@ -49,6 +66,15 @@ const parseFilter = (
                     break;
             }
         }
+    }
+
+    if (
+        projects.length === 0
+        && spaces.length === 0
+        && levels.length === 0
+        && logs.length === 0
+    ) {
+        return filter;
     }
 
     const pairs = {

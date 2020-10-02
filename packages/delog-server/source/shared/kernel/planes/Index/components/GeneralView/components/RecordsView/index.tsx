@@ -26,6 +26,10 @@
     } from '#server/utilities/general';
 
     import {
+        parseFilter,
+    } from '#server/utilities/filter';
+
+    import {
         LoggedRecord,
         InputQuery,
     } from '#server/data/interfaces';
@@ -213,35 +217,48 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             return;
         }
 
-        const value = rawValue.toLowerCase();
+        const parsedFilter = parseFilter(rawValue);
 
-        const filterIDs = getFilterIDs(
-            searchTerms,
-            value,
-        );
+        if (!parsedFilter) {
+            return;
+        }
 
-        setFilterIDs(filterIDs);
+        if (typeof parsedFilter === 'string') {
+            const value = rawValue.toLowerCase();
 
-        const filteredRecords = stateRecords.filter(stateRecord => {
-            if (filterIDs.includes(stateRecord.id)) {
-                return true;
-            }
+            const filterIDs = getFilterIDs(
+                searchTerms,
+                value,
+            );
 
-            return false;
-        });
+            setFilterIDs(filterIDs);
 
-        const sortedRecords = filteredRecords.sort(
-            compareValues('time', 'desc'),
-        );
+            const filteredRecords = stateRecords.filter(stateRecord => {
+                if (filterIDs.includes(stateRecord.id)) {
+                    return true;
+                }
 
-        setFilteredRows(
-            sortedRecords.map(
-                record => recordRowRenderer(
-                    record,
-                    handleRecordObliterate,
+                return false;
+            });
+
+            const sortedRecords = filteredRecords.sort(
+                compareValues('time', 'desc'),
+            );
+
+            setFilteredRows(
+                sortedRecords.map(
+                    record => recordRowRenderer(
+                        record,
+                        handleRecordObliterate,
+                    ),
                 ),
-            ),
-        );
+            );
+
+            return;
+        }
+
+
+        // filter based on the parsed filter
     }
 
     const actionScrollBottom = async (
