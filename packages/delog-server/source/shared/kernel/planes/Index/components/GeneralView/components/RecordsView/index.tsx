@@ -30,6 +30,10 @@
     } from '#server/utilities/filter';
 
     import {
+        logLevelsText,
+    } from '#server/data/constants/logger';
+
+    import {
         LoggedRecord,
         InputQuery,
     } from '#server/data/interfaces';
@@ -218,6 +222,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         }
 
         const parsedFilter = parseFilter(rawValue);
+        console.log('parsedFilter', parsedFilter);
 
         if (!parsedFilter) {
             return;
@@ -265,11 +270,41 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         } = parsedFilter;
 
         const filteredRecords = stateRecords.filter(stateRecord => {
+            let projectMatch = projects.length > 0 ? false : true;
+            let spaceMatch = spaces.length > 0 ? false : true;
+            let logMatch = logs.length > 0 ? false : true;
+            let levelMatch = levels.length > 0 ? false : true;
+
             if (projects.includes(stateRecord.project)) {
-                return true;
+                projectMatch = true;
             }
 
             if (spaces.includes(stateRecord.space)) {
+                spaceMatch = true;
+            }
+
+            for (const log of logs) {
+                if (stateRecord.log.toLowerCase().includes(log)) {
+                    logMatch = true;
+                    break;
+                }
+            }
+
+            for (const level of levels) {
+                const levelText = logLevelsText[stateRecord.level];
+
+                if (level === levelText) {
+                    levelMatch = true;
+                    break;
+                }
+            }
+
+            if (
+                projectMatch
+                && spaceMatch
+                && logMatch
+                && levelMatch
+            ) {
                 return true;
             }
 
@@ -427,7 +462,9 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 actionScrollBottom={actionScrollBottom}
             />
 
-            {stateRecords.length > 0 && (
+            {stateRecords.length > 0
+            && (filterValue && filteredRows.length > 0)
+            && (
                 <StyledObliterateButton>
                     <PluridLinkButton
                         text={filterValue
