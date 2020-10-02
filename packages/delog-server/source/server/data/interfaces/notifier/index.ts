@@ -89,9 +89,13 @@ export interface Notification {
 }
 
 export type NotificationType =
-    | 'REGISTER_PROJECT'
-    | 'DEREGISTER_PROJECT';
-
+    | 'ENTITY_REGISTRATION'
+    | 'ENTITY_DEREGISTRATION'
+    | 'RECORDED_FATAL'
+    | 'RECORDED_ERROR'
+    | 'RECORDED_WARN'
+    | 'TEST_FAIL'
+    | 'TEST_SUCCESS';
 
 export type NotificationTypes = Record<NotificationType, NotificationType>;
 // #endregion module
