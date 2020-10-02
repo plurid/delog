@@ -276,8 +276,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                     entityView.current.resetFilterValue();
                 }
 
-                filterUpdate('');
-
                 dispatchRemoveEntities({
                     type: 'records',
                     ids,

@@ -20,6 +20,7 @@
 
     import {
         PluridIconReset,
+        PluridIconDelete,
     } from '@plurid/plurid-icons-react';
 
     import {
@@ -32,6 +33,8 @@
     import {
         StyledEntityView,
         StyledEntityViewTop,
+        StyledEntityFilterLine,
+        StyledEntityFilterCancel,
         StyledTopButtons,
         StyledEntityListContainer,
         StyledEntityList,
@@ -164,6 +167,14 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             actionScrollBottom(entities);
         }
     }, 1000);
+
+    const clearFilterValue = () => {
+        setSearchValue('');
+
+        if (filterUpdate) {
+            filterUpdate('');
+        }
+    }
     // #endregion handlers
 
 
@@ -222,7 +233,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
         reference,
         () => ({
             resetFilterValue() {
-                setSearchValue('');
+                clearFilterValue();
             }
         }),
     )
@@ -242,7 +253,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
             )}
 
             <StyledEntityViewTop>
-                <div>
+                <StyledEntityFilterLine>
                     <PluridTextline
                         text={searchValue}
                         placeholder="filter"
@@ -259,11 +270,7 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                         }}
                         atKeyDown={(event) => {
                             if (event.key === 'Escape') {
-                                setSearchValue('');
-
-                                if (filterUpdate) {
-                                    filterUpdate('');
-                                }
+                                clearFilterValue();
                             }
                         }}
                         theme={interactionTheme}
@@ -274,9 +281,22 @@ const EntityView: React.ForwardRefExoticComponent<EntityViewType> = forwardRef((
                         level={2}
                         style={{
                             width: filterLength === 'SMALL' ? '300px' : '600px',
+                            paddingRight: '2rem',
                         }}
                     />
-                </div>
+
+                    {searchValue && (
+                        <StyledEntityFilterCancel
+                            filterLength={filterLength}
+                        >
+                            <PluridIconDelete
+                                atClick={() => {
+                                    clearFilterValue();
+                                }}
+                            />
+                        </StyledEntityFilterCancel>
+                    )}
+                </StyledEntityFilterLine>
 
                 <StyledTopButtons>
                     {refresh

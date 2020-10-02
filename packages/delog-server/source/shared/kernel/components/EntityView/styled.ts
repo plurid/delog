@@ -36,6 +36,27 @@ export const StyledEntityViewTop = styled.div`
 `;
 
 
+export const StyledEntityFilterLine = styled.div`
+    position: relative;
+`;
+
+
+export interface IStyledEntityFilterCancel {
+    filterLength: string;
+}
+
+export const StyledEntityFilterCancel = styled.div<IStyledEntityFilterCancel>`
+    position: absolute;
+    top: 10px;
+
+    left: ${
+        ({
+            filterLength,
+        }: IStyledEntityFilterCancel) => filterLength === 'SMALL' ? '275px' : '575px'
+    };
+`;
+
+
 export const StyledTopButtons = styled.div`
     text-align: right;
 `;
