@@ -257,8 +257,37 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             return;
         }
 
+        const {
+            projects,
+            spaces,
+            levels,
+            logs,
+        } = parsedFilter;
 
-        // filter based on the parsed filter
+        const filteredRecords = stateRecords.filter(stateRecord => {
+            if (projects.includes(stateRecord.project)) {
+                return true;
+            }
+
+            if (spaces.includes(stateRecord.space)) {
+                return true;
+            }
+
+            return false;
+        });
+
+        const sortedRecords = filteredRecords.sort(
+            compareValues('time', 'desc'),
+        );
+
+        setFilteredRows(
+            sortedRecords.map(
+                record => recordRowRenderer(
+                    record,
+                    handleRecordObliterate,
+                ),
+            ),
+        );
     }
 
     const actionScrollBottom = async (
