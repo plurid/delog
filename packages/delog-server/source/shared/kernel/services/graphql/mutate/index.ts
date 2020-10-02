@@ -222,6 +222,20 @@ export const OBLITERATE_RECORD = gql`
 `;
 
 
+export const CLEAR_RECORDS = gql`
+    mutation ClearRecords($input: InputClearRecords) {
+        clearRecords(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 export const OBLITERATE_TEST = gql`
     mutation ObliterateTest($input: InputValueString!) {
         obliterateTest(input: $input) {

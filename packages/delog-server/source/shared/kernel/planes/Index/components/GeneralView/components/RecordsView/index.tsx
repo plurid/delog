@@ -12,6 +12,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridLinkButton,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -31,6 +35,7 @@
 
     import {
         OBLITERATE_RECORD,
+        CLEAR_RECORDS,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -127,6 +132,28 @@ const RecordsView: React.FC<RecordsViewProperties> = (
 
             await client.mutate({
                 mutation: OBLITERATE_RECORD,
+                variables: {
+                    input,
+                },
+            });
+        } catch (error) {
+            return;
+        }
+    }
+
+    const clearRecords = async () => {
+        try {
+            // dispatchRemoveEntities({
+            //     type: 'record',
+            //     ids: [],
+            // });
+
+            const input = {
+            //     value: id,
+            };
+
+            await client.mutate({
+                mutation: CLEAR_RECORDS,
                 variables: {
                     input,
                 },
@@ -265,25 +292,39 @@ const RecordsView: React.FC<RecordsViewProperties> = (
     );
 
     return (
-        <EntityView
-            generalTheme={stateGeneralTheme}
-            interactionTheme={stateInteractionTheme}
+        <>
+            <EntityView
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
 
-            rowTemplate="0.5fr 0.5fr 60px 3fr 30px"
-            rowsHeader={rowsHeader}
-            rows={filteredRows}
-            noRows="no records"
+                rowTemplate="0.5fr 0.5fr 60px 3fr 30px"
+                rowsHeader={rowsHeader}
+                rows={filteredRows}
+                noRows="no records"
 
-            entities={stateRecords}
-            loading={loading ? 1 : 0}
+                entities={stateRecords}
+                loading={loading ? 1 : 0}
 
-            filterUpdate={filterUpdate}
-            refresh={() => {
-                getRecords(dispatch);
-            }}
+                filterUpdate={filterUpdate}
+                refresh={() => {
+                    getRecords(dispatch);
+                }}
 
-            actionScrollBottom={actionScrollBottom}
-        />
+                actionScrollBottom={actionScrollBottom}
+            />
+
+            {stateRecords.length > 0 && (
+                <PluridLinkButton
+                    text="clear"
+                    atClick={() => clearRecords()}
+                    inline={true}
+                    style={{
+                        fontSize: '0.9rem',
+                        padding: '0 0.6rem',
+                    }}
+                />
+            )}
+        </>
     );
     // #endregion render
 }

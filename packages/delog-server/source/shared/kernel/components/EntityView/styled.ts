@@ -55,7 +55,7 @@ export const StyledEntityList = styled.ul<IStyledEntityList>`
     padding: 0;
     margin: 0;
     list-style: none;
-    max-height: 520px;
+    max-height: 500px;
     overflow: auto;
 
     background-color: ${
