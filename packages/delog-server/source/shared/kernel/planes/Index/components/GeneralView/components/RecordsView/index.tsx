@@ -57,6 +57,10 @@
         recordRowRenderer,
         createSearchTerms,
     } from './logic';
+
+    import {
+        StyledClearButton,
+    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -140,28 +144,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             return;
         }
     }
-
-    const clearRecords = async () => {
-        try {
-            // dispatchRemoveEntities({
-            //     type: 'record',
-            //     ids: [],
-            // });
-
-            const input = {
-            //     value: id,
-            };
-
-            await client.mutate({
-                mutation: CLEAR_RECORDS,
-                variables: {
-                    input,
-                },
-            });
-        } catch (error) {
-            return;
-        }
-    }
     // #endregion handlers
 
 
@@ -189,6 +171,11 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         loading,
         setLoading,
     ] = useState(false);
+
+    const [
+        filterValue,
+        setFilterValue,
+    ] = useState('');
     // #endregion state
 
 
@@ -197,6 +184,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         rawValue: string,
     ) => {
         const value = rawValue.toLowerCase();
+        setFilterValue(value);
 
         const filterIDs = getFilterIDs(
             searchTerms,
@@ -240,6 +228,28 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         await getRecords(dispatch, pagination);
 
         setLoading(false);
+    }
+
+    const clearRecords = async () => {
+        try {
+            // dispatchRemoveEntities({
+            //     type: 'record',
+            //     ids: [],
+            // });
+
+            const input = {
+            //     value: id,
+            };
+
+            await client.mutate({
+                mutation: CLEAR_RECORDS,
+                variables: {
+                    input,
+                },
+            });
+        } catch (error) {
+            return;
+        }
     }
     // #endregion handlers
 
@@ -314,15 +324,16 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             />
 
             {stateRecords.length > 0 && (
-                <PluridLinkButton
-                    text="clear"
-                    atClick={() => clearRecords()}
-                    inline={true}
-                    style={{
-                        fontSize: '0.9rem',
-                        padding: '0 0.6rem',
-                    }}
-                />
+                <StyledClearButton>
+                    <PluridLinkButton
+                        text={filterValue
+                            ? `clear all with filter '${filterValue}'`
+                            : 'clear'
+                        }
+                        atClick={() => clearRecords()}
+                        inline={true}
+                    />
+                </StyledClearButton>
             )}
         </>
     );

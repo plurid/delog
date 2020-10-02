@@ -118,6 +118,7 @@ export interface IStyledGeneralSelected {
 
 export const StyledGeneralSelected = styled.div<IStyledGeneralSelected>`
     padding: 2rem;
+    position: relative;
 `;
 
 

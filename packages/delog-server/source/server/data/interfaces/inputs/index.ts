@@ -48,6 +48,6 @@ export interface InputGenerateTester {
 
 
 export interface InputClearRecords {
-    filter: string;
+    filter?: string;
 }
 // #endregion module
