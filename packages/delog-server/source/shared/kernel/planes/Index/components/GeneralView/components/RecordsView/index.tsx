@@ -222,7 +222,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         }
 
         const parsedFilter = parseFilter(rawValue);
-        console.log('parsedFilter', parsedFilter);
 
         if (!parsedFilter) {
             return;
