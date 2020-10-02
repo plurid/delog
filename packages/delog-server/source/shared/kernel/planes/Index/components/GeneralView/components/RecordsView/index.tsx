@@ -462,7 +462,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             />
 
             {stateRecords.length > 0
-            && (filterValue && filteredRows.length > 0)
+            && (filterValue ? filteredRows.length > 0 : true)
             && (
                 <StyledObliterateButton>
                     <PluridLinkButton
