@@ -72,7 +72,7 @@ export interface NotifierAPIBaseData {
 }
 
 export interface StoredNotifierAPIData extends NotifierAPIBaseData {
-    token: string;
+    secret: string;
 }
 
 export interface ClientNotifierAPIData extends NotifierAPIBaseData {

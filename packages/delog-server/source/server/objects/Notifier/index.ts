@@ -100,7 +100,7 @@ class Notifier {
 
         const {
             endpoint,
-            token,
+            secret,
         } = data;
 
         const notifyData = {
@@ -112,7 +112,7 @@ class Notifier {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Delog-Token': token,
+                'Delog-Secret': secret,
             },
             body: JSON.stringify({
                 ...notifyData,
