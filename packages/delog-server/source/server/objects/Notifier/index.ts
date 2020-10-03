@@ -184,24 +184,49 @@ class Notifier {
 
             <div>
                 <ul>
-                    <li>
-                        project: ${notifyData.project}
-                    </li>
-                    <li>
-                        space: ${notifyData.space}
-                    </li>
+                    ${notifyData.project
+                        ? `
+                            <li>
+                                project: ${notifyData.project}
+                            </li>
+                        ` : ''
+                    }
+
+                    ${notifyData.space
+                        ? `
+                            <li>
+                                space: ${notifyData.space}
+                            </li>
+                        ` : ''
+                    }
+
+                    ${notifyData.method
+                        ? `
+                            <li>
+                                method: ${notifyData.method}
+                            </li>
+                        ` : ''
+                    }
+
                     <li>
                         format: ${notifyData.format}
                     </li>
+
                     <li>
-                        log: ${notifyData.log}
+                        text: ${notifyData.text}
                     </li>
+
                     <li>
                         level: ${logLevelString} (${notifyData.level})
                     </li>
-                    <li>
-                        extradata: ${notifyData.extradata}
-                    </li>
+
+                    ${notifyData.extradata
+                        ? `
+                            <li>
+                                extradata: ${notifyData.extradata}
+                            </li>
+                        ` : ''
+                    }
                 </ul>
             </div>
             `;
