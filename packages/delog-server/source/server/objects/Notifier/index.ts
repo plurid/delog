@@ -107,6 +107,7 @@ class Notifier {
             ...this.log,
         };
         delete (notifyData as any).ownedBy;
+        delete (notifyData as any)._id;
 
         await fetch(endpoint, {
             method: 'post',
@@ -159,6 +160,7 @@ class Notifier {
                 ...this.log,
             };
             delete (notifyData as any).ownedBy;
+            delete (notifyData as any)._id;
 
             const text = JSON.stringify(notifyData, null, 4);
             const html = `
