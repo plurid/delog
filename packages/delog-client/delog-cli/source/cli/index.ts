@@ -93,11 +93,11 @@ const main = async (
 
     program
         .command('setup')
-        .requiredOption(
+        .option(
             '-s, --server <server>',
             'server address',
         )
-        .requiredOption(
+        .option(
             '-i, --identonym <identonym>',
             'identonym',
         )
