@@ -43,6 +43,23 @@ const defaultConfiguration: Configuration = {
         ...configurationDefaults,
     },
 };
+
+
+const LOG_LEVEL_FATAL = 6;
+const LOG_LEVEL_ERROR = 5;
+const LOG_LEVEL_WARN = 4;
+const LOG_LEVEL_INFO = 3;
+const LOG_LEVEL_DEBUG = 2;
+const LOG_LEVEL_TRACE = 1;
+
+const logLevels = {
+    fatal: LOG_LEVEL_FATAL,
+    error: LOG_LEVEL_ERROR,
+    warn: LOG_LEVEL_WARN,
+    info: LOG_LEVEL_INFO,
+    debug: LOG_LEVEL_DEBUG,
+    trace: LOG_LEVEL_TRACE,
+};
 // #endregion module
 
 
@@ -58,5 +75,7 @@ export {
 
     configurationDefaults,
     defaultConfiguration,
+
+    logLevels,
 };
 // #endregion exports

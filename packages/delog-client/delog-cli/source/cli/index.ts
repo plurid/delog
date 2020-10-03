@@ -8,6 +8,10 @@
 
     // #region external
     import {
+        logLevels,
+    } from '../data/constants';
+
+    import {
         status,
         login,
         logout,
@@ -207,13 +211,17 @@ const main = async (
                         ...JSON.parse(context),
                     } : {};
 
+                const levelValue = typeof level === 'string'
+                    ? logLevels[level]
+                    : parseInt(level);
+
                 const data: any = {
                     format,
 
                     project,
                     space,
 
-                    level: parseInt(level),
+                    level: levelValue,
                     method,
                     sharedID,
                     sharedOrder: parseInt(sharedOrder),
