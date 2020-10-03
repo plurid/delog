@@ -1,12 +1,8 @@
 // #region imports
     // #region external
     import {
-        ConfigurationFile,
-    } from '../../data/interfaces';
-
-    import {
-        readConfigurationFile,
-        updateConfigurationFile,
+        getConfiguration,
+        removeConfiguration,
         extractServerName,
     } from '../../services/utilities';
     // #endregion external
@@ -15,25 +11,32 @@
 
 
 // #region module
-const logout = async () => {
-    const ownerData = await readConfigurationFile();
+const logout = async (
+    server?: string,
+    identonym?: string,
+) => {
+    const configuration = await getConfiguration(
+        server,
+        identonym,
+    );
 
-    if (!ownerData.server) {
+    if (!configuration) {
+        return;
+    }
+
+    if (!configuration.server) {
         console.log(`Not logged into a delog server.`);
         return;
     }
 
-    const data: ConfigurationFile = {
-        identonym: '',
-        key: '',
-        server: '',
-        token: '',
-    };
-    await updateConfigurationFile(data);
+    await removeConfiguration(
+        configuration.server,
+        configuration.identonym,
+    );
 
-    const serverName = extractServerName(ownerData.server);
+    const serverName = extractServerName(configuration.server);
 
-    console.log(`Logged out identonym '${ownerData.identonym}' from the delog server '${serverName}'.`);
+    console.log(`Logged out identonym '${configuration.identonym}' from the delog server '${serverName}'.`);
 }
 // #endregion module
 

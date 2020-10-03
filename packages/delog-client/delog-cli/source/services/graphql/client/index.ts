@@ -18,7 +18,7 @@
     } from '../../../data/constants';
 
     import {
-        updateConfigurationFile,
+        updateConfiguration,
     } from '../../utilities/configuration';
      // #endregion external
 // #endregion imports
@@ -39,11 +39,18 @@ const client = (
         },
     });
 
-    const afterwareLink = new ApolloLink((operation, forward) => {
-        return forward(operation).map((response) => {
+    const afterwareLink = new ApolloLink(
+        (
+            operation,
+            forward,
+        ) => forward(operation).map((response) => {
             const context = operation.getContext();
+
             const {
-                response: { headers },
+                response: {
+                    url,
+                    headers,
+                },
             } = context;
 
             if (!headers) {
@@ -54,6 +61,12 @@ const client = (
             if (!cookie) {
                 return response;
             }
+
+            const {
+                variables,
+            } = operation;
+
+            const identonym = variables.input.identonym;
 
             const split = cookie.split(';');
             const privateToken = split[0];
@@ -68,13 +81,19 @@ const client = (
 
             const data = {
                 token: privateTokenValue,
+                server: url,
+                identonym,
             };
 
-            updateConfigurationFile(data);
+            updateConfiguration(
+                url,
+                identonym,
+                data,
+            );
 
             return response;
-        });
-    });
+        })
+    );
 
     return new ApolloClient({
         link: from([

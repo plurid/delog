@@ -1,5 +1,13 @@
 // #region imports
     // #region external
+    import {
+        Configuration,
+    } from '../../data/interfaces';
+
+    import {
+        defaultConfiguration,
+    } from '../../data/constants';
+
     import client from '../../services/graphql/client';
     import {
         LOGIN,
@@ -8,7 +16,7 @@
     import {
         extractServerName,
 
-        updateConfigurationFile,
+        updateConfiguration,
     } from '../../services/utilities';
     // #endregion external
 // #endregion imports
@@ -27,7 +35,8 @@ const login = async (
 
     const serverName = extractServerName(server);
 
-    const data = {
+    const data: Configuration = {
+        ...defaultConfiguration,
         server,
         identonym,
         key,
@@ -54,7 +63,11 @@ const login = async (
         // HACK
         // to allow the token writing inside the apollo afterwareLink
         setTimeout(async () => {
-            await updateConfigurationFile(data);
+            await updateConfiguration(
+                server,
+                identonym,
+                data,
+            );
         }, 1000);
 
         console.log(`Logged in the delog server '${serverName}' as '${identonym}'.`);

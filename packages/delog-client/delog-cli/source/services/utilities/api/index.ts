@@ -9,7 +9,7 @@
     } from '../../graphql';
 
     import {
-        readConfigurationFile,
+        getConfiguration,
     } from '../configuration';
     // #endregion external
 // #endregion imports
@@ -24,17 +24,31 @@ const delogCookieFromToken = (
 }
 
 
-const getDelog = async () => {
-    const configuration = await readConfigurationFile();
+const getDelog = async (
+    server?: string,
+    identonym?: string,
+) => {
+    const configuration = await getConfiguration(
+        server,
+        identonym,
+    );
 
-    if (!configuration.token || !configuration.server) {
+    if (!configuration) {
         return;
     }
 
-    const cookie = delogCookieFromToken(configuration.token);
+    const {
+        token,
+    } = configuration;
+
+    if (!token || !server) {
+        return;
+    }
+
+    const cookie = delogCookieFromToken(token);
 
     const delog = client(
-        configuration.server,
+        server,
         cookie,
     );
 

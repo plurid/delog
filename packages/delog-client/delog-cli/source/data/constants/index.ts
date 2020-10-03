@@ -3,6 +3,14 @@
     import os from 'os';
     import path from 'path';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        Configuration,
+        ConfigurationDefaults,
+    } from '../interfaces';
+    // #endregion external
 // #endregion imports
 
 
@@ -16,7 +24,25 @@ const delogConfigurationPath = path.join(
     DELOG_CONFIGURATION_FILE
 );
 
+
 const DELOG_COOKIE = 'PVTTKN';
+
+
+const configurationDefaults: ConfigurationDefaults = {
+    format: '%TIME %TEXT',
+};
+
+
+const defaultConfiguration: Configuration = {
+    identonym: '',
+    key: '',
+    server: '',
+    token: '',
+    isDefault: false,
+    defaults: {
+        ...configurationDefaults,
+    },
+};
 // #endregion module
 
 
@@ -29,5 +55,8 @@ export {
     delogConfigurationPath,
 
     DELOG_COOKIE,
+
+    configurationDefaults,
+    defaultConfiguration,
 };
 // #endregion exports

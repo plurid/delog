@@ -22,6 +22,7 @@ const resolveFilepath = (
     return filepath;
 }
 
+
 const parseFile = async (
     filepath: string,
 ) => {

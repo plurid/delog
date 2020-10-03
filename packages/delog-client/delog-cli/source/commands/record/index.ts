@@ -15,6 +15,8 @@
 // #region module
 const record = async (
     data: any,
+    server?: string,
+    identonym?: string,
 ) => {
     try {
         const delog = await getDelog();
@@ -64,7 +66,6 @@ const record = async (
 
         return;
     } catch (error) {
-        console.log('error', error);
         console.log('Could not record to delog. Something went wrong.');
         return;
     }

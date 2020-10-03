@@ -1,7 +1,7 @@
 // #region imports
     // #region external
     import {
-        readConfigurationFile,
+        readConfigurations,
         extractServerName,
     } from '../../services/utilities';
     // #endregion external
@@ -11,21 +11,27 @@
 
 // #region module
 const status = async () => {
-    const ownerData = await readConfigurationFile();
+    const configurations = await readConfigurations();
 
-    if (
-        !ownerData.server
-        || !ownerData.identonym
-        || !ownerData.token
-        || !ownerData.key
-    ) {
+    if (configurations.length === 0) {
         console.log(`Not logged into a delog server.`);
         return;
     }
 
-    const serverName = extractServerName(ownerData.server);
+    for (const configuration of configurations) {
+        const {
+            server,
+            identonym,
+            isDefault,
+        } = configuration;
 
-    console.log(`Logged into the delog server '${serverName}' as '${ownerData.identonym}'.`);
+        const serverName = extractServerName(server);
+        const defaultString = isDefault ? ' [default]' : '';
+
+        const message = `Logged into the delog server '${serverName}' as '${identonym}'` + defaultString + '.';
+
+        console.log(message);
+    }
 }
 // #endregion module
 
