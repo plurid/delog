@@ -530,10 +530,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@plurid/deon@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@plurid/deon/-/deon-0.0.11.tgz#853e7f1f1985521628ed586152fafe959d8c481b"
-  integrity sha512-LF849MltiL+7NZERbcEcyceR/EiZpvJtg/ynsX3dutSWUbioFU17RKkFH7mAP6cW1U8l4KaAXuISCLHIF9FkYQ==
+"@plurid/deon@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@plurid/deon/-/deon-0.0.12.tgz#aa62d3e1e886d330f4f5eee51c2cf81bbc5d5df7"
+  integrity sha512-k/YNegpOb1LU/aEXJw/GOJPnEj7W+x+99lqJm4XMWPrOitdOE49fgWp8kFw0NOW/pw/7aPGo9rC2rytZmdySNg==
   dependencies:
     cross-fetch "^3.0.6"
 
