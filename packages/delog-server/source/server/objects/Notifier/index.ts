@@ -160,7 +160,51 @@ class Notifier {
             delete (notifyData as any).ownedBy;
 
             const text = JSON.stringify(notifyData, null, 4);
-            const html = JSON.stringify(notifyData, null, 4);
+            const html = `
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+                body {
+                    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+                    padding: 2rem;
+                }
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                ul li {
+                    margin-bottom: 0.5rem;
+                }
+            </style>
+
+            <h1>
+                delog :: ${logLevelString} ${projectString}
+            </h1>
+
+            <div>
+                <ul>
+                    <li>
+                        project: ${notifyData.project}
+                    </li>
+                    <li>
+                        space: ${notifyData.space}
+                    </li>
+                    <li>
+                        format: ${notifyData.format}
+                    </li>
+                    <li>
+                        log: ${notifyData.log}
+                    </li>
+                    <li>
+                        level: ${logLevelString} (${notifyData.level})
+                    </li>
+                    <li>
+                        extradata: ${notifyData.extradata}
+                    </li>
+                </ul>
+            </div>
+            `;
 
             await transporter.sendMail({
                 from: sender,
