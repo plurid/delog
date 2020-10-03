@@ -210,19 +210,15 @@ class Notifier {
                     }
 
                     <li>
+                        level: ${logLevelString} (${notifyData.level})
+                    </li>
+
+                    <li>
                         time: ${new Date(notifyData.time * 1000).toLocaleString()} (${notifyData.time})
                     </li>
 
                     <li>
                         text: ${notifyData.text}
-                    </li>
-
-                    <li>
-                        level: ${logLevelString} (${notifyData.level})
-                    </li>
-
-                    <li>
-                        format: ${notifyData.format}
                     </li>
 
                     ${notifyData.extradata
@@ -232,6 +228,14 @@ class Notifier {
                             </li>
                         ` : ''
                     }
+
+                    <li>
+                        format: ${notifyData.format}
+                    </li>
+
+                    <li>
+                        log: ${notifyData.log}
+                    </li>
                 </ul>
             </div>
             `;

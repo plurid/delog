@@ -16,6 +16,7 @@
     import database from '#server/services/database';
 
     import Formatter from '#server/objects/Formatter';
+    import Notifier from '#server/objects/Notifier';
     // #endregion external
 // #endregion imports
 
@@ -40,6 +41,9 @@ const registerRecord = async (
         ...record,
         log,
     };
+
+    const notifier = new Notifier(loggedRecord);
+    notifier.notify();
 
     await database.store(
         'records',
