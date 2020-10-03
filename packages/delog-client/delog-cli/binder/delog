@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+const delog = require('../distribution/index.js');
+
+delog.cli();

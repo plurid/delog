@@ -1,0 +1,20 @@
+{
+    #triggers
+}
+
+
+
+triggers [
+    #triggerA
+]
+
+
+triggerA {
+    id a
+    name b
+    project c
+    repository d
+    branch e
+    path f
+    file g
+}
