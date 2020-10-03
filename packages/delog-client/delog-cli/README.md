@@ -10,7 +10,7 @@
 
 
 <h1 align="center">
-    delog
+    delog command-line interface
 </h1>
 
 
@@ -37,6 +37,8 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 ### Contents
 
 + [About](#about)
++ [Install](#install)
++ [Usage](#usage)
 + [Packages](#packages)
 
 
@@ -46,6 +48,35 @@ delog uses [plurid](https://github.com/plurid/plurid) to explore information as 
 `Delog` acts as a central logging center. Once configured with a `token`, the `delog` client can point to the network `endpoint`, passing the `token`.
 
 `Delog` can also function as a log-based tester. The `delog` client is set in the testing mode and a `delog` client call will trigger a `tester` in the `delog` endpoint.
+
+
+
+## Install
+
+To install the `CLI` ensure that the [`NodeJS`](https://nodejs.org) runtime is installed.
+
+```
+npm install -g @plurid/delog-cli
+```
+
+
+
+## Usage
+
+```
+Usage: delog <command>
+
+Options:
+  -v, --version     output the version number
+  -h, --help        display help for command
+
+Commands:
+  status            show the connection status
+  login [options]   log into a delog server using the identonym and the key
+  logout [options]  log out of a delog server, default or specified
+  setup [options]   setup the configuration for a delog server
+  record [options]  record to the delog server, default or specified
+```
 
 
 
