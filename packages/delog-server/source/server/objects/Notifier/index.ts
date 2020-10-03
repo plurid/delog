@@ -106,6 +106,7 @@ class Notifier {
         const notifyData = {
             ...this.log,
         };
+        delete (notifyData as any).ownedBy;
 
         await fetch(endpoint, {
             method: 'post',
@@ -152,8 +153,14 @@ class Notifier {
             const logLevelString = logLevelsText[this.log.level];
             const projectString = this.log.project ? ` - ${this.log.project}` : '';
             const subject = `delog :: ${logLevelString}` + projectString;
-            const text = JSON.stringify(this.log, null, 4);
-            const html = JSON.stringify(this.log, null, 4);
+
+            const notifyData = {
+                ...this.log,
+            };
+            delete (notifyData as any).ownedBy;
+
+            const text = JSON.stringify(notifyData, null, 4);
+            const html = JSON.stringify(notifyData, null, 4);
 
             await transporter.sendMail({
                 from: sender,
