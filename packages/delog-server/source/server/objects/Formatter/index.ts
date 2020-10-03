@@ -11,6 +11,7 @@
 // #endregion imports
 
 
+
 // #region module
 const FORMAT_PRIMITIVES: string[] = [
     'TIME',
