@@ -91,6 +91,15 @@ Commands:
 [delog-server]: https://github.com/plurid/delog/tree/master/packages/delog-server
 
 
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/delog-cli">
+    <img src="https://img.shields.io/npm/v/@plurid/delog-cli.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/delog-client-cli][delog-client-cli] • the `Command-Line Interface` client
+
+[delog-client-cli]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-cli
+
+
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/delog">
     <img src="https://img.shields.io/npm/v/@plurid/delog.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
@@ -100,10 +109,10 @@ Commands:
 [delog-client-javascript]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-javascript
 
 
-<a target="_blank" href="https://www.npmjs.com/package/@plurid/delog-cli">
-    <img src="https://img.shields.io/npm/v/@plurid/delog-cli.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+<a target="_blank" href="https://pypi.org/project/delog">
+    <img src="https://img.shields.io/pypi/v/delog.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/delog-client-cli][delog-client-cli] • the `Command-Line Interface` client
+[@plurid/delog-client-python][delog-client-python] • the `Python` client
 
-[delog-client-cli]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-cli
+[delog-client-python]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-python
