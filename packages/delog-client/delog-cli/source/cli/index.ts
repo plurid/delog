@@ -101,13 +101,28 @@ const main = async (
             '-d, --default',
             'make the default delog server',
         )
+        .option(
+            '-f, --format',
+            'set the delog format for the server',
+        )
         .description('setup the configuration for a delog server')
         .action(async (options: any) => {
+            const {
+                server,
+                identonym,
+                format,
+            } = options;
+
             const data: any = {
-                text: options.text,
+                default: options.default,
+                format,
             };
 
-            await setup(data);
+            await setup(
+                data,
+                server,
+                identonym,
+            );
         });
 
 
