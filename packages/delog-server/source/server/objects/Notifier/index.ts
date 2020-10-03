@@ -154,6 +154,7 @@ class Notifier {
             const projectString = this.log.project ? ` - ${this.log.project}` : '';
             const subject = `delog :: ${logLevelString}` + projectString;
 
+
             const notifyData = {
                 ...this.log,
             };
@@ -207,6 +208,10 @@ class Notifier {
                             </li>
                         ` : ''
                     }
+
+                    <li>
+                        time: ${new Date(notifyData.time * 1000).toLocaleString()} (${notifyData.time})
+                    </li>
 
                     <li>
                         text: ${notifyData.text}
