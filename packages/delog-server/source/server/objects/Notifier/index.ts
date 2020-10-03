@@ -1,6 +1,8 @@
 // #region imports
     // #region libraries
     import fetch from 'cross-fetch';
+
+    import mailer from 'nodemailer';
     // #endregion libraries
 
 
@@ -120,10 +122,45 @@ class Notifier {
     private async notifyEmail(
         notifier: NotifierEmail,
     ) {
-        const {
-            data,
-        } = notifier;
+        try {
+            const {
+                data,
+            } = notifier;
 
+            const {
+                host,
+                port,
+                secure,
+                username,
+                password,
+                sender,
+            } = data.authentication;
+
+            const transporter = mailer.createTransport({
+                host,
+                port,
+                secure,
+                auth: {
+                    user: username,
+                    pass: password,
+                },
+            });
+
+            const to = data.notifyTo.join(', ');
+            const subject = `Delog :: ${this.log.level}`;
+            const text = JSON.stringify(this.log, null, 4);
+            const html = JSON.stringify(this.log, null, 4);
+
+            await transporter.sendMail({
+                from: sender,
+                to,
+                subject,
+                text,
+                html,
+            });
+        } catch (error) {
+            return;
+        }
     }
 }
 // #endregion module
