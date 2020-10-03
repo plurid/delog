@@ -184,13 +184,15 @@ const Notifier: React.FC<NotifierProperties> = (
                 }, []);
 
             data = {
-                host: notifierHost,
-                port: notifierPort,
-                secure: notifierSecure,
-                username: notifierUsername,
-                password: notifierPassword,
-                sender: notifierSender,
                 notifyTo: notifyToData,
+                authentication: {
+                    host: notifierHost,
+                    port: notifierPort,
+                    secure: notifierSecure,
+                    username: notifierUsername,
+                    password: notifierPassword,
+                    sender: notifierSender,
+                },
             };
         }
 
