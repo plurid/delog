@@ -209,15 +209,15 @@ class Notifier {
                     }
 
                     <li>
-                        format: ${notifyData.format}
-                    </li>
-
-                    <li>
                         text: ${notifyData.text}
                     </li>
 
                     <li>
                         level: ${logLevelString} (${notifyData.level})
+                    </li>
+
+                    <li>
+                        format: ${notifyData.format}
                     </li>
 
                     ${notifyData.extradata
