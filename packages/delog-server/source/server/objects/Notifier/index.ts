@@ -147,7 +147,10 @@ class Notifier {
             });
 
             const to = data.notifyTo.join(', ');
-            const subject = `Delog :: ${this.log.level}`;
+
+            const logLevelString = logLevels[this.log.level];
+            const projectString = this.log.project ? ` - ${this.log.project}` : '';
+            const subject = `Delog :: ${logLevelString}` + projectString;
             const text = JSON.stringify(this.log, null, 4);
             const html = JSON.stringify(this.log, null, 4);
 
