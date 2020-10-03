@@ -30,19 +30,19 @@ const record = async (
         }
 
         const input = {
-            format: '%TIME %TEXT',
+            format: data.format || '%TIME %TEXT',
 
-            project: '',
-            space: '',
+            project: data.project || '',
+            space: data.space || '',
 
-            level: 0,
-            method: '',
-            sharedID: '',
-            sharedOrder: 0,
-            error: '',
-            extradata: '',
+            level: data.level || 0,
+            method: data.method || '',
+            sharedID: data.sharedID || '',
+            sharedOrder: data.sharedOrder || 0,
+            error: data.error || '',
+            extradata: data.extradata || '',
 
-            context: {},
+            context: data.context || {},
 
             text: data.text,
 
