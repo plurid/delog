@@ -29,6 +29,19 @@
 
 
 // #region module
+const writeConfiguration = async (
+    data: any,
+) => {
+    const deon = new Deon();
+    const dataString = deon.stringify(data);
+
+    await fs.writeFile(
+        delogConfigurationPath,
+        dataString,
+    );
+}
+
+
 const updateConfiguration = async (
     server: string,
     identonym: string,
@@ -63,13 +76,7 @@ const updateConfiguration = async (
             });
         }
 
-        const deon = new Deon();
-        const dataString = deon.stringify(updatedConfigurations);
-
-        await fs.writeFile(
-            delogConfigurationPath,
-            dataString,
-        );
+        await writeConfiguration(updatedConfigurations);
 
         return true;
     } catch (error) {
@@ -138,7 +145,20 @@ const getConfiguration = async (
         return await getDefaultConfiguration();
     }
 
-    return;
+    const configurations = await readConfigurations();
+
+    const configuration = configurations.find(configuration => {
+        if (
+            configuration.server === server
+            && configuration.identonym === identonym
+        ) {
+            return true;
+        }
+
+        return false;
+    });
+
+    return configuration;
 }
 
 
@@ -146,6 +166,33 @@ const removeConfiguration = async (
     server?: string,
     identonym?: string,
 ) => {
+    const configurations = await readConfigurations();
+
+    let removedConfiguration = false;
+    let updatedConfigurations: Configuration[] = [];
+
+    updatedConfigurations = configurations.filter(configuration => {
+        if (
+            server === configuration.server
+            && identonym === configuration.identonym
+        ) {
+            removedConfiguration = true;
+            return false;
+        }
+
+        if (!server && !identonym && configuration.isDefault) {
+            removedConfiguration = true;
+            return false;
+        }
+
+        return true;
+    });
+
+    if (!removedConfiguration) {
+        updatedConfigurations = updatedConfigurations.slice(1);
+    }
+
+    await writeConfiguration(updatedConfigurations);
 
     return;
 }

@@ -68,7 +68,7 @@ const login = async (
                 identonym,
                 data,
             );
-        }, 1000);
+        }, 2_000);
 
         console.log(`Logged in the delog server '${serverName}' as '${identonym}'.`);
     } catch (error) {
