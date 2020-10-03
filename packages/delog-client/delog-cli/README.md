@@ -24,6 +24,7 @@ delog is a service or self-hosted logger
 Specialized support for the runtimes:
 
 + `NodeJS`
++ `Python`
 
 delog uses [plurid](https://github.com/plurid/plurid) to explore information as a 3D structure.
 
