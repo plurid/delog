@@ -9,6 +9,7 @@
     // #region external
     import {
         logLevels,
+        logLevelsText,
     } from '#server/data/constants';
 
     import {
@@ -148,7 +149,7 @@ class Notifier {
 
             const to = data.notifyTo.join(', ');
 
-            const logLevelString = logLevels[this.log.level];
+            const logLevelString = logLevelsText[this.log.level];
             const projectString = this.log.project ? ` - ${this.log.project}` : '';
             const subject = `Delog :: ${logLevelString}` + projectString;
             const text = JSON.stringify(this.log, null, 4);
