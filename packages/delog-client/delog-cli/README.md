@@ -111,7 +111,7 @@ Commands:
 
 
 <a target="_blank" href="https://pypi.org/project/delog">
-    <img src="https://img.shields.io/pypi/v/delog.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+    <img src="https://img.shields.io/pypi/v/delog.svg?logo=pypi&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
 [@plurid/delog-client-python][delog-client-python] • the `Python` client
