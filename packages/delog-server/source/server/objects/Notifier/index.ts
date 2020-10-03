@@ -151,7 +151,7 @@ class Notifier {
 
             const logLevelString = logLevelsText[this.log.level];
             const projectString = this.log.project ? ` - ${this.log.project}` : '';
-            const subject = `Delog :: ${logLevelString}` + projectString;
+            const subject = `delog :: ${logLevelString}` + projectString;
             const text = JSON.stringify(this.log, null, 4);
             const html = JSON.stringify(this.log, null, 4);
 
