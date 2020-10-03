@@ -211,9 +211,9 @@ const main = async (
                         ...JSON.parse(context),
                     } : {};
 
-                const levelValue = typeof level === 'string'
-                    ? logLevels[level]
-                    : parseInt(level);
+                const levelValue = parseInt(level)
+                    ? parseInt(level)
+                    : logLevels[level];
 
                 const data: any = {
                     format,
