@@ -98,11 +98,11 @@ const main = async (
             'identonym',
         )
         .option(
-            '-d, --default',
+            '-d, --default <default>',
             'make the default delog server',
         )
         .option(
-            '-f, --format',
+            '-f, --format <format>',
             'set the delog format for the server',
         )
         .description('setup the configuration for a delog server')
@@ -114,7 +114,7 @@ const main = async (
             } = options;
 
             const data: any = {
-                default: options.default,
+                default: options.default === 'true',
                 format,
             };
 

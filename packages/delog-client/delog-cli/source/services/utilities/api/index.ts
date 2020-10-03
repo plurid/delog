@@ -34,7 +34,10 @@ const getDelog = async (
     );
 
     if (!configuration) {
-        return;
+        return {
+            delog: undefined,
+            configuration: undefined,
+        };
     }
 
     const {
@@ -42,7 +45,10 @@ const getDelog = async (
     } = configuration;
 
     if (!token || !configuration.server) {
-        return;
+        return {
+            delog: undefined,
+            configuration: undefined,
+        };
     }
 
     const cookie = delogCookieFromToken(token);
@@ -52,7 +58,10 @@ const getDelog = async (
         cookie,
     );
 
-    return delog;
+    return {
+        delog,
+        configuration,
+    };
 }
 // #endregion module
 

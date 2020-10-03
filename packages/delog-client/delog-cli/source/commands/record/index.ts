@@ -19,18 +19,21 @@ const record = async (
     identonym?: string,
 ) => {
     try {
-        const delog = await getDelog(
+        const {
+            delog,
+            configuration,
+        } = await getDelog(
             server,
             identonym,
         );
 
-        if (!delog) {
+        if (!delog || !configuration) {
             console.log('Could record to delog. Not logged in.');
             return;
         }
 
         const input = {
-            format: data.format || '%TIME %TEXT',
+            format: data.format || configuration.defaults.format || '%TIME %TEXT',
 
             project: data.project || '',
             space: data.space || '',
