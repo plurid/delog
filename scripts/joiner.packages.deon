@@ -8,6 +8,7 @@
 
 
 packages [
+    ./packages/delog-client/delog-cli
     ./packages/delog-client/delog-javascript
     ./packages/delog-server
 ]
