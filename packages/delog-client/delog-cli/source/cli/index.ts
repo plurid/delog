@@ -187,6 +187,11 @@ const main = async (
                     text,
                 } = options;
 
+                const contextValue = context
+                    ? {
+                        ...JSON.parse(context),
+                    } : {};
+
                 const data: any = {
                     format,
 
@@ -200,7 +205,7 @@ const main = async (
                     error,
                     extradata,
 
-                    context: JSON.parse(context),
+                    context: contextValue,
 
                     text,
                 };

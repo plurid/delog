@@ -63,6 +63,8 @@ const login = async (
         // HACK
         // to allow the token writing inside the apollo afterwareLink
         setTimeout(async () => {
+            delete (data as any).token;
+
             await updateConfiguration(
                 server,
                 identonym,

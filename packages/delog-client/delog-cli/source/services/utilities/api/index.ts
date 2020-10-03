@@ -41,14 +41,14 @@ const getDelog = async (
         token,
     } = configuration;
 
-    if (!token || !server) {
+    if (!token || !configuration.server) {
         return;
     }
 
     const cookie = delogCookieFromToken(token);
 
     const delog = client(
-        server,
+        configuration.server,
         cookie,
     );
 

@@ -19,7 +19,10 @@ const record = async (
     identonym?: string,
 ) => {
     try {
-        const delog = await getDelog();
+        const delog = await getDelog(
+            server,
+            identonym,
+        );
 
         if (!delog) {
             console.log('Could record to delog. Not logged in.');
@@ -39,13 +42,11 @@ const record = async (
             error: '',
             extradata: '',
 
-            context: {
-
-            },
+            context: {},
 
             text: data.text,
 
-            time: 0,
+            time: Math.floor(Date.now() / 1000),
         };
 
         const mutation = await delog.mutate({
