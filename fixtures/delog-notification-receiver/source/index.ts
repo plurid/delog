@@ -16,9 +16,14 @@ const main = () => {
     const router = new Router();
 
     router.post('/', (context, next) => {
-        const body = context.request.body;
+        const {
+            headers,
+            body,
+        } = context.request;
 
+        console.log('headers', headers);
         console.log('body', body);
+        console.log('---');
 
         const response = {
             status: true,
