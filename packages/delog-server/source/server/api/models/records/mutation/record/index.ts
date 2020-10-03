@@ -15,6 +15,8 @@
         registerRecord,
     } from '#server/logic/operators/records';
 
+    import Notifier from '#server/objects/Notifier';
+
     import {
         generateMethodLogs,
     } from '#server/utilities';
@@ -119,6 +121,9 @@ const record = async (
 
             record.ownedBy = privateOwnerIdentonym;
 
+            const notifier = new Notifier(record);
+            notifier.notify();
+
             await registerRecord(
                 record,
             );
@@ -143,6 +148,9 @@ const record = async (
                 recordLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
+
+            const notifier = new Notifier(record);
+            notifier.notify();
 
             await registerRecord(
                 record,
@@ -171,6 +179,9 @@ const record = async (
                 status: false,
             };
         }
+
+        const notifier = new Notifier(record);
+        notifier.notify();
 
         record.ownedBy = privateOwnerIdentonym;
 

@@ -1,4 +1,9 @@
 // #region imports
+    // #region libraries
+    import fetch from 'cross-fetch';
+    // #endregion libraries
+
+
     // #region external
     import {
         logLevels,
@@ -90,6 +95,26 @@ class Notifier {
             data,
         } = notifier;
 
+        const {
+            endpoint,
+            token,
+        } = data;
+
+        const notifyData = {
+            ...this.log,
+        };
+
+        await fetch(endpoint, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Delog-Token': token,
+            },
+            body: JSON.stringify({
+                ...notifyData,
+            }),
+        });
     }
 
     private async notifyEmail(
