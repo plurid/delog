@@ -1,3 +1,24 @@
+// #region imports
+    // #region external
+    import {
+        DelogContextCall,
+        DelogInputRecordContextCall,
+        DelogInputRecordContextCaller,
+    } from '../../../data/interfaces';
+
+    import {
+        CALL_CONTEXT,
+        CODE_PROVIDER,
+        REPOSITORY_NAME,
+        REPOSITORY_BASEPATH,
+
+        DEFAULT_CALL_DEPTH,
+    } from '../../../data/constants';
+    // #endregion external
+// #endregion imports
+
+
+
 // #region module
 const callsites = () => {
 	const _prepareStackTrace = Error.prepareStackTrace;
@@ -10,33 +31,42 @@ const callsites = () => {
 };
 
 
-const getCallContext = () => {
+const getCallContext = (
+    call?: DelogContextCall,
+) => {
+    if (!call || !CALL_CONTEXT) {
+        return;
+    }
+
     try {
+        const callDepth = call?.depth || DEFAULT_CALL_DEPTH;
         const calls = callsites();
 
-        const caller = {
-            file: calls[1].getFileName(),
-            line: calls[1].getLineNumber(),
-            column: calls[1].getColumnNumber(),
+        const caller: DelogInputRecordContextCaller = {
+            file: calls[callDepth].getFileName() || '',
+            line: calls[callDepth].getLineNumber() || -1,
+            column: calls[callDepth].getColumnNumber() || -1,
         };
 
         if (!caller) {
             return;
         }
 
+        const provider = call?.codeProvider || CODE_PROVIDER;
+        const repositoryName = call?.repositoryName || REPOSITORY_NAME;
+        const repositoryBasepath = call?.repositoryBasePath || REPOSITORY_BASEPATH || process.cwd();
+
         const {
             file,
             line,
-            column
+            column,
         } = caller;
 
-        // const cwd = process.cwd();
-        const BASE_PATH = '';
-        const filepath = file.replace(BASE_PATH, '');
+        const filepath = file.replace(repositoryBasepath, '');
 
-        const callContext = {
-            provider: '',
-            repository: '',
+        const callContext: DelogInputRecordContextCall = {
+            provider,
+            repository: repositoryName,
             caller: {
                 file: filepath,
                 line,

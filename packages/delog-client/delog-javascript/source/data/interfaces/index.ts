@@ -87,6 +87,16 @@ export interface DelogContext {
     mode?: 'TESTING' | 'LOGGING';
     suite?: string;
     scenario?: string;
+
+    call?: DelogContextCall;
+}
+
+
+export interface DelogContextCall {
+    depth?: number;
+    codeProvider?: string;
+    repositoryName?: string;
+    repositoryBasePath?: string;
 }
 
 
@@ -103,10 +113,30 @@ export interface DelogInputRecord {
     error: string;
     extradata: string;
 
-    context: DelogContext;
+    context: DelogInputRecordContext;
 
     text: string;
 
     time: number;
+}
+
+export interface DelogInputRecordContext {
+    mode?: 'TESTING' | 'LOGGING';
+    suite?: string;
+    scenario?: string;
+
+    call?: DelogInputRecordContextCall;
+}
+
+export interface DelogInputRecordContextCall {
+    provider: string;
+    repository: string;
+    caller: DelogInputRecordContextCaller;
+}
+
+export interface DelogInputRecordContextCaller {
+    file: string;
+    line: number;
+    column: number;
 }
 // #endregion module

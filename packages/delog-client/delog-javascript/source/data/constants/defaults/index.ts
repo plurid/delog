@@ -63,6 +63,9 @@ const defaultConfiguration: RequiredDelogData = {
 
     time: now(),
 };
+
+
+const DEFAULT_CALL_DEPTH = 7;
 // #endregion module
 
 
@@ -71,5 +74,7 @@ const defaultConfiguration: RequiredDelogData = {
 export {
     defaultConfiguration,
     defaultContext,
+
+    DEFAULT_CALL_DEPTH,
 };
 // #endregion exports

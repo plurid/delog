@@ -3,6 +3,7 @@
     import {
         DelogData,
         DelogInputRecord,
+        DelogInputRecordContext,
     } from '#data/interfaces';
 
     import {
@@ -68,12 +69,21 @@ const delog = async (
     }
 
     try {
-        // const callContext = getCallContext();
+        const callContext = getCallContext(
+            context.call,
+        );
 
         const graphql = client(
             endpoint,
             token,
         );
+
+        const inputContext: DelogInputRecordContext = {
+            mode: context?.mode,
+            scenario: context?.scenario,
+            suite: context?.suite,
+            call: callContext,
+        };
 
         const input: DelogInputRecord = {
             format,
@@ -88,7 +98,7 @@ const delog = async (
             error,
             extradata,
 
-            context,
+            context: inputContext,
 
             text,
 

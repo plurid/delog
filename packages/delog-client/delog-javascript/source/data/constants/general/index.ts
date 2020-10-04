@@ -18,6 +18,12 @@ const TOKEN = process.env.DELOG_TOKEN || '';
 
 const PROJECT = process.env.DELOG_PROJECT || '';
 const SPACE = process.env.DELOG_SPACE || '';
+
+
+const CALL_CONTEXT = process.env.DELOG_CALL_CONTEXT === 'true';
+const CODE_PROVIDER = process.env.DELOG_CODE_PROVIDER || '';
+const REPOSITORY_NAME = process.env.DELOG_REPOSITORY_NAME || '';
+const REPOSITORY_BASEPATH = process.env.DELOG_REPOSITORY_BASEPATH || '';
 // #endregion module
 
 
@@ -33,5 +39,10 @@ export {
 
     PROJECT,
     SPACE,
+
+    CALL_CONTEXT,
+    CODE_PROVIDER,
+    REPOSITORY_NAME,
+    REPOSITORY_BASEPATH,
 };
 // #endregion exports
