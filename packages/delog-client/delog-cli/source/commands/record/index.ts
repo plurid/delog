@@ -33,23 +33,19 @@ const record = async (
         }
 
         const input = {
-            format: data.format || configuration.defaults.format || '%TIME %TEXT',
+            text: data.text,
+            time: Math.floor(Date.now() / 1000),
+            level: data.level || 0,
 
             project: data.project || '',
             space: data.space || '',
 
-            level: data.level || 0,
+            format: data.format || configuration.defaults.format || '%TIME %TEXT',
+
             method: data.method || '',
-            sharedID: data.sharedID || '',
-            sharedOrder: data.sharedOrder || 0,
             error: data.error || '',
             extradata: data.extradata || '',
-
             context: data.context || {},
-
-            text: data.text,
-
-            time: Math.floor(Date.now() / 1000),
         };
 
         const mutation = await delog.mutate({

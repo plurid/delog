@@ -132,6 +132,10 @@ const main = async (
 
     program
         .command('record')
+        .requiredOption(
+            '-t, --text <text>',
+            'text',
+        )
         .option(
             '--server <server>',
             'server address',
@@ -141,8 +145,8 @@ const main = async (
             'identonym',
         )
         .option(
-            '-f, --format <format>',
-            'format',
+            '-l, --level <level>',
+            'level',
         )
         .option(
             '-p, --project <project>',
@@ -153,20 +157,12 @@ const main = async (
             'space',
         )
         .option(
-            '-l, --level <level>',
-            'level',
+            '-f, --format <format>',
+            'format',
         )
         .option(
             '-m, --method <method>',
             'method',
-        )
-        .option(
-            '-i, --sharedID <sharedID>',
-            'sharedID',
-        )
-        .option(
-            '-o, --sharedOrder <sharedOrder>',
-            'sharedOrder',
         )
         .option(
             '-e, --error <error>',
@@ -180,10 +176,6 @@ const main = async (
             '-c, --context <context>',
             'context',
         )
-        .requiredOption(
-            '-t, --text <text>',
-            'text',
-        )
         .description('record to the delog server, default or specified')
         .action(async (options: any) => {
             try {
@@ -191,19 +183,18 @@ const main = async (
                     server,
                     identonym,
 
-                    format,
+                    text,
+                    level,
 
                     project,
                     space,
 
-                    level,
+                    format,
+
                     method,
-                    sharedID,
-                    sharedOrder,
                     error,
                     extradata,
                     context,
-                    text,
                 } = options;
 
                 const contextValue = context
@@ -216,21 +207,18 @@ const main = async (
                     : logLevels[level];
 
                 const data: any = {
-                    format,
+                    text,
+                    level: levelValue,
 
                     project,
                     space,
 
-                    level: levelValue,
+                    format,
+
                     method,
-                    sharedID,
-                    sharedOrder: parseInt(sharedOrder),
                     error,
                     extradata,
-
                     context: contextValue,
-
-                    text,
                 };
 
                 await record(
