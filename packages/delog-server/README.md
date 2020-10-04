@@ -19,13 +19,22 @@
 </h3>
 
 
-delog is a service or self-hosted logger
 
-Specialized support for the runtimes:
+`delog` is a [service](https://delog.plurid.cloud) or self-hosted logger.
 
-+ `NodeJS`
+`delog` is intended to be:
 
-delog uses [plurid](https://github.com/plurid/plurid) to explore information as a 3D structure.
++ centralized, single logging space for multi-project/multi-package software systems;
++ log-based testing controller;
++ warn/error notifier.
+
+`delog` has clients for:
+
++ [`CLI`][delog-client-cli];
++ [`NodeJS`][delog-client-javascript];
++ [`Python`][delog-client-python].
+
+The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/plurid) to explore information as a 3D structure.
 
 
 <p align="center">
