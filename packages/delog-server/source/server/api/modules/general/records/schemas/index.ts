@@ -40,8 +40,6 @@ export const types = gql`
 
         level: Int!
         method: String!
-        sharedID: String!
-        sharedOrder: Int!
         error: String!
         extradata: String!
 
@@ -58,6 +56,8 @@ export const types = gql`
         mode: String
         suite: String
         scenario: String
+        sharedID: String
+        sharedOrder: Int
         call: DelogContextCall
     }
 
@@ -89,8 +89,6 @@ export const inputs = gql`
 
         level: Int!
         method: String!
-        sharedID: String!
-        sharedOrder: Int!
         error: String!
         extradata: String!
 
@@ -105,6 +103,8 @@ export const inputs = gql`
         mode: String
         suite: String
         scenario: String
+        sharedID: String
+        sharedOrder: Int
         call: DelogInputContextCall
     }
 
