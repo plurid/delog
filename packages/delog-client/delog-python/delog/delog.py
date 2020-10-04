@@ -27,14 +27,6 @@ from delog.caller import (
 def delog(
     text: str,
 
-    format: str = FORMAT,
-
-    endpoint: str = ENDPOINT,
-    token: str = TOKEN,
-
-    project: str = PROJECT,
-    space: str = SPACE,
-
     #  Log level:
     #  + FATAL: 6;
     #  + ERROR: 5;
@@ -44,18 +36,16 @@ def delog(
     #  + TRACE: 1;
     level: int = delog_levels["info"],
 
+    endpoint: str = ENDPOINT,
+    token: str = TOKEN,
+
+    format: str = FORMAT,
+
+    project: str = PROJECT,
+    space: str = SPACE,
+
     # Name of the method from where the log originates.
     method: str = "",
-
-    # ID shared by multiple logs, used to identify a request spanning multiple services.
-    shared_id: str = "",
-
-    # If using the `shared_id`, the logs can be assigned an ordering number.
-    # If not given, the logs will be ordered by time.
-    #
-    # The value should be greater than 0. If two or more logs have the same value,
-    # they will be ordered by time.
-    shared_order: int = -1,
 
     error = "",
 
@@ -93,28 +83,26 @@ def delog(
         "mode": context.get("mode", "LOGGING"),
         "scenario": context.get("scenario", ""),
         "suite": context.get("suite", ""),
+        "shared_id": context.get("shared_id", ""),
+        "shared_order": context.get("shared_order", ""),
         "call": call_context,
     };
 
     variables = {
         "input": {
-            "format": format,
+            "text": text,
+            "time": log_time,
+            "level": level,
 
             "project": project,
             "space": space,
 
-            "level": level,
+            "format": format,
+
             "method": method,
-            "sharedID": shared_id,
-            "sharedOrder": shared_order,
             "error": error_string,
             "extradata": extradata,
-
             "context": input_context,
-
-            "text": text,
-
-            "time": log_time,
         }
     }
 

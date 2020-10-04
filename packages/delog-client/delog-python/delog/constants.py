@@ -7,7 +7,7 @@ import os
 #region module
 GROUND_LEVEL = int(os.environ.get('DELOG_GROUND_LEVEL', 0))
 
-FORMAT = os.environ.get('DELOG_FORMAT', '%TIME %TEXT')
+FORMAT = os.environ.get('DELOG_FORMAT', '')
 
 ENDPOINT = os.environ.get('DELOG_ENDPOINT')
 TOKEN = os.environ.get('DELOG_TOKEN')

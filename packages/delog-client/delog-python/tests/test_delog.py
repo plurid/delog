@@ -14,16 +14,19 @@ token='__TESTS__'
 class TestDelog(unittest.TestCase):
     def test_simple(self):
         delog(
+            text="simple test",
+
             endpoint=endpoint,
             token=token,
-            text="simple test",
         )
 
     def test_simple_call(self):
         delog(
+            text="simple test",
+
             endpoint=endpoint,
             token=token,
-            text="simple test",
+
             context={
                 "call": {
                     "code_provider": "test_code_provider",
@@ -35,27 +38,20 @@ class TestDelog(unittest.TestCase):
 
     def test_simple_full(self):
         delog(
+            text="full test",
+
             endpoint=endpoint,
             token=token,
-
-            format="%TEXT -- %TIME",
 
             project="project-python",
             space="space-python",
 
+            format="%TEXT -- %TIME",
+
             level=delog_levels["warn"],
             method="some-method",
-
-            shared_id="one",
-            shared_order=1,
-
-            # error=,
-
             extradata='{ "some": "json"}',
-
             # context={},
-
-            text="full test",
         )
 
     def test_error_body(self):
@@ -66,17 +62,16 @@ class TestDelog(unittest.TestCase):
             error = x
 
         delog(
+            text="test with error",
+            level=4,
+
             endpoint=endpoint,
             token=token,
 
             project="project-python",
             space="space-python",
 
-            level=4,
-
             error=error,
-
-            text="test with error",
         )
 #endregion module
 
