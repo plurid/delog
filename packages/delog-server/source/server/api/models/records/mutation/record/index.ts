@@ -64,8 +64,6 @@ const record = async (
 
             level,
             method,
-            sharedID,
-            sharedOrder,
             error,
             extradata,
 
@@ -86,8 +84,6 @@ const record = async (
 
             level,
             method,
-            sharedID,
-            sharedOrder,
             error,
             extradata,
 

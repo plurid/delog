@@ -51,6 +51,7 @@ const generateTester = async (
     try {
         // #region input unpack
         const {
+            project,
             suite,
             scenario,
             configuration,
@@ -59,6 +60,7 @@ const generateTester = async (
 
 
         const data: any = {
+            project,
             suite,
             scenario,
             configuration,
@@ -83,7 +85,7 @@ const generateTester = async (
                 };
             }
 
-            const project = await registerTester(
+            const tester = await registerTester(
                 data,
                 privateOwnerIdentonym,
             );
@@ -95,7 +97,7 @@ const generateTester = async (
 
             return {
                 status: true,
-                data: project,
+                data: tester,
             };
         }
         // #endregion private usage
@@ -110,7 +112,7 @@ const generateTester = async (
                 logLevels.trace,
             );
 
-            const project = await registerTester(
+            const tester = await registerTester(
                 data,
                 '',
             );
@@ -122,14 +124,14 @@ const generateTester = async (
 
             return {
                 status: true,
-                data: project,
+                data: tester,
             };
         }
         // #endregion logic usage
 
 
         // #region public usage
-        const project = await registerTester(
+        const tester = await registerTester(
             data,
             '',
         );
@@ -141,7 +143,7 @@ const generateTester = async (
 
         return {
             status: true,
-            data: project,
+            data: tester,
         };
         // #endregion public usage
     } catch (error) {
