@@ -665,10 +665,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@plurid/delog@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.3.tgz#ebd32d8a9b0dc1ae3e473bb1b0321885f34c3a91"
-  integrity sha512-SHFq0sEXWatwTIHLtSteXAOLmx6MPtsaAKiHF+UKcKCn1EXCJpZTsfEeDvncJPDeL73FYoKAnRoNdANTbBQ22Q==
+"@plurid/delog@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.4.tgz#0efb2f11a1f549b5955601fb66d5460aad6b75dc"
+  integrity sha512-dDe9wBXtvK/8nJypYqUP61KT3zTAZQvUADuU+ltRuG56Gg7L2IRKtPJIANKyrx1KoPZFk6BSAmxb8X27etcakQ==
   dependencies:
     "@apollo/client" "^3.2.2"
     "@plurid/plurid-functions" "^0.1.15"
