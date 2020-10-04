@@ -30,20 +30,6 @@ export interface DelogData {
      */
     method?: string;
 
-    /**
-     * ID shared by multiple logs, used to identify a request spanning multiple services.
-     */
-    sharedID?: string;
-
-    /**
-     * If using the `sharedID`, the logs can be assigned an ordering number.
-     * If not given, the logs will be ordered by time.
-     *
-     * The value should be greater than 0. If two or more logs have the same value,
-     * they will be ordered by time.
-     */
-    sharedOrder?: number;
-
     error?: Error;
 
     /**
@@ -51,9 +37,7 @@ export interface DelogData {
      */
     extradata?: string;
 
-
     context?: DelogContext;
-
 
     text: string;
 }
@@ -82,11 +66,27 @@ export interface DelogLevels {
 }
 
 
-
-export interface DelogContext {
+export interface DelogTestingContext {
     mode?: 'TESTING' | 'LOGGING';
     suite?: string;
     scenario?: string;
+
+    /**
+     * ID shared by multiple logs, used to identify a request spanning multiple services.
+     */
+    sharedID?: string;
+}
+
+
+export interface DelogContext extends DelogTestingContext {
+    /**
+     * If using the `sharedID`, the logs can be assigned an ordering number.
+     * If not given, the logs will be ordered by time.
+     *
+     * The value should be greater than 0. If two or more logs have the same value,
+     * they will be ordered by time.
+     */
+    sharedOrder?: number;
 
     call?: DelogContextCall;
 }
@@ -108,8 +108,6 @@ export interface DelogInputRecord {
 
     level: number;
     method: string;
-    sharedID: string;
-    sharedOrder: number;
     error: string;
     extradata: string;
 
@@ -120,11 +118,8 @@ export interface DelogInputRecord {
     time: number;
 }
 
-export interface DelogInputRecordContext {
-    mode?: 'TESTING' | 'LOGGING';
-    suite?: string;
-    scenario?: string;
-
+export interface DelogInputRecordContext extends DelogTestingContext {
+    sharedOrder?: number;
     call?: DelogInputRecordContextCall;
 }
 

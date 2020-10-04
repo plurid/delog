@@ -65,8 +65,7 @@ const getConfiguration = (
 
         level: data.level || delogLevels.info,
         method: data.method || '',
-        sharedID: data.sharedID || '',
-        sharedOrder: data.sharedOrder ?? -1,
+
         error: stringifyError(data.error),
         extradata: data.extradata || '',
 

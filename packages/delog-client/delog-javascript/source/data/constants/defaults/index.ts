@@ -34,6 +34,8 @@ const defaultContext: DelogContext = {
     mode: 'LOGGING',
     scenario: '',
     suite: '',
+    sharedID: '',
+    sharedOrder: -1,
 };
 
 
@@ -50,8 +52,6 @@ const defaultConfiguration: RequiredDelogData = {
 
     level: delogLevels.info,
     method: '',
-    sharedID: '',
-    sharedOrder: -1,
     error: '',
     extradata: '',
 

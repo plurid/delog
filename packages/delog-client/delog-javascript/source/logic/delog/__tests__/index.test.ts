@@ -1,10 +1,14 @@
 // #region imports
     // #region external
-    import delog from '../';
+    import {
+        DelogTestingContext,
+    } from '#data/interfaces';
 
     import {
         delogLevels,
     } from '#data/constants';
+
+    import delog from '../';
     // #endregion external
 // #endregion imports
 
@@ -27,8 +31,6 @@ describe('delog - simple', () => {
             level: delogLevels.error,
             method: 'method-name',
             format: '%TIME %TEXT',
-            sharedID: 'one',
-            sharedOrder: 0,
             extradata: JSON.stringify({one: 'two'}),
 
             text: 'works',
@@ -37,7 +39,7 @@ describe('delog - simple', () => {
 
 
 
-    it.only('works - with caller', () => {
+    it('works - with caller', () => {
         delog({
             endpoint,
             token,
@@ -48,8 +50,6 @@ describe('delog - simple', () => {
             level: delogLevels.error,
             method: 'method-name',
             format: '%TIME %TEXT',
-            sharedID: 'one',
-            sharedOrder: 0,
             extradata: JSON.stringify({one: 'two'}),
 
             text: 'works',
@@ -78,8 +78,6 @@ describe('delog - simple', () => {
                 level: delogLevels.trace,
                 method: 'method-name',
                 format: '%LEVEL %TIME %TEXT',
-                sharedID: 'one',
-                sharedOrder: 0,
                 extradata: JSON.stringify({one: 'two'}),
 
                 text: 'works ' + i,
@@ -105,8 +103,6 @@ describe('delog - simple', () => {
                         level: delogLevels.trace,
                         method: 'method-name',
                         format: '%LEVEL %TIME %TEXT',
-                        sharedID: 'one',
-                        sharedOrder: 0,
                         extradata: JSON.stringify({one: 'two'}),
 
                         text: 'works ' + i,
@@ -116,6 +112,97 @@ describe('delog - simple', () => {
                 }, 1000);
             })
         }
+    });
+});
+
+
+describe('delog - tester', () => {
+    it('simple tester', () => {
+        const outsideFunction = (
+            value: number,
+            testContext?: DelogTestingContext,
+        ) => {
+            delog({
+                endpoint,
+                token,
+
+                project: 'one',
+                space: 'space-name',
+
+                level: delogLevels.info,
+                method: 'method-name',
+
+                context: {
+                    ...testContext,
+                    sharedOrder: 0,
+                },
+
+                text: 'Test Start',
+            });
+
+            if (value < 0.5) {
+                delog({
+                    endpoint,
+                    token,
+
+                    project: 'one',
+                    space: 'space-name',
+
+                    level: delogLevels.error,
+                    method: 'method-name',
+
+                    context: {
+                        ...testContext,
+                        sharedOrder: 1,
+                    },
+
+                    text: 'Test End Branch A',
+                });
+            } else {
+                delog({
+                    endpoint,
+                    token,
+
+                    project: 'one',
+                    space: 'space-name',
+
+                    level: delogLevels.info,
+                    method: 'method-name',
+
+                    context: {
+                        ...testContext,
+                        sharedOrder: 1,
+                    },
+
+                    text: 'Test End Branch B',
+                });
+            }
+        }
+
+
+        outsideFunction(
+            0.3,
+        );
+
+        outsideFunction(
+            0.4,
+            {
+                mode: 'TESTING',
+                suite: 'two',
+                scenario: 'three',
+                sharedID: 'one',
+            },
+        );
+
+        outsideFunction(
+            0.6,
+            {
+                mode: 'TESTING',
+                suite: 'two',
+                scenario: 'four',
+                sharedID: 'one',
+            },
+        );
     });
 });
 // #endregion module
