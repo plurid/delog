@@ -1,0 +1,1 @@
+from .delog import delog

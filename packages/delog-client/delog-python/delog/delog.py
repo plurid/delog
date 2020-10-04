@@ -1,6 +1,8 @@
-from graphql import client, RECORD
+import time
 
-from constants import GROUND_LEVEL, FORMAT, ENDPOINT, TOKEN, PROJECT, SPACE
+from delog.graphql import client, RECORD
+
+from delog.constants import GROUND_LEVEL, FORMAT, ENDPOINT, TOKEN, PROJECT, SPACE, log_levels
 
 
 
@@ -22,13 +24,13 @@ def delog(
     #  + INFO: 3;
     #  + DEBUG: 2;
     #  + TRACE: 1;
-    level: int = 1,
+    level: int = log_levels["info"],
 
     # Name of the method from where the log originates.
-    method: str = '',
+    method: str = "",
 
     # ID shared by multiple logs, used to identify a request spanning multiple services.
-    shared_id: str = '',
+    shared_id: str = "",
 
     # If using the `shared_id`, the logs can be assigned an ordering number.
     # If not given, the logs will be ordered by time.
@@ -37,23 +39,27 @@ def delog(
     # they will be ordered by time.
     shared_order: int = -1,
 
-    error = {},
+    error = "",
 
     # Arbitrary data: a simple string, stringified JSON or deon.
-    extradata: str = '',
+    extradata: str = "",
 
-    context = {},
+    context: dict = {},
 ):
-    graphql_client = client(endpoint)
+    if GROUND_LEVEL > level:
+        return
+
+    graphql_client = client(
+        endpoint=endpoint,
+        token=token,
+    )
+
+    log_time = int(time.time())
+    error_string = repr(error)
 
     variables = {
         "input": {
-            "text": text,
-
             "format": format,
-
-            "endpoint": endpoint,
-            "token": token,
 
             "project": project,
             "space": space,
@@ -66,12 +72,19 @@ def delog(
 
             "sharedOrder": shared_order,
 
-            "error" = error,
+            "error": error_string,
 
             "extradata": extradata,
 
-            "context" = context,
+            "context": context,
+
+            "text": text,
+
+            "time": log_time,
         }
     }
 
-    graphql_client.execute(mutation=RECORD, variables=variables)
+    graphql_client.execute(
+        query=RECORD,
+        variables=variables,
+    )

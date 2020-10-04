@@ -1,13 +1,22 @@
 from python_graphql_client import GraphqlClient
 
-from constants import ENDPOINT
+from delog.constants import ENDPOINT, TOKEN
 
 
 
 def client(
     endpoint: str = ENDPOINT,
+    token: str = TOKEN,
 ):
-    return GraphqlClient(endpoint=endpoint)
+    token_value = 'Bearer ' + token
+
+    headers = {
+        "Authorization": token_value
+    }
+
+    client = GraphqlClient(endpoint=endpoint, headers=headers)
+
+    return client
 
 
 RECORD = """
