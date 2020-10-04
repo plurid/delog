@@ -13,6 +13,7 @@
     import {
         getConfiguration,
         stringifyError,
+        getCallContext,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports
@@ -66,8 +67,9 @@ const delog = async (
         return;
     }
 
-
     try {
+        // const callContext = getCallContext();
+
         const graphql = client(
             endpoint,
             token,
