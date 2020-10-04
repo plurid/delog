@@ -3,7 +3,7 @@
     import React from 'react';
 
     import {
-        PluridIconQueue,
+        PluridIconSettings,
         PluridIconLocked,
         PluridIconApps,
         PluridIconFrame,
@@ -33,8 +33,9 @@
 
 
     // #region internal
-    import ProjectsView from './components/ProjectsView';
+    import AnalyticsView from './components/AnalyticsView';
     import TokensView from './components/TokensView';
+    import ProjectsView from './components/ProjectsView';
     import SpacesView from './components/SpacesView';
     import FormatsView from './components/FormatsView';
     import NotifiersView from './components/NotifiersView';
@@ -70,7 +71,7 @@ export const generalSelectors = [
 ];
 
 export const generalSelectorsIcons = {
-    analytics: PluridIconQueue,
+    analytics: PluridIconSettings,
     tokens: PluridIconLocked,
     projects: PluridIconApps,
     spaces: PluridIconFrame,
@@ -87,15 +88,21 @@ export const renderSelectedView = (
     setGeneralView: any,
 ) => {
     switch (stateIndexGeneralSelector) {
-        case 'projects':
+        case 'analytics':
             return (
-                <ProjectsView
+                <AnalyticsView
                     setGeneralView={setGeneralView}
                 />
             );
         case 'tokens':
             return (
                 <TokensView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'projects':
+            return (
+                <ProjectsView
                     setGeneralView={setGeneralView}
                 />
             );
