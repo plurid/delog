@@ -1,6 +1,6 @@
 import unittest
 
-from delog import delog
+from delog import delog, delog_levels
 
 
 
@@ -26,7 +26,7 @@ class TestDelog(unittest.TestCase):
             project="project-python",
             space="space-python",
 
-            level=5,
+            level=delog_levels["warn"],
             method="some-method",
 
             shared_id="one",

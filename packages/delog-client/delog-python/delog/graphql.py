@@ -1,7 +1,19 @@
 from python_graphql_client import GraphqlClient
 
-from delog.constants import ENDPOINT, TOKEN
+from delog.constants import (
+    ENDPOINT,
+    TOKEN,
+)
 
+
+
+RECORD = """
+    mutation DelogMutationRecord($input: DelogInputRecord!) {
+        delogMutationRecord(input: $input) {
+            status
+        }
+    }
+"""
 
 
 def client(
@@ -17,12 +29,3 @@ def client(
     client = GraphqlClient(endpoint=endpoint, headers=headers)
 
     return client
-
-
-RECORD = """
-    mutation DelogMutationRecord($input: DelogInputRecord!) {
-        delogMutationRecord(input: $input) {
-            status
-        }
-    }
-"""

@@ -1,8 +1,19 @@
 import time
 
-from delog.graphql import client, RECORD
+from delog.graphql import (
+    RECORD,
+    client,
+)
 
-from delog.constants import GROUND_LEVEL, FORMAT, ENDPOINT, TOKEN, PROJECT, SPACE, log_levels
+from delog.constants import (
+    GROUND_LEVEL,
+    FORMAT,
+    ENDPOINT,
+    TOKEN,
+    PROJECT,
+    SPACE,
+    delog_levels,
+)
 
 
 
@@ -24,7 +35,7 @@ def delog(
     #  + INFO: 3;
     #  + DEBUG: 2;
     #  + TRACE: 1;
-    level: int = log_levels["info"],
+    level: int = delog_levels["info"],
 
     # Name of the method from where the log originates.
     method: str = "",

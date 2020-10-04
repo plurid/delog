@@ -13,18 +13,18 @@ PROJECT = os.environ.get('DELOG_PROJECT', '')
 SPACE = os.environ.get('DELOG_SPACE', '')
 
 
-LOG_LEVEL_FATAL=6
-LOG_LEVEL_ERROR=5
-LOG_LEVEL_WARN=4
-LOG_LEVEL_INFO=3
-LOG_LEVEL_DEBUG=2
-LOG_LEVEL_TRACE=1
+DELOG_LEVEL_FATAL=6
+DELOG_LEVEL_ERROR=5
+DELOG_LEVEL_WARN=4
+DELOG_LEVEL_INFO=3
+DELOG_LEVEL_DEBUG=2
+DELOG_LEVEL_TRACE=1
 
-log_levels = {
-    "fatal": LOG_LEVEL_FATAL,
-    "error": LOG_LEVEL_ERROR,
-    "warn": LOG_LEVEL_WARN,
-    "info": LOG_LEVEL_INFO,
-    "debug": LOG_LEVEL_DEBUG,
-    "trace": LOG_LEVEL_TRACE,
+delog_levels = {
+    "fatal": DELOG_LEVEL_FATAL,
+    "error": DELOG_LEVEL_ERROR,
+    "warn": DELOG_LEVEL_WARN,
+    "info": DELOG_LEVEL_INFO,
+    "debug": DELOG_LEVEL_DEBUG,
+    "trace": DELOG_LEVEL_TRACE,
 }
