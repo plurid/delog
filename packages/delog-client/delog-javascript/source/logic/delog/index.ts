@@ -28,26 +28,25 @@ const delog = async (
     const configuration = getConfiguration(data);
 
     const {
-        groundLevel,
+        text,
+        time,
+        level,
 
-        format,
+        groundLevel,
 
         endpoint,
         token,
 
+        format,
+
         project,
         space,
 
-        level,
         method,
         error,
         extradata,
 
         context,
-
-        text,
-
-        time,
     } = configuration;
 
 
@@ -88,17 +87,16 @@ const delog = async (
         const input: DelogInputRecord = {
             text,
             time,
+            level,
 
             format,
 
             project,
             space,
 
-            level,
             method,
             error,
             extradata,
-
             context: inputContext,
         };
 

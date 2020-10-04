@@ -45,13 +45,22 @@ export interface DelogData {
 }
 
 
+
 export type RequiredDelogData = Required<
-    Omit<DelogData, 'error' | 'context'>
+    Omit<DelogData, 'project' | 'space' | 'format' | 'method' | 'error' | 'extradata' | 'context'>
 > & {
-    groundLevel: number;
-    error: string;
     time: number;
 
+    groundLevel: number;
+
+    project?: string;
+    space?: string;
+
+    format?: string;
+
+    method?: string;
+    error?: string;
+    extradata?: string;
     context?: DelogContext;
 }
 
@@ -103,21 +112,19 @@ export interface DelogContextCall {
 
 
 export interface DelogInputRecord {
-    format: string;
-
-    project: string;
-    space: string;
-
-    level: number;
-    method: string;
-    error: string;
-    extradata: string;
-
-    context?: DelogInputRecordContext;
-
     text: string;
-
     time: number;
+    level: number;
+
+    project?: string;
+    space?: string;
+
+    format?: string;
+
+    method?: string;
+    error?: string;
+    extradata?: string;
+    context?: DelogInputRecordContext;
 }
 
 export interface DelogInputRecordContext extends DelogTestingContext {

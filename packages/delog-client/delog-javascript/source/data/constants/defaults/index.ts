@@ -42,21 +42,17 @@ const defaultContext: DelogContext = {
 const defaultConfiguration: RequiredDelogData = {
     text: '',
     time: now(),
+    level: delogLevels.info,
 
     groundLevel: GROUND_LEVEL,
-
-    format: FORMAT,
 
     endpoint: ENDPOINT,
     token: TOKEN,
 
+    format: FORMAT,
+
     project: PROJECT,
     space: SPACE,
-
-    level: delogLevels.info,
-    method: '',
-    error: '',
-    extradata: '',
 };
 
 

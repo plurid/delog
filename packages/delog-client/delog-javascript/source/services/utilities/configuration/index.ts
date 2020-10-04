@@ -53,18 +53,18 @@ const getConfiguration = (
     const configuration: RequiredDelogData = {
         text: data.text,
         time,
+        level: data.level || delogLevels.info,
 
         groundLevel: GROUND_LEVEL,
-
-        format: data.format || FORMAT,
 
         endpoint: data.endpoint || ENDPOINT,
         token: data.token || TOKEN,
 
+        format: data.format || FORMAT,
+
         project: data.project || PROJECT,
         space: data.space || SPACE,
 
-        level: data.level || delogLevels.info,
         method: data.method || '',
 
         error: stringifyError(data.error),
