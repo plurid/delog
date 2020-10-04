@@ -52,10 +52,10 @@ export const StyledTextBox = styled.div<IStyledTextBox>`
                 theme,
             }: IStyledTextBox) => theme.backgroundColorTertiary
         };
-        box-shadow: ${
+        box-shadow: inset 0px 4px 4px ${
             ({
                 theme,
-            }: IStyledTextBox) => theme.boxShadowUmbraInset
+            }: IStyledTextBox) => theme.boxShadowUmbraColor
         };
     }
 `;

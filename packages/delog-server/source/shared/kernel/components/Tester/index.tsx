@@ -97,6 +97,10 @@ const Tester: React.FC<TesterProperties> = (
 
     // #region state
     const [
+        testerProject,
+        setTesterProject,
+    ] = useState('');
+    const [
         testerSuite,
         setTesterSuite,
     ] = useState('');
@@ -124,6 +128,7 @@ const Tester: React.FC<TesterProperties> = (
 
         const tester: ITester | undefined = await addEntityMutation(
             {
+                project: testerProject,
                 suite: testerSuite,
                 scenario: testerScenario,
                 configuration: testerConfiguration,
@@ -150,7 +155,8 @@ const Tester: React.FC<TesterProperties> = (
     // #region effects
     useEffect(() => {
         if (
-            testerSuite
+            testerProject
+            && testerSuite
             && testerScenario
             && testerConfiguration
         ) {
@@ -159,6 +165,7 @@ const Tester: React.FC<TesterProperties> = (
             setValidTester(false);
         }
     }, [
+        testerProject,
         testerSuite,
         testerScenario,
         testerConfiguration,
@@ -174,6 +181,14 @@ const Tester: React.FC<TesterProperties> = (
             <StyledH1>
                 generate tester
             </StyledH1>
+
+            <InputLine
+                name="project"
+                text={testerProject}
+                theme={theme}
+                atChange={(event) => setTesterProject(event.target.value)}
+                atKeyDown={handleEnter}
+            />
 
             <InputLine
                 name="suite"
