@@ -1,9 +1,12 @@
+#region imports
 import unittest
 
 from delog import delog, delog_levels
+#endregion imports
 
 
 
+#region module
 endpoint='http://localhost:56965/delog'
 token='__TESTS__'
 
@@ -61,7 +64,10 @@ class TestDelog(unittest.TestCase):
 
             text="test with error",
         )
+#endregion module
 
 
+#region runner
 if __name__ == '__main__':
     unittest.main()
+#endregion runner

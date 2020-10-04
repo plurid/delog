@@ -1,12 +1,15 @@
+#region imports
 from python_graphql_client import GraphqlClient
 
 from delog.constants import (
     ENDPOINT,
     TOKEN,
 )
+#endregion imports
 
 
 
+#region module
 RECORD = """
     mutation DelogMutationRecord($input: DelogInputRecord!) {
         delogMutationRecord(input: $input) {
@@ -29,3 +32,4 @@ def client(
     client = GraphqlClient(endpoint=endpoint, headers=headers)
 
     return client
+#endregion module

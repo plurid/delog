@@ -1,3 +1,4 @@
+#region exports
 from .delog import delog
 
 from .constants import (
@@ -9,3 +10,4 @@ from .constants import (
     DELOG_LEVEL_DEBUG,
     DELOG_LEVEL_TRACE,
 )
+#endregion exports

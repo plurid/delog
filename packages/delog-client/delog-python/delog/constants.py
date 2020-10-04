@@ -1,7 +1,9 @@
+#region imports
 import os
+#endregion imports
 
 
-
+#region module
 GROUND_LEVEL = int(os.environ.get('DELOG_GROUND_LEVEL', 0))
 
 FORMAT = os.environ.get('DELOG_FORMAT', '%TIME %TEXT')
@@ -28,3 +30,4 @@ delog_levels = {
     "debug": DELOG_LEVEL_DEBUG,
     "trace": DELOG_LEVEL_TRACE,
 }
+#endregion module

@@ -1,3 +1,4 @@
+#region imports
 import time
 
 from delog.graphql import (
@@ -14,9 +15,11 @@ from delog.constants import (
     SPACE,
     delog_levels,
 )
+#endregion imports
 
 
 
+#endregion module
 def delog(
     text: str,
 
@@ -99,3 +102,4 @@ def delog(
         query=RECORD,
         variables=variables,
     )
+#endregion module
