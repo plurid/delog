@@ -39,12 +39,12 @@ const primitiveFormattingRules: FormattingRules = {
     PROJECT: (
         data,
     ) => {
-        return data.project;
+        return data.project || '';
     },
     SPACE: (
         data,
     ) => {
-        return data.space;
+        return data.space || '';
     },
     LEVEL: (
         data,
@@ -83,13 +83,13 @@ class Formatter {
             };
 
             const re = /(%\w+)/gi;
-            const match = this.data.format.match(re);
+            const match = this.data.format?.match(re);
 
             if (!match) {
                 return '';
             }
 
-            let logString = this.data.format;
+            let logString = this.data.format || '';
 
             for (const element of match) {
                 const value = element.replace('%', '');

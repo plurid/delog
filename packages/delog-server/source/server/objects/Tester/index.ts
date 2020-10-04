@@ -21,7 +21,7 @@ class Tester {
     }
 
     public async test() {
-        if (this.log.context.mode !== 'TESTING') {
+        if (this.log.context?.mode !== 'TESTING') {
             return;
         }
 

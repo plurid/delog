@@ -274,11 +274,11 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             let logMatch = logs.length > 0 ? false : true;
             let levelMatch = levels.length > 0 ? false : true;
 
-            if (projects.includes(stateRecord.project)) {
+            if (stateRecord.project && projects.includes(stateRecord.project)) {
                 projectMatch = true;
             }
 
-            if (spaces.includes(stateRecord.space)) {
+            if (stateRecord.space && spaces.includes(stateRecord.space)) {
                 spaceMatch = true;
             }
 

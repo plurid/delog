@@ -3,8 +3,9 @@
     import React from 'react';
 
     import {
-        PluridIconApps,
+        PluridIconQueue,
         PluridIconLocked,
+        PluridIconApps,
         PluridIconFrame,
         PluridIconEdit,
         PluridIconContact,
@@ -57,6 +58,7 @@
 
 // #region module
 export const generalSelectors = [
+    'analytics',
     'tokens',
     'projects',
     'spaces',
@@ -68,6 +70,7 @@ export const generalSelectors = [
 ];
 
 export const generalSelectorsIcons = {
+    analytics: PluridIconQueue,
     tokens: PluridIconLocked,
     projects: PluridIconApps,
     spaces: PluridIconFrame,

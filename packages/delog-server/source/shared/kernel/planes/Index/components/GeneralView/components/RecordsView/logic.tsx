@@ -94,8 +94,8 @@ export const createSearchTerms = (
             const searchTerm = {
                 id,
                 data: [
-                    project.toLowerCase(),
-                    space.toLowerCase(),
+                    project?.toLowerCase(),
+                    space?.toLowerCase(),
                     levelText,
                     log.toLowerCase(),
                 ],
