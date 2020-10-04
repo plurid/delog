@@ -34,7 +34,7 @@ const callsites = () => {
 const getCallContext = (
     call?: DelogContextCall,
 ) => {
-    if (!call || !CALL_CONTEXT) {
+    if (!call && !CALL_CONTEXT) {
         return;
     }
 

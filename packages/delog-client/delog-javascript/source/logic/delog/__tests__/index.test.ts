@@ -16,7 +16,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it.only('works', () => {
+    it('works', () => {
         delog({
             endpoint,
             token,
@@ -34,6 +34,36 @@ describe('delog - simple', () => {
             text: 'works',
         });
     });
+
+
+
+    it.only('works - with caller', () => {
+        delog({
+            endpoint,
+            token,
+
+            project: 'project-name',
+            space: 'space-name',
+
+            level: delogLevels.error,
+            method: 'method-name',
+            format: '%TIME %TEXT',
+            sharedID: 'one',
+            sharedOrder: 0,
+            extradata: JSON.stringify({one: 'two'}),
+
+            text: 'works',
+
+            context: {
+                call: {
+                    codeProvider: 'codeProvider-test',
+                    repositoryBasePath: '',
+                    repositoryName: 'one',
+                },
+            },
+        });
+    });
+
 
 
     it('works - stress test', () => {
@@ -56,6 +86,7 @@ describe('delog - simple', () => {
             });
         }
     });
+
 
 
     it('works - stress test timeout', async () => {
