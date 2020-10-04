@@ -111,7 +111,7 @@ export interface DelogInputRecord {
     error: string;
     extradata: string;
 
-    context: DelogInputRecordContext;
+    context?: DelogInputRecordContext;
 
     text: string;
 
