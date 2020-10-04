@@ -3,6 +3,7 @@ import os
 #endregion imports
 
 
+
 #region module
 GROUND_LEVEL = int(os.environ.get('DELOG_GROUND_LEVEL', 0))
 
@@ -14,13 +15,18 @@ TOKEN = os.environ.get('DELOG_TOKEN')
 PROJECT = os.environ.get('DELOG_PROJECT', '')
 SPACE = os.environ.get('DELOG_SPACE', '')
 
+CALL_CONTEXT = bool(os.environ.get('DELOG_CALL_CONTEXT', False))
+CODE_PROVIDER = os.environ.get("DELOG_CODE_PROVIDER", '')
+REPOSITORY_NAME = os.environ.get("DELOG_REPOSITORY_NAME", '')
+REPOSITORY_BASEPATH = os.environ.get("DELOG_REPOSITORY_BASEPATH", '')
 
-DELOG_LEVEL_FATAL=6
-DELOG_LEVEL_ERROR=5
-DELOG_LEVEL_WARN=4
-DELOG_LEVEL_INFO=3
-DELOG_LEVEL_DEBUG=2
-DELOG_LEVEL_TRACE=1
+
+DELOG_LEVEL_FATAL = 6
+DELOG_LEVEL_ERROR = 5
+DELOG_LEVEL_WARN = 4
+DELOG_LEVEL_INFO = 3
+DELOG_LEVEL_DEBUG = 2
+DELOG_LEVEL_TRACE = 1
 
 delog_levels = {
     "fatal": DELOG_LEVEL_FATAL,

@@ -19,6 +19,20 @@ class TestDelog(unittest.TestCase):
             text="simple test",
         )
 
+    def test_simple_call(self):
+        delog(
+            endpoint=endpoint,
+            token=token,
+            text="simple test",
+            context={
+                "call": {
+                    "code_provider": "test_code_provider",
+                    "repository_name": "test_repository_name",
+                    "repository_basepath": "/home/",
+                },
+            },
+        )
+
     def test_simple_full(self):
         delog(
             endpoint=endpoint,

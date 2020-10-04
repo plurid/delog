@@ -15,11 +15,15 @@ from delog.constants import (
     SPACE,
     delog_levels,
 )
+
+from delog.caller import (
+    get_caller,
+)
 #endregion imports
 
 
 
-#endregion module
+#region module
 def delog(
     text: str,
 
@@ -60,6 +64,14 @@ def delog(
 
     context: dict = {},
 ):
+    if not endpoint:
+        print("Delog Error :: An endpoint is required.")
+        return
+
+    if not token:
+        print("Delog Error :: A token is required.")
+        return
+
     if GROUND_LEVEL > level:
         return
 
@@ -68,8 +80,21 @@ def delog(
         token=token,
     )
 
+    if not context:
+        context = {}
+
+    call_context = get_caller(
+        call=context.get("call"),
+    )
+
     log_time = int(time.time())
     error_string = repr(error)
+    input_context = {
+        "mode": context.get("mode", "LOGGING"),
+        "scenario": context.get("scenario", ""),
+        "suite": context.get("suite", ""),
+        "call": call_context,
+    };
 
     variables = {
         "input": {
@@ -79,18 +104,13 @@ def delog(
             "space": space,
 
             "level": level,
-
             "method": method,
-
             "sharedID": shared_id,
-
             "sharedOrder": shared_order,
-
             "error": error_string,
-
             "extradata": extradata,
 
-            "context": context,
+            "context": input_context,
 
             "text": text,
 
