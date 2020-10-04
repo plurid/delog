@@ -200,7 +200,7 @@ describe('delog - tester', () => {
                 mode: 'TESTING',
                 suite: 'two',
                 scenario: 'four',
-                sharedID: 'one',
+                sharedID: 'two',
             },
         );
     });

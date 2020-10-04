@@ -1,0 +1,47 @@
+// scenario three
+{
+    phases [
+        #phase0
+        #phase1
+    ]
+}
+
+
+phase0 {
+    method method-name
+    text Test Start
+    level info
+}
+
+phase1 {
+    method method-name
+    text Test End Branch A
+    level error
+}
+
+
+
+---
+
+
+
+// scenario four
+{
+    phases [
+        #phase0
+        #phase1
+    ]
+}
+
+
+phase0 {
+    method method-name
+    text Test Start
+    level info
+}
+
+phase1 {
+    method method-name
+    text Test End Branch B
+    level info
+}
