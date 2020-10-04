@@ -68,7 +68,7 @@ const delog = async (
 
     try {
         const callContext = getCallContext(
-            context.call,
+            context?.call,
         );
 
         const graphql = client(
@@ -86,6 +86,9 @@ const delog = async (
         };
 
         const input: DelogInputRecord = {
+            text,
+            time,
+
             format,
 
             project,
@@ -97,10 +100,6 @@ const delog = async (
             extradata,
 
             context: inputContext,
-
-            text,
-
-            time,
         };
 
         const mutation = await graphql.mutate({

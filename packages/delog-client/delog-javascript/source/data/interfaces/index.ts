@@ -1,6 +1,10 @@
 // #region module
 export interface DelogData {
-    // Configuration optionals
+    // Required.
+    text: string;
+
+
+    // Configuration optionals.
     format?: string;
 
     endpoint?: string;
@@ -10,7 +14,7 @@ export interface DelogData {
     space?: string;
 
 
-    // Logging optionals
+    // Logging optionals.
     /**
      * Log level:
      *
@@ -38,19 +42,17 @@ export interface DelogData {
     extradata?: string;
 
     context?: DelogContext;
-
-    text: string;
 }
 
 
 export type RequiredDelogData = Required<
-    Omit<DelogData, 'error'>
+    Omit<DelogData, 'error' | 'context'>
 > & {
     groundLevel: number;
-
     error: string;
-
     time: number;
+
+    context?: DelogContext;
 }
 
 

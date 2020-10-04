@@ -13,7 +13,6 @@
 
         delogLevels,
         defaultConfiguration,
-        defaultContext,
     } from '#data/constants';
 
     import {
@@ -44,7 +43,6 @@ const getConfiguration = (
             ...defaultConfiguration,
 
             text: data,
-
             time,
         };
 
@@ -53,6 +51,9 @@ const getConfiguration = (
 
 
     const configuration: RequiredDelogData = {
+        text: data.text,
+        time,
+
         groundLevel: GROUND_LEVEL,
 
         format: data.format || FORMAT,
@@ -69,13 +70,7 @@ const getConfiguration = (
         error: stringifyError(data.error),
         extradata: data.extradata || '',
 
-        context: data.context || {
-            ...defaultContext,
-        },
-
-        text: data.text,
-
-        time,
+        context: data.context,
     };
 
     return configuration;
