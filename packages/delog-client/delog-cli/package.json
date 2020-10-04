@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog-cli",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Command-Line Interface for Delog",
     "keywords": [
         "delog",
