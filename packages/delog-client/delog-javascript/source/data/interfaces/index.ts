@@ -5,13 +5,13 @@ export interface DelogData {
 
 
     // Configuration optionals.
-    format?: string;
-
     endpoint?: string;
     token?: string;
 
     project?: string;
     space?: string;
+
+    format?: string;
 
 
     // Logging optionals.
