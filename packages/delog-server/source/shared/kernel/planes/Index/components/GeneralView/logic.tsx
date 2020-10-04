@@ -3,7 +3,7 @@
     import React from 'react';
 
     import {
-        PluridIconSettings,
+        PluridIconStatistics,
         PluridIconLocked,
         PluridIconApps,
         PluridIconFrame,
@@ -71,7 +71,7 @@ export const generalSelectors = [
 ];
 
 export const generalSelectorsIcons = {
-    analytics: PluridIconSettings,
+    analytics: PluridIconStatistics,
     tokens: PluridIconLocked,
     projects: PluridIconApps,
     spaces: PluridIconFrame,
