@@ -3,7 +3,7 @@
     import delog from '../';
 
     import {
-        logLevels,
+        delogLevels,
     } from '#data/constants';
     // #endregion external
 // #endregion imports
@@ -24,7 +24,7 @@ describe('delog - simple', () => {
             project: 'project-name',
             space: 'space-name',
 
-            level: logLevels.error,
+            level: delogLevels.error,
             method: 'method-name',
             format: '%TIME %TEXT',
             sharedID: 'one',
@@ -45,7 +45,7 @@ describe('delog - simple', () => {
                 project: 'project-name',
                 space: 'space-name',
 
-                level: logLevels.trace,
+                level: delogLevels.trace,
                 method: 'method-name',
                 format: '%LEVEL %TIME %TEXT',
                 sharedID: 'one',
@@ -71,7 +71,7 @@ describe('delog - simple', () => {
                         project: 'project-name',
                         space: 'space-name',
 
-                        level: logLevels.trace,
+                        level: delogLevels.trace,
                         method: 'method-name',
                         format: '%LEVEL %TIME %TEXT',
                         sharedID: 'one',

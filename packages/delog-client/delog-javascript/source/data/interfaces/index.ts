@@ -70,7 +70,7 @@ export type RequiredDelogData = Required<
 }
 
 
-export interface LogLevels {
+export interface DelogLevels {
     none: number;
     fatal: number;
     error: number;

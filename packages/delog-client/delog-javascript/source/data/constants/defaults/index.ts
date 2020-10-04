@@ -18,7 +18,7 @@
     } from '../general';
 
     import {
-        logLevels
+        delogLevels
     } from '../levels';
 
     import {
@@ -48,7 +48,7 @@ const defaultConfiguration: RequiredDelogData = {
     project: PROJECT,
     space: SPACE,
 
-    level: logLevels.info,
+    level: delogLevels.info,
     method: '',
     sharedID: '',
     sharedOrder: -1,

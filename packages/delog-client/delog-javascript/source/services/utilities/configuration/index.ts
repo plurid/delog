@@ -11,7 +11,7 @@
         PROJECT,
         SPACE,
 
-        logLevels,
+        delogLevels,
         defaultConfiguration,
         defaultContext,
     } from '#data/constants';
@@ -63,7 +63,7 @@ const getConfiguration = (
         project: data.project || PROJECT,
         space: data.space || SPACE,
 
-        level: data.level || logLevels.info,
+        level: data.level || delogLevels.info,
         method: data.method || '',
         sharedID: data.sharedID || '',
         sharedOrder: data.sharedOrder ?? -1,

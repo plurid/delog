@@ -1,7 +1,7 @@
 // #region imports
     // #region external
     import {
-        logLevels,
+        delogLevels,
     } from '../levels';
     // #endregion external
 // #endregion imports
@@ -9,7 +9,7 @@
 
 
 // #region module
-const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || logLevels.all;
+const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || delogLevels.all;
 
 const FORMAT = process.env.DELOG_FORMAT || '%TIME %SPACE %LEVEL %TEXT';
 
