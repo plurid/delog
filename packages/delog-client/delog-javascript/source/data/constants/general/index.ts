@@ -11,7 +11,7 @@
 // #region module
 const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || delogLevels.all;
 
-const FORMAT = process.env.DELOG_FORMAT || '%TIME - %SPACE - %LEVEL : %TEXT';
+const FORMAT = process.env.DELOG_FORMAT || '';
 
 const ENDPOINT = process.env.DELOG_ENDPOINT || '';
 const TOKEN = process.env.DELOG_TOKEN || '';
