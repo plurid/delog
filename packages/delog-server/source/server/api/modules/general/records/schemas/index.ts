@@ -58,6 +58,19 @@ export const types = gql`
         mode: String
         suite: String
         scenario: String
+        call: DelogContextCall
+    }
+
+    type DelogContextCall {
+        provider: String!
+        repository: String!
+        caller: DelogContextCaller!
+    }
+
+    type DelogContextCaller {
+        file: String!
+        line: Int!
+        column: Int!
     }
 `;
 
@@ -92,6 +105,19 @@ export const inputs = gql`
         mode: String
         suite: String
         scenario: String
+        call: DelogInputContextCall
+    }
+
+    input DelogInputContextCall {
+        provider: String!
+        repository: String!
+        caller: DelogInputContextCaller!
+    }
+
+    input DelogInputContextCaller {
+        file: String!
+        line: Int!
+        column: Int!
     }
 
     input InputObliterateRecords {
