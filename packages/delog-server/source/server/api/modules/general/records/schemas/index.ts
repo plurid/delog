@@ -82,21 +82,19 @@ export const inputs = gql`
     }
 
     input DelogInputRecord {
-        format: String!
+        text: String!
+        time: Int!
+        level: Int!
 
         project: String!
         space: String!
 
-        level: Int!
-        method: String!
-        error: String!
-        extradata: String!
+        format: String!
 
+        method: String
+        error: String
+        extradata: String
         context: DelogInputContext
-
-        text: String!
-
-        time: Int!
     }
 
     input DelogInputContext {

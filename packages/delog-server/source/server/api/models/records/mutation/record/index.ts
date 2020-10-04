@@ -57,41 +57,37 @@ const record = async (
     try {
         // #region input unpack
         const {
-            format,
+            text,
+            time,
+            level,
 
             project,
             space,
 
-            level,
+            format,
+
             method,
             error,
             extradata,
-
             context,
-
-            text,
-
-            time,
         } = input;
         // #endregion input unpack
 
 
         const record: any = {
-            format,
+            text,
+            time,
+            level,
 
             project,
             space,
 
-            level,
+            format: format || '%TIME - %SPACE - %LEVEL : %TEXT',
+
             method,
             error,
             extradata,
-
             context,
-
-            text,
-
-            time,
         };
 
 
