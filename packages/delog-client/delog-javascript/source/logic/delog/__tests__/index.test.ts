@@ -20,8 +20,10 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it('works', () => {
+    it.only('works', () => {
         delog({
+            text: 'works',
+
             endpoint,
             token,
 
@@ -32,8 +34,6 @@ describe('delog - simple', () => {
             method: 'method-name',
             format: '%TIME %TEXT',
             extradata: JSON.stringify({one: 'two'}),
-
-            text: 'works',
         });
     });
 
@@ -67,8 +67,10 @@ describe('delog - simple', () => {
 
 
     it('works - stress test', () => {
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 1001; i++) {
             delog({
+                text: 'works ' + i,
+
                 endpoint,
                 token,
 
@@ -79,8 +81,6 @@ describe('delog - simple', () => {
                 method: 'method-name',
                 format: '%LEVEL %TIME %TEXT',
                 extradata: JSON.stringify({one: 'two'}),
-
-                text: 'works ' + i,
             });
         }
     });
