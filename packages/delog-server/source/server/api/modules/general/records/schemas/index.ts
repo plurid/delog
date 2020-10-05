@@ -33,23 +33,20 @@ export const types = gql`
     type Record {
         id: String!
 
-        format: String!
+        text: String!
+        time: Int!
+        log: String!
+        level: Int!
 
         project: String!
         space: String!
 
-        level: Int!
-        method: String!
-        error: String!
-        extradata: String!
+        format: String!
 
+        method: String
+        error: String
+        extradata: String
         context: DelogContext
-
-        text: String!
-
-        time: Int!
-
-        log: String!
     }
 
     type DelogContext {
