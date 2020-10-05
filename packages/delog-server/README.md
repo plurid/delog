@@ -86,6 +86,7 @@ docker build \
     --build-arg DELOG_MONGO_ADDRESS= \
     --build-arg DELOG_MONGO_CONNECTION_STRING= \
     --build-arg DELOG_TEST_MODE= \
+    --build-arg DELOG_OPTIMIZATION_BATCH_WRITE_TIME= \
     .
 ```
 
