@@ -37,4 +37,9 @@ export const MONGO_CONNECTION_STRING = process.env.DELOG_MONGO_CONNECTION_STRING
 
 
 export const TEST_MODE = process.env.DELOG_TEST_MODE === 'true';
+
+
+
+export const OPTIMIZATION_BATCH_WRITE_SIZE = parseInt(process.env.DELOG_OPTIMIZATION_BATCH_WRITE_SIZE || '') || 1000;
+export const OPTIMIZATION_BATCH_WRITE_TIME = parseInt(process.env.DELOG_OPTIMIZATION_BATCH_WRITE_TIME || '') || 5000;
 // #endregion module
