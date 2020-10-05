@@ -11,6 +11,10 @@
     } from 'recharts';
 
     import {
+        Theme,
+    } from '@plurid/plurid-themes';
+
+    import {
         PluridDropdown,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
@@ -57,11 +61,19 @@ export interface RecordsPieChartDataItem {
 export interface RecordsPieChartProperties {
     // #region required
         // #region values
+        generalTheme: Theme;
+        interactionTheme: Theme;
         data: RecordsPieChartDataItem[];
         type: string;
+
+        projects: string[];
         // #endregion values
 
         // #region methods
+        updateData: (
+            project: string,
+            period: string,
+        ) => void;
         // #endregion methods
     // #endregion required
 
@@ -81,11 +93,16 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
     const {
         // #region required
             // #region values
+            generalTheme,
+            interactionTheme,
             data,
             type,
+
+            projects,
             // #endregion values
 
             // #region methods
+            updateData,
             // #endregion methods
         // #endregion required
 
@@ -99,7 +116,7 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
     } = properties;
 
     const itemsCount = data.reduce(
-        (acc, cv) => acc + cv.value,
+        (accumulator, current) => accumulator + current.value,
         0,
     );
     // #endregion properties
@@ -134,14 +151,16 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         project: string,
         period: string,
     ) => {
-
+        updateData(project, period);
     }
     // #endregion handlers
 
 
     // #region render
     return (
-        <StyledRecordsPieChart>
+        <StyledRecordsPieChart
+            theme={generalTheme}
+        >
             <StyledRecordsPieChartTitle>
                 {itemsCount || 'no'} {type} in the last
 
@@ -150,6 +169,8 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     selectables={periodSelectables}
                     atSelect={(selection) => {
                         if (typeof selection === 'string') {
+                            setSelectedPeriod(selection);
+
                             requestData(
                                 selectedProject,
                                 selection,
@@ -170,7 +191,10 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
             >
                 <Pie
                     activeIndex={activeIndex}
-                    activeShape={renderActiveShape}
+                    activeShape={(properties) => renderActiveShape(
+                        properties,
+                        interactionTheme,
+                    )}
                     data={data}
                     cx={250}
                     cy={175}
@@ -199,9 +223,12 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     selected={selectedProject}
                     selectables={[
                         'all projects',
+                        ...projects,
                     ]}
                     atSelect={(selection) => {
                         if (typeof selection === 'string') {
+                            setSelectedProject(selection);
+
                             requestData(
                                 selection,
                                 selectedPeriod,

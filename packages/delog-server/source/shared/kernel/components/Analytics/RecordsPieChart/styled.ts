@@ -1,15 +1,32 @@
 // #region imports
     // #region libraries
     import styled from 'styled-components';
+
+    import {
+        Theme,
+    } from '@plurid/plurid-themes';
     // #endregion libraries
 // #endregion imports
 
 
 
 // #region module
-const StyledRecordsPieChart = styled.div`
-    background-color: hsl(220, 10%, 26%);
-    box-shadow: 0px 3px 12px 0px hsla(220, 10%, 10%, 0.8);
+export interface IStyledRecordsPieChart {
+    theme: Theme;
+}
+
+const StyledRecordsPieChart = styled.div<IStyledRecordsPieChart>`
+    background-color: ${
+        ({
+            theme,
+        }: IStyledRecordsPieChart) => theme.backgroundColorSecondary
+    };
+    box-shadow: ${
+        ({
+            theme,
+        }: IStyledRecordsPieChart) => theme.boxShadowUmbra
+    };
+
     width: 500px;
     min-height: 400px;
 `;

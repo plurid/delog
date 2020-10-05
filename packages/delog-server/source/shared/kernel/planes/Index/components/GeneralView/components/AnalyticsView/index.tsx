@@ -13,6 +13,10 @@
 
 
     // #region external
+    import {
+        Project,
+    } from '#server/data/interfaces';
+
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
 
     import { AppState } from '#kernel-services/state/store';
@@ -68,6 +72,7 @@ export interface AnalyticsViewOwnProperties {
 export interface AnalyticsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateProjects: Project[];
 }
 
 export interface AnalyticsViewDispatchProperties {
@@ -103,26 +108,66 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
+        stateProjects,
         // #endregion state
 
         // #region dispatch
         dispatch,
         // #endregion dispatch
     } = properties;
+
+    const projects = stateProjects.map(project => project.name);
     // #endregion properties
+
+
+    // #region handlers
+    const updateData = (
+        project: string,
+        period: string,
+        type: string,
+    ) => {
+
+    }
+    // #endregion handlers
 
 
     // #region render
     return (
         <StyledAnalyticsView>
             <RecordsPieChart
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
                 data={dataEntries}
                 type="entries"
+                projects={projects}
+                updateData={(
+                    project,
+                    period,
+                ) => {
+                    updateData(
+                        project,
+                        period,
+                        'entries',
+                    );
+                }}
             />
 
             <RecordsPieChart
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
                 data={dataFaults}
                 type="faults"
+                projects={projects}
+                updateData={(
+                    project,
+                    period,
+                ) => {
+                    updateData(
+                        project,
+                        period,
+                        'faults',
+                    );
+                }}
             />
         </StyledAnalyticsView>
     );
@@ -135,6 +180,7 @@ const mapStateToProperties = (
 ): AnalyticsViewStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateProjects: selectors.data.getProjects(state),
 });
 
 
