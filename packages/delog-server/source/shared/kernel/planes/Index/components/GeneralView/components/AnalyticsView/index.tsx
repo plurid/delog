@@ -30,7 +30,7 @@
 
 
 
-const dataRecords = [
+const dataEntries = [
     { name: 'fatal', value: 15 },
     { name: 'error', value: 55 },
     { name: 'warn', value: 254 },
@@ -39,7 +39,7 @@ const dataRecords = [
     { name: 'trace', value: 3546 },
 ];
 
-const dataMistakes = [
+const dataFaults = [
     { name: 'fatal', value: 15 },
     { name: 'error', value: 55 },
     { name: 'warn', value: 254 },
@@ -116,13 +116,13 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
     return (
         <StyledAnalyticsView>
             <RecordsPieChart
-                data={dataRecords}
-                type="records"
+                data={dataEntries}
+                type="entries"
             />
 
             <RecordsPieChart
-                data={dataMistakes}
-                type="mistakes"
+                data={dataFaults}
+                type="faults"
             />
         </StyledAnalyticsView>
     );
