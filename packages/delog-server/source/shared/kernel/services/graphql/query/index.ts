@@ -83,29 +83,24 @@ export const GET_RECORDS = gql`
             data {
                 id
 
-                format
+                text
+                time
+                level
+                log
 
                 project
                 space
 
-                level
+                format
+
                 method
-                sharedID
-                sharedOrder
                 error
                 extradata
-
                 context {
                     mode
                     suite
                     scenario
                 }
-
-                text
-
-                time
-
-                log
             }
         }
     }
