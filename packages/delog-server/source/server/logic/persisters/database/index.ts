@@ -5,6 +5,7 @@
     } from '#server/data/constants';
 
     import {
+        Database as IDatabase,
         DatabaseType,
         DatabasePagination,
     } from '#server/data/interfaces';
@@ -21,7 +22,7 @@
 
 
 // #region module
-class Database {
+class Database implements IDatabase {
     private type: DatabaseType;
 
     constructor(
@@ -30,7 +31,7 @@ class Database {
         this.type = type;
     }
 
-    public initialize() {
+    public async initialize() {
         switch (this.type) {
             case databaseType.amazon:
                 return amazonDatabase.initialize();
@@ -39,11 +40,11 @@ class Database {
             case databaseType.mongo:
                 return mongoDatabase.initialize();
             default:
-                return;
+                return false;
         }
     }
 
-    public get(
+    public async get(
         entity: string,
         id: string,
     ) {
@@ -68,7 +69,7 @@ class Database {
         }
     }
 
-    public getAll(
+    public async getAll(
         entity: string,
     ) {
         switch (this.type) {
@@ -89,7 +90,7 @@ class Database {
         }
     }
 
-    public query(
+    public async query(
         entity: string,
         field: string,
         value: string,
@@ -122,7 +123,7 @@ class Database {
         }
     }
 
-    public store(
+    public async store(
         entity: string,
         id: string,
         data: any,
@@ -151,7 +152,32 @@ class Database {
         }
     }
 
-    public update(
+    public async storeBatch(
+        entity: string,
+        data: any,
+    ) {
+        switch (this.type) {
+            case databaseType.amazon:
+                return amazonDatabase.storeBatch(
+                    entity,
+                    data,
+                );
+            case databaseType.google:
+                return googleDatabase.storeBatch(
+                    entity,
+                    data,
+                );
+            case databaseType.mongo:
+                return mongoDatabase.storeBatch(
+                    entity,
+                    data,
+                );
+            default:
+                return;
+        }
+    }
+
+    public async update(
         entity: string,
         id: string,
         field: string,
@@ -184,7 +210,7 @@ class Database {
         }
     }
 
-    public obliterate(
+    public async obliterate(
         entity: string,
         id: string,
     ) {
@@ -209,7 +235,7 @@ class Database {
         }
     }
 
-    public obliterateAll(
+    public async obliterateAll(
         entity: string,
         filter?: Record<string, string>,
     ) {

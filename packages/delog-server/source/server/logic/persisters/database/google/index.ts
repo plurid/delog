@@ -7,6 +7,7 @@
         DatabaseGetAll,
         DatabaseQuery,
         DatabaseStore,
+        DatabaseStoreBatch,
         DatabaseUpdate,
         DatabaseObliterate,
         DatabaseObliterateAll,
@@ -55,6 +56,14 @@ const store: DatabaseStore = async (
 }
 
 
+const storeBatch: DatabaseStoreBatch = async (
+    entity,
+    data,
+) => {
+    return;
+}
+
+
 const update: DatabaseUpdate = async (
     entity,
     id,
@@ -87,6 +96,7 @@ const googleDatabase: Database = {
     getAll,
     query,
     store,
+    storeBatch,
     update,
     obliterate,
     obliterateAll,

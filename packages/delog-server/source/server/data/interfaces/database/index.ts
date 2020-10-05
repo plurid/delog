@@ -24,6 +24,7 @@ export interface Database {
     getAll: DatabaseGetAll;
     query: DatabaseQuery;
     store: DatabaseStore;
+    storeBatch: DatabaseStoreBatch;
     update: DatabaseUpdate;
     obliterate: DatabaseObliterate;
     obliterateAll: DatabaseObliterateAll;
@@ -63,6 +64,12 @@ export type DatabaseStore = (
     entity: string,
     id: string,
     data: any,
+) => Promise<any>;
+
+
+export type DatabaseStoreBatch = (
+    entity: string,
+    data: any[],
 ) => Promise<any>;
 
 

@@ -14,6 +14,7 @@
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
+    import recordsBatcher from '#server/services/recordsBatcher';
 
     import Formatter from '#server/objects/Formatter';
     import Notifier from '#server/objects/Notifier';
@@ -45,11 +46,15 @@ const registerRecord = async (
     const notifier = new Notifier(loggedRecord);
     notifier.notify();
 
-    await database.store(
-        'records',
-        id,
+    recordsBatcher.push(
         loggedRecord,
     );
+
+    // await database.store(
+    //     'records',
+    //     id,
+    //     loggedRecord,
+    // );
 
     return record;
 }

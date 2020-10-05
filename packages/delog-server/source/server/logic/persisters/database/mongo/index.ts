@@ -15,6 +15,7 @@
         DatabaseGetAll,
         DatabaseQuery,
         DatabaseStore,
+        DatabaseStoreBatch,
         DatabaseUpdate,
         DatabaseObliterate,
         DatabaseObliterateAll,
@@ -195,6 +196,31 @@ const store: DatabaseStore = async (
 }
 
 
+const storeBatch: DatabaseStoreBatch = async (
+    entity,
+    data,
+) => {
+    if (!connection) {
+        console.log(mongoNoConnectionError);
+        return false;
+    }
+
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        collection.insertMany(
+            data,
+        );
+
+        return;
+    } catch (error) {
+        return;
+    }
+}
+
+
 const update: DatabaseUpdate = async (
     entity,
     id,
@@ -283,6 +309,7 @@ const mongoDatabase: Database = {
     getAll,
     query,
     store,
+    storeBatch,
     update,
     obliterate,
     obliterateAll,
