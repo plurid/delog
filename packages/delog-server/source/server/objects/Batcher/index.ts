@@ -21,9 +21,11 @@ export interface BatcherOptions {
 
 class Batcher<T> {
     private batch: T[] = [];
+    private sidebatch: T[] = [];
     private options: BatcherOptions;
     private entity: string;
     private database: Database;
+    private interval: number = 0;
 
     constructor(
         entity: string,
@@ -36,11 +38,6 @@ class Batcher<T> {
 
         this.entity = entity;
         this.database = database;
-
-        setInterval(
-            this.store,
-            this.options.time,
-        );
     }
 
     push(
@@ -48,8 +45,18 @@ class Batcher<T> {
     ) {
         if (this.batch.length < this.options.size) {
             this.batch.push(data);
+
+            if (!this.interval) {
+                this.interval = setInterval(
+                    () => this.store(),
+                    this.options.time,
+                );
+            }
+
             return;
         }
+
+        this.sidebatch.push(data);
 
         this.store();
     }
@@ -60,15 +67,38 @@ class Batcher<T> {
         }
 
         if (this.batch.length === 0) {
+            clearInterval(this.interval);
+            this.interval = 0;
+
             return;
         }
 
-        await this.database.storeBatch(
-            this.entity,
-            this.batch,
+        const size = this.batch.length < this.options.size
+            ? this.batch.length
+            : this.options.size;
+
+        const batch = this.batch.slice(
+            0,
+            size,
         );
 
-        this.batch = [];
+        await this.database.storeBatch(
+            this.entity,
+            batch,
+        );
+
+        const batchSlice = this.batch.slice(
+            size,
+            this.batch.length - 1,
+        );
+
+        const updatedBatch = [
+            ...batchSlice,
+            ...this.sidebatch,
+        ];
+
+        this.batch = updatedBatch;
+        this.sidebatch = [];
     }
 }
 // #endregion module
