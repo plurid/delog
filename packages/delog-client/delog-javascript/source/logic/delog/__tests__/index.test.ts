@@ -20,7 +20,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it.only('works', () => {
+    it('works', () => {
         delog({
             text: 'works',
 
@@ -66,8 +66,11 @@ describe('delog - simple', () => {
 
 
 
-    it('works - stress test', () => {
-        for (let i = 0; i < 1001; i++) {
+    it.only('works - stress test', async () => {
+        jest.setTimeout(60_000);
+
+        for (let i = 0; i < 101; i++) {
+            console.log('i', i);
             delog({
                 text: 'works ' + i,
 
@@ -83,6 +86,12 @@ describe('delog - simple', () => {
                 extradata: JSON.stringify({one: 'two'}),
             });
         }
+
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, 10_000);
+        });
     });
 
 
