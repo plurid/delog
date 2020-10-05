@@ -52,4 +52,12 @@ export interface InputObliterateRecords {
     filter?: string;
     ids?: string[];
 }
+
+
+
+export interface InputGetAnalyticsLastPeriod {
+    project: string;
+    period: string;
+    type: string;
+}
 // #endregion module

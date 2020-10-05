@@ -10,6 +10,8 @@
     import Records from './records';
     import Tests from './tests';
     import Setup from './setup';
+
+    import Analytics from './analytics';
     // #endregion internal
 // #endregion imports
 
@@ -27,5 +29,7 @@ export {
     Records,
     Tests,
     Setup,
+
+    Analytics,
 };
 // #endregion exports
