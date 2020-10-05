@@ -20,6 +20,7 @@
     import {
         StyledRecordsPieChart,
         StyledRecordsPieChartTitle,
+        StyledRecordsPieChartProject,
     } from './styled';
 
     import {
@@ -39,6 +40,13 @@ const colors = {
     debug: '#4accff',
     trace: '#03b8ff',
 };
+
+const periodSelectables = [
+    'hour',
+    '24 hours',
+    '7 days',
+    '30 days',
+];
 
 
 export interface RecordsPieChartDataItem {
@@ -102,6 +110,15 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         activeIndex,
         setActiveIndex,
     ] = useState(-1);
+
+    const [
+        selectedPeriod,
+        setSelectedPeriod,
+    ] = useState('hour');
+    const [
+        selectedProject,
+        setSelectedProject,
+    ] = useState('all projects');
     // #endregion state
 
 
@@ -111,6 +128,13 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         index: number,
     ) => {
         setActiveIndex(index);
+    }
+
+    const requestData = (
+        project: string,
+        period: string,
+    ) => {
+
     }
     // #endregion handlers
 
@@ -122,13 +146,16 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                 {itemsCount || 'no'} {type} in the last
 
                 <PluridDropdown
-                    selected="hour"
-                    selectables={[
-                        'hour',
-                        '24 hours',
-                        '30 days',
-                    ]}
-                    atSelect={() => {}}
+                    selected={selectedPeriod}
+                    selectables={periodSelectables}
+                    atSelect={(selection) => {
+                        if (typeof selection === 'string') {
+                            requestData(
+                                selectedProject,
+                                selection,
+                            );
+                        }
+                    }}
                     style={{
                         fontSize: '1rem',
                         marginLeft: '0.3rem',
@@ -166,6 +193,28 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     }
                 </Pie>
             </PieChart>
+
+            <StyledRecordsPieChartProject>
+                <PluridDropdown
+                    selected={selectedProject}
+                    selectables={[
+                        'all projects',
+                    ]}
+                    atSelect={(selection) => {
+                        if (typeof selection === 'string') {
+                            requestData(
+                                selection,
+                                selectedPeriod,
+                            );
+                        }
+                    }}
+                    style={{
+                        fontSize: '1rem',
+                        marginLeft: '0.3rem',
+                    }}
+                    width={160}
+                />
+            </StyledRecordsPieChartProject>
         </StyledRecordsPieChart>
     );
     // #endregion render

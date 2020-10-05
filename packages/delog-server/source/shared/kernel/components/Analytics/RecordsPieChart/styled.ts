@@ -22,6 +22,14 @@ const StyledRecordsPieChartTitle = styled.div`
     justify-content: center;
     text-align: center;
 `;
+
+const StyledRecordsPieChartProject = styled.div`
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+`;
 // #endregion module
 
 
@@ -30,5 +38,6 @@ const StyledRecordsPieChartTitle = styled.div`
 export {
     StyledRecordsPieChart,
     StyledRecordsPieChartTitle,
+    StyledRecordsPieChartProject,
 };
 // #endregion exports
