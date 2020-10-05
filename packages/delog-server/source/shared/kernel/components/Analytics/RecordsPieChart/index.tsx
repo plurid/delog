@@ -177,6 +177,7 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                             );
                         }
                     }}
+                    selectAtHover={false}
                     style={{
                         fontSize: '1rem',
                         marginLeft: '0.3rem',
@@ -235,6 +236,7 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                             );
                         }
                     }}
+                    selectAtHover={false}
                     style={{
                         fontSize: '1rem',
                         marginLeft: '0.3rem',
