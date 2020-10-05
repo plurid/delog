@@ -13,13 +13,37 @@
 
 
     // #region external
+    import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
     // #endregion external
+
+
+    // #region internal
+    import {
+        StyledAnalyticsView,
+    } from './styled';
+    // #endregion internal
 // #endregion imports
 
 
+
+const dataRecords = [
+    { name: 'fatal', value: 15 },
+    { name: 'error', value: 55 },
+    { name: 'warn', value: 254 },
+    { name: 'info', value: 546 },
+    { name: 'debug', value: 1346 },
+    { name: 'trace', value: 3546 },
+];
+
+const dataMistakes = [
+    { name: 'fatal', value: 15 },
+    { name: 'error', value: 55 },
+    { name: 'warn', value: 254 },
+];
 
 // #region module
 export interface AnalyticsViewOwnProperties {
@@ -90,9 +114,17 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
 
     // #region render
     return (
-        <div>
+        <StyledAnalyticsView>
+            <RecordsPieChart
+                data={dataRecords}
+                type="records"
+            />
 
-        </div>
+            <RecordsPieChart
+                data={dataMistakes}
+                type="mistakes"
+            />
+        </StyledAnalyticsView>
     );
     // #endregion render
 }
