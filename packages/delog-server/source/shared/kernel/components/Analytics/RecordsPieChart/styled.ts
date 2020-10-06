@@ -16,6 +16,8 @@ export interface IStyledRecordsPieChart {
 }
 
 const StyledRecordsPieChart = styled.div<IStyledRecordsPieChart>`
+    position: relative;
+
     background-color: ${
         ({
             theme,
@@ -40,12 +42,20 @@ const StyledRecordsPieChartTitle = styled.div`
     text-align: center;
 `;
 
+
 const StyledRecordsPieChartProject = styled.div`
     padding: 2rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+`;
+
+
+const StyledRecordsPieChartRefresh = styled.div`
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
 `;
 // #endregion module
 
@@ -56,5 +66,6 @@ export {
     StyledRecordsPieChart,
     StyledRecordsPieChartTitle,
     StyledRecordsPieChartProject,
+    StyledRecordsPieChartRefresh,
 };
 // #endregion exports

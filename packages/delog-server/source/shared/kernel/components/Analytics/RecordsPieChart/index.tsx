@@ -1,7 +1,9 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -15,6 +17,10 @@
     } from '@plurid/plurid-themes';
 
     import {
+        PluridIconReset,
+    } from '@plurid/plurid-icons-react';
+
+    import {
         PluridDropdown,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
@@ -25,6 +31,7 @@
         StyledRecordsPieChart,
         StyledRecordsPieChartTitle,
         StyledRecordsPieChartProject,
+        StyledRecordsPieChartRefresh,
     } from './styled';
 
     import {
@@ -128,6 +135,11 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
     // #endregion properties
 
 
+    // #region references
+    const isMounted = useRef(true);
+    // #endregion references
+
+
     // #region state
     const [
         activeIndex,
@@ -142,6 +154,11 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         selectedProject,
         setSelectedProject,
     ] = useState(project);
+
+    const [
+        showIconReset,
+        setShowIconReset,
+    ] = useState(true);
     // #endregion state
 
 
@@ -164,6 +181,15 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         updateData(project, period);
     }
     // #endregion handlers
+
+
+    // #region effects
+    useEffect(() => {
+        return () => {
+            isMounted.current = false;
+        }
+    }, []);
+    // #endregion effects
 
 
     // #region render
@@ -270,6 +296,29 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     heightItems={5}
                 />
             </StyledRecordsPieChartProject>
+
+            <StyledRecordsPieChartRefresh>
+                {showIconReset && (
+                    <PluridIconReset
+                        atClick={() => {
+                            setShowIconReset(false);
+
+                            requestData(
+                                selectedProject,
+                                selectedPeriod,
+                            );
+
+                            setTimeout(() => {
+                                if (!isMounted.current) {
+                                    return;
+                                }
+
+                                setShowIconReset(true);
+                            }, 1300);
+                        }}
+                    />
+                )}
+            </StyledRecordsPieChartRefresh>
         </StyledRecordsPieChart>
     );
     // #endregion render
