@@ -246,6 +246,8 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                         marginLeft: '0.3rem',
                     }}
                     width={160}
+                    filterable={true}
+                    heightItems={5}
                 />
             </StyledRecordsPieChartProject>
         </StyledRecordsPieChart>
