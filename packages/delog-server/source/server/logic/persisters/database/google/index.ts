@@ -6,6 +6,7 @@
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
+        DatabaseSize,
         DatabaseAggregate,
         DatabaseStore,
         DatabaseStoreBatch,
@@ -43,6 +44,14 @@ const query: DatabaseQuery = async (
     entity,
     field,
     value,
+) => {
+    return;
+}
+
+
+const size: DatabaseSize = async (
+    entity,
+    filter,
 ) => {
     return;
 }
@@ -104,6 +113,7 @@ const googleDatabase: Database = {
     get,
     getAll,
     query,
+    size,
     aggregate,
     store,
     storeBatch,

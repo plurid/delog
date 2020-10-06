@@ -4,6 +4,10 @@
         MongoClient,
         ObjectID,
     } from 'mongodb';
+
+    import {
+        calculateObjectSize,
+    } from 'bson';
     // #endregion libraries
 
 
@@ -14,6 +18,7 @@
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
+        DatabaseSize,
         DatabaseAggregate,
         DatabaseStore,
         DatabaseStoreBatch,
@@ -162,11 +167,49 @@ const query: DatabaseQuery = async (
 
 
         const cursor = collection.find(filter);
+        let sizes = 0;
+        await cursor.forEach(doc => {
+            const size = calculateObjectSize(doc);
+            console.log('size', size);
+            sizes += size;
+        });
+        console.log('sizes', sizes);
+
         const items = await cursor.toArray();
 
         return items;
     } catch (error) {
         return [];
+    }
+}
+
+
+const size: DatabaseSize = async (
+    entity,
+    filter,
+) => {
+    if (!connection) {
+        console.log(mongoNoConnectionError);
+        return;
+    }
+
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        const cursor = collection.find(filter);
+
+        let sizes = 0;
+
+        await cursor.forEach(item => {
+            const size = calculateObjectSize(item);
+            sizes += size;
+        });
+
+        return sizes;
+    } catch (error) {
+        return 0;
     }
 }
 
@@ -334,6 +377,7 @@ const mongoDatabase: Database = {
     get,
     getAll,
     query,
+    size,
     aggregate,
     store,
     storeBatch,

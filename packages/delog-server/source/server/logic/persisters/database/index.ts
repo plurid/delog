@@ -124,6 +124,31 @@ class Database implements IDatabase {
         }
     }
 
+    public async size(
+        entity: string,
+        filter: any,
+    ) {
+        switch (this.type) {
+            case databaseType.amazon:
+                return amazonDatabase.size(
+                    entity,
+                    filter,
+                );
+            case databaseType.google:
+                return googleDatabase.size(
+                    entity,
+                    filter,
+                );
+            case databaseType.mongo:
+                return mongoDatabase.size(
+                    entity,
+                    filter,
+                );
+            default:
+                return;
+        }
+    }
+
     public async aggregate(
         entity: string,
         pipeline: DatabaseAggregator[],
