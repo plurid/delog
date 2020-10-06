@@ -8,8 +8,8 @@
 
 // #region module
 const GET_ANALYTICS_LAST_PERIOD = gql`
-    query GetAnalyticsLastPeriod {
-        getAnalyticsLastPeriod {
+    query GetAnalyticsLastPeriod($input: InputGetAnalyticsLastPeriod!) {
+        getAnalyticsLastPeriod(input: $input) {
             status
             error {
                 path
