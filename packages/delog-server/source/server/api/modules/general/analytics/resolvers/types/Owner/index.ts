@@ -1,5 +1,5 @@
-// #region exports
+// #region module
 export default {
     analytics: () => ({}),
 };
-// #endregion exports
+// #endregion module

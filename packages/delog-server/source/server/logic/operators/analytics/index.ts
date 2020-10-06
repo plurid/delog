@@ -30,7 +30,7 @@ const analyticsLastPeriod = async (
 
 
     switch (type) {
-        case 'errors':
+        case 'entries':
             return {
                 fatal: 0,
                 error: 0,
