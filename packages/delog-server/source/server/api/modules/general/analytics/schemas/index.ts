@@ -30,6 +30,26 @@ export const types = gql`
         debug: Int
         trace: Int
     }
+
+    extend type Owner {
+        analytics: OwnerAnalytics!
+    }
+
+    type OwnerAnalytics {
+        entries(input: InputGetAnalyticsLastPeriodData): AnalyticsRecordsCount!
+        faults(input: InputGetAnalyticsLastPeriodData): AnalyticsRecordsCount!
+    }
+
+    type AnalyticsRecordsCount {
+        project: String!
+        period: String!
+        data: [AnalyticsRecordData!]!
+    }
+
+    type AnalyticsRecordData {
+        name: String!
+        value: Int!
+    }
 `;
 
 
@@ -38,6 +58,11 @@ export const inputs = gql`
         project: String!
         period: String!
         type: String!
+    }
+
+    input InputGetAnalyticsLastPeriodData {
+        project: String!
+        period: String!
     }
 `;
 // #endregion module
