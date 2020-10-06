@@ -67,14 +67,14 @@ describe('delog - simple', () => {
 
 
     it.only('works - stress test', async () => {
-        jest.setTimeout(60_000);
+        jest.setTimeout(120_000);
 
         const small = 1_001;
         const medium = 10_001;
-        const large = 100_001;
-        const huge = 1_000_001;
+        // const large = 50_001; -- node/jest limitations
+        // const huge = 1_000_001;
 
-        for (let i = 0; i < large; i++) {
+        for (let i = 0; i < medium; i++) {
             delog({
                 text: 'works ' + i,
 
@@ -94,7 +94,7 @@ describe('delog - simple', () => {
         await new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve();
-            }, 60_000);
+            }, 120_000);
         });
     });
 
