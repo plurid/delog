@@ -150,6 +150,10 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
         data: any,
         index: number,
     ) => {
+        if (!itemsCount) {
+            return;
+        }
+
         setActiveIndex(index);
     }
 
@@ -197,12 +201,19 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                 height={350}
             >
                 <Pie
-                    activeIndex={activeIndex}
-                    activeShape={(properties) => renderActiveShape(
+                    activeIndex={itemsCount ? activeIndex : -1}
+                    activeShape={(properties) =>renderActiveShape(
                         properties,
                         interactionTheme,
                     )}
-                    data={data}
+                    data={itemsCount
+                        ? data : [
+                            {
+                                name: 'none',
+                                value: 100,
+                            },
+                        ]
+                    }
                     cx={250}
                     cy={175}
                     innerRadius={50}
@@ -211,6 +222,10 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     fill="#8884d8"
                     dataKey="value"
                     onMouseEnter={onPieEnter}
+                    style={{
+                        opacity: itemsCount ? '1' : '0.1',
+                        stroke: 'none',
+                    }}
                 >
                     {
                         data.map((entry, index) => {
