@@ -59,14 +59,25 @@ const getRecordCount = async (
         {
             $match: match,
         },
+        {
+            $count: 'data',
+        },
     ];
 
-    const values = await database.aggregate(
+    const value = await database.aggregate(
         'records',
         pipeline,
     );
 
-    return values.length;
+    if (!value[0]) {
+        return 0;
+    }
+
+    const {
+        data,
+    } = value[0];
+
+    return data;
 }
 
 
