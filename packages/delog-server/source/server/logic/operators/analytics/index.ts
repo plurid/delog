@@ -18,35 +18,20 @@
 const resolvePeriod = (
     value: string,
 ) => {
-    const SECONDS_IN_DAY = 86400;
+    const time = Math.floor(Date.now() / 1000);
+    const SECONDS_IN_DAY = 86_400;
 
     switch (value) {
-        case 'hour': {
-            const lastHour = new Date();
-            lastHour.setHours(lastHour.getHours() - 1);
-            const lastHourValue = Math.floor(lastHour.getTime() / 1000);
-
-            return lastHourValue;
-        }
-        case '24 hours': {
-            const time = Math.floor(Date.now() / 1000);
+        case 'hour':
             return time - SECONDS_IN_DAY;
-        }
-        case '7 days': {
-            const time = Math.floor(Date.now() / 1000);
+        case '24 hours':
+            return time - SECONDS_IN_DAY;
+        case '7 days':
             return time - (SECONDS_IN_DAY * 7);
-        }
-        case '30 days': {
-            const time = Math.floor(Date.now() / 1000);
+        case '30 days':
             return time - (SECONDS_IN_DAY * 30);
-        }
-        default: {
-            const lastHour = new Date();
-            lastHour.setHours(lastHour.getHours() - 1);
-            const lastHourValue = Math.floor(lastHour.getTime() / 1000);
-
-            return lastHourValue;
-        }
+        default:
+            return time - SECONDS_IN_DAY;
     }
 }
 
