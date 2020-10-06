@@ -32,7 +32,7 @@ const resolvePeriod = (
         case '30 days':
             return time - (SECONDS_IN_DAY * 30);
         default:
-            return time - SECONDS_IN_DAY;
+            return time - SECONDS_IN_HOUR;
     }
 }
 
