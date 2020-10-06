@@ -50,6 +50,7 @@ const query: DatabaseQuery = async (
 
 const aggregate: DatabaseAggregate = async (
     entity,
+    pipeline,
 ) => {
     return;
 }

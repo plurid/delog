@@ -56,7 +56,13 @@ export type DatabaseQuery = (
 
 export type DatabaseAggregate = (
     entity: string,
+    pipeline: DatabaseAggregator[],
 ) => Promise<any>;
+
+
+export interface DatabaseAggregator {
+    [key: string]: any;
+}
 
 
 export interface DatabasePagination {

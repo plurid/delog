@@ -8,6 +8,7 @@
         Database as IDatabase,
         DatabaseType,
         DatabasePagination,
+        DatabaseAggregator,
     } from '#server/data/interfaces';
     // #endregion external
 
@@ -125,19 +126,23 @@ class Database implements IDatabase {
 
     public async aggregate(
         entity: string,
+        pipeline: DatabaseAggregator[],
     ) {
         switch (this.type) {
             case databaseType.amazon:
                 return amazonDatabase.aggregate(
                     entity,
+                    pipeline,
                 );
             case databaseType.google:
                 return googleDatabase.aggregate(
                     entity,
+                    pipeline,
                 );
             case databaseType.mongo:
                 return mongoDatabase.aggregate(
                     entity,
+                    pipeline,
                 );
             default:
                 return;

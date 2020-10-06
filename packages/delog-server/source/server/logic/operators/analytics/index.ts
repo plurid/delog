@@ -1,15 +1,12 @@
 // #region imports
-    // #region libraries
-    import {
-        uuid,
-    } from '@plurid/plurid-functions';
-    // #endregion libraries
-
-
     // #region external
     import {
         InputGetAnalyticsLastPeriod,
     } from '#server/data/interfaces';
+
+    import {
+        logLevels,
+    } from '#server/data/constants';
 
     import database from '#server/services/database';
     // #endregion external
@@ -18,6 +15,22 @@
 
 
 // #region module
+const resolvePeriod = (
+    value: string,
+) => {
+    const lastHour = new Date();
+    lastHour.setHours(lastHour.getHours() - 1);
+    const lastHourValue = Math.floor(lastHour.getTime() / 1000);
+
+    return lastHourValue;
+}
+
+const resolveLevel = (
+    kind: string,
+): number => {
+    return logLevels[kind] || logLevels.info;
+}
+
 const getRecordCount = async (
     input: any,
     kind: string,
@@ -28,12 +41,32 @@ const getRecordCount = async (
         ownedBy,
     } = input;
 
+    const periodValue = resolvePeriod(period);
+    const level = resolveLevel(kind);
+
+    const match = {
+        time: { $gt: periodValue },
+        level,
+        project,
+        ownedBy,
+    };
+
+    if (project === 'all projects') {
+        delete match.project;
+    }
+
+    const pipeline = [
+        {
+            $match: match,
+        },
+    ];
+
     const values = await database.aggregate(
         'records',
+        pipeline,
     );
-    // console.log('values', values);
 
-    return 0;
+    return values.length;
 }
 
 
