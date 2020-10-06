@@ -76,6 +76,7 @@ export interface RecordsPieChartProperties {
             project: string,
             period: string,
         ) => void;
+        updateProjects: () => void;
         // #endregion methods
     // #endregion required
 
@@ -107,6 +108,7 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
 
             // #region methods
             updateData,
+            updateProjects,
             // #endregion methods
         // #endregion required
 
@@ -247,6 +249,9 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     }}
                     width={160}
                     filterable={true}
+                    filterUpdate={() => {
+                        updateProjects();
+                    }}
                     heightItems={5}
                 />
             </StyledRecordsPieChartProject>
