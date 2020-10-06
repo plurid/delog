@@ -6,4 +6,5 @@ export * from './graphql';
 export * from './logger';
 export * from './network';
 export * from './notifier';
+export * from './storage';
 // #endregion exports

@@ -3,6 +3,8 @@
     import {
         DelogOwner,
         OwnerToken,
+
+        Provider,
     } from '../general';
 
     import {
@@ -15,6 +17,7 @@
 
     import {
         InputValueString,
+        InputAddProvider,
     } from '../inputs';
     // #endregion external
 // #endregion imports
@@ -22,6 +25,16 @@
 
 
 // #region module
+export interface DelogLogicProvider {
+    register: (
+        input: InputAddProvider,
+    ) => Promise<Provider | undefined>;
+    deregister: (
+        input: InputValueString,
+    ) => Promise<boolean>;
+}
+
+
 export interface DelogLogic {
     getCurrentOwner: () => Promise<DelogOwner>;
     checkOwnerToken: (
@@ -32,5 +45,7 @@ export interface DelogLogic {
         key: string,
     ) => Promise<OwnerToken>;
     logger: Logger;
+
+    provider: DelogLogicProvider;
 }
 // #endregion module

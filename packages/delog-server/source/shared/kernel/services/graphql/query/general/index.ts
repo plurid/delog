@@ -146,4 +146,19 @@ export const GET_TESTS = gql`
         }
     }
 `;
+
+
+
+export const GET_PROVIDER_REPOSITORIES = gql`
+    query GetProviderRepositories($input: InputValueString!) {
+        getProviderRepositories(input: $input) {
+            status
+            data {
+                id
+                name
+                isPrivate
+            }
+        }
+    }
+`;
 // #endregion module

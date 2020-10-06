@@ -1,3 +1,13 @@
+// #region imports
+    // #region external
+    import {
+        CodeProvider,
+    } from '../general';
+    // #endregion external
+// #endregion imports
+
+
+
 // #region module
 export interface InputOf<T> {
     input: T;
@@ -23,6 +33,19 @@ export interface InputGenerateToken {
 export interface InputGenerateSpace {
     name: string;
     project: string;
+}
+
+
+export interface InputAddProvider {
+    type: CodeProvider;
+    token: string;
+    name: string;
+}
+
+
+export interface InputLinkRepository {
+    providerID: string;
+    nameWithOwner: string;
 }
 
 

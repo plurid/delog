@@ -413,6 +413,42 @@ export const removeEntities = (
 }
 
 
+export const setActiveProviderID = (
+    state: Types.State,
+    action: Types.SetActiveProviderIDAction,
+): Types.State => {
+    return {
+        ...state,
+        activeProviderID: action.payload,
+    };
+}
+
+
+export const setProviders = (
+    state: Types.State,
+    action: Types.SetProvidersAction,
+): Types.State => {
+    return {
+        ...state,
+        providers: [
+            ...action.payload,
+        ],
+    };
+}
+
+
+export const setRepositories = (
+    state: Types.State,
+    action: Types.SetRepositoriesAction,
+): Types.State => {
+    return {
+        ...state,
+        repositories: [
+            ...action.payload,
+        ],
+    };
+}
+
 
 export const clearData = (
     state: Types.State,
@@ -430,6 +466,9 @@ const resolvers = {
     removeEntity,
     addEntities,
     removeEntities,
+    setActiveProviderID,
+    setProviders,
+    setRepositories,
     clearData,
 };
 // #endregion module

@@ -7,9 +7,11 @@
     // #region internal
     import owner from './owner/resolvers';
     import analytics from './analytics/resolvers';
-    import projects from './projects/resolvers';
     import tokens from './tokens/resolvers';
+    import projects from './projects/resolvers';
     import spaces from './spaces/resolvers';
+    import providers from './providers/resolvers';
+    import repositories from './repositories/resolvers';
     import formats from './formats/resolvers';
     import notifiers from './notifiers/resolvers';
     import testers from './testers/resolvers';
@@ -38,9 +40,11 @@ const generateResolvers = (
 const resolvers = generateResolvers(
     owner,
     analytics,
-    projects,
     tokens,
+    projects,
     spaces,
+    providers,
+    repositories,
     formats,
     notifiers,
     testers,

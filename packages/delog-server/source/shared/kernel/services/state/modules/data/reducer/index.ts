@@ -24,6 +24,12 @@ const reducer = (
             return resolvers.addEntities(state, action);
         case Types.REMOVE_ENTITIES:
             return resolvers.removeEntities(state, action);
+        case Types.SET_ACTIVE_PROVIDER_ID:
+            return resolvers.setActiveProviderID(state, action);
+        case Types.SET_PROVIDERS:
+            return resolvers.setProviders(state, action);
+        case Types.SET_REPOSITORIES:
+            return resolvers.setRepositories(state, action);
         case Types.CLEAR_DATA:
             return resolvers.clearData(state, action);
         default:

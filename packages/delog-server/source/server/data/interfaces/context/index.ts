@@ -10,9 +10,11 @@
 
     // #region external
     import {
-        Project,
         ClientToken,
+        Project,
         Space,
+        Provider,
+        Repository,
         Format,
         Tester,
     } from '../general';
@@ -41,9 +43,11 @@ export interface Context {
 
     instance: Application;
 
-    projects: Project[];
     tokens: ClientToken[];
+    projects: Project[];
     spaces: Space[];
+    providers: Provider[];
+    repositories: Repository[];
     formats: Format[];
     // notifiers: ClientNotifier[];
     notifiers: any[];

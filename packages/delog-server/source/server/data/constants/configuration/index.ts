@@ -2,6 +2,7 @@
     // #region external
     import {
         DatabaseType,
+        StorageType,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -10,6 +11,9 @@
 
 // #region module
 export const DATABASE_TYPE = (process.env.DELOG_DATABASE_TYPE as DatabaseType | undefined)
+    || 'mongo';
+
+export const STORAGE_TYPE = (process.env.PERFORMER_STORAGE_TYPE as StorageType | undefined)
     || 'filesystem';
 
 

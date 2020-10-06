@@ -16,6 +16,17 @@
 
 
 // #region module
+export interface Token {
+    id: string;
+    name: string;
+    value: string;
+    ownedBy: string;
+    startsWith: string;
+}
+
+export type ClientToken = Omit<Token, 'value' | 'ownedBy'>;
+
+
 export interface Project {
     id: string;
     name: string;
@@ -37,22 +48,44 @@ export interface ProjectSharer {
 }
 
 
-export interface Token {
-    id: string;
-    name: string;
-    value: string;
-    ownedBy: string;
-    startsWith: string;
-}
-
-export type ClientToken = Omit<Token, 'value' | 'ownedBy'>;
-
-
 export interface Space {
     id: string;
     name: string;
     project: string;
     ownedBy: string;
+}
+
+
+export type CodeProvider =
+    | CodeProviderGithub
+    | CodeProviderBitbucket;
+
+
+export type CodeProviderGithub = 'github';
+export type CodeProviderBitbucket = 'bitbucket';
+
+export interface CodeProviderData {
+    github: CodeProviderGithub;
+    bitbucket: CodeProviderBitbucket;
+}
+
+
+
+export interface Provider {
+    id: string;
+    token: string;
+    type: CodeProvider;
+    name: string;
+}
+
+export type ClientProvider = Omit<Provider, 'token'>;
+
+
+export interface Repository {
+    id: string;
+    name: string;
+    isPrivate: boolean;
+    providerID: string;
 }
 
 
@@ -99,6 +132,8 @@ export interface DelogOwner {
     tokens: Token[];
     projects: Project[];
     spaces: Space[];
+    providers: Provider[];
+    repositories: Repository[];
     formats: Format[];
     notifiers: any[];
     testers: Tester[];
@@ -107,5 +142,14 @@ export interface DelogOwner {
 
 export interface OwnerToken {
     token: string;
+}
+
+
+
+export interface Commit {
+    id: string;
+    added: string[];
+    removed: string[];
+    modified: string[];
 }
 // #endregion module

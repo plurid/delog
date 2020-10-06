@@ -1,10 +1,12 @@
 // #region imports
     // #region external
     import {
-        Project,
         Token,
         ClientToken,
+        Project,
         Space,
+        Provider,
+        Repository,
         Format,
         ClientNotifier,
     } from '#server/data/interfaces';
@@ -20,19 +22,6 @@
 
 
 // #region module
-export const loadProjects = async (
-    ownerID: string
-) => {
-    const projects: Project[] = await database.query(
-        'projects',
-        'ownedBy',
-        ownerID,
-    );
-
-    return projects;
-}
-
-
 export const loadTokens = async (
     ownerID: string
 ) => {
@@ -62,6 +51,19 @@ export const loadTokens = async (
 }
 
 
+export const loadProjects = async (
+    ownerID: string
+) => {
+    const projects: Project[] = await database.query(
+        'projects',
+        'ownedBy',
+        ownerID,
+    );
+
+    return projects;
+}
+
+
 export const loadSpaces = async (
     ownerID: string
 ) => {
@@ -72,6 +74,20 @@ export const loadSpaces = async (
     );
 
     return spaces;
+}
+
+
+export const loadProviders = async () => {
+    const providers: Provider[] = await database.getAll('providers');
+
+    return providers || [];
+}
+
+
+export const loadRepositories = async () => {
+    const repositories: Repository[] = await database.getAll('repositories');
+
+    return repositories || [];
 }
 
 
@@ -144,9 +160,11 @@ const loadData = async (
 ) => {
     if (!ownerID) {
         return {
-            projects: [],
             tokens: [],
+            projects: [],
             spaces: [],
+            providers: [],
+            repositories: [],
             formats: [],
             notifiers: [],
             testers: [],
@@ -179,9 +197,11 @@ const loadData = async (
 
 
     const data = {
-        projects,
         tokens,
+        projects,
         spaces,
+        providers: [],
+        repositories: [],
         formats,
         notifiers,
         testers,

@@ -7,6 +7,8 @@
         PluridIconLocked,
         PluridIconApps,
         PluridIconFrame,
+        PluridIconToolbox,
+        PluridIconRepository,
         PluridIconEdit,
         PluridIconContact,
         PluridIconCommand,
@@ -23,9 +25,11 @@
     // #region external
     import delogLogo from '../../assets/delog-logo.png';
 
-    import Project from '#kernel-components/Project';
     import Token from '#kernel-components/Token';
+    import Project from '#kernel-components/Project';
     import Space from '#kernel-components/Space';
+    import Provider from '#kernel-components/Provider';
+    import Repositories from '#kernel-components/Repositories';
     import Format from '#kernel-components/Format';
     import Notifier from '#kernel-components/Notifier';
     import Tester from '#kernel-components/Tester';
@@ -36,6 +40,8 @@
     import AnalyticsView from './components/AnalyticsView';
     import TokensView from './components/TokensView';
     import ProjectsView from './components/ProjectsView';
+    import ProvidersView from './components/ProvidersView';
+    import RepositoriesView from './components/RepositoriesView';
     import SpacesView from './components/SpacesView';
     import FormatsView from './components/FormatsView';
     import NotifiersView from './components/NotifiersView';
@@ -63,6 +69,8 @@ export const generalSelectors = [
     'tokens',
     'projects',
     'spaces',
+    'providers',
+    'repositories',
     'formats',
     'notifiers',
     'testers',
@@ -75,6 +83,8 @@ export const generalSelectorsIcons = {
     tokens: PluridIconLocked,
     projects: PluridIconApps,
     spaces: PluridIconFrame,
+    providers: PluridIconToolbox,
+    repositories: PluridIconRepository,
     formats: PluridIconEdit,
     notifiers: PluridIconContact,
     testers: PluridIconCommand,
@@ -101,6 +111,18 @@ export const renderSelectedView = (
         case 'projects':
             return (
                 <ProjectsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'providers':
+            return (
+                <ProvidersView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'repositories':
+            return (
+                <RepositoriesView
                     setGeneralView={setGeneralView}
                 />
             );
@@ -280,21 +302,6 @@ export const renderGeneralView = (
                     </StyledGeneralSelected>
                 </StyledGeneralView>
             );
-        case 'generate-project':
-            return (
-                <Project
-                    theme={stateInteractionTheme}
-                    action={(project) => {
-                        dispatchAddEntity({
-                            type: 'project',
-                            data: project,
-                        });
-
-                        setGeneralView('general');
-                    }}
-                    cancel={() => setGeneralView('general')}
-                />
-            );
         case 'generate-token':
             return (
                 <Token
@@ -310,6 +317,21 @@ export const renderGeneralView = (
                     cancel={() => setGeneralView('general')}
                 />
             );
+        case 'generate-project':
+            return (
+                <Project
+                    theme={stateInteractionTheme}
+                    action={(project) => {
+                        dispatchAddEntity({
+                            type: 'project',
+                            data: project,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
         case 'generate-space':
             return (
                 <Space
@@ -318,6 +340,36 @@ export const renderGeneralView = (
                         dispatchAddEntity({
                             type: 'space',
                             data: space,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'add-provider':
+            return (
+                <Provider
+                    theme={stateInteractionTheme}
+                    action={(provider) => {
+                        dispatchAddEntity({
+                            type: 'provider',
+                            data: provider,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
+        case 'link-repository':
+            return (
+                <Provider
+                    theme={stateInteractionTheme}
+                    action={(repository) => {
+                        dispatchAddEntity({
+                            type: 'repository',
+                            data: repository,
                         });
 
                         setGeneralView('general');

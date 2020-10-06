@@ -1,5 +1,10 @@
 // #region imports
     // #region external
+    import {
+        ClientProvider,
+        Repository,
+    } from '#server/data/interfaces';
+
     import * as Types from '../types';
     // #endregion external
 // #endregion imports
@@ -47,6 +52,36 @@ export const removeEntities = (
 }
 
 
+export const setActiveProviderID = (
+    providerID: string,
+): Types.SetActiveProviderIDAction => {
+    return {
+        type: Types.SET_ACTIVE_PROVIDER_ID,
+        payload: providerID,
+    };
+}
+
+
+export const setProviders = (
+    providers: ClientProvider[],
+): Types.SetProvidersAction => {
+    return {
+        type: Types.SET_PROVIDERS,
+        payload: providers,
+    };
+}
+
+
+export const setRepositories = (
+    repositories: Repository[],
+): Types.SetRepositoriesAction => {
+    return {
+        type: Types.SET_REPOSITORIES,
+        payload: repositories,
+    };
+}
+
+
 export const clearData = (): Types.ClearDataAction => {
     return {
         type: Types.CLEAR_DATA,
@@ -61,6 +96,9 @@ const actions = {
     removeEntity,
     addEntities,
     removeEntities,
+    setActiveProviderID,
+    setProviders,
+    setRepositories,
     clearData,
 };
 // #endregion module

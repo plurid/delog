@@ -106,6 +106,72 @@ export const OBLITERATE_SPACE = gql`
 `;
 
 
+export const ADD_PROVIDER = gql`
+    mutation AddProvider($input: InputAddProvider!) {
+        addProvider(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+                type
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_PROVIDER = gql`
+    mutation ObliterateProvider($input: InputValueString!) {
+        obliterateProvider(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
+export const LINK_REPOSITORY = gql`
+    mutation LinkRepository($input: InputLinkRepository!) {
+        linkRepository(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+                isPrivate
+            }
+        }
+    }
+`;
+
+
+export const DELINK_REPOSITORY = gql`
+    mutation DelinkRepository($input: InputValueString!) {
+        delinkRepository(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 export const GENERATE_FORMAT = gql`
     mutation GenerateFormat($input: InputGenerateFormat!) {
         generateFormat(input: $input) {

@@ -29,6 +29,8 @@ const delogLogic: DelogLogic = {
             tokens: [],
             projects: [],
             spaces: [],
+            providers: [],
+            repositories: [],
             formats: [],
             notifiers: [],
             testers: [],
@@ -53,6 +55,19 @@ const delogLogic: DelogLogic = {
     },
 
     logger: new Logger(logLevel),
+
+    provider: {
+        register: async (
+            input,
+        ) => {
+            return undefined;
+        },
+        deregister: async (
+            input,
+        ) => {
+            return true;
+        },
+    },
 };
 // #endregion module
 

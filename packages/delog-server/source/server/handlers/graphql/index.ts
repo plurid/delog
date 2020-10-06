@@ -75,9 +75,11 @@ const setupGraphQLServer = async (
                 : '';
 
             const {
-                projects,
                 tokens,
+                projects,
                 spaces,
+                providers,
+                repositories,
                 formats,
                 notifiers,
                 testers,
@@ -91,9 +93,11 @@ const setupGraphQLServer = async (
 
                 instance,
 
-                projects,
                 tokens,
+                projects,
                 spaces,
+                providers,
+                repositories,
                 formats,
                 notifiers,
                 testers,

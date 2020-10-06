@@ -1,9 +1,11 @@
 // #region imports
     // #region libraries
     import {
-        Project,
         ClientToken,
+        Project,
         Space,
+        ClientProvider,
+        Repository,
         Format,
         ClientNotifier,
         Tester,
@@ -25,9 +27,11 @@
 
 // #region module
 export type AddableEntityType =
-    | 'project'
     | 'token'
+    | 'project'
     | 'space'
+    | 'provider'
+    | 'repository'
     | 'format'
     | 'notifier'
     | 'tester'
@@ -46,9 +50,11 @@ export interface AddEntityAction {
 
 
 export type RemovableEntityType =
-    | 'project'
     | 'token'
+    | 'project'
     | 'space'
+    | 'provider'
+    | 'repository'
     | 'format'
     | 'notifier'
     | 'tester'
@@ -105,6 +111,27 @@ export interface RemoveEntitiesAction {
 }
 
 
+export const SET_ACTIVE_PROVIDER_ID = 'SET_ACTIVE_PROVIDER_ID';
+export interface SetActiveProviderIDAction {
+    type: typeof SET_ACTIVE_PROVIDER_ID;
+    payload: string;
+}
+
+
+export const SET_PROVIDERS = 'SET_PROVIDERS';
+export interface SetProvidersAction {
+    type: typeof SET_PROVIDERS;
+    payload: ClientProvider[];
+}
+
+
+export const SET_REPOSITORIES = 'SET_REPOSITORIES';
+export interface SetRepositoriesAction {
+    type: typeof SET_REPOSITORIES;
+    payload: Repository[];
+}
+
+
 export const CLEAR_DATA = 'CLEAR_DATA';
 export interface ClearDataAction {
     type: typeof CLEAR_DATA;
@@ -118,9 +145,12 @@ export interface State {
         faults: AnalyticsRecordsCount;
         size: AnalyticsSize;
     },
-    projects: Project[];
     tokens: ClientToken[];
+    projects: Project[];
     spaces: Space[];
+    activeProviderID: string;
+    providers: ClientProvider[];
+    repositories: Repository[];
     formats: Format[];
     notifiers: ClientNotifier[];
     testers: Tester[];
@@ -134,5 +164,8 @@ export type Actions =
     | RemoveEntityAction
     | AddEntitiesAction
     | RemoveEntitiesAction
+    | SetActiveProviderIDAction
+    | SetProvidersAction
+    | SetRepositoriesAction
     | ClearDataAction;
 // #endregion module

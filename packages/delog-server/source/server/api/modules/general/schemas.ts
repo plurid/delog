@@ -2,9 +2,11 @@
     // #region internal
     import owner from './owner/schemas';
     import analytics from './analytics/schemas';
-    import projects from './projects/schemas';
     import tokens from './tokens/schemas';
+    import projects from './projects/schemas';
     import spaces from './spaces/schemas';
+    import providers from './providers/schemas';
+    import repositories from './repositories/schemas';
     import formats from './formats/schemas';
     import notifiers from './notifiers/schemas';
     import testers from './testers/schemas';
@@ -20,9 +22,11 @@
 export default [
     owner,
     analytics,
-    projects,
     tokens,
+    projects,
     spaces,
+    providers,
+    repositories,
     formats,
     notifiers,
     testers,
