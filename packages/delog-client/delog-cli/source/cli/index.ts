@@ -204,8 +204,10 @@ const main = async (
                     } : {};
 
                 const levelValue = parseInt(level)
-                    ? parseInt(level)
-                    : logLevels[level];
+                    ? (parseInt(level) >= 1 && parseInt(level) <= 6)
+                        ? parseInt(level)
+                        : logLevels.info
+                    : logLevels[level] || logLevels.info;
 
                 const data: any = {
                     text,
