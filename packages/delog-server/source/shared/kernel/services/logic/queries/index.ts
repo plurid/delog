@@ -235,6 +235,44 @@ const getTests = async (
 }
 
 
+const getProjects = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+) => {
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+    try {
+        const query = await client.query({
+            query: GET_CURRENT_OWNER,
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.getCurrentOwner;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const {
+            projects,
+
+        } = graphql.deleteTypenames(response.data);
+
+        dispatchDataAddEntities({
+            type: 'projects',
+            data: projects,
+        });
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+
 /**
  * Get current owner.
  *
@@ -336,6 +374,7 @@ export {
     getUsageType,
     getRecords,
     getTests,
+    getProjects,
     getAnalyticsLastPeriod,
 };
 // #endregion exports

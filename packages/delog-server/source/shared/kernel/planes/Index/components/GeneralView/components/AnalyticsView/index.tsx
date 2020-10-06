@@ -24,7 +24,7 @@
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
 
     import {
-        getCurrentOwner,
+        getProjects,
         getAnalyticsLastPeriod,
     } from '#kernel-services/logic/queries';
 
@@ -146,7 +146,7 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
                             );
                         }}
                         updateProjects={() => {
-                            getCurrentOwner(dispatch);
+                            getProjects(dispatch);
                         }}
                     />
                 );
