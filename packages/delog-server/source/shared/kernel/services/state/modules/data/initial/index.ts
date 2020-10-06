@@ -10,13 +10,13 @@
 const initialState: Types.State = {
     analytics: {
         entries: {
-            project: '',
-            period: '',
+            project: 'all projects',
+            period: 'hour',
             data: [],
         },
         faults: {
-            project: '',
-            period: '',
+            project: 'all projects',
+            period: 'hour',
             data: [],
         },
     },

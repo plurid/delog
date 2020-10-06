@@ -100,6 +100,8 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
             data,
             type,
 
+            period,
+            project,
             projects,
             // #endregion values
 
@@ -133,11 +135,11 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
     const [
         selectedPeriod,
         setSelectedPeriod,
-    ] = useState('hour');
+    ] = useState(period);
     const [
         selectedProject,
         setSelectedProject,
-    ] = useState('all projects');
+    ] = useState(project);
     // #endregion state
 
 

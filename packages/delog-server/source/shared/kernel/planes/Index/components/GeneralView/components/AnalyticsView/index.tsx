@@ -33,25 +33,14 @@
     import {
         StyledAnalyticsView,
     } from './styled';
+
+    import {
+        analyticsRecordsTypes,
+    } from './data';
     // #endregion internal
 // #endregion imports
 
 
-
-const dataEntries = [
-    { name: 'fatal', value: 15 },
-    { name: 'error', value: 55 },
-    { name: 'warn', value: 254 },
-    { name: 'info', value: 546 },
-    { name: 'debug', value: 1346 },
-    { name: 'trace', value: 3546 },
-];
-
-const dataFaults = [
-    { name: 'fatal', value: 15 },
-    { name: 'error', value: 55 },
-    { name: 'warn', value: 254 },
-];
 
 // #region module
 export interface AnalyticsViewOwnProperties {
@@ -138,16 +127,11 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
     }
     // #endregion handlers
 
-    const types: string[] = [
-        'entries',
-        'faults',
-    ];
-
 
     // #region render
     return (
         <StyledAnalyticsView>
-            {types.map((type) => {
+            {analyticsRecordsTypes.map((type) => {
                 let stateData;
 
                 switch (type) {
