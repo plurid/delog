@@ -10,7 +10,7 @@
 
 
 <h1 align="center">
-    delog
+    delog server
 </h1>
 
 
@@ -71,23 +71,23 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
 docker build \
     -t delog-server \
     -f ./configurations/production.dockerfile \
-    --build-arg PORT= \
-    --build-arg DELOG_ENDPOINT_GRAPHQL= \
-    --build-arg DELOG_DATABASE_TYPE= \
-    --build-arg DELOG_LOG_LEVEL= \
-    --build-arg DELOG_QUIET= \
-    --build-arg DELOG_CUSTOM_LOGIC_USAGE= \
-    --build-arg DELOG_PRIVATE_USAGE= \
-    --build-arg DELOG_PRIVATE_OWNER_IDENTONYM= \
-    --build-arg DELOG_PRIVATE_OWNER_KEY= \
-    --build-arg DELOG_PRIVATE_TOKEN= \
-    --build-arg DELOG_MONGO_USERNAME= \
-    --build-arg DELOG_MONGO_PASSWORD= \
-    --build-arg DELOG_MONGO_ADDRESS= \
+    --build-arg PORT=56965 \
+    --build-arg DELOG_ENDPOINT_GRAPHQL=/ \
+    --build-arg DELOG_DATABASE_TYPE=mongo \
+    --build-arg DELOG_LOG_LEVEL=0 \
+    --build-arg DELOG_QUIET=false \
+    --build-arg DELOG_CUSTOM_LOGIC_USAGE=false \
+    --build-arg DELOG_PRIVATE_USAGE=true \
+    --build-arg DELOG_PRIVATE_OWNER_IDENTONYM=identonym \
+    --build-arg DELOG_PRIVATE_OWNER_KEY=key \
+    --build-arg DELOG_PRIVATE_TOKEN=secret-token \
+    --build-arg DELOG_MONGO_USERNAME=admin \
+    --build-arg DELOG_MONGO_PASSWORD=1234 \
+    --build-arg DELOG_MONGO_ADDRESS=localhost:56966 \
     --build-arg DELOG_MONGO_CONNECTION_STRING= \
-    --build-arg DELOG_TEST_MODE= \
-    --build-arg DELOG_OPTIMIZATION_BATCH_WRITE_SIZE= \
-    --build-arg DELOG_OPTIMIZATION_BATCH_WRITE_TIME= \
+    --build-arg DELOG_TEST_MODE=true \
+    --build-arg DELOG_OPTIMIZATION_BATCH_WRITE_SIZE=1000 \
+    --build-arg DELOG_OPTIMIZATION_BATCH_WRITE_TIME=2000 \
     .
 ```
 
@@ -144,6 +144,15 @@ to verify the connection.
 [delog-server]: https://github.com/plurid/delog/tree/master/packages/delog-server
 
 
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/delog-cli">
+    <img src="https://img.shields.io/npm/v/@plurid/delog-cli.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/delog-client-cli][delog-client-cli] • the `Command-Line Interface` client
+
+[delog-client-cli]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-cli
+
+
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/delog">
     <img src="https://img.shields.io/npm/v/@plurid/delog.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
@@ -151,3 +160,12 @@ to verify the connection.
 [@plurid/delog-client-javascript][delog-client-javascript] • the `JavaScript` client
 
 [delog-client-javascript]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-javascript
+
+
+<a target="_blank" href="https://pypi.org/project/delog">
+    <img src="https://img.shields.io/pypi/v/delog.svg?logo=pypi&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/delog-client-python][delog-client-python] • the `Python` client
+
+[delog-client-python]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-python
