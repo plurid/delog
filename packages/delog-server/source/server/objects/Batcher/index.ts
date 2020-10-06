@@ -21,11 +21,11 @@ export interface BatcherOptions {
 
 class Batcher<T> {
     private batch: T[] = [];
-    private sidebatch: T[] = [];
     private options: BatcherOptions;
     private entity: string;
     private database: Database;
     private interval: number = 0;
+    private hits = 0;
 
     constructor(
         entity: string,
@@ -38,27 +38,26 @@ class Batcher<T> {
 
         this.entity = entity;
         this.database = database;
+
+        setInterval(() => {
+            console.log('hits', this.hits);
+        }, 1000);
     }
 
     push(
         data: T,
     ) {
-        if (this.batch.length < this.options.size) {
-            this.batch.push(data);
+        this.hits += 1;
+        console.log('hits', this.hits);
 
-            if (!this.interval) {
-                this.interval = setInterval(
-                    () => this.store(),
-                    this.options.time,
-                );
-            }
+        this.batch.push(data);
 
-            return;
+        if (!this.interval) {
+            this.interval = setInterval(
+                () => this.store(),
+                this.options.time,
+            );
         }
-
-        this.sidebatch.push(data);
-
-        this.store();
     }
 
     async store() {
@@ -77,28 +76,17 @@ class Batcher<T> {
             ? this.batch.length
             : this.options.size;
 
-        const batch = this.batch.slice(
-            0,
-            size,
-        );
+        const batch = this.batch.slice(0, size);
+        console.log('batch.length', batch.length);
+
+        console.log('this.batch Pre', this.batch.length);
+        this.batch = this.batch.slice(size);
+        console.log('this.batch Post', this.batch.length);
 
         await this.database.storeBatch(
             this.entity,
             batch,
         );
-
-        const batchSlice = this.batch.slice(
-            size,
-            this.batch.length - 1,
-        );
-
-        const updatedBatch = [
-            ...batchSlice,
-            ...this.sidebatch,
-        ];
-
-        this.batch = updatedBatch;
-        this.sidebatch = [];
     }
 }
 // #endregion module
