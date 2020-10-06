@@ -6,6 +6,7 @@
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
+        DatabaseAggregate,
         DatabaseStore,
         DatabaseStoreBatch,
         DatabaseUpdate,
@@ -42,6 +43,13 @@ const query: DatabaseQuery = async (
     entity,
     field,
     value,
+) => {
+    return;
+}
+
+
+const aggregate: DatabaseAggregate = async (
+    entity,
 ) => {
     return;
 }
@@ -95,6 +103,7 @@ const amazonDatabase: Database = {
     get,
     getAll,
     query,
+    aggregate,
     store,
     storeBatch,
     update,

@@ -14,6 +14,7 @@
         DatabaseGet,
         DatabaseGetAll,
         DatabaseQuery,
+        DatabaseAggregate,
         DatabaseStore,
         DatabaseStoreBatch,
         DatabaseUpdate,
@@ -170,6 +171,43 @@ const query: DatabaseQuery = async (
 }
 
 
+const aggregate: DatabaseAggregate = async (
+    entity: string,
+) => {
+    if (!connection) {
+        console.log(mongoNoConnectionError);
+        return;
+    }
+
+    try {
+        const database = connection.db(DATABASE);
+
+        const collection = database.collection(entity);
+
+        const lastHour = new Date();
+        lastHour.setHours(lastHour.getHours() - 1);
+        const lastHourValue = Math.floor(lastHour.getTime() / 1000);
+
+        const project = 'plurid-production';
+
+        const cursor = collection.aggregate([
+            {
+                $match: {
+                    'time': { $gt: lastHourValue },
+                    project,
+                },
+            },
+        ]);
+
+        const data = await cursor.toArray();
+
+        return data;
+    } catch (error) {
+        return;
+    }
+}
+
+
 const store: DatabaseStore = async (
     entity,
     id,
@@ -308,6 +346,7 @@ const mongoDatabase: Database = {
     get,
     getAll,
     query,
+    aggregate,
     store,
     storeBatch,
     update,

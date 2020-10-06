@@ -23,6 +23,7 @@ export interface Database {
     get: DatabaseGet;
     getAll: DatabaseGetAll;
     query: DatabaseQuery;
+    aggregate: DatabaseAggregate;
     store: DatabaseStore;
     storeBatch: DatabaseStoreBatch;
     update: DatabaseUpdate;
@@ -50,6 +51,11 @@ export type DatabaseQuery = (
     field: string,
     value: string,
     pagination?: DatabasePagination,
+) => Promise<any>;
+
+
+export type DatabaseAggregate = (
+    entity: string,
 ) => Promise<any>;
 
 

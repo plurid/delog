@@ -123,6 +123,27 @@ class Database implements IDatabase {
         }
     }
 
+    public async aggregate(
+        entity: string,
+    ) {
+        switch (this.type) {
+            case databaseType.amazon:
+                return amazonDatabase.aggregate(
+                    entity,
+                );
+            case databaseType.google:
+                return googleDatabase.aggregate(
+                    entity,
+                );
+            case databaseType.mongo:
+                return mongoDatabase.aggregate(
+                    entity,
+                );
+            default:
+                return;
+        }
+    }
+
     public async store(
         entity: string,
         id: string,
