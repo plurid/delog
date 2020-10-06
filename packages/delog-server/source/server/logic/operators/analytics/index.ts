@@ -2,6 +2,7 @@
     // #region external
     import {
         InputGetAnalyticsLastPeriod,
+        InputGetAnalyticsSize,
     } from '#server/data/interfaces';
 
     import {
@@ -151,6 +152,35 @@ const analyticsLastPeriod = async (
             };
     }
 }
+
+
+const analyticsSize = async (
+    input: InputGetAnalyticsSize,
+    ownedBy: string,
+) => {
+    const {
+        project,
+    } = input;
+
+    const filter = {
+        project,
+        ownedBy,
+    };
+
+    if (project === 'all projects') {
+        delete (filter as any).project;
+    }
+
+    const size = await database.size(
+        'records',
+        filter,
+    );
+
+    return {
+        project,
+        value: size,
+    };
+}
 // #endregion module
 
 
@@ -158,5 +188,6 @@ const analyticsLastPeriod = async (
 // #region exports
 export {
     analyticsLastPeriod,
+    analyticsSize,
 };
 // #endregion exports

@@ -10,6 +10,7 @@
 export const queries = gql`
     extend type Query {
         getAnalyticsLastPeriod(input: InputGetAnalyticsLastPeriod!): ResponseAnalyticsLastPeriod!
+        getAnalyticsSize(input: InputGetAnalyticsSize!): ResponseAnalyticsSize!
     }
 `;
 
@@ -20,6 +21,12 @@ export const types = gql`
         status: Boolean!
         error: Error
         data: AnalyticsLastPeriod
+    }
+
+    type ResponseAnalyticsSize {
+        status: Boolean!
+        error: Error
+        data: AnalyticsSize
     }
 
     type AnalyticsLastPeriod {
@@ -38,12 +45,18 @@ export const types = gql`
     type OwnerAnalytics {
         entries(input: InputGetAnalyticsLastPeriodData): AnalyticsRecordsCount!
         faults(input: InputGetAnalyticsLastPeriodData): AnalyticsRecordsCount!
+        size(input: InputGetAnalyticsSize): AnalyticsSize!
     }
 
     type AnalyticsRecordsCount {
         project: String!
         period: String!
         data: [AnalyticsRecordData!]!
+    }
+
+    type AnalyticsSize {
+        project: String!
+        value: Int!
     }
 
     type AnalyticsRecordData {
@@ -63,6 +76,10 @@ export const inputs = gql`
     input InputGetAnalyticsLastPeriodData {
         project: String!
         period: String!
+    }
+
+    input InputGetAnalyticsSize {
+        project: String!
     }
 `;
 // #endregion module

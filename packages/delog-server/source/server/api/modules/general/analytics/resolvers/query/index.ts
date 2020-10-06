@@ -3,6 +3,7 @@
     import {
         InputOf,
         InputGetAnalyticsLastPeriod,
+        InputGetAnalyticsSize,
         Context,
     } from '#server/data/interfaces';
 
@@ -21,6 +22,14 @@ export default {
         { input }: InputOf<InputGetAnalyticsLastPeriod>,
         context: Context,
     ) => Analytics.Query.getAnalyticsLastPeriod(
+        input,
+        context,
+    ),
+    getAnalyticsSize: (
+        _: any,
+        { input }: InputOf<InputGetAnalyticsSize>,
+        context: Context,
+    ) => Analytics.Query.getAnalyticsSize(
         input,
         context,
     ),

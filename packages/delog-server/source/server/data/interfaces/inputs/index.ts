@@ -65,4 +65,9 @@ export interface InputGetAnalyticsLastPeriodData {
     project: string;
     period: string;
 }
+
+
+export interface InputGetAnalyticsSize {
+    project: string;
+}
 // #endregion module

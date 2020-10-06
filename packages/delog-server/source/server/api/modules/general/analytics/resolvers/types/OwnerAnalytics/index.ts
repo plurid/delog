@@ -4,6 +4,7 @@
         Context,
         InputOf,
         InputGetAnalyticsLastPeriodData,
+        InputGetAnalyticsSize,
     } from '#server/data/interfaces';
 
     import {
@@ -98,6 +99,33 @@ export default {
             data: [
                 ...faultsData,
             ],
+        };
+    },
+    size: async (
+        _: any,
+        { input }: Partial<InputOf<InputGetAnalyticsSize>>,
+        context: Context,
+    ) => {
+        const project = input?.project || 'all projects';
+
+        const queryInput = {
+            project,
+        };
+
+        const query = await Analytics.Query.getAnalyticsSize(
+            queryInput,
+            context,
+        );
+
+        if (!query.data) {
+            return {
+                project,
+                value: 0,
+            };
+        }
+
+        return {
+            ...query.data,
         };
     },
 };
