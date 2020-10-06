@@ -69,8 +69,12 @@ describe('delog - simple', () => {
     it.only('works - stress test', async () => {
         jest.setTimeout(60_000);
 
-        for (let i = 0; i < 101; i++) {
-            console.log('i', i);
+        const small = 1_001;
+        const medium = 10_001;
+        const large = 100_001;
+        const huge = 1_000_001;
+
+        for (let i = 0; i < large; i++) {
             delog({
                 text: 'works ' + i,
 
@@ -90,7 +94,7 @@ describe('delog - simple', () => {
         await new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve();
-            }, 10_000);
+            }, 60_000);
         });
     });
 
@@ -99,10 +103,12 @@ describe('delog - simple', () => {
     it('works - stress test timeout', async () => {
         jest.setTimeout(60000);
 
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 31; i++) {
             await new Promise((resolve, reject) => {
                 setTimeout(async () => {
                     delog({
+                        text: 'works ' + i,
+
                         endpoint,
                         token,
 
@@ -113,12 +119,10 @@ describe('delog - simple', () => {
                         method: 'method-name',
                         format: '%LEVEL %TIME %TEXT',
                         extradata: JSON.stringify({one: 'two'}),
-
-                        text: 'works ' + i,
                     });
 
                     resolve();
-                }, 1000);
+                }, 100);
             })
         }
     });
