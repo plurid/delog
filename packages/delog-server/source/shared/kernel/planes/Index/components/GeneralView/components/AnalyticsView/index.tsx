@@ -83,6 +83,7 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
         stateProjects,
         stateAnalyticsEntries,
         stateAnalyticsFaults,
+        stateAnalyticsSize,
         // #endregion state
 
         // #region dispatch
@@ -172,8 +173,8 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
                 <RecordsSize
                     generalTheme={stateGeneralTheme}
                     interactionTheme={stateInteractionTheme}
-                    size={2315157}
-                    project="all projects"
+                    size={stateAnalyticsSize.value}
+                    project={stateAnalyticsSize.project}
                     projects={projects}
                     updateData={(
                         project,
