@@ -69,12 +69,15 @@ describe('delog - simple', () => {
     it.only('works - stress test', async () => {
         jest.setTimeout(120_000);
 
+        const few = 101;
         const small = 1_001;
         const medium = 10_001;
         // const large = 50_001; -- node/jest limitations
         // const huge = 1_000_001;
 
-        for (let i = 0; i < medium; i++) {
+        for (let i = 0; i < few; i++) {
+            const randomLevel = Math.floor(Math.random() * 6) + 1;
+
             delog({
                 text: 'works ' + i,
 
@@ -84,7 +87,7 @@ describe('delog - simple', () => {
                 project: 'project-name',
                 space: 'space-name',
 
-                level: delogLevels.trace,
+                level: randomLevel,
                 method: 'method-name',
                 format: '%LEVEL %TIME %TEXT',
                 extradata: JSON.stringify({one: 'two'}),
