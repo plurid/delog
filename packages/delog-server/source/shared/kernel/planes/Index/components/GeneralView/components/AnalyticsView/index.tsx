@@ -23,6 +23,10 @@
 
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
 
+    import {
+        getAnalyticsLastPeriod,
+    } from '#kernel-services/logic/queries';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
@@ -44,22 +48,6 @@
 
 // #region module
 export interface AnalyticsViewOwnProperties {
-    // #region required
-        // #region values
-        // #endregion values
-
-        // #region methods
-        setGeneralView: any;
-        // #endregion methods
-    // #endregion required
-
-    // #region optional
-        // #region values
-        // #endregion values
-
-        // #region methods
-        // #endregion methods
-    // #endregion optional
 }
 
 export interface AnalyticsViewStateProperties {
@@ -83,23 +71,6 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
 ) => {
     // #region properties
     const {
-        // #region required
-            // #region values
-            // #endregion values
-
-            // #region methods
-            setGeneralView,
-            // #endregion methods
-        // #endregion required
-
-        // #region optional
-            // #region values
-            // #endregion values
-
-            // #region methods
-            // #endregion methods
-        // #endregion optional
-
         // #region state
         stateGeneralTheme,
         stateInteractionTheme,
@@ -123,7 +94,14 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
         period: string,
         type: string,
     ) => {
-
+        getAnalyticsLastPeriod(
+            dispatch,
+            {
+                project,
+                period,
+                type,
+            },
+        );
     }
     // #endregion handlers
 

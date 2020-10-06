@@ -124,6 +124,9 @@ const analyticsLastPeriod = async (
                 fatal,
                 error,
                 warn,
+                info: 0,
+                debug: 0,
+                trace: 0,
             };
         }
         default:

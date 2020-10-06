@@ -90,9 +90,7 @@ export const renderSelectedView = (
     switch (stateIndexGeneralSelector) {
         case 'analytics':
             return (
-                <AnalyticsView
-                    setGeneralView={setGeneralView}
-                />
+                <AnalyticsView />
             );
         case 'tokens':
             return (

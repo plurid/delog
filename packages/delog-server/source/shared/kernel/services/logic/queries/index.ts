@@ -14,6 +14,10 @@
         InputQuery,
     } from '#server/data/interfaces';
 
+    import {
+        AnalyticsRecordsCount,
+    } from '#kernel-data/interfaces';
+
     import client from '#kernel-services/graphql/client';
 
     import {
@@ -21,6 +25,7 @@
         GET_USAGE_TYPE,
         GET_RECORDS,
         GET_TESTS,
+        GET_ANALYTICS_LAST_PERIOD,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -31,9 +36,9 @@
 
 // #region module
 /**
- * Get current owner and return true if set.
+ * Get current owner.
  *
- * @param setViewOwnerID
+ * @param dispatch
  */
 const getCurrentOwner = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
@@ -228,6 +233,99 @@ const getTests = async (
         return false;
     }
 }
+
+
+/**
+ * Get current owner.
+ *
+ * @param dispatch
+ */
+const getAnalyticsLastPeriod = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    input: any,
+) => {
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+    try {
+        const {
+            project,
+            period,
+            type,
+        } = input;
+
+        const query = await client.query({
+            query: GET_ANALYTICS_LAST_PERIOD,
+            variables: {
+                input,
+            },
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.getAnalyticsLastPeriod;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const {
+            fatal,
+            error,
+            warn,
+            info,
+            debug,
+            trace,
+        } = graphql.deleteTypenames(response.data);
+
+        switch (type) {
+            case 'entries': {
+                const entries: AnalyticsRecordsCount = {
+                    project,
+                    period,
+                    data: [
+                        { name: 'fatal', value: fatal, },
+                        { name: 'error', value: error, },
+                        { name: 'warn', value: warn, },
+                        { name: 'info', value: info, },
+                        { name: 'debug', value: debug, },
+                        { name: 'trace', value: trace, },
+                    ],
+                };
+
+                dispatchDataAddEntities({
+                    type: 'analytics.entries',
+                    data: entries,
+                });
+
+                break;
+            }
+            case 'faults': {
+                const faults: AnalyticsRecordsCount = {
+                    project,
+                    period,
+                    data: [
+                        { name: 'fatal', value: fatal, },
+                        { name: 'error', value: error, },
+                        { name: 'warn', value: warn, },
+                    ],
+                };
+
+                dispatchDataAddEntities({
+                    type: 'analytics.faults',
+                    data: faults,
+                });
+                break;
+            }
+        }
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -238,5 +336,6 @@ export {
     getUsageType,
     getRecords,
     getTests,
+    getAnalyticsLastPeriod,
 };
 // #endregion exports
