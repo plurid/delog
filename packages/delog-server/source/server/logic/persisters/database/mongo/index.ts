@@ -167,13 +167,6 @@ const query: DatabaseQuery = async (
 
 
         const cursor = collection.find(filter);
-        let sizes = 0;
-        await cursor.forEach(doc => {
-            const size = calculateObjectSize(doc);
-            console.log('size', size);
-            sizes += size;
-        });
-        console.log('sizes', sizes);
 
         const items = await cursor.toArray();
 
