@@ -28,14 +28,33 @@ const analyticsLastPeriod = async (
         type
     } = input;
 
-    return {
-        fatal: 0,
-        error: 0,
-        warn: 0,
-        info: 0,
-        debug: 0,
-        trace: 0,
-    };
+
+    switch (type) {
+        case 'errors':
+            return {
+                fatal: 0,
+                error: 0,
+                warn: 0,
+                info: 0,
+                debug: 0,
+                trace: 0,
+            };
+        case 'faults':
+            return {
+                fatal: 0,
+                error: 0,
+                warn: 0,
+            };
+        default:
+            return {
+                fatal: 0,
+                error: 0,
+                warn: 0,
+                info: 0,
+                debug: 0,
+                trace: 0,
+            };
+    }
 }
 // #endregion module
 

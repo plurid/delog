@@ -18,6 +18,24 @@ export const GET_CURRENT_OWNER = gql`
             }
             data {
                 id
+                analytics {
+                    entries {
+                        project
+                        period
+                        data {
+                            name
+                            value
+                        }
+                    }
+                    faults {
+                        project
+                        period
+                        data {
+                            name
+                            value
+                        }
+                    }
+                }
                 projects {
                     id
                     name

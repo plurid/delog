@@ -63,6 +63,7 @@ const getCurrentOwner = async (
 
         const {
             id,
+            analytics,
             projects,
             tokens,
             spaces,
@@ -71,7 +72,20 @@ const getCurrentOwner = async (
             testers,
         } = graphql.deleteTypenames(response.data);
 
+        const {
+            entries,
+            faults,
+        } = analytics;
+
         dispatchSetOwnedID(id);
+        dispatchDataAddEntities({
+            type: 'analytics.entries',
+            data: entries,
+        });
+        dispatchDataAddEntities({
+            type: 'analytics.faults',
+            data: faults,
+        });
         dispatchDataAddEntities({
             type: 'projects',
             data: projects,

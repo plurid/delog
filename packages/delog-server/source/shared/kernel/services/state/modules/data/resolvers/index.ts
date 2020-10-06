@@ -243,6 +243,10 @@ export const addEntities = (
         ...state,
     };
 
+
+    let analytics = {
+        ...newState.analytics,
+    };
     let projects = [
         ...newState.projects,
     ];
@@ -270,6 +274,22 @@ export const addEntities = (
 
 
     switch (type) {
+        case 'analytics.entries':
+            analytics = {
+                ...analytics,
+                entries: {
+                    ...data,
+                },
+            };
+            break;
+        case 'analytics.faults':
+            analytics = {
+                ...analytics,
+                faults: {
+                    ...data,
+                },
+            };
+            break;
         case 'projects':
             projects = [
                 ...data,
@@ -321,6 +341,9 @@ export const addEntities = (
 
     return {
         ...newState,
+        analytics: {
+            ...analytics,
+        },
         projects: [
             ...projects,
         ],

@@ -1,6 +1,7 @@
 // #region imports
     // #region internal
     import owner from './owner/schemas';
+    import analytics from './analytics/schemas';
     import projects from './projects/schemas';
     import tokens from './tokens/schemas';
     import spaces from './spaces/schemas';
@@ -18,6 +19,7 @@
 // #region exports
 export default [
     owner,
+    analytics,
     projects,
     tokens,
     spaces,

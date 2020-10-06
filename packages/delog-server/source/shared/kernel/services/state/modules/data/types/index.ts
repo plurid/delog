@@ -73,12 +73,14 @@ export type AddableEntitiesType =
     | 'notifiers'
     | 'testers'
     | 'records'
-    | 'tests';
+    | 'tests'
+    | 'analytics.entries'
+    | 'analytics.faults';
 
 export const ADD_ENTITIES = 'ADD_ENTITIES';
 export interface AddEntitiesPayload {
     type: AddableEntitiesType;
-    data: any[];
+    data: any;
     push?: string;
 }
 export interface AddEntitiesAction {
