@@ -147,6 +147,7 @@ const main = async (
         .option(
             '-l, --level <level>',
             'level',
+            '3',
         )
         .option(
             '-p, --project <project>',
