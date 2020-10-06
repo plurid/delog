@@ -27,6 +27,24 @@ const GET_ANALYTICS_LAST_PERIOD = gql`
         }
     }
 `;
+
+
+const GET_ANALYTICS_SIZE = gql`
+    query GetAnalyticsSize($input: InputGetAnalyticsSize!) {
+        getAnalyticsSize(input: $input) {
+            status
+            error {
+                path
+                type
+                message
+            }
+            data {
+                project
+                value
+            }
+        }
+    }
+`;
 // #endregion module
 
 
@@ -34,5 +52,6 @@ const GET_ANALYTICS_LAST_PERIOD = gql`
 // #region exports
 export {
     GET_ANALYTICS_LAST_PERIOD,
+    GET_ANALYTICS_SIZE,
 };
 // #endregion exports

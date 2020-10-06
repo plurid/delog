@@ -26,6 +26,7 @@
         GET_RECORDS,
         GET_TESTS,
         GET_ANALYTICS_LAST_PERIOD,
+        GET_ANALYTICS_SIZE,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -80,6 +81,7 @@ const getCurrentOwner = async (
         const {
             entries,
             faults,
+            size,
         } = analytics;
 
         dispatchSetOwnedID(id);
@@ -90,6 +92,10 @@ const getCurrentOwner = async (
         dispatchDataAddEntities({
             type: 'analytics.faults',
             data: faults,
+        });
+        dispatchDataAddEntities({
+            type: 'analytics.size',
+            data: size,
         });
         dispatchDataAddEntities({
             type: 'projects',
@@ -274,7 +280,7 @@ const getProjects = async (
 
 
 /**
- * Get current owner.
+ * Get analytics last period.
  *
  * @param dispatch
  */
@@ -364,6 +370,56 @@ const getAnalyticsLastPeriod = async (
         return false;
     }
 }
+
+
+/**
+ * Get analytics size.
+ *
+ * @param dispatch
+ */
+const getAnalyticsSize = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    input: any,
+) => {
+    const dispatchDataAddEntities: typeof actions.data.addEntities = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntities(payload),
+    );
+
+    try {
+        const query = await client.query({
+            query: GET_ANALYTICS_SIZE,
+            variables: {
+                input,
+            },
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.getAnalyticsSize;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const {
+            project,
+            value,
+        } = graphql.deleteTypenames(response.data);
+
+        dispatchDataAddEntities({
+            type: 'analytics.size',
+            data: {
+                project,
+                value,
+            },
+        });
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -376,5 +432,6 @@ export {
     getTests,
     getProjects,
     getAnalyticsLastPeriod,
+    getAnalyticsSize,
 };
 // #endregion exports

@@ -19,6 +19,10 @@ const initialState: Types.State = {
             period: 'hour',
             data: [],
         },
+        size: {
+            project: 'all projects',
+            value: 0,
+        },
     },
     projects: [],
     tokens: [],

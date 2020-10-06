@@ -9,4 +9,10 @@ export interface AnalyticsRecordsCount {
     period: string;
     data: AnalyticsRecordData[];
 }
+
+
+export interface AnalyticsSize {
+    project: string;
+    value: number;
+}
 // #endregion module

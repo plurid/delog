@@ -11,6 +11,7 @@
 // #region module
 const getAnalyticsEntries = (state: AppState) => state.data.analytics.entries;
 const getAnalyticsFaults = (state: AppState) => state.data.analytics.faults;
+const getAnalyticsSize = (state: AppState) => state.data.analytics.size;
 
 const getProjects = (state: AppState) => state.data.projects;
 const getTokens = (state: AppState) => state.data.tokens;
@@ -25,6 +26,7 @@ const getTests = (state: AppState) => state.data.tests;
 const selectors = {
     getAnalyticsEntries,
     getAnalyticsFaults,
+    getAnalyticsSize,
 
     getProjects,
     getTokens,

@@ -19,6 +19,7 @@
 
     import {
         AnalyticsRecordsCount,
+        AnalyticsSize,
     } from '#kernel-data/interfaces';
 
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
@@ -27,6 +28,7 @@
     import {
         getProjects,
         getAnalyticsLastPeriod,
+        getAnalyticsSize,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -59,6 +61,7 @@ export interface AnalyticsViewStateProperties {
     stateProjects: Project[];
     stateAnalyticsEntries: AnalyticsRecordsCount;
     stateAnalyticsFaults: AnalyticsRecordsCount;
+    stateAnalyticsSize: AnalyticsSize;
 }
 
 export interface AnalyticsViewDispatchProperties {
@@ -92,7 +95,7 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
 
 
     // #region handlers
-    const updateData = (
+    const updateRecords = (
         project: string,
         period: string,
         type: string,
@@ -103,6 +106,17 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
                 project,
                 period,
                 type,
+            },
+        );
+    }
+
+    const updateSize = (
+        project: string,
+    ) => {
+        getAnalyticsSize(
+            dispatch,
+            {
+                project,
             },
         );
     }
@@ -142,7 +156,7 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
                                 project,
                                 period,
                             ) => {
-                                updateData(
+                                updateRecords(
                                     project,
                                     period,
                                     type,
@@ -164,7 +178,7 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
                     updateData={(
                         project,
                     ) => {
-
+                        updateSize(project);
                     }}
                     updateProjects={() => {
                         getProjects(dispatch);
@@ -185,6 +199,7 @@ const mapStateToProperties = (
     stateProjects: selectors.data.getProjects(state),
     stateAnalyticsEntries: selectors.data.getAnalyticsEntries(state),
     stateAnalyticsFaults: selectors.data.getAnalyticsFaults(state),
+    stateAnalyticsSize: selectors.data.getAnalyticsSize(state),
 });
 
 

@@ -16,6 +16,7 @@
     // #region exports
     import {
         AnalyticsRecordsCount,
+        AnalyticsSize,
     } from '#kernel-data/interfaces';
     // #endregion exports
 // #endregion imports
@@ -75,7 +76,8 @@ export type AddableEntitiesType =
     | 'records'
     | 'tests'
     | 'analytics.entries'
-    | 'analytics.faults';
+    | 'analytics.faults'
+    | 'analytics.size';
 
 export const ADD_ENTITIES = 'ADD_ENTITIES';
 export interface AddEntitiesPayload {
@@ -114,6 +116,7 @@ export interface State {
     analytics: {
         entries: AnalyticsRecordsCount;
         faults: AnalyticsRecordsCount;
+        size: AnalyticsSize;
     },
     projects: Project[];
     tokens: ClientToken[];

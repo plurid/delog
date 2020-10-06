@@ -290,6 +290,14 @@ export const addEntities = (
                 },
             };
             break;
+        case 'analytics.size':
+            analytics = {
+                ...analytics,
+                size: {
+                    ...data,
+                },
+            };
+            break;
         case 'projects':
             projects = [
                 ...data,

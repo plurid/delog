@@ -35,6 +35,10 @@ export const GET_CURRENT_OWNER = gql`
                             value
                         }
                     }
+                    size {
+                        project
+                        value
+                    }
                 }
                 projects {
                     id
