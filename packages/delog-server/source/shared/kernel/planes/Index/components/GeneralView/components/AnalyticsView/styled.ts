@@ -8,8 +8,12 @@
 
 // #region module
 const StyledAnalyticsView = styled.div`
+`;
+
+const StyledAnalyticsViewBlocks = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
     justify-items: center;
     align-items: center;
 `;
@@ -20,5 +24,6 @@ const StyledAnalyticsView = styled.div`
 // #region exports
 export {
     StyledAnalyticsView,
+    StyledAnalyticsViewBlocks,
 };
 // #endregion exports

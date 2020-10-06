@@ -22,6 +22,7 @@
     } from '#kernel-data/interfaces';
 
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
+    import RecordsSize from '#kernel-components/Analytics/RecordsSize';
 
     import {
         getProjects,
@@ -37,6 +38,7 @@
     // #region internal
     import {
         StyledAnalyticsView,
+        StyledAnalyticsViewBlocks,
     } from './styled';
 
     import {
@@ -110,47 +112,65 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
     // #region render
     return (
         <StyledAnalyticsView>
-            {analyticsRecordsTypes.map((type) => {
-                let stateData;
+            <StyledAnalyticsViewBlocks>
+                {analyticsRecordsTypes.map((type) => {
+                    let stateData;
 
-                switch (type) {
-                    case 'entries':
-                        stateData = stateAnalyticsEntries;
-                        break;
-                    case 'faults':
-                        stateData = stateAnalyticsFaults;
-                }
+                    switch (type) {
+                        case 'entries':
+                            stateData = stateAnalyticsEntries;
+                            break;
+                        case 'faults':
+                            stateData = stateAnalyticsFaults;
+                    }
 
-                if (!stateData) {
-                    return;
-                }
+                    if (!stateData) {
+                        return;
+                    }
 
-                return (
-                    <RecordsPieChart
-                        key={type}
-                        generalTheme={stateGeneralTheme}
-                        interactionTheme={stateInteractionTheme}
-                        type={type}
-                        data={stateData.data}
-                        project={stateData.project}
-                        period={stateData.period}
-                        projects={projects}
-                        updateData={(
-                            project,
-                            period,
-                        ) => {
-                            updateData(
+                    return (
+                        <RecordsPieChart
+                            key={type}
+                            generalTheme={stateGeneralTheme}
+                            interactionTheme={stateInteractionTheme}
+                            type={type}
+                            data={stateData.data}
+                            project={stateData.project}
+                            period={stateData.period}
+                            projects={projects}
+                            updateData={(
                                 project,
                                 period,
-                                type,
-                            );
-                        }}
-                        updateProjects={() => {
-                            getProjects(dispatch);
-                        }}
-                    />
-                );
-            })}
+                            ) => {
+                                updateData(
+                                    project,
+                                    period,
+                                    type,
+                                );
+                            }}
+                            updateProjects={() => {
+                                getProjects(dispatch);
+                            }}
+                        />
+                    );
+                })}
+
+                <RecordsSize
+                    generalTheme={stateGeneralTheme}
+                    interactionTheme={stateInteractionTheme}
+                    size={2315157}
+                    project="all projects"
+                    projects={projects}
+                    updateData={(
+                        project,
+                    ) => {
+
+                    }}
+                    updateProjects={() => {
+                        getProjects(dispatch);
+                    }}
+                />
+            </StyledAnalyticsViewBlocks>
         </StyledAnalyticsView>
     );
     // #endregion render
