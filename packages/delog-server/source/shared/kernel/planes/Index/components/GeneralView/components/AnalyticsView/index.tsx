@@ -17,6 +17,10 @@
         Project,
     } from '#server/data/interfaces';
 
+    import {
+        AnalyticsRecordsCount,
+    } from '#kernel-data/interfaces';
+
     import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
 
     import { AppState } from '#kernel-services/state/store';
@@ -73,6 +77,8 @@ export interface AnalyticsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateProjects: Project[];
+    stateAnalyticsEntries: AnalyticsRecordsCount;
+    stateAnalyticsFaults: AnalyticsRecordsCount;
 }
 
 export interface AnalyticsViewDispatchProperties {
@@ -109,6 +115,8 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
         stateGeneralTheme,
         stateInteractionTheme,
         stateProjects,
+        stateAnalyticsEntries,
+        stateAnalyticsFaults,
         // #endregion state
 
         // #region dispatch
@@ -130,45 +138,53 @@ const AnalyticsView: React.FC<AnalyticsViewProperties> = (
     }
     // #endregion handlers
 
+    const types: string[] = [
+        'entries',
+        'faults',
+    ];
+
 
     // #region render
     return (
         <StyledAnalyticsView>
-            <RecordsPieChart
-                generalTheme={stateGeneralTheme}
-                interactionTheme={stateInteractionTheme}
-                data={dataEntries}
-                type="entries"
-                projects={projects}
-                updateData={(
-                    project,
-                    period,
-                ) => {
-                    updateData(
-                        project,
-                        period,
-                        'entries',
-                    );
-                }}
-            />
+            {types.map((type) => {
+                let stateData;
 
-            <RecordsPieChart
-                generalTheme={stateGeneralTheme}
-                interactionTheme={stateInteractionTheme}
-                data={dataFaults}
-                type="faults"
-                projects={projects}
-                updateData={(
-                    project,
-                    period,
-                ) => {
-                    updateData(
-                        project,
-                        period,
-                        'faults',
-                    );
-                }}
-            />
+                switch (type) {
+                    case 'entries':
+                        stateData = stateAnalyticsEntries;
+                        break;
+                    case 'faults':
+                        stateData = stateAnalyticsFaults;
+                }
+
+                if (!stateData) {
+                    return;
+                }
+
+                return (
+                    <RecordsPieChart
+                        key={type}
+                        generalTheme={stateGeneralTheme}
+                        interactionTheme={stateInteractionTheme}
+                        type={type}
+                        data={stateData.data}
+                        project={stateData.project}
+                        period={stateData.period}
+                        projects={projects}
+                        updateData={(
+                            project,
+                            period,
+                        ) => {
+                            updateData(
+                                project,
+                                period,
+                                type,
+                            );
+                        }}
+                    />
+                );
+            })}
         </StyledAnalyticsView>
     );
     // #endregion render
@@ -181,6 +197,8 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateProjects: selectors.data.getProjects(state),
+    stateAnalyticsEntries: selectors.data.getAnalyticsEntries(state),
+    stateAnalyticsFaults: selectors.data.getAnalyticsFaults(state),
 });
 
 

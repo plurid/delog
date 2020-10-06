@@ -66,6 +66,8 @@ export interface RecordsPieChartProperties {
         data: RecordsPieChartDataItem[];
         type: string;
 
+        project: string;
+        period: string;
         projects: string[];
         // #endregion values
 

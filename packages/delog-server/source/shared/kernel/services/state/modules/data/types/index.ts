@@ -11,6 +11,13 @@
         Test,
     } from '#server/data/interfaces';
     // #endregion libraries
+
+
+    // #region exports
+    import {
+        AnalyticsRecordsCount,
+    } from '#kernel-data/interfaces';
+    // #endregion exports
 // #endregion imports
 
 
@@ -101,8 +108,11 @@ export interface ClearDataAction {
 }
 
 
-
 export interface State {
+    analytics: {
+        entries: AnalyticsRecordsCount;
+        faults: AnalyticsRecordsCount;
+    },
     projects: Project[];
     tokens: ClientToken[];
     spaces: Space[];

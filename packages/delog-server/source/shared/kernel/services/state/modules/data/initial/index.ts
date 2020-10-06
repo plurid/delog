@@ -8,6 +8,18 @@
 
 // #region module
 const initialState: Types.State = {
+    analytics: {
+        entries: {
+            project: '',
+            period: '',
+            data: [],
+        },
+        faults: {
+            project: '',
+            period: '',
+            data: [],
+        },
+    },
     projects: [],
     tokens: [],
     spaces: [],
