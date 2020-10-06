@@ -64,7 +64,7 @@
         "@plurid/plurid-react": "^0.1.202",
         "@plurid/plurid-react-server": "^0.1.84",
         "@plurid/plurid-themes": "^0.1.26",
-        "@plurid/plurid-ui-react": "^0.1.86",
+        "@plurid/plurid-ui-react": "^0.1.87",
         "@rollup/plugin-commonjs": "^15.1.0",
         "@rollup/plugin-node-resolve": "^9.0.0",
         "adm-zip": "^0.4.16",
