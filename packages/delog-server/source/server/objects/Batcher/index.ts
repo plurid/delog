@@ -25,7 +25,6 @@ class Batcher<T> {
     private entity: string;
     private database: Database;
     private interval: number = 0;
-    private hits = 0;
 
     constructor(
         entity: string,
@@ -38,18 +37,11 @@ class Batcher<T> {
 
         this.entity = entity;
         this.database = database;
-
-        setInterval(() => {
-            console.log('hits', this.hits);
-        }, 1000);
     }
 
     push(
         data: T,
     ) {
-        this.hits += 1;
-        console.log('hits', this.hits);
-
         this.batch.push(data);
 
         if (!this.interval) {
@@ -76,16 +68,13 @@ class Batcher<T> {
             ? this.batch.length
             : this.options.size;
 
-        const batch = this.batch.slice(0, size);
-        console.log('batch.length', batch.length);
+        const storeBatch = this.batch.slice(0, size);
 
-        console.log('this.batch Pre', this.batch.length);
         this.batch = this.batch.slice(size);
-        console.log('this.batch Post', this.batch.length);
 
         await this.database.storeBatch(
             this.entity,
-            batch,
+            storeBatch,
         );
     }
 }
