@@ -19,11 +19,12 @@ const resolvePeriod = (
     value: string,
 ) => {
     const time = Math.floor(Date.now() / 1000);
-    const SECONDS_IN_DAY = 86_400;
+    const SECONDS_IN_HOUR = 3_600;
+    const SECONDS_IN_DAY = SECONDS_IN_HOUR * 24;
 
     switch (value) {
         case 'hour':
-            return time - SECONDS_IN_DAY;
+            return time - SECONDS_IN_HOUR;
         case '24 hours':
             return time - SECONDS_IN_DAY;
         case '7 days':
