@@ -86,10 +86,15 @@ export const StyledCode = styled.div<IStyledCode>`
     }
 
     .code-editor .ace_selection {
+        color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.colorSecondary
+        };
         background-color: ${
             ({
                 theme,
-            }: IStyledCode) => theme.backgroundColorQuaternary
+            }: IStyledCode) => theme.backgroundColorSecondary
         };
     }
 
