@@ -25,9 +25,13 @@ const main = () => {
 
         context: {
             call: {
-                codeProvider: 'github',
-                repositoryName: '@plurid/delog',
-                repositoryBasePath: '/',
+                repository: {
+                    provider: 'github',
+                    name: '@plurid/delog',
+                    branch: 'master',
+                    commit: 'latest',
+                    basePath: '/',
+                },
             },
         },
     });
