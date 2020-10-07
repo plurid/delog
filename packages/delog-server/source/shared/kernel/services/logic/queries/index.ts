@@ -491,7 +491,9 @@ const getCode = async (
             },
         });
 
-        return true;
+        return [
+            ...lines,
+        ];
     } catch (error) {
         return false;
     }

@@ -52,6 +52,7 @@ export interface CodeStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateRecords: LoggedRecord[];
+    stateCode: Record<string, string[]>;
 }
 
 export interface CodeDispatchProperties {
@@ -72,9 +73,10 @@ const Code: React.FC<CodeProperties> = (
         // #endregion own
 
         // #region state
-        // stateGeneralTheme,
+        stateGeneralTheme,
         // stateInteractionTheme,
         stateRecords,
+        stateCode,
         // #endregion state
 
         // #region dispatch
@@ -90,9 +92,21 @@ const Code: React.FC<CodeProperties> = (
     // #endregion properties
 
 
+    // #region state
+    const [
+        code,
+        setCode,
+    ] = useState(stateCode[id]);
+    // #endregion state
+
+
     // #region effects
     useEffect(() => {
         if (!record) {
+            return;
+        }
+
+        if (Array.isArray(code)) {
             return;
         }
 
@@ -121,7 +135,7 @@ const Code: React.FC<CodeProperties> = (
                 column,
             } = caller;
 
-            getCode(
+            const lines = await getCode(
                 dispatch,
                 {
                     id,
@@ -138,6 +152,12 @@ const Code: React.FC<CodeProperties> = (
                     },
                 },
             );
+
+            if (!lines) {
+                return;
+            }
+
+            setCode(lines);
         }
 
         loadCode();
@@ -155,8 +175,15 @@ const Code: React.FC<CodeProperties> = (
     }
 
     return (
-        <StyledCode>
-            {id}
+        <StyledCode
+            theme={stateGeneralTheme}
+        >
+            {code && (
+                <textarea
+                    value={code.join('\n')}
+                    readOnly={true}
+                />
+            )}
         </StyledCode>
     );
     // #endregion render
@@ -169,6 +196,7 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateRecords: selectors.data.getRecords(state),
+    stateCode: selectors.data.getCode(state),
 });
 
 
