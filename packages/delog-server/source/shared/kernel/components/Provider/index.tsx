@@ -25,10 +25,12 @@
     } from '#kernel-services/logic/mutations';
 
     import {
-        StyledPluridTextline,
+        StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
+
+    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -169,68 +171,48 @@ const Provider: React.FC<ProviderProperties> = (
         <StyledProvider
             theme={theme}
         >
-            <div>
-                <h1>
-                    setup provider
-                </h1>
+            <StyledH1>
+                setup provider
+            </StyledH1>
 
-                <ProviderSelector
+            <ProviderSelector
+                theme={theme}
+                selectedProvider={providerType}
+                setSelectedProvider={setProviderType}
+            />
+
+            <InputLine
+                name="name"
+                text={providerName}
+                theme={theme}
+                atChange={(event) => setProviderName(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="token"
+                text={providerToken}
+                theme={theme}
+                atChange={(event) => setProviderToken(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <StyledPluridPureButton
+                text="Add Provider"
+                atClick={() => addProvider()}
+                disabled={!validProvider}
+                theme={theme}
+                level={2}
+            />
+
+            {cancel && (
+                <StyledPluridLinkButton
+                    text="cancel"
+                    atClick={() => cancel()}
                     theme={theme}
-                    selectedProvider={providerType}
-                    setSelectedProvider={setProviderType}
+                    level={2}
                 />
-
-                <div>
-                    <StyledPluridTextline
-                        text={providerName}
-                        atChange={(event) => setProviderName(event.target.value)}
-                        atKeyDown={(event) => handleEnter(event)}
-                        placeholder="name"
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridTextline
-                        text={providerToken}
-                        atChange={(event) => setProviderToken(event.target.value)}
-                        atKeyDown={(event) => handleEnter(event)}
-                        placeholder="token"
-                        spellCheck={false}
-                        autoCapitalize="false"
-                        autoComplete="false"
-                        autoCorrect="false"
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                <div>
-                    <StyledPluridPureButton
-                        text="Add Provider"
-                        atClick={() => addProvider()}
-                        disabled={!validProvider}
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
-
-                {cancel && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
-                )}
-            </div>
+            )}
         </StyledProvider>
     );
     // #endregion render

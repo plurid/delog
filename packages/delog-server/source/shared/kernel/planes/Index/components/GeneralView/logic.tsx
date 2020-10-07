@@ -362,15 +362,18 @@ export const renderGeneralView = (
                     cancel={() => setGeneralView('general')}
                 />
             );
-        case 'link-repository':
+        case 'link-repositories':
             return (
-                <Provider
+                <Repositories
                     theme={stateInteractionTheme}
-                    action={(repository) => {
-                        dispatchAddEntity({
-                            type: 'repository',
-                            data: repository,
-                        });
+                    providerID={''}
+                    action={(repositories) => {
+                        for (const repository of repositories) {
+                            dispatchAddEntity({
+                                type: 'repository',
+                                data: repository,
+                            });
+                        }
 
                         setGeneralView('general');
                     }}

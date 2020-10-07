@@ -255,7 +255,16 @@ const Repository: React.FC<RepositoryProperties> = (
                     link repositories
                 </h1>
 
-                {loading && (
+                {!providerID
+                && (
+                    <StyledNoRepositories>
+                        no provider
+                    </StyledNoRepositories>
+                )}
+
+                {providerID
+                && loading
+                && (
                     <PluridSpinner
                         theme={theme}
                     />
@@ -303,7 +312,7 @@ const Repository: React.FC<RepositoryProperties> = (
                     </>
                 )}
 
-                {!loading
+                {(!loading || !providerID)
                 && cancel
                 && (
                     <div>
