@@ -69,6 +69,7 @@ const linkRepository = async (
 
             const repository = await handleLinkRepository(
                 input,
+                privateOwnerIdentonym,
             );
 
             if (!repository) {
@@ -106,6 +107,7 @@ const linkRepository = async (
 
             const repository = await handleLinkRepository(
                 input,
+                '',
             );
 
             if (!repository) {
@@ -135,6 +137,7 @@ const linkRepository = async (
         // #region public usage
         const repository = await handleLinkRepository(
             input,
+            '',
         );
 
         if (!repository) {

@@ -24,9 +24,11 @@ export const getProviderRepositoriesLogs = generateMethodLogs('getProviderReposi
 
 export const getSortedRepositories = async (
     providerID: string,
+    ownedBy: string,
 ) => {
     const repositories = await getRepositoriesData(
         providerID,
+        ownedBy,
     );
 
     if (!repositories) {
@@ -91,7 +93,10 @@ const getProviderRepositories = async (
                 };
             }
 
-            const sortedRepositories = await getSortedRepositories(providerID);
+            const sortedRepositories = await getSortedRepositories(
+                providerID,
+                privateOwnerIdentonym,
+            );
 
             if (!sortedRepositories) {
                 logger.log(
@@ -130,6 +135,7 @@ const getProviderRepositories = async (
 
             const sortedRepositories = await getSortedRepositories(
                 providerID,
+                '',
             );
 
             if (!sortedRepositories) {
@@ -161,6 +167,7 @@ const getProviderRepositories = async (
         // #region public usage
         const sortedRepositories = await getSortedRepositories(
             providerID,
+            '',
         );
 
         if (!sortedRepositories) {

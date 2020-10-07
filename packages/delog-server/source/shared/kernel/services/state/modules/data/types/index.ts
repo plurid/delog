@@ -73,9 +73,11 @@ export interface RemoveEntityAction {
 
 
 export type AddableEntitiesType =
-    | 'projects'
     | 'tokens'
+    | 'projects'
     | 'spaces'
+    | 'providers'
+    | 'repositories'
     | 'formats'
     | 'notifiers'
     | 'testers'

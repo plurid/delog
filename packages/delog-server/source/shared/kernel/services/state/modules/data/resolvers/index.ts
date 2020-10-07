@@ -22,14 +22,20 @@ export const addEntity = (
         ...state,
     };
 
-    let projects = [
-        ...newState.projects,
-    ];
     let tokens = [
         ...newState.tokens,
     ];
+    let projects = [
+        ...newState.projects,
+    ];
     let spaces = [
         ...newState.spaces,
+    ];
+    let providers = [
+        ...newState.providers,
+    ];
+    let repositories = [
+        ...newState.repositories,
     ];
     let formats = [
         ...newState.formats,
@@ -43,14 +49,6 @@ export const addEntity = (
 
 
     switch (type) {
-        case 'project':
-            projects = [
-                ...projects,
-                {
-                    ...data,
-                },
-            ]
-            break;
         case 'token':
             tokens = [
                 ...tokens,
@@ -59,9 +57,33 @@ export const addEntity = (
                 },
             ]
             break;
+        case 'project':
+            projects = [
+                ...projects,
+                {
+                    ...data,
+                },
+            ]
+            break;
         case 'space':
             spaces = [
                 ...spaces,
+                {
+                    ...data,
+                },
+            ]
+            break;
+        case 'provider':
+            providers = [
+                ...providers,
+                {
+                    ...data,
+                },
+            ];
+            break;
+        case 'repository':
+            repositories = [
+                ...repositories,
                 {
                     ...data,
                 },
@@ -95,14 +117,20 @@ export const addEntity = (
 
     return {
         ...newState,
-        projects: [
-            ...projects,
-        ],
         tokens: [
             ...tokens,
         ],
+        projects: [
+            ...projects,
+        ],
         spaces: [
             ...spaces,
+        ],
+        providers: [
+            ...providers,
+        ],
+        repositories: [
+            ...repositories,
         ],
         formats: [
             ...formats,
@@ -130,14 +158,20 @@ export const removeEntity = (
         ...state,
     };
 
-    let projects = [
-        ...newState.projects,
-    ];
     let tokens = [
         ...newState.tokens,
     ];
+    let projects = [
+        ...newState.projects,
+    ];
     let spaces = [
         ...newState.spaces,
+    ];
+    let providers = [
+        ...newState.providers,
+    ];
+    let repositories = [
+        ...newState.repositories,
     ];
     let formats = [
         ...newState.formats,
@@ -157,19 +191,29 @@ export const removeEntity = (
 
 
     switch (type) {
-        case 'project':
-            projects = projects.filter(
-                project => project.id !== id
-            );
-            break;
         case 'token':
             tokens = tokens.filter(
                 token => token.id !== id
             );
             break;
+        case 'project':
+            projects = projects.filter(
+                project => project.id !== id
+            );
+            break;
         case 'space':
             spaces = spaces.filter(
                 space => space.id !== id
+            );
+            break;
+        case 'provider':
+            providers = providers.filter(
+                provider => provider.id !== id
+            );
+            break;
+        case 'repository':
+            repositories = repositories.filter(
+                repository => repository.id !== id
             );
             break;
         case 'format':
@@ -201,14 +245,20 @@ export const removeEntity = (
 
     return {
         ...newState,
-        projects: [
-            ...projects,
-        ],
         tokens: [
             ...tokens,
         ],
+        projects: [
+            ...projects,
+        ],
         spaces: [
             ...spaces,
+        ],
+        providers: [
+            ...providers,
+        ],
+        repositories: [
+            ...repositories,
         ],
         formats: [
             ...formats,
@@ -247,14 +297,20 @@ export const addEntities = (
     let analytics = {
         ...newState.analytics,
     };
-    let projects = [
-        ...newState.projects,
-    ];
     let tokens = [
         ...newState.tokens,
     ];
+    let projects = [
+        ...newState.projects,
+    ];
     let spaces = [
         ...newState.spaces,
+    ];
+    let providers = [
+        ...newState.providers,
+    ];
+    let repositories = [
+        ...newState.repositories,
     ];
     let formats = [
         ...newState.formats,
@@ -298,18 +354,28 @@ export const addEntities = (
                 },
             };
             break;
-        case 'projects':
-            projects = [
-                ...data,
-            ];
-            break;
         case 'tokens':
             tokens = [
                 ...data,
             ];
             break;
+        case 'projects':
+            projects = [
+                ...data,
+            ];
+            break;
         case 'spaces':
             spaces = [
+                ...data,
+            ];
+            break;
+        case 'providers':
+            providers = [
+                ...data,
+            ];
+            break;
+        case 'repositories':
+            repositories = [
                 ...data,
             ];
             break;
@@ -352,14 +418,20 @@ export const addEntities = (
         analytics: {
             ...analytics,
         },
-        projects: [
-            ...projects,
-        ],
         tokens: [
             ...tokens,
         ],
+        projects: [
+            ...projects,
+        ],
         spaces: [
             ...spaces,
+        ],
+        providers: [
+            ...providers,
+        ],
+        repositories: [
+            ...repositories,
         ],
         formats: [
             ...formats,

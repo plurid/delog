@@ -23,7 +23,7 @@
 
 // #region module
 export const loadTokens = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const tokens: Token[] = await database.query(
         'tokens',
@@ -52,7 +52,7 @@ export const loadTokens = async (
 
 
 export const loadProjects = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const projects: Project[] = await database.query(
         'projects',
@@ -65,7 +65,7 @@ export const loadProjects = async (
 
 
 export const loadSpaces = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const spaces: Space[] = await database.query(
         'spaces',
@@ -77,22 +77,34 @@ export const loadSpaces = async (
 }
 
 
-export const loadProviders = async () => {
-    const providers: Provider[] = await database.getAll('providers');
+export const loadProviders = async (
+    ownerID: string,
+) => {
+    const providers: Provider[] = await database.query(
+        'providers',
+        'ownedBy',
+        ownerID,
+    );
 
     return providers || [];
 }
 
 
-export const loadRepositories = async () => {
-    const repositories: Repository[] = await database.getAll('repositories');
+export const loadRepositories = async (
+    ownerID: string,
+) => {
+    const repositories: Repository[] = await database.query(
+        'repositories',
+        'ownedBy',
+        ownerID,
+    );
 
     return repositories || [];
 }
 
 
 export const loadFormats = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const formats: Format[] = await database.query(
         'formats',
@@ -105,7 +117,7 @@ export const loadFormats = async (
 
 
 export const loadNotifiers = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const notifiers: any[] = await database.query(
         'notifiers',
@@ -143,7 +155,7 @@ export const loadNotifiers = async (
 
 
 export const loadTesters = async (
-    ownerID: string
+    ownerID: string,
 ) => {
     const testers: any[] = await database.query(
         'testers',
@@ -171,15 +183,23 @@ const loadData = async (
         };
     }
 
-    const projects = await loadProjects(
-        ownerID,
-    );
-
     const tokens = await loadTokens(
         ownerID,
     );
 
+    const projects = await loadProjects(
+        ownerID,
+    );
+
     const spaces = await loadSpaces(
+        ownerID,
+    );
+
+    const providers = await loadProviders(
+        ownerID,
+    );
+
+    const repositories = await loadRepositories(
         ownerID,
     );
 
@@ -200,8 +220,8 @@ const loadData = async (
         tokens,
         projects,
         spaces,
-        providers: [],
-        repositories: [],
+        providers,
+        repositories,
         formats,
         notifiers,
         testers,

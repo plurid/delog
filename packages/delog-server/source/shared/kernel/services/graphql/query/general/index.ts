@@ -40,19 +40,29 @@ export const GET_CURRENT_OWNER = gql`
                         value
                     }
                 }
-                projects {
-                    id
-                    name
-                }
                 tokens {
                     id
                     name
                     startsWith
                 }
+                projects {
+                    id
+                    name
+                }
                 spaces {
                     id
                     name
                     project
+                }
+                providers {
+                    id
+                    name
+                    type
+                }
+                repositories {
+                    id
+                    name
+                    isPrivate
                 }
                 formats {
                     id

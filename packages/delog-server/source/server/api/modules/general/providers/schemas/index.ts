@@ -27,6 +27,10 @@ export const types = gql`
         name: String!
         type: String!
     }
+
+    extend type Owner {
+        providers: [Provider!]!
+    }
 `;
 
 

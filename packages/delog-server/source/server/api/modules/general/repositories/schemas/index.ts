@@ -41,6 +41,10 @@ export const types = gql`
         name: String!
         isPrivate: Boolean!
     }
+
+    extend type Owner {
+        repositories: [Repository!]!
+    }
 `;
 
 

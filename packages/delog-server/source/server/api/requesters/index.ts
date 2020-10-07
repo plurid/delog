@@ -29,8 +29,9 @@
 // #region module
 export const getProvider = async (
     providerID: string,
+    ownedBy: string,
 ) => {
-    const providers = await loadProviders();
+    const providers = await loadProviders(ownedBy);
     const provider = providers.find(
         provider => provider.id === providerID,
     );
@@ -41,8 +42,12 @@ export const getProvider = async (
 
 export const getRepositoriesData = async (
     providerID: string,
+    ownedBy: string,
 ) => {
-    const provider = await getProvider(providerID);
+    const provider = await getProvider(
+        providerID,
+        ownedBy,
+    );
     if (!provider) {
         return;
     }
@@ -61,8 +66,12 @@ export const getRepositoriesData = async (
 export const getRepositoryDataByNameWithOwner = async (
     providerID: string,
     nameWithOwner: string,
+    ownedBy: string,
 ) => {
-    const provider = await getProvider(providerID);
+    const provider = await getProvider(
+        providerID,
+        ownedBy,
+    );
     if (!provider) {
         return;
     }
@@ -82,8 +91,12 @@ export const getRepositoryDataByNameWithOwner = async (
 export const getRepository = async (
     providerID: string,
     name: string,
+    ownedBy: string,
 ) => {
-    const provider = await getProvider(providerID);
+    const provider = await getProvider(
+        providerID,
+        ownedBy,
+    );
     if (!provider) {
         return;
     }
@@ -102,8 +115,12 @@ export const getRepository = async (
 
 export const getOwner = async (
     providerID: string,
+    ownedBy: string,
 ) => {
-    const provider = await getProvider(providerID);
+    const provider = await getProvider(
+        providerID,
+        ownedBy,
+    );
     if (!provider) {
         return;
     }
@@ -121,6 +138,7 @@ export const getOwner = async (
 
 export const handleLinkRepository = async (
     input: InputLinkRepository,
+    ownedBy: string,
 ) => {
     const {
         providerID,
@@ -130,6 +148,7 @@ export const handleLinkRepository = async (
     const repositoryData = await getRepositoryDataByNameWithOwner(
         providerID,
         nameWithOwner,
+        ownedBy,
     );
 
     if (!repositoryData) {
@@ -147,6 +166,7 @@ export const handleLinkRepository = async (
     await getRepository(
         providerID,
         name,
+        ownedBy,
     );
 
     await registerRepositoryMetadata(
