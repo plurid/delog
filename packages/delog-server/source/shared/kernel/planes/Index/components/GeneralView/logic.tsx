@@ -2,6 +2,9 @@
     // #region libraries
     import React from 'react';
 
+    import { AnyAction } from 'redux';
+    import { ThunkDispatch } from 'redux-thunk';
+
     import {
         PluridIconStatistics,
         PluridIconLocked,
@@ -33,6 +36,10 @@
     import Format from '#kernel-components/Format';
     import Notifier from '#kernel-components/Notifier';
     import Tester from '#kernel-components/Tester';
+
+    import { AppState } from '#kernel-services/state/store';
+    import selectors from '#kernel-services/state/selectors';
+    import actions from '#kernel-services/state/actions';
     // #endregion external
 
 
@@ -169,14 +176,8 @@ export const renderSelectedView = (
 
 
 export const renderGeneralView = (
-    stateGeneralTheme: any,
-    stateInteractionTheme: any,
-    stateIndexGeneralView: any,
-    stateIndexGeneralSelector: any,
-    stateViewCompactSelectors: any,
-    stateViewUsageType: any,
-    stateViewOwnerID: any,
-    stateViewActiveProviderID: string,
+    state: AppState,
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
     openManual: any,
     logout: any,
     findEntityByID: any,
@@ -186,9 +187,28 @@ export const renderGeneralView = (
     selectedView: any,
     setSelectedView: any,
     setGeneralView: any,
-    dispatchAddEntity: any,
-    dispatchViewSetEditID: any,
 ) => {
+    const stateGeneralTheme = selectors.themes.getGeneralTheme(state);
+    const stateInteractionTheme = selectors.themes.getInteractionTheme(state);
+    const stateIndexGeneralSelector = selectors.view.getIndexGeneralSelector(state);
+    const stateIndexGeneralView = selectors.view.getIndexGeneralView(state);
+    const stateViewCompactSelectors = selectors.view.getViewCompactSelectors(state);
+    const stateViewOwnerID = selectors.view.getViewOwnerID(state);
+    const stateViewUsageType = selectors.view.getViewUsageType(state);
+    const stateViewActiveProviderID = selectors.data.getActiveProviderID(state);
+
+    const dispatchAddEntity = (
+        payload: any,
+    ) => dispatch(
+        actions.data.addEntity(payload),
+    );
+    // const dispatchViewSetEditID = (
+    //     payload: any,
+    // ) => dispatch (
+    //     actions.view.setEditID(payload),
+    // );
+
+
     switch (stateIndexGeneralView) {
         case 'general':
             return (

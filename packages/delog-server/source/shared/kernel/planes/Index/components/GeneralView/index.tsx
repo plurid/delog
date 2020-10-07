@@ -7,10 +7,6 @@
     import { AnyAction } from 'redux';
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
-
-    import {
-        Theme,
-    } from '@plurid/plurid-themes';
     // #endregion libraries
 
 
@@ -46,21 +42,14 @@ export interface GeneralViewOwnProperties {
 }
 
 export interface GeneralViewStateProperties {
-    stateGeneralTheme: Theme;
-    stateInteractionTheme: Theme;
+    state: AppState,
     stateIndexGeneralSelector: string;
-    stateIndexGeneralView: string;
-    stateViewCompactSelectors: boolean;
-    stateViewOwnerID: string;
-    stateViewUsageType: string;
-    stateViewActiveProviderID: string;
 }
 
 export interface GeneralViewDispatchProperties {
-    dispatchAddEntity: typeof actions.data.addEntity;
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchClearData: typeof actions.data.clearData;
     dispatchSetViewType: typeof actions.view.setViewType;
-    dispatchViewSetEditID: typeof actions.view.setEditID;
     dispatchSetViewCompactSelectors: typeof actions.view.setViewCompactSelectors;
 }
 
@@ -74,21 +63,14 @@ const GeneralView: React.FC<GeneralViewProperties> = (
     // #region properties
     const {
         // #region state
-        stateGeneralTheme,
-        stateInteractionTheme,
+        state,
         stateIndexGeneralSelector,
-        stateIndexGeneralView,
-        stateViewCompactSelectors,
-        stateViewOwnerID,
-        stateViewUsageType,
-        stateViewActiveProviderID,
         // #endregion state
 
         // #region dispatch
-        dispatchAddEntity,
+        dispatch,
         dispatchClearData,
         dispatchSetViewType,
-        dispatchViewSetEditID,
         dispatchSetViewCompactSelectors,
         // #endregion dispatch
     } = properties;
@@ -170,14 +152,8 @@ const GeneralView: React.FC<GeneralViewProperties> = (
     );
 
     return renderGeneralView(
-        stateGeneralTheme,
-        stateInteractionTheme,
-        stateIndexGeneralView,
-        stateIndexGeneralSelector,
-        stateViewCompactSelectors,
-        stateViewUsageType,
-        stateViewOwnerID,
-        stateViewActiveProviderID,
+        state,
+        dispatch,
         openManual,
         logout,
         findEntityByID,
@@ -187,8 +163,6 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         selectedView,
         setSelectedView,
         setGeneralView,
-        dispatchAddEntity,
-        dispatchViewSetEditID,
     );
     // #endregion render
 }
@@ -197,25 +171,15 @@ const GeneralView: React.FC<GeneralViewProperties> = (
 const mapStateToProperties = (
     state: AppState,
 ): GeneralViewStateProperties => ({
-    stateGeneralTheme: selectors.themes.getGeneralTheme(state),
-    stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    state,
     stateIndexGeneralSelector: selectors.view.getIndexGeneralSelector(state),
-    stateIndexGeneralView: selectors.view.getIndexGeneralView(state),
-    stateViewCompactSelectors: selectors.view.getViewCompactSelectors(state),
-    stateViewOwnerID: selectors.view.getViewOwnerID(state),
-    stateViewUsageType: selectors.view.getViewUsageType(state),
-    stateViewActiveProviderID: selectors.data.getActiveProviderID(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): GeneralViewDispatchProperties => ({
-    dispatchAddEntity: (
-        payload,
-    ) => dispatch(
-        actions.data.addEntity(payload),
-    ),
+    dispatch,
     dispatchClearData: () => dispatch(
         actions.data.clearData(),
     ),
@@ -223,11 +187,6 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch(
         actions.view.setViewType(payload),
-    ),
-    dispatchViewSetEditID: (
-        payload,
-    ) => dispatch (
-        actions.view.setEditID(payload),
     ),
     dispatchSetViewCompactSelectors: (
         payload,
