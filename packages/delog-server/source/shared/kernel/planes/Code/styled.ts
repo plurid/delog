@@ -94,7 +94,7 @@ export const StyledCode = styled.div<IStyledCode>`
         background-color: ${
             ({
                 theme,
-            }: IStyledCode) => theme.backgroundColorSecondary
+            }: IStyledCode) => theme.backgroundColorPrimary
         };
     }
 
