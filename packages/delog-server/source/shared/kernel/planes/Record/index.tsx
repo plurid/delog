@@ -16,10 +16,19 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
+
+    import {
+        PluridHeading,
+        PluridParagraph,
+    } from '@plurid/plurid-ui-react'
     // #endregion libraries
 
 
     // #region external
+    import {
+        logLevelsText,
+    } from '#server/data/constants/logger';
+
     import {
         LoggedRecord,
     } from '#server/data/interfaces';
@@ -103,30 +112,93 @@ const Record: React.FC<RecordProperties> = (
 
 
     // #region render
-    return (
-        <StyledRecord>
-            {record && (
-                <div>
-                    {(() => {
-                        const {
-                            format,
-                            log,
-                        } = record;
+    const recordRender = (
+        record: LoggedRecord,
+    ) => {
+        const {
+            log,
+            format,
 
-                        return (
-                           <>
-                                <div>
-                                    format: {format}
-                                </div>
-                                <div>
-                                    log: {log}
-                                </div>
-                           </>
-                        )
-                    })()}
+            level,
+            time,
+
+            project,
+            space,
+            method,
+
+            error,
+            extradata,
+
+            context,
+        } = record;
+
+        const logLevelText = logLevelsText[level];
+        const date = new Date(time * 1000).toLocaleString();
+
+        return (
+            <StyledRecord>
+                <PluridHeading
+                    type="h1"
+                >
+                    {log}
+                </PluridHeading>
+
+
+                <PluridHeading
+                    type="h2"
+                >
+                    {format}
+                </PluridHeading>
+
+
+                <div>
+                    <div>
+                        {logLevelText}
+                    </div>
+
+                    <div>
+                        {date}
+                    </div>
                 </div>
-            )}
-        </StyledRecord>
+
+
+                <div>
+                    <div>
+                        {project}
+                    </div>
+
+                    <div>
+                        {space}
+                    </div>
+
+                    <div>
+                        {method}
+                    </div>
+                </div>
+
+
+                <div>
+                    <div>
+                        {JSON.stringify(error)}
+                    </div>
+
+                    <div>
+                        {JSON.stringify(extradata)}
+                    </div>
+                </div>
+
+
+                <div>
+                    {JSON.stringify(context)}
+                </div>
+           </StyledRecord>
+        );
+    }
+
+    return (
+        <>
+            {record && recordRender(record)}
+        </>
     );
     // #endregion render
 }

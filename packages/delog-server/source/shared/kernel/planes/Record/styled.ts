@@ -12,5 +12,10 @@ export const StyledRecord = styled.div`
         'Open Sans', 'Helvetica Neue', sans-serif;
 
     min-height: 700px;
+    padding: 2rem;
+
+    div {
+        margin-bottom: 2rem;
+    }
 `;
 // #endregion module
