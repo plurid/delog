@@ -16,11 +16,6 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
-
-    import {
-        PluridHeading,
-        PluridParagraph,
-    } from '@plurid/plurid-ui-react'
     // #endregion libraries
 
 
@@ -42,6 +37,11 @@
     // #region internal
     import {
         StyledRecord,
+        StyledRecordLogFormat,
+        StyledRecordLevelTime,
+        StyledRecordProjectSpaceMethod,
+        StyledRecordErrorExtradata,
+        StyledRecordContext,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -137,21 +137,18 @@ const Record: React.FC<RecordProperties> = (
 
         return (
             <StyledRecord>
-                <PluridHeading
-                    type="h1"
-                >
-                    {log}
-                </PluridHeading>
+                <StyledRecordLogFormat>
+                    <h1>
+                        {log}
+                    </h1>
+
+                    <h2>
+                        {format}
+                    </h2>
+                </StyledRecordLogFormat>
 
 
-                <PluridHeading
-                    type="h2"
-                >
-                    {format}
-                </PluridHeading>
-
-
-                <div>
+                <StyledRecordLevelTime>
                     <div>
                         {logLevelText}
                     </div>
@@ -159,10 +156,10 @@ const Record: React.FC<RecordProperties> = (
                     <div>
                         {date}
                     </div>
-                </div>
+                </StyledRecordLevelTime>
 
 
-                <div>
+                <StyledRecordProjectSpaceMethod>
                     <div>
                         {project}
                     </div>
@@ -174,10 +171,10 @@ const Record: React.FC<RecordProperties> = (
                     <div>
                         {method}
                     </div>
-                </div>
+                </StyledRecordProjectSpaceMethod>
 
 
-                <div>
+                <StyledRecordErrorExtradata>
                     <div>
                         {JSON.stringify(error)}
                     </div>
@@ -185,12 +182,12 @@ const Record: React.FC<RecordProperties> = (
                     <div>
                         {JSON.stringify(extradata)}
                     </div>
-                </div>
+                </StyledRecordErrorExtradata>
 
 
-                <div>
+                <StyledRecordContext>
                     {JSON.stringify(context)}
-                </div>
+                </StyledRecordContext>
            </StyledRecord>
         );
     }
