@@ -6,6 +6,10 @@
     } from '#server/data/interfaces';
 
     import {
+        getCodeLines,
+    } from '#server/logic/operators/code';
+
+    import {
         generateMethodLogs,
     } from '#server/utilities';
     // #endregion external
@@ -44,14 +48,6 @@ const getCode = async (
 
 
     try {
-        // #region input unpack
-        const {
-            repository,
-            context,
-        } = input;
-        // #endregion input unpack
-
-
         // #region private usage
         if (privateUsage) {
             logger.log(
@@ -70,6 +66,10 @@ const getCode = async (
                 };
             }
 
+            const lines = await getCodeLines(
+                input,
+            );
+
             logger.log(
                 getCodeLogs.infoSuccessPrivateUsage,
                 logLevels.info,
@@ -79,8 +79,7 @@ const getCode = async (
                 status: true,
                 data: {
                     lines: [
-                        'line 1',
-                        'line 2',
+                        ...lines,
                     ],
                 },
             };
