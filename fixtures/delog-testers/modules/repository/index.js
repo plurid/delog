@@ -22,6 +22,14 @@ const main = () => {
         level: delogLevels.info,
         method: 'repository',
         format: '%LEVEL %TIME %TEXT',
+
+        context: {
+            call: {
+                codeProvider: 'github',
+                repositoryName: '@plurid/delog',
+                repositoryBasePath: '/',
+            },
+        },
     });
 }
 
