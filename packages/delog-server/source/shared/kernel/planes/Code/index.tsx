@@ -24,6 +24,10 @@
         LoggedRecord,
     } from '#server/data/interfaces';
 
+    import {
+        getCode,
+    } from '#kernel-services/logic/queries';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     // import actions from '#kernel-services/state/actions';
@@ -51,6 +55,7 @@ export interface CodeStateProperties {
 }
 
 export interface CodeDispatchProperties {
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
 }
 
 export type CodeProperties = CodeOwnProperties
@@ -71,6 +76,10 @@ const Code: React.FC<CodeProperties> = (
         // stateInteractionTheme,
         stateRecords,
         // #endregion state
+
+        // #region dispatch
+        dispatch,
+        // #endregion dispatch
     } = properties;
 
     const {
@@ -95,9 +104,39 @@ const Code: React.FC<CodeProperties> = (
             }
 
             const {
-                caller,
                 repository,
+                caller,
             } = call;
+
+            const {
+                provider,
+                name,
+                branch,
+                commit,
+            } = repository;
+
+            const {
+                file,
+                line,
+                column,
+            } = caller;
+
+            getCode(
+                dispatch,
+                {
+                    repository: {
+                        provider,
+                        name,
+                        branch,
+                        commit,
+                    },
+                    context: {
+                        file,
+                        line,
+                        column,
+                    },
+                },
+            );
         }
 
         loadCode();
@@ -135,6 +174,7 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): CodeDispatchProperties => ({
+    dispatch,
 });
 
 

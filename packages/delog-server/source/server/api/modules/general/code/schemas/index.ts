@@ -42,8 +42,8 @@ export const inputs = gql`
 
     input InputGetCodeContext {
         file: String!
-        line: String!
-        column: String!
+        line: Int!
+        column: Int!
     }
 `;
 // #endregion module

@@ -109,7 +109,7 @@ export interface InputGetCodeRepository {
 
 export interface InputGetCodeContext {
     file: string;
-    line: string;
-    column: string;
+    line: number;
+    column: number;
 }
 // #endregion module
