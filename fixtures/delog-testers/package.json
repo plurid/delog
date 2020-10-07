@@ -3,6 +3,6 @@
     "version": "0.0.0",
     "license": "UNLICENSED",
     "dependencies": {
-        "@plurid/delog": "^0.0.6"
+        "@plurid/delog": "^0.0.8"
     }
 }
