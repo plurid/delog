@@ -20,6 +20,10 @@
 
 
     // #region external
+    import {
+        LoggedRecord,
+    } from '#server/data/interfaces';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     // import actions from '#kernel-services/state/actions';
@@ -43,6 +47,7 @@ export interface CodeOwnProperties {
 export interface CodeStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
+    stateRecords: LoggedRecord[];
 }
 
 export interface CodeDispatchProperties {
@@ -64,16 +69,51 @@ const Code: React.FC<CodeProperties> = (
         // #region state
         // stateGeneralTheme,
         // stateInteractionTheme,
+        stateRecords,
         // #endregion state
     } = properties;
 
     const {
         id,
     } = plurid.route.plane.parameters;
+
+    const record = stateRecords.find(record => record.id === id);
     // #endregion properties
 
 
+    // #region effects
+    useEffect(() => {
+        if (!record) {
+            return;
+        }
+
+        const loadCode = async () => {
+            const call = record.context?.call;
+
+            if (!call) {
+                return;
+            }
+
+            const {
+                caller,
+                repository,
+            } = call;
+        }
+
+        loadCode();
+    }, [
+        record,
+    ]);
+    // #endregion effects
+
+
     // #region render
+    if (!record) {
+        return (
+            <></>
+        );
+    }
+
     return (
         <StyledCode>
             {id}
@@ -88,6 +128,7 @@ const mapStateToProperties = (
 ): CodeStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
+    stateRecords: selectors.data.getRecords(state),
 });
 
 
