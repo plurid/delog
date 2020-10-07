@@ -29,9 +29,11 @@ class TestDelog(unittest.TestCase):
 
             context={
                 "call": {
-                    "code_provider": "test_code_provider",
-                    "repository_name": "test_repository_name",
-                    "repository_basepath": "/home/",
+                    "repository": {
+                        "provider": "test_code_provider",
+                        "name": "test_repository_name",
+                        "basepath": "/home/",
+                    }
                 },
             },
         )
