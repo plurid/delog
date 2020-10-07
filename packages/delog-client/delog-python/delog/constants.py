@@ -16,8 +16,10 @@ PROJECT = os.environ.get('DELOG_PROJECT', '')
 SPACE = os.environ.get('DELOG_SPACE', '')
 
 CALL_CONTEXT = bool(os.environ.get('DELOG_CALL_CONTEXT', False))
-CODE_PROVIDER = os.environ.get("DELOG_CODE_PROVIDER", '')
+REPOSITORY_PROVIDER = os.environ.get("DELOG_REPOSITORY_PROVIDER", '')
 REPOSITORY_NAME = os.environ.get("DELOG_REPOSITORY_NAME", '')
+REPOSITORY_BRANCH = os.environ.get("DELOG_REPOSITORY_BRANCH", 'master')
+REPOSITORY_COMMIT = os.environ.get("DELOG_REPOSITORY_COMMIT", 'latest')
 REPOSITORY_BASEPATH = os.environ.get("DELOG_REPOSITORY_BASEPATH", '')
 
 
