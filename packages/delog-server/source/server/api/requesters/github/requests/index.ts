@@ -118,6 +118,7 @@ export const getRepository = async (
 
 export const getRepositoriesData = async (
     provider: Provider,
+    ownedBy: string,
 ) => {
     try {
         const client = requester(provider.token);
@@ -149,6 +150,7 @@ export const getRepositoriesData = async (
                     name: nameWithOwner,
                     isPrivate,
                     providerID: provider.id,
+                    ownedBy,
                 };
 
                 return repository;
@@ -165,6 +167,7 @@ export const getRepositoriesData = async (
 export const getRepositoryDataByNameWithOwner = async (
     provider: Provider,
     nameWithOwner: string,
+    ownedBy: string,
 ) => {
     try {
         const client = requester(provider.token);
@@ -194,6 +197,7 @@ export const getRepositoryDataByNameWithOwner = async (
             isPrivate: data.repository.isPrivate,
             name: data.repository.nameWithOwner,
             providerID: provider.id,
+            ownedBy,
         };
 
         return repositoryData;

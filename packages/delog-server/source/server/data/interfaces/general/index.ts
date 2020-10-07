@@ -87,6 +87,7 @@ export interface Repository {
     name: string;
     isPrivate: boolean;
     providerID: string;
+    ownedBy: string;
 }
 
 

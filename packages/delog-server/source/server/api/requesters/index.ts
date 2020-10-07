@@ -58,6 +58,7 @@ export const getRepositoriesData = async (
         case GITHUB_PROVIDER:
             return github.getRepositoriesData(
                 provider,
+                ownedBy,
             );
     }
 }
@@ -83,6 +84,7 @@ export const getRepositoryDataByNameWithOwner = async (
             return github.getRepositoryDataByNameWithOwner(
                 provider,
                 nameWithOwner,
+                ownedBy,
             );
     }
 }
