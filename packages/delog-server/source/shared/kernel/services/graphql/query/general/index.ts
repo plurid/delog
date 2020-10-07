@@ -187,4 +187,21 @@ export const GET_PROVIDER_REPOSITORIES = gql`
         }
     }
 `;
+
+
+export const GET_CODE = gql`
+    query GetCode($input: InputGetCode!) {
+        getCode(input: $input) {
+            status
+            error {
+                path
+                type
+                message
+            }
+            data {
+                lines
+            }
+        }
+    }
+`;
 // #endregion module

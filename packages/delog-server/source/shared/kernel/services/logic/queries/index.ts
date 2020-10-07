@@ -27,6 +27,7 @@
         GET_TESTS,
         GET_ANALYTICS_LAST_PERIOD,
         GET_ANALYTICS_SIZE,
+        GET_CODE,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -440,6 +441,45 @@ const getAnalyticsSize = async (
         return false;
     }
 }
+
+
+const getCode = async (
+    dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    input: any,
+) => {
+    // const dispatchDataAddCode: typeof actions.data.addCode = (
+    //     payload,
+    // ) => dispatch(
+    //     actions.data.addCode(payload),
+    // );
+
+    try {
+        const query = await client.query({
+            query: GET_CODE,
+            variables: {
+                input,
+            },
+            fetchPolicy: 'no-cache',
+        });
+        console.log('query', query);
+
+        const response = query.data.getCode;
+
+        if (!response.status) {
+            return false;
+        }
+
+        const {
+            lines
+        } = graphql.deleteTypenames(response.data);
+
+        // dispatchDataAddCode(lines);
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -453,5 +493,6 @@ export {
     getProjects,
     getAnalyticsLastPeriod,
     getAnalyticsSize,
+    getCode,
 };
 // #endregion exports
