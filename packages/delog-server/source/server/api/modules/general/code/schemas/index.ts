@@ -15,7 +15,7 @@ export const queries = gql`
 
 
 export const types = gql`
-    type ResponseFormat {
+    type ResponseCode {
         status: Boolean!
         error: Error
         data: Code
