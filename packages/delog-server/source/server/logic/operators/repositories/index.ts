@@ -94,8 +94,12 @@ export const deregisterRepository = async (
 
 export const getActiveRepository = async (
     repositoryName: string,
+    ownedBy: string,
 ) => {
-    const repositories = await loadRepositories();
+    const repositories = await loadRepositories(
+        ownedBy,
+    );
+
     let activeRepository: Repository | undefined;
     for (const watchedRepository of repositories) {
         if (watchedRepository.name === repositoryName) {

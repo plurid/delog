@@ -64,6 +64,7 @@ const handleGithubWebhook = async (
 
         const activeRepository = await getActiveRepository(
             repositoryName,
+            '',
         );
         if (!activeRepository) {
             /** No Content */
