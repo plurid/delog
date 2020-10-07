@@ -45,12 +45,12 @@ def delog(
     space: str = SPACE,
 
     # Name of the method from where the log originates.
-    method: str = "",
+    method: str = None,
 
-    error = "",
+    error = None,
 
     # Arbitrary data: a simple string, stringified JSON or deon.
-    extradata: str = "",
+    extradata: str = None,
 
     context: dict = {},
 ):
@@ -81,10 +81,10 @@ def delog(
     error_string = repr(error)
     input_context = {
         "mode": context.get("mode", "LOGGING"),
-        "scenario": context.get("scenario", ""),
-        "suite": context.get("suite", ""),
-        "shared_id": context.get("shared_id", ""),
-        "shared_order": context.get("shared_order", ""),
+        "scenario": context.get("scenario", None),
+        "suite": context.get("suite", None),
+        "sharedID": context.get("shared_id", None),
+        "sharedOrder": context.get("shared_order", None),
         "call": call_context,
     };
 
