@@ -22,11 +22,8 @@
 
     import {
         stringifyError,
-    } from '../stringifyError';
-
-    import {
         now,
-    } from '../time';
+    } from '../../utilities';
     // #endregion external
 // #endregion imports
 

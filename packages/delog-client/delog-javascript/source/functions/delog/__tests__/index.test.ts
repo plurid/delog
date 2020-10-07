@@ -8,7 +8,7 @@
         delogLevels,
     } from '#data/constants';
 
-    import delog from '../';
+    import delog from '..';
     // #endregion external
 // #endregion imports
 
@@ -56,9 +56,11 @@ describe('delog - simple', () => {
 
             context: {
                 call: {
-                    codeProvider: 'codeProvider-test',
-                    repositoryBasePath: '',
-                    repositoryName: 'one',
+                    repository: {
+                        provider: 'codeProvider-test',
+                        name: 'one',
+                        basePath: '',
+                    },
                 },
             },
         });

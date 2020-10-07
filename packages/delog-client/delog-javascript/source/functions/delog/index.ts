@@ -13,8 +13,11 @@
 
     import {
         getConfiguration,
-        stringifyError,
         getCallContext,
+    } from '#services/logic';
+
+    import {
+        stringifyError,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports

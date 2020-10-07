@@ -66,14 +66,12 @@ export type RequiredDelogData = Required<
 
 
 export interface DelogLevels {
-    none: number;
     fatal: number;
     error: number;
     warn: number;
     info: number;
     debug: number;
     trace: number;
-    all: number;
 }
 
 
@@ -105,9 +103,16 @@ export interface DelogContext extends DelogTestingContext {
 
 export interface DelogContextCall {
     depth?: number;
-    codeProvider?: string;
-    repositoryName?: string;
-    repositoryBasePath?: string;
+    repository?: DelogContextCallRepository;
+}
+
+
+export interface DelogContextCallRepository {
+    provider?: string;
+    name?: string;
+    branch?: string;
+    commit?: string;
+    basePath?: string;
 }
 
 
@@ -134,8 +139,16 @@ export interface DelogInputRecordContext extends DelogTestingContext {
 
 export interface DelogInputRecordContextCall {
     provider: string;
-    repository: string;
+    repository: DelogInputRecordContextRepository;
     caller: DelogInputRecordContextCaller;
+}
+
+export interface DelogInputRecordContextRepository {
+    provider: string;
+    name: string;
+    branch: string;
+    commit: string;
+    basePath: string;
 }
 
 export interface DelogInputRecordContextCaller {

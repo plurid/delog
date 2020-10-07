@@ -2,7 +2,7 @@
     // #region internal
     import {
         delog,
-    } from './logic';
+    } from './functions';
 
     import {
         stringifyError,

@@ -3,12 +3,15 @@
     import {
         DelogContextCall,
         DelogInputRecordContextCall,
+        DelogInputRecordContextRepository,
         DelogInputRecordContextCaller,
     } from '../../../data/interfaces';
 
     import {
         CALL_CONTEXT,
-        CODE_PROVIDER,
+        REPOSITORY_PROVIDER,
+        REPOSITORY_BRANCH,
+        REPOSITORY_COMMIT,
         REPOSITORY_NAME,
         REPOSITORY_BASEPATH,
 
@@ -39,6 +42,8 @@ const getCallContext = (
     }
 
     try {
+        const callRepository = call?.repository;
+
         const callDepth = call?.depth || DEFAULT_CALL_DEPTH;
         const calls = callsites();
 
@@ -52,9 +57,11 @@ const getCallContext = (
             return;
         }
 
-        const provider = call?.codeProvider || CODE_PROVIDER;
-        const repositoryName = call?.repositoryName || REPOSITORY_NAME;
-        const repositoryBasepath = call?.repositoryBasePath || REPOSITORY_BASEPATH || process.cwd();
+        const provider = callRepository?.provider || REPOSITORY_PROVIDER;
+        const repositoryName = callRepository?.name || REPOSITORY_NAME;
+        const repositoryBranch = callRepository?.branch || REPOSITORY_BRANCH;
+        const repositoryCommit = callRepository?.commit || REPOSITORY_COMMIT;
+        const repositoryBasePath = callRepository?.basePath || REPOSITORY_BASEPATH || process.cwd();
 
         const {
             file,
@@ -62,11 +69,19 @@ const getCallContext = (
             column,
         } = caller;
 
-        const filepath = file.replace(repositoryBasepath, '');
+        const filepath = file.replace(repositoryBasePath, '');
+
+        const repository: DelogInputRecordContextRepository = {
+            provider,
+            name: repositoryName,
+            branch: repositoryBranch,
+            commit: repositoryCommit,
+            basePath: repositoryBasePath,
+        };
 
         const callContext: DelogInputRecordContextCall = {
             provider,
-            repository: repositoryName,
+            repository,
             caller: {
                 file: filepath,
                 line,
