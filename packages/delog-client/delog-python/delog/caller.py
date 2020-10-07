@@ -47,7 +47,7 @@ def get_caller(
             "name": repository_name,
             "branch": repository_branch,
             "commit": repository_commit,
-            "basepath": repository_basepath,
+            "basePath": repository_basepath,
         },
         "caller": {
             "file": filepath,
