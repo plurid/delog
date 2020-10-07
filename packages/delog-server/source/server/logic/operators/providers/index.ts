@@ -22,6 +22,7 @@
 // #region module
 const registerProvider = async (
     input: InputAddProvider,
+    ownedBy: string,
 ) => {
     const {
         type,
@@ -36,6 +37,7 @@ const registerProvider = async (
         type,
         token,
         name,
+        ownedBy,
     };
 
     await database.store(

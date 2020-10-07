@@ -68,6 +68,7 @@ const addProvider = async (
 
             const provider = await registerProvider(
                 input,
+                privateOwnerIdentonym,
             );
 
             logger.log(
@@ -123,6 +124,7 @@ const addProvider = async (
         // #region public usage
         const provider = await registerProvider(
             input,
+            '',
         );
 
         logger.log(

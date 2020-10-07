@@ -76,6 +76,7 @@ export interface Provider {
     token: string;
     type: CodeProvider;
     name: string;
+    ownedBy: string;
 }
 
 export type ClientProvider = Omit<Provider, 'token'>;
