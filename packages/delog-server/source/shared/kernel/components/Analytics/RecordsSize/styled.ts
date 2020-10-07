@@ -39,10 +39,6 @@ const StyledRecordsSize = styled.div<IStyledRecordsSize>`
 
 const StyledRecordsSizeData = styled.div`
 `;
-
-
-const StyledRecordsSizeRefresh = styled.div`
-`;
 // #endregion module
 
 
@@ -51,6 +47,5 @@ const StyledRecordsSizeRefresh = styled.div`
 export {
     StyledRecordsSize,
     StyledRecordsSizeData,
-    StyledRecordsSizeRefresh,
 };
 // #endregion exports

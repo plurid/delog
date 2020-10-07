@@ -1,9 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
-        useRef,
         useState,
-        useEffect,
     } from 'react';
 
     import {
@@ -11,11 +9,8 @@
     } from '@plurid/plurid-themes';
 
     import {
-        PluridIconReset,
-    } from '@plurid/plurid-icons-react';
-
-    import {
         PluridDropdown,
+        PluridRefreshButton,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
@@ -31,7 +26,6 @@
     import {
         StyledRecordsSize,
         StyledRecordsSizeData,
-        StyledRecordsSizeRefresh,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -101,31 +95,12 @@ const RecordsSize: React.FC<RecordsSizeProperties> = (
     // #endregion properties
 
 
-    // #region references
-    const isMounted = useRef(true);
-    // #endregion references
-
-
     // #region state
     const [
         selectedProject,
         setSelectedProject,
     ] = useState(project);
-
-    const [
-        showIconReset,
-        setShowIconReset,
-    ] = useState(true);
     // #endregion state
-
-
-    // #region effects
-    useEffect(() => {
-        return () => {
-            isMounted.current = false;
-        }
-    }, []);
-    // #endregion effects
 
 
     // #region render
@@ -166,25 +141,11 @@ const RecordsSize: React.FC<RecordsSizeProperties> = (
                 records size {sizeHumanReadable}
             </StyledRecordsSizeData>
 
-            <StyledRecordsSizeRefresh>
-                {showIconReset && (
-                    <PluridIconReset
-                        atClick={() => {
-                            setShowIconReset(false);
-
-                            updateData(selectedProject);
-
-                            setTimeout(() => {
-                                if (!isMounted.current) {
-                                    return;
-                                }
-
-                                setShowIconReset(true);
-                            }, 1300);
-                        }}
-                    />
-                )}
-            </StyledRecordsSizeRefresh>
+            <PluridRefreshButton
+                atClick={() => {
+                    updateData(selectedProject);
+                }}
+            />
         </StyledRecordsSize>
     );
     // #endregion render
