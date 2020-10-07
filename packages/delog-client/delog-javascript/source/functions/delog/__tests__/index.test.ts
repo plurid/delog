@@ -20,7 +20,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it('works', () => {
+    it.only('works', () => {
         delog({
             text: 'works',
 
@@ -68,7 +68,7 @@ describe('delog - simple', () => {
 
 
 
-    it.only('works - stress test', async () => {
+    xit('works - stress test', async () => {
         jest.setTimeout(120_000);
 
         const few = 101;
@@ -105,7 +105,7 @@ describe('delog - simple', () => {
 
 
 
-    it('works - stress test timeout', async () => {
+    xit('works - stress test timeout', async () => {
         jest.setTimeout(60000);
 
         for (let i = 0; i < 31; i++) {
