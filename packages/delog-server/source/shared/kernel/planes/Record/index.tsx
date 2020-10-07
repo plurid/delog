@@ -280,7 +280,7 @@ const Record: React.FC<RecordProperties> = (
 
                             <div>
                                 <PluridLink
-                                    route="/code/1"
+                                    route={`/code/${id}`}
                                 >
                                     show code
                                 </PluridLink>
