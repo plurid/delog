@@ -59,9 +59,16 @@ export const types = gql`
     }
 
     type DelogContextCall {
-        provider: String!
-        repository: String!
+        repository: DelogContextRepository!
         caller: DelogContextCaller!
+    }
+
+    type DelogContextRepository {
+        provider: String!
+        name: String!
+        branch: String!
+        commit: String!
+        basePath: String!
     }
 
     type DelogContextCaller {
