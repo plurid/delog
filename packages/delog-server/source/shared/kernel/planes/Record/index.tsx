@@ -15,6 +15,7 @@
 
     import {
         PluridComponentProperty,
+        PluridLink,
     } from '@plurid/plurid-react';
 
     import {
@@ -269,12 +270,22 @@ const Record: React.FC<RecordProperties> = (
 
                 {context && (
                     <StyledRecordContext>
-                        <PluridIconInfo
-                            title="context"
-                            style={{
-                                marginRight: '0.5rem',
-                            }}
-                        />
+                        <div>
+                            <PluridIconInfo
+                                title="context"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
+
+                            <div>
+                                <PluridLink
+                                    route="/code/1"
+                                >
+                                    show code
+                                </PluridLink>
+                            </div>
+                        </div>
 
                         <pre>
                             {JSON.stringify(context, null, 4)}
