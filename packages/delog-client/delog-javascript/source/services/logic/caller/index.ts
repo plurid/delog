@@ -80,7 +80,6 @@ const getCallContext = (
         };
 
         const callContext: DelogInputRecordContextCall = {
-            provider,
             repository,
             caller: {
                 file: filepath,

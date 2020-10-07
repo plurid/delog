@@ -138,7 +138,6 @@ export interface DelogInputRecordContext extends DelogTestingContext {
 }
 
 export interface DelogInputRecordContextCall {
-    provider: string;
     repository: DelogInputRecordContextRepository;
     caller: DelogInputRecordContextCaller;
 }
