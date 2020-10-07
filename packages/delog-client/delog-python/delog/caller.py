@@ -42,7 +42,6 @@ def get_caller(
     filepath = file.replace(repository_basepath, "", 1)
 
     caller = {
-        "provider": provider,
         "repository": {
             "provider": provider,
             "name": repository_name,
