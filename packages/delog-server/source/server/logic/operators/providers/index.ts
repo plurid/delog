@@ -39,7 +39,7 @@ const registerProvider = async (
     };
 
     await database.store(
-        'provider',
+        'providers',
         id,
         provider,
     );
@@ -52,7 +52,7 @@ const deregisterProvider = async (
     input: InputValueString,
 ) => {
     await database.obliterate(
-        'provider',
+        'providers',
         input.value,
     );
 }
