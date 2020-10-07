@@ -192,6 +192,7 @@ const Record: React.FC<RecordProperties> = (
 
 
                 {(project || space || method) && (
+
                     <StyledRecordProjectSpaceMethod>
                         {project && (
                             <div>
@@ -275,7 +276,9 @@ const Record: React.FC<RecordProperties> = (
                             }}
                         />
 
-                    {JSON.stringify(context)}
+                        <pre>
+                            {JSON.stringify(context, null, 4)}
+                        </pre>
                     </StyledRecordContext>
                 )}
            </StyledRecord>
