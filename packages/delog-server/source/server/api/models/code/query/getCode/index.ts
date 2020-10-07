@@ -44,6 +44,14 @@ const getCode = async (
 
 
     try {
+        // #region input unpack
+        const {
+            repository,
+            context,
+        } = input;
+        // #endregion input unpack
+
+
         // #region private usage
         if (privateUsage) {
             logger.log(
@@ -70,7 +78,10 @@ const getCode = async (
             return {
                 status: true,
                 data: {
-                    lines: [],
+                    lines: [
+                        'line 1',
+                        'line 2',
+                    ],
                 },
             };
         }
