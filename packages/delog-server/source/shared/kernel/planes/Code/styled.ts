@@ -20,17 +20,7 @@ export const StyledCode = styled.div<IStyledCode>`
         'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 2rem;
 
-    textarea {
-        border: none;
-        outline: none;
-        padding: 2rem;
-        width: 100%;
-        height: 500px;
-        resize: none;
-        line-height: 1.6;
-        font-size: 1rem;
-        font-family: 'Source Code Pro', 'Courier New', Courier, monospace;
-
+    .code-editor {
         color: ${
             ({
                 theme,
@@ -41,11 +31,79 @@ export const StyledCode = styled.div<IStyledCode>`
                 theme,
             }: IStyledCode) => theme.backgroundColorTertiary
         };
-        box-shadow: ${
+        /* box-shadow: ${
             ({
                 theme,
             }: IStyledCode) => theme.boxShadowUmbraInset
+        }; */
+    }
+
+    .code-editor .ace_gutter {
+        color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.colorPrimary
+        };
+        background-color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.backgroundColorQuaternary
         };
     }
+
+    .code-editor .ace_gutter-active-line {
+        color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.colorPrimary
+        };
+        background-color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.backgroundColorPrimary
+        };
+    }
+
+    .code-editor .ace_active-line {
+        color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.colorSecondary
+        };
+        background-color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.backgroundColorSecondary
+        };
+    }
+
+    .code-editor .ace_cursor {
+        color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.colorPrimary
+        };
+    }
+
+    .code-editor .ace_selection {
+        background-color: ${
+            ({
+                theme,
+            }: IStyledCode) => theme.backgroundColorQuaternary
+        };
+    }
+
+
+    /* textarea {
+        border: none;
+        outline: none;
+        padding: 2rem;
+        width: 100%;
+        height: 500px;
+        resize: none;
+        line-height: 1.6;
+        font-size: 1rem;
+        font-family: 'Source Code Pro', 'Courier New', Courier, monospace;
+    } */
 `;
 // #endregion module

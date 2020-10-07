@@ -9,6 +9,10 @@
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
 
+    import Editor from 'react-ace';
+
+    import 'ace-builds/src-noconflict/theme-github';
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
@@ -174,14 +178,35 @@ const Code: React.FC<CodeProperties> = (
         );
     }
 
+
+    const annotations: any[] = [
+        {
+            row: 3, // must be 0 based
+            column: 4, // must be 0 based
+            text: "", // text to show in tooltip
+            type: "info"
+        }
+    ];
+
     return (
         <StyledCode
             theme={stateGeneralTheme}
         >
             {Array.isArray(code) && (
-                <textarea
-                    value={code.join('\n')}
+                <Editor
+                    mode=""
+                    theme=""
+                    onChange={() => {}}
+                    name={'code' + id}
+                    // editorProps={{ $blockScrolling: true }}
+                    fontSize={18}
+                    showGutter={true}
                     readOnly={true}
+                    width="100%"
+                    value={code.join('\n')}
+
+                    annotations={annotations}
+                    className="code-editor"
                 />
             )}
         </StyledCode>
