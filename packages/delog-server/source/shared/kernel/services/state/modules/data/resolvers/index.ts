@@ -46,6 +46,9 @@ export const addEntity = (
     let testers = [
         ...newState.testers,
     ];
+    let code = {
+        ...newState.code,
+    };
 
 
     switch (type) {
@@ -55,7 +58,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'project':
             projects = [
@@ -63,7 +66,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'space':
             spaces = [
@@ -71,7 +74,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'provider':
             providers = [
@@ -87,7 +90,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'format':
             formats = [
@@ -95,7 +98,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'notifier':
             notifiers = [
@@ -103,7 +106,7 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
             break;
         case 'tester':
             testers = [
@@ -111,7 +114,15 @@ export const addEntity = (
                 {
                     ...data,
                 },
-            ]
+            ];
+            break;
+        case 'code':
+            code = {
+                ...code,
+            };
+            code[data.id] = {
+                ...data.value,
+            };
             break;
     }
 
@@ -141,6 +152,9 @@ export const addEntity = (
         testers: [
             ...testers,
         ],
+        code: {
+            ...code,
+        },
     };
 }
 
@@ -188,6 +202,9 @@ export const removeEntity = (
     let tests = [
         ...newState.tests,
     ];
+    let code = {
+        ...newState.code,
+    };
 
 
     switch (type) {
@@ -241,6 +258,9 @@ export const removeEntity = (
                 test => test.id !== id
             );
             break;
+        case 'code':
+            delete code[id];
+            break;
     }
 
     return {
@@ -275,6 +295,9 @@ export const removeEntity = (
         tests: [
             ...tests,
         ],
+        code: {
+            ...code,
+        },
     };
 }
 

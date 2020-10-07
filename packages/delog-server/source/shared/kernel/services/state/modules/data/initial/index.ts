@@ -35,6 +35,7 @@ const initialState: Types.State = {
     testers: [],
     records: [],
     tests: [],
+    code: {},
 };
 // #endregion module
 

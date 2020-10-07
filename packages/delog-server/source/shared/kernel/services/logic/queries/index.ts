@@ -447,21 +447,29 @@ const getCode = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     input: any,
 ) => {
-    // const dispatchDataAddCode: typeof actions.data.addCode = (
-    //     payload,
-    // ) => dispatch(
-    //     actions.data.addCode(payload),
-    // );
+    const dispatchDataAddEntity: typeof actions.data.addEntity = (
+        payload,
+    ) => dispatch(
+        actions.data.addEntity(payload),
+    );
 
     try {
+        const {
+            id,
+            repository,
+            context,
+        } = input;
+
         const query = await client.query({
             query: GET_CODE,
             variables: {
-                input,
+                input: {
+                    repository,
+                    context,
+                },
             },
             fetchPolicy: 'no-cache',
         });
-        console.log('query', query);
 
         const response = query.data.getCode;
 
@@ -473,7 +481,15 @@ const getCode = async (
             lines
         } = graphql.deleteTypenames(response.data);
 
-        // dispatchDataAddCode(lines);
+        dispatchDataAddEntity({
+            type: 'code',
+            data: {
+                id,
+                value: [
+                    ...lines,
+                ],
+            },
+        });
 
         return true;
     } catch (error) {

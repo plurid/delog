@@ -36,7 +36,8 @@ export type AddableEntityType =
     | 'notifier'
     | 'tester'
     | 'record'
-    | 'test';
+    | 'test'
+    | 'code';
 
 export const ADD_ENTITY = 'ADD_ENTITY';
 export interface AddEntityPayload {
@@ -59,7 +60,8 @@ export type RemovableEntityType =
     | 'notifier'
     | 'tester'
     | 'record'
-    | 'test';
+    | 'test'
+    | 'code';
 
 export const REMOVE_ENTITY = 'REMOVE_ENTITY';
 export interface RemoveEntityPayload {
@@ -158,6 +160,7 @@ export interface State {
     testers: Tester[];
     records: LoggedRecord[];
     tests: Test[];
+    code: Record<string, string[]>;
 }
 
 

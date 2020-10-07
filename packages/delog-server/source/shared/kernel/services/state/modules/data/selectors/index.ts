@@ -24,6 +24,7 @@ const getNotifiers = (state: AppState) => state.data.notifiers;
 const getTesters = (state: AppState) => state.data.testers;
 const getRecords = (state: AppState) => state.data.records;
 const getTests = (state: AppState) => state.data.tests;
+const getCode = (state: AppState) => state.data.code;
 
 
 const selectors = {
@@ -42,6 +43,7 @@ const selectors = {
     getTesters,
     getRecords,
     getTests,
+    getCode,
 };
 // #endregion module
 

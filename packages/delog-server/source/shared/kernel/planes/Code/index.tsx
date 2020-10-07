@@ -124,6 +124,7 @@ const Code: React.FC<CodeProperties> = (
             getCode(
                 dispatch,
                 {
+                    id,
                     repository: {
                         provider,
                         name,
