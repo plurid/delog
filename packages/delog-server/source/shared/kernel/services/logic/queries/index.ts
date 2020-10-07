@@ -44,10 +44,15 @@
 const getCurrentOwner = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ) => {
-    const dispatchSetOwnedID: typeof actions.view.setViewOwnerID = (
+    const dispatchSetOwnerID: typeof actions.view.setViewOwnerID = (
         payload,
     ) => dispatch(
         actions.view.setViewOwnerID(payload),
+    );
+    const dispatchDataSetActiveProviderID: typeof actions.data.setActiveProviderID = (
+        payload,
+    ) => dispatch(
+        actions.data.setActiveProviderID(payload),
     );
     const dispatchDataAddEntities: typeof actions.data.addEntities = (
         payload,
@@ -86,7 +91,12 @@ const getCurrentOwner = async (
             size,
         } = analytics;
 
-        dispatchSetOwnedID(id);
+        dispatchSetOwnerID(id);
+
+        if (providers.length > 0) {
+            dispatchDataSetActiveProviderID(providers[0].id);
+        }
+
         dispatchDataAddEntities({
             type: 'analytics.entries',
             data: entries,
