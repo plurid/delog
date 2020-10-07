@@ -178,7 +178,7 @@ const Code: React.FC<CodeProperties> = (
         <StyledCode
             theme={stateGeneralTheme}
         >
-            {code && (
+            {Array.isArray(code) && (
                 <textarea
                     value={code.join('\n')}
                     readOnly={true}
