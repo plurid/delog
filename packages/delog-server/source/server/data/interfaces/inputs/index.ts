@@ -93,4 +93,23 @@ export interface InputGetAnalyticsLastPeriodData {
 export interface InputGetAnalyticsSize {
     project: string;
 }
+
+
+export interface InputGetCode {
+    repository: InputGetCodeRepository;
+    context: InputGetCodeContext;
+}
+
+export interface InputGetCodeRepository {
+    provider: string;
+    name: string;
+    branch: string;
+    commit: string;
+}
+
+export interface InputGetCodeContext {
+    file: string;
+    line: string;
+    column: string;
+}
 // #endregion module

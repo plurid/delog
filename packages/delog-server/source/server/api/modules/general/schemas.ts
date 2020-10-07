@@ -2,6 +2,7 @@
     // #region internal
     import owner from './owner/schemas';
     import analytics from './analytics/schemas';
+    import code from './code/schemas';
     import tokens from './tokens/schemas';
     import projects from './projects/schemas';
     import spaces from './spaces/schemas';
@@ -22,6 +23,7 @@
 export default [
     owner,
     analytics,
+    code,
     tokens,
     projects,
     spaces,

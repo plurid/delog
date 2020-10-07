@@ -14,6 +14,7 @@
     import Setup from './setup';
 
     import Analytics from './analytics';
+    import Code from './code';
     // #endregion internal
 // #endregion imports
 
@@ -35,5 +36,6 @@ export {
     Setup,
 
     Analytics,
+    Code,
 };
 // #endregion exports
