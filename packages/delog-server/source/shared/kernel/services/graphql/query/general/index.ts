@@ -132,6 +132,22 @@ export const GET_RECORDS = gql`
                     mode
                     suite
                     scenario
+                    sharedID
+                    sharedOrder
+                    call {
+                        repository {
+                            provider
+                            name
+                            branch
+                            commit
+                            basePath
+                        }
+                        caller {
+                            file
+                            line
+                            column
+                        }
+                    }
                 }
             }
         }
