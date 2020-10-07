@@ -11,8 +11,7 @@ export const StyledRecord = styled.div`
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
         'Open Sans', 'Helvetica Neue', sans-serif;
 
-    min-height: 700px;
-    padding: 2rem;
+    padding: 4rem;
 
     h1 {
         font-size: 2.5rem;
@@ -57,6 +56,5 @@ export const StyledRecordErrorExtradata = styled.div`
 
 
 export const StyledRecordContext = styled.div`
-    margin-bottom: 2rem;
 `;
 // #endregion module

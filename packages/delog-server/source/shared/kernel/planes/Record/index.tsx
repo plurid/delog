@@ -16,6 +16,10 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
+
+    import {
+        PluridIconInfo,
+    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
@@ -139,10 +143,24 @@ const Record: React.FC<RecordProperties> = (
             <StyledRecord>
                 <StyledRecordLogFormat>
                     <h1>
+                        <PluridIconInfo
+                            title="log"
+                            style={{
+                                marginRight: '0.5rem',
+                            }}
+                        />
+
                         {log}
                     </h1>
 
                     <h2>
+                        <PluridIconInfo
+                            title="format"
+                            style={{
+                                marginRight: '0.5rem',
+                            }}
+                        />
+
                         {format}
                     </h2>
                 </StyledRecordLogFormat>
@@ -150,43 +168,113 @@ const Record: React.FC<RecordProperties> = (
 
                 <StyledRecordLevelTime>
                     <div>
+                        <PluridIconInfo
+                            title="level"
+                            style={{
+                                marginRight: '0.5rem',
+                            }}
+                        />
+
                         {logLevelText}
                     </div>
 
                     <div>
+                        <PluridIconInfo
+                            title="time"
+                            style={{
+                                marginRight: '0.5rem',
+                            }}
+                        />
+
                         {date}
                     </div>
                 </StyledRecordLevelTime>
 
 
                 <StyledRecordProjectSpaceMethod>
-                    <div>
-                        {project}
-                    </div>
+                    {project && (
+                        <div>
+                            <PluridIconInfo
+                                title="project"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
 
-                    <div>
-                        {space}
-                    </div>
+                            {project}
+                        </div>
+                    )}
 
-                    <div>
-                        {method}
-                    </div>
+                    {space && (
+                        <div>
+                            <PluridIconInfo
+                                title="space"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
+
+                            {space}
+                        </div>
+                    )}
+
+                    {method && (
+                        <div>
+                            <PluridIconInfo
+                                title="method"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
+
+                            {method}
+                        </div>
+                    )}
                 </StyledRecordProjectSpaceMethod>
 
 
                 <StyledRecordErrorExtradata>
-                    <div>
-                        {JSON.stringify(error)}
-                    </div>
+                    {error && (
+                        <div>
+                            <PluridIconInfo
+                                title="error"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
 
-                    <div>
-                        {JSON.stringify(extradata)}
-                    </div>
+                            {error}
+                        </div>
+                    )}
+
+                    {extradata && (
+                        <div>
+                            <PluridIconInfo
+                                title="extradata"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
+
+                            {extradata}
+                        </div>
+                    )}
                 </StyledRecordErrorExtradata>
 
 
                 <StyledRecordContext>
-                    {JSON.stringify(context)}
+                    {context && (
+                        <div>
+                            <PluridIconInfo
+                                title="context"
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            />
+
+                           {JSON.stringify(context)}
+                        </div>
+                    )}
                 </StyledRecordContext>
            </StyledRecord>
         );
