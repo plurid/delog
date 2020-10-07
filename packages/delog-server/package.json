@@ -64,12 +64,12 @@
         "@plurid/plurid-react": "^0.1.202",
         "@plurid/plurid-react-server": "^0.1.84",
         "@plurid/plurid-themes": "^0.1.26",
-        "@plurid/plurid-ui-react": "^0.1.87",
+        "@plurid/plurid-ui-react": "^0.1.88",
         "@rollup/plugin-commonjs": "^15.1.0",
         "@rollup/plugin-node-resolve": "^9.0.0",
         "adm-zip": "^0.4.16",
         "apollo-server-express": "^2.18.2",
-        "aws-sdk": "^2.767.0",
+        "aws-sdk": "^2.768.0",
         "body-parser": "^1.19.0",
         "bson": "^4.1.0",
         "cookie-parser": "^1.4.5",
@@ -146,7 +146,7 @@
         "webpack": "^4.44.2",
         "webpack-bundle-analyzer": "^3.9.0",
         "webpack-cli": "^3.3.12",
-        "webpack-merge": "^5.1.4",
+        "webpack-merge": "^5.2.0",
         "webpack-node-externals": "^2.5.2"
     }
 }
