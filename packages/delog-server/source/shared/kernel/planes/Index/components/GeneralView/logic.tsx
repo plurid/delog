@@ -176,6 +176,7 @@ export const renderGeneralView = (
     stateViewCompactSelectors: any,
     stateViewUsageType: any,
     stateViewOwnerID: any,
+    stateViewActiveProviderID: string,
     openManual: any,
     logout: any,
     findEntityByID: any,
@@ -366,7 +367,7 @@ export const renderGeneralView = (
             return (
                 <Repositories
                     theme={stateInteractionTheme}
-                    providerID={''}
+                    providerID={stateViewActiveProviderID}
                     action={(repositories) => {
                         for (const repository of repositories) {
                             dispatchAddEntity({

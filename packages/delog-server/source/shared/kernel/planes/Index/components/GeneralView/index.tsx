@@ -53,6 +53,7 @@ export interface GeneralViewStateProperties {
     stateViewCompactSelectors: boolean;
     stateViewOwnerID: string;
     stateViewUsageType: string;
+    stateViewActiveProviderID: string;
 }
 
 export interface GeneralViewDispatchProperties {
@@ -80,6 +81,7 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         stateViewCompactSelectors,
         stateViewOwnerID,
         stateViewUsageType,
+        stateViewActiveProviderID,
         // #endregion state
 
         // #region dispatch
@@ -175,6 +177,7 @@ const GeneralView: React.FC<GeneralViewProperties> = (
         stateViewCompactSelectors,
         stateViewUsageType,
         stateViewOwnerID,
+        stateViewActiveProviderID,
         openManual,
         logout,
         findEntityByID,
@@ -201,6 +204,7 @@ const mapStateToProperties = (
     stateViewCompactSelectors: selectors.view.getViewCompactSelectors(state),
     stateViewOwnerID: selectors.view.getViewOwnerID(state),
     stateViewUsageType: selectors.view.getViewUsageType(state),
+    stateViewActiveProviderID: selectors.data.getActiveProviderID(state),
 });
 
 
