@@ -104,9 +104,16 @@ export const inputs = gql`
     }
 
     input DelogInputContextCall {
-        provider: String!
-        repository: String!
+        repository: DelogInputContextRepository!
         caller: DelogInputContextCaller!
+    }
+
+    input DelogInputContextRepository {
+        provider: String!
+        name: String!
+        branch: String!
+        commit: String!
+        basePath: String!
     }
 
     input DelogInputContextCaller {
