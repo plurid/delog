@@ -70,9 +70,11 @@ const getCurrentOwner = async (
         const {
             id,
             analytics,
-            projects,
             tokens,
+            projects,
             spaces,
+            providers,
+            repositories,
             formats,
             notifiers,
             testers,
@@ -98,16 +100,24 @@ const getCurrentOwner = async (
             data: size,
         });
         dispatchDataAddEntities({
-            type: 'projects',
-            data: projects,
-        });
-        dispatchDataAddEntities({
             type: 'tokens',
             data: tokens,
         });
         dispatchDataAddEntities({
+            type: 'projects',
+            data: projects,
+        });
+        dispatchDataAddEntities({
             type: 'spaces',
             data: spaces,
+        });
+        dispatchDataAddEntities({
+            type: 'providers',
+            data: providers,
+        });
+        dispatchDataAddEntities({
+            type: 'repositories',
+            data: repositories,
         });
         dispatchDataAddEntities({
             type: 'formats',
