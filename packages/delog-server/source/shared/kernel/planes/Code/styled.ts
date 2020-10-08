@@ -116,5 +116,14 @@ export const StyledCodeLocation = styled.div<IStyledCodeLocation>`
             }: IStyledCodeLocation) => theme.colorSecondary
         };
     }
+
+    a:hover {
+        color: ${
+            ({
+                theme,
+            }: IStyledCodeLocation) => theme.colorPrimary
+        };
+        text-decoration: underline;
+    }
 `;
 // #endregion module
