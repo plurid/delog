@@ -4,7 +4,10 @@
         InputGetCode,
     } from '#server/data/interfaces';
 
-    import storage from '#server/services/storage';
+    import {
+        gitLastCommit,
+        gitShowFile,
+    } from '../git';
     // #endregion external
 // #endregion imports
 
@@ -35,9 +38,19 @@ const getCodeLines = async (
         + name + '/'
         + 'root' + '/';
 
-    const filepath = repositoryPath + file;
+    const gitCommit = await gitLastCommit(
+        repositoryPath,
+    );
 
-    const data = await storage.download(filepath);
+    if (!gitCommit) {
+        return [];
+    }
+
+    const data = await gitShowFile(
+        repositoryPath,
+        gitCommit,
+        file,
+    );
 
     if (!data) {
         return [];
