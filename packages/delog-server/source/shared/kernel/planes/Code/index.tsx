@@ -184,17 +184,17 @@ const Code: React.FC<CodeProperties> = (
         );
     }
 
-
-    const annotations: any[] = [
-        {
-            row: 13,
-            column: 5,
-            type: 'info',
-        }
-    ];
-
     const call = record.context?.call;
     const repository = call?.repository;
+
+    const annotations: any[] | undefined = call
+        ? [
+            {
+                row: call.caller.line,
+                column: call.caller.column,
+                type: 'info',
+            },
+        ] : undefined;
 
     return (
         <StyledCode

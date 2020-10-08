@@ -111,6 +111,6 @@ export const StyledCode = styled.div<IStyledCode>`
 `;
 
 export const StyledCodeLocation = styled.div`
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `;
 // #endregion module
