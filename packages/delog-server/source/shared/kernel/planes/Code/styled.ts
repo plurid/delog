@@ -34,6 +34,14 @@ export const StyledCode = styled.div<IStyledCode>`
         font-family: 'Source Code Pro', monospace;
     }
 
+    .code-editor .ace_scroller {
+        background-color: inset 0px 4px 4px ${
+            ({
+                theme,
+            }: IStyledCode) => theme.boxShadowUmbraInset
+        };
+    }
+
     .code-editor .ace_gutter {
         color: ${
             ({
