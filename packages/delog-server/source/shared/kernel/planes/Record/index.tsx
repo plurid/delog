@@ -53,6 +53,8 @@
         StyledRecordContext,
         StyledRecordContextGroup,
     } from './styled';
+
+    import TextItem from './components/TextItem';
     // #endregion internal
 // #endregion imports
 
@@ -153,95 +155,60 @@ const Record: React.FC<RecordProperties> = (
         return (
             <StyledRecord>
                 <StyledRecordLogFormat>
-                    <h1>
-                        <PluridIconInfo
-                            title="log"
-                            style={{
-                                marginRight: '0.5rem',
-                            }}
-                        />
+                    <TextItem
+                        name="log"
+                        render={(
+                            <h1>
+                                {log}
+                            </h1>
+                        )}
+                    />
 
-                        {log}
-                    </h1>
-
-                    <h2>
-                        <PluridIconInfo
-                            title="format"
-                            style={{
-                                marginRight: '0.5rem',
-                            }}
-                        />
-
-                        {format}
-                    </h2>
+                    <TextItem
+                        name="format"
+                        render={(
+                            <h2>
+                                {format}
+                            </h2>
+                        )}
+                    />
                 </StyledRecordLogFormat>
 
 
                 <StyledRecordLevelTime>
-                    <div>
-                        <PluridIconInfo
-                            title="level"
-                            style={{
-                                marginRight: '0.5rem',
-                            }}
-                        />
+                    <TextItem
+                        name="level"
+                        render={(<>{logLevelText}</>)}
+                    />
 
-                        {logLevelText}
-                    </div>
-
-                    <div>
-                        <PluridIconInfo
-                            title="time"
-                            style={{
-                                marginRight: '0.5rem',
-                            }}
-                        />
-
-                        {date}
-                    </div>
+                    <TextItem
+                        name="time"
+                        render={(<>{date}</>)}
+                    />
                 </StyledRecordLevelTime>
 
 
                 {(project || space || method) && (
-
                     <StyledRecordProjectSpaceMethod>
                         {project && (
-                            <div>
-                                <PluridIconInfo
-                                    title="project"
-                                    style={{
-                                        marginRight: '0.5rem',
-                                    }}
-                                />
-
-                                {project}
-                            </div>
+                            <TextItem
+                                name="project"
+                                render={(<>{project}</>)}
+                            />
                         )}
 
                         {space && (
-                            <div>
-                                <PluridIconInfo
-                                    title="space"
-                                    style={{
-                                        marginRight: '0.5rem',
-                                    }}
-                                />
-
-                                {space}
-                            </div>
+                            <TextItem
+                                name="space"
+                                render={(<>{space}</>)}
+                            />
                         )}
 
                         {method && (
-                            <div>
-                                <PluridIconInfo
-                                    title="method"
-                                    style={{
-                                        marginRight: '0.5rem',
-                                    }}
-                                />
-
-                                {method}
-                            </div>
+                            <TextItem
+                                name="method"
+                                render={(<>{method}</>)}
+                            />
                         )}
                     </StyledRecordProjectSpaceMethod>
                 )}
@@ -250,29 +217,17 @@ const Record: React.FC<RecordProperties> = (
                 {(error || extradata) && (
                     <StyledRecordErrorExtradata>
                         {error && (
-                            <div>
-                                <PluridIconInfo
-                                    title="error"
-                                    style={{
-                                        marginRight: '0.5rem',
-                                    }}
-                                />
-
-                                {error}
-                            </div>
+                            <TextItem
+                                name="error"
+                                render={(<>{error}</>)}
+                            />
                         )}
 
                         {extradata && (
-                            <div>
-                                <PluridIconInfo
-                                    title="extradata"
-                                    style={{
-                                        marginRight: '0.5rem',
-                                    }}
-                                />
-
-                                {extradata}
-                            </div>
+                            <TextItem
+                                name="extradata"
+                                render={(<>{extradata}</>)}
+                            />
                         )}
                     </StyledRecordErrorExtradata>
                 )}
@@ -281,29 +236,33 @@ const Record: React.FC<RecordProperties> = (
                 {context && (
                     <StyledRecordContext>
                         <StyledRecordContextGroup>
-                            <PluridIconInfo
-                                title="context"
-                                style={{
-                                    marginRight: '0.5rem',
-                                }}
-                            />
+                            <TextItem
+                                name="context"
+                                render={(
+                                    <>
+                                        <div
+                                            style={{
+                                                marginRight: '2rem',
+                                            }}
+                                        >
+                                            <PluridLink
+                                                route={`/code/${id}`}
+                                            >
+                                                source
+                                            </PluridLink>
+                                        </div>
 
-                            <div
-                                style={{
-                                    marginRight: '0.5rem',
-                                }}
-                            >
-                                <PluridLink
-                                    route={`/code/${id}`}
-                                >
-                                    source
-                                </PluridLink>
-                            </div>
-
-                            <PluridLinkButton
-                                text={expandContext ? 'contract' : 'expand'}
-                                atClick={() => setExpandContext(show => !show)}
-                                inline={true}
+                                        <PluridLinkButton
+                                            text={expandContext ? 'contract' : 'expand'}
+                                            atClick={() => setExpandContext(show => !show)}
+                                            inline={true}
+                                            style={{
+                                                fontFamily: 'Ubuntu',
+                                                padding: '0 0',
+                                            }}
+                                        />
+                                    </>
+                                )}
                             />
                         </StyledRecordContextGroup>
 

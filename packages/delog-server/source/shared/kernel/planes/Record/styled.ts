@@ -14,10 +14,11 @@ export const StyledRecord = styled.div`
     padding: 4rem;
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: normal;
         margin: 0;
-        margin-bottom: 0.5rem;
+        line-height: 2;
+        word-break: break-word;
     }
 
     h2 {
@@ -35,15 +36,13 @@ export const StyledRecordLogFormat = styled.div`
 
 export const StyledRecordLevelTime = styled.div`
     margin-bottom: 2rem;
-    display: grid;
-    grid-template-columns: 100px 1fr;
+    display: flex;
 `;
 
 
 export const StyledRecordProjectSpaceMethod = styled.div`
     margin-bottom: 2rem;
-    display: grid;
-    grid-template-columns: 200px 200px 200px;
+    display: flex;
 `;
 
 
