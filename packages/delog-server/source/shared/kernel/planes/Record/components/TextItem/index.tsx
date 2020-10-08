@@ -74,6 +74,7 @@ const TextItem: React.FC<TextItemProperties> = (
         <StyledTextItem>
             <Icon
                 title={name}
+                inactive={true}
                 style={{
                     marginRight: '0.5rem',
                 }}
