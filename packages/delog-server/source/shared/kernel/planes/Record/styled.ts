@@ -57,4 +57,8 @@ export const StyledRecordErrorExtradata = styled.div`
 
 export const StyledRecordContext = styled.div`
 `;
+
+export const StyledRecordContextGroup = styled.div`
+    display: flex;
+`;
 // #endregion module

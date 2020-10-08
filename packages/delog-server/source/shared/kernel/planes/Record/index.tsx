@@ -21,6 +21,10 @@
     import {
         PluridIconInfo,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridLinkButton,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -47,6 +51,7 @@
         StyledRecordProjectSpaceMethod,
         StyledRecordErrorExtradata,
         StyledRecordContext,
+        StyledRecordContextGroup,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -100,6 +105,11 @@ const Record: React.FC<RecordProperties> = (
     ] = useState(
         stateRecords.find(record => record.id === id)
     );
+
+    const [
+        expandContext,
+        setExpandContext,
+    ] = useState(false);
     // #endregion state
 
 
@@ -270,7 +280,7 @@ const Record: React.FC<RecordProperties> = (
 
                 {context && (
                     <StyledRecordContext>
-                        <div>
+                        <StyledRecordContextGroup>
                             <PluridIconInfo
                                 title="context"
                                 style={{
@@ -282,14 +292,22 @@ const Record: React.FC<RecordProperties> = (
                                 <PluridLink
                                     route={`/code/${id}`}
                                 >
-                                    show code
+                                    source
                                 </PluridLink>
                             </div>
-                        </div>
 
-                        <pre>
-                            {JSON.stringify(context, null, 4)}
-                        </pre>
+                            <PluridLinkButton
+                                text={expandContext ? 'contract' : 'expand'}
+                                atClick={() => setExpandContext(show => !show)}
+                                inline={true}
+                            />
+                        </StyledRecordContextGroup>
+
+                        {expandContext && (
+                            <pre>
+                                {JSON.stringify(context, null, 4)}
+                            </pre>
+                        )}
                     </StyledRecordContext>
                 )}
            </StyledRecord>
