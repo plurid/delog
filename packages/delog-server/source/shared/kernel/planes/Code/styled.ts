@@ -31,11 +31,7 @@ export const StyledCode = styled.div<IStyledCode>`
                 theme,
             }: IStyledCode) => theme.backgroundColorTertiary
         };
-        /* box-shadow: ${
-            ({
-                theme,
-            }: IStyledCode) => theme.boxShadowUmbraInset
-        }; */
+        font-family: 'Source Code Pro', monospace;
     }
 
     .code-editor .ace_gutter {
