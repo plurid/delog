@@ -19,7 +19,13 @@
     } from '@plurid/plurid-react';
 
     import {
-        PluridIconInfo,
+        PluridIconEdit,
+        PluridIconOrder,
+        PluridIconTimeout,
+        PluridIconApps,
+        PluridIconFrame,
+        PluridIconNewStateline,
+        PluridIconLoop,
     } from '@plurid/plurid-icons-react';
 
     import {
@@ -165,6 +171,7 @@ const Record: React.FC<RecordProperties> = (
                     />
 
                     <TextItem
+                        icon={PluridIconEdit}
                         name="format"
                         render={(
                             <h2>
@@ -177,11 +184,13 @@ const Record: React.FC<RecordProperties> = (
 
                 <StyledRecordLevelTime>
                     <TextItem
+                        icon={PluridIconOrder}
                         name="level"
                         render={(<>{logLevelText}</>)}
                     />
 
                     <TextItem
+                        icon={PluridIconTimeout}
                         name="time"
                         render={(<>{date}</>)}
                     />
@@ -192,6 +201,7 @@ const Record: React.FC<RecordProperties> = (
                     <StyledRecordProjectSpaceMethod>
                         {project && (
                             <TextItem
+                                icon={PluridIconApps}
                                 name="project"
                                 render={(<>{project}</>)}
                             />
@@ -199,6 +209,7 @@ const Record: React.FC<RecordProperties> = (
 
                         {space && (
                             <TextItem
+                                icon={PluridIconFrame}
                                 name="space"
                                 render={(<>{space}</>)}
                             />
@@ -206,6 +217,7 @@ const Record: React.FC<RecordProperties> = (
 
                         {method && (
                             <TextItem
+                                icon={PluridIconNewStateline}
                                 name="method"
                                 render={(<>{method}</>)}
                             />
@@ -237,20 +249,18 @@ const Record: React.FC<RecordProperties> = (
                     <StyledRecordContext>
                         <StyledRecordContextGroup>
                             <TextItem
+                                icon={PluridIconLoop}
                                 name="context"
                                 render={(
                                     <>
-                                        <div
+                                        <PluridLink
+                                            route={`/code/${id}`}
                                             style={{
-                                                marginRight: '2rem',
+                                                marginRight: '1rem',
                                             }}
                                         >
-                                            <PluridLink
-                                                route={`/code/${id}`}
-                                            >
-                                                source
-                                            </PluridLink>
-                                        </div>
+                                            source
+                                        </PluridLink>
 
                                         <PluridLinkButton
                                             text={expandContext ? 'contract' : 'expand'}
@@ -259,6 +269,7 @@ const Record: React.FC<RecordProperties> = (
                                             style={{
                                                 fontFamily: 'Ubuntu',
                                                 padding: '0 0',
+                                                border: 'none',
                                             }}
                                         />
                                     </>
