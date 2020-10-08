@@ -41,9 +41,17 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
     <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-1.png" height="500px">
 </p>
 
+<p align="center">
+    analytics
+</p>
+
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-2.png" height="500px">
+</p>
+
+<p align="center">
+    projects
 </p>
 
 
@@ -51,6 +59,10 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
     <a target="_blank" href="https://youtu.be/q6PLf5k1HVM">
         <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-3.png" height="500px">
     </a>
+</p>
+
+<p align="center">
+    exploration to log source
 </p>
 
 
