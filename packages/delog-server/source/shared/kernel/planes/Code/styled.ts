@@ -113,7 +113,7 @@ export const StyledCodeLocation = styled.div<IStyledCodeLocation>`
         color: ${
             ({
                 theme,
-            }: IStyledCodeLocation) => theme.colorSecondary
+            }: IStyledCodeLocation) => theme.colorTertiary
         };
     }
 
