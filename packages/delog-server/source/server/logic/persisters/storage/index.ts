@@ -5,10 +5,12 @@
     } from '#server/data/constants';
 
     import {
+        Storage as IStorage,
         StorageType,
         StorageUploadKind,
     } from '#server/data/interfaces';
     // #endregion libraries
+
 
     // #region internal
     import filesystemStorage from './filesystem';
@@ -20,7 +22,7 @@
 
 
 // #region module
-class Storage {
+class Storage implements IStorage{
     private type: StorageType;
 
     constructor(
@@ -67,7 +69,7 @@ class Storage {
                     directory,
                 );
             default:
-                return;
+                return [];
         }
     }
 
@@ -150,6 +152,27 @@ class Storage {
                 return googleStorage.generateLocations();
             default:
                 return;
+        }
+    }
+
+    public async readDirectory(
+        path: string,
+    ) {
+        switch (this.type) {
+            case storageType.filesystem:
+                return filesystemStorage.readDirectory(
+                    path,
+                );
+            case storageType.amazon:
+                return amazonStorage.readDirectory(
+                    path,
+                );
+            case storageType.google:
+                return googleStorage.readDirectory(
+                    path,
+                );
+            default:
+                return [];
         }
     }
 }

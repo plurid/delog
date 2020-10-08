@@ -17,6 +17,7 @@
         StorageObliterate,
         StorageObliterateAll,
         StorageGenerateLocations,
+        StorageReadDirectory,
     } from '#server/data/interfaces';
     // #endregion external
 // #endregion imports
@@ -114,6 +115,22 @@ const storageGenerateLocations: StorageGenerateLocations = async () => {
 }
 
 
+const storageReadDirectory: StorageReadDirectory = async (
+    directoryPath: string,
+) => {
+    try {
+
+        return [];
+    } catch (error) {
+        if (!QUIET) {
+            console.log(`[Delog Error 500] :: Filesystem could not read directory ${directoryPath}.`);
+        }
+
+        return [];
+    }
+}
+
+
 
 const googleStorage: Storage = {
     download: storageDownload,
@@ -122,6 +139,7 @@ const googleStorage: Storage = {
     obliterate: storageObliterate,
     obliterateAll: storageObliterateAll,
     generateLocations: storageGenerateLocations,
+    readDirectory: storageReadDirectory,
 };
 // #endregion module
 

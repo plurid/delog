@@ -17,6 +17,7 @@
         StorageObliterate,
         StorageObliterateAll,
         StorageGenerateLocations,
+        StorageReadDirectory,
     } from '#server/data/interfaces';
 
     import {
@@ -219,6 +220,23 @@ const storageGenerateLocations: StorageGenerateLocations = async () => {
 }
 
 
+const storageReadDirectory: StorageReadDirectory = async (
+    directoryPath: string,
+) => {
+    try {
+        const files = await fs.readdir(directoryPath);
+
+        return files;
+    } catch (error) {
+        if (!QUIET) {
+            console.log(`[Delog Error 500] :: Filesystem could not read directory ${directoryPath}.`);
+        }
+
+        return [];
+    }
+}
+
+
 
 const filesystemStorage: Storage = {
     download: storageDownload,
@@ -227,6 +245,7 @@ const filesystemStorage: Storage = {
     obliterate: storageObliterate,
     obliterateAll: storageObliterateAll,
     generateLocations: storageGenerateLocations,
+    readDirectory: storageReadDirectory,
 };
 // #endregion module
 
