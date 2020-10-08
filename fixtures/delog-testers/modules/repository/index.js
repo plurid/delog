@@ -30,7 +30,7 @@ const main = () => {
                     name: '@plurid/delog',
                     branch: 'master',
                     commit: 'latest',
-                    basePath: '/',
+                    // basePath: '',
                 },
             },
         },
