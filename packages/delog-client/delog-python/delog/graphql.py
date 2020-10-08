@@ -29,7 +29,10 @@ def client(
         "Authorization": token_value
     }
 
-    client = GraphqlClient(endpoint=endpoint, headers=headers)
+    client = GraphqlClient(
+        endpoint=endpoint,
+        headers=headers,
+    )
 
     return client
 #endregion module
