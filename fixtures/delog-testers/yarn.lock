@@ -27,10 +27,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
-"@plurid/delog@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.8.tgz#30ad350aafbd60770e8d71904c93e11401eca2ce"
-  integrity sha512-Xg/UIP9pEVAok2VbM9aMBP+xYv+6qJ9dj38aZLeCmA9Pb/YUagL6fJnMP7jUq+O4ponnKZotyh7j3WmuBq9kag==
+"@plurid/delog@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.9.tgz#ca5a11fbc392504d4d3372f4c329323ae2261f44"
+  integrity sha512-DGxt2+fdeZseRQ7qIAdoDlmoJSSYdAU72jYe4cyfxF0SFXB7bjHAKq/8ACgfitL7Oj0Grka0P6SdLI07G4VO0Q==
   dependencies:
     "@apollo/client" "^3.2.2"
     "@plurid/plurid-functions" "^0.1.15"
