@@ -2,6 +2,7 @@
     // #region external
     import {
         LoggedRecord,
+        Tester as ITester,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -37,11 +38,32 @@ class Tester {
         // get the appropriate tester
         // check if the log triggers any tester
 
-        const testers = await database.query(
+        const testers: ITester[] = await database.query(
             'testers',
             'ownedBy',
-            '',
+            this.log.ownedBy,
         );
+
+        for (const tester of testers) {
+            if (
+                tester.scenario === scenario
+                && tester.suite === suite
+            ) {
+                // read the configuration
+
+                // checck if it matches the first stage
+
+                // trigger the test
+
+                // register the test as triggered
+
+                // check if test is triggered
+
+                // check if test ends
+
+                // pass or fail the test
+            }
+        }
     }
 }
 // #endregion module
