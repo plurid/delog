@@ -35,7 +35,7 @@ export const StyledCode = styled.div<IStyledCode>`
     }
 
     .code-editor .ace_scroller {
-        background-color: inset 0px 4px 4px ${
+        box-shadow: inset 0px 4px 4px ${
             ({
                 theme,
             }: IStyledCode) => theme.boxShadowUmbraInset
