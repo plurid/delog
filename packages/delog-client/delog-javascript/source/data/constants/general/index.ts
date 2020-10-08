@@ -25,7 +25,7 @@ const REPOSITORY_PROVIDER = process.env.DELOG_REPOSITORY_PROVIDER || '';
 const REPOSITORY_NAME = process.env.DELOG_REPOSITORY_NAME || '';
 const REPOSITORY_COMMIT = process.env.DELOG_REPOSITORY_COMMIT || 'latest';
 const REPOSITORY_BRANCH = process.env.DELOG_REPOSITORY_BRANCH || 'master';
-const REPOSITORY_BASEPATH = process.env.DELOG_REPOSITORY_BASEPATH || '';
+const REPOSITORY_BASEPATH = process.env.DELOG_REPOSITORY_BASEPATH || '__MATCH_CUT__';
 // #endregion module
 
 

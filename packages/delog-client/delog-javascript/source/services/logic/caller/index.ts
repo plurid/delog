@@ -61,7 +61,7 @@ const getCallContext = (
         const repositoryName = callRepository?.name || REPOSITORY_NAME;
         const repositoryBranch = callRepository?.branch || REPOSITORY_BRANCH;
         const repositoryCommit = callRepository?.commit || REPOSITORY_COMMIT;
-        const repositoryBasePath = callRepository?.basePath || REPOSITORY_BASEPATH || process.cwd();
+        const repositoryBasePath = callRepository?.basePath || REPOSITORY_BASEPATH;
 
         const {
             file,
