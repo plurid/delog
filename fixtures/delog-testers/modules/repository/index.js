@@ -27,7 +27,7 @@ const main = () => {
             call: {
                 repository: {
                     provider: 'github',
-                    name: '@plurid/delog',
+                    name: 'plurid/delog',
                     branch: 'master',
                     commit: 'latest',
                     // basePath: '',
