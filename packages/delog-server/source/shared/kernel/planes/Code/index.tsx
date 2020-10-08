@@ -43,6 +43,7 @@
     // #region internal
     import {
         StyledCode,
+        StyledCodeLocation,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -186,17 +187,25 @@ const Code: React.FC<CodeProperties> = (
 
     const annotations: any[] = [
         {
-            row: 13, // must be 0 based
-            column: 5, // must be 0 based
-            // text: "", // text to show in tooltip
-            type: "info"
+            row: 13,
+            column: 5,
+            type: 'info',
         }
     ];
+
+    const call = record.context?.call;
+    const repository = call?.repository;
 
     return (
         <StyledCode
             theme={stateGeneralTheme}
         >
+            {repository && (
+                <StyledCodeLocation>
+                    {repository?.name} // {call?.caller.file}
+                </StyledCodeLocation>
+            )}
+
             {Array.isArray(code) && (
                 <Editor
                     mode="text"

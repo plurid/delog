@@ -109,4 +109,8 @@ export const StyledCode = styled.div<IStyledCode>`
         visibility: none;
     }
 `;
+
+export const StyledCodeLocation = styled.div`
+    padding: 2rem 0;
+`;
 // #endregion module
