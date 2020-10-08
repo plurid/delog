@@ -38,7 +38,7 @@ export const StyledCode = styled.div<IStyledCode>`
         box-shadow: inset 0px 4px 4px ${
             ({
                 theme,
-            }: IStyledCode) => theme.boxShadowUmbraInset
+            }: IStyledCode) => theme.boxShadowUmbraColor
         };
     }
 
