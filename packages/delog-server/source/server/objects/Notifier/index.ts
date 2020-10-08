@@ -17,6 +17,8 @@
         Notifier as INotifier,
         NotifierAPI,
         NotifierEmail,
+
+        NotificationEvent,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -27,51 +29,64 @@
 
 // #region module
 class Notifier {
-    private log: LoggedRecord;
+    private event: NotificationEvent;
 
     constructor(
-        log: LoggedRecord,
+        event: NotificationEvent,
     ) {
-        this.log = log;
+        this.event = event;
     }
 
     public async notify() {
-        const notifiers: INotifier[] = await database.query(
-            'notifiers',
-            'ownedBy',
-            this.log.ownedBy,
-        );
+        if (this.event.type === 'record') {
+            const log = this.event.data;
 
-        if (notifiers.length === 0) {
-            return;
-        }
+            const notifiers: INotifier[] = await database.query(
+                'notifiers',
+                'ownedBy',
+                log.ownedBy,
+            );
 
-        for (const notifier of notifiers) {
-            for (const notification of notifier.notifyOn) {
-                switch (notification) {
-                    case 'ENTITY_DEREGISTRATION':
-                        break;
-                    case 'ENTITY_REGISTRATION':
-                        break;
-                    case 'RECORDED_ERROR':
-                        if (this.log.level === logLevels.error) {
-                            this.handleNotifier(notifier);
-                        }
-                        break;
-                    case 'RECORDED_FATAL':
-                        if (this.log.level === logLevels.fatal) {
-                            this.handleNotifier(notifier);
-                        }
-                        break;
-                    case 'RECORDED_WARN':
-                        if (this.log.level === logLevels.warn) {
-                            this.handleNotifier(notifier);
-                        }
-                        break;
-                    case 'TEST_FAIL':
-                        break;
-                    case 'TEST_SUCCESS':
-                        break;
+            if (notifiers.length === 0) {
+                return;
+            }
+
+            for (const notifier of notifiers) {
+                for (const notification of notifier.notifyOn) {
+                    switch (notification) {
+                        case 'ENTITY_DEREGISTRATION':
+                            break;
+                        case 'ENTITY_REGISTRATION':
+                            break;
+                        case 'RECORDED_ERROR':
+                            if (log.level === logLevels.error) {
+                                this.handleNotifier(
+                                    notifier,
+                                    log,
+                                );
+                            }
+                            break;
+                        case 'RECORDED_FATAL':
+                            if (log.level === logLevels.fatal) {
+                                this.handleNotifier(
+                                    notifier,
+                                    log,
+                                );
+                            }
+                            break;
+                        case 'RECORDED_WARN':
+                            if (log.level === logLevels.warn) {
+                                this.handleNotifier(
+                                    notifier,
+                                    log,
+                                );
+                            }
+                            break;
+                        case 'TEST_FAIL':
+                            break;
+                        case 'TEST_SUCCESS':
+                            break;
+                    }
                 }
             }
         }
@@ -80,19 +95,27 @@ class Notifier {
 
     private handleNotifier(
         notifier: INotifier,
+        log: LoggedRecord,
     ) {
         switch (notifier.type) {
             case 'api':
-                this.notifyAPI(notifier);
+                this.notifyAPI(
+                    notifier,
+                    log,
+                );
                 break;
             case 'email':
-                this.notifyEmail(notifier);
+                this.notifyEmail(
+                    notifier,
+                    log,
+                );
                 break;
         }
     }
 
     private async notifyAPI(
         notifier: NotifierAPI,
+        log: LoggedRecord,
     ) {
         const {
             data,
@@ -104,7 +127,7 @@ class Notifier {
         } = data;
 
         const notifyData = {
-            ...this.log,
+            ...log,
         };
         delete (notifyData as any).ownedBy;
         delete (notifyData as any)._id;
@@ -124,6 +147,7 @@ class Notifier {
 
     private async notifyEmail(
         notifier: NotifierEmail,
+        log: LoggedRecord,
     ) {
         try {
             const {
@@ -151,13 +175,13 @@ class Notifier {
 
             const to = data.notifyTo.join(', ');
 
-            const logLevelString = logLevelsText[this.log.level];
-            const projectString = this.log.project ? ` - ${this.log.project}` : '';
+            const logLevelString = logLevelsText[log.level];
+            const projectString = log.project ? ` - ${log.project}` : '';
             const subject = `delog :: ${logLevelString}` + projectString;
 
 
             const notifyData = {
-                ...this.log,
+                ...log,
             };
             delete (notifyData as any).ownedBy;
             delete (notifyData as any)._id;

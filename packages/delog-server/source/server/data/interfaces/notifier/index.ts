@@ -1,3 +1,11 @@
+// #region imports
+    import {
+        LoggedRecord,
+    } from '../general';
+// #endregion imports
+
+
+
 // #region module
 export type Notifier =
     | NotifierAPI
@@ -98,4 +106,29 @@ export type NotificationType =
     | 'TEST_SUCCESS';
 
 export type NotificationTypes = Record<NotificationType, NotificationType>;
+
+
+export interface NotificationEventBase {
+    type: 'entity' | 'record' | 'test';
+}
+
+export interface NotificationEventEntity extends NotificationEventBase {
+    type: 'entity';
+    data: string;
+}
+
+export interface NotificationEventRecord extends NotificationEventBase {
+    type: 'record';
+    data: LoggedRecord;
+}
+
+export interface NotificationEventTest extends NotificationEventBase {
+    type: 'test';
+    data: any;
+}
+
+export type NotificationEvent =
+    | NotificationEventEntity
+    | NotificationEventRecord
+    | NotificationEventTest;
 // #endregion module
