@@ -11,6 +11,8 @@
 
     import Editor from 'react-ace';
 
+    import * as ace from 'ace-builds';
+    import 'ace-builds/src-noconflict/mode-text';
     import 'ace-builds/src-noconflict/theme-github';
 
     import {
@@ -48,6 +50,9 @@
 
 
 // #region module
+// HACK: Ace Editor hack to prevent mode/theme lookup bug.
+ace.config.set('basePath', '');
+
 export interface CodeOwnProperties {
     plurid: PluridComponentProperty;
 }
@@ -181,9 +186,9 @@ const Code: React.FC<CodeProperties> = (
 
     const annotations: any[] = [
         {
-            row: 3, // must be 0 based
-            column: 4, // must be 0 based
-            text: "", // text to show in tooltip
+            row: 13, // must be 0 based
+            column: 5, // must be 0 based
+            // text: "", // text to show in tooltip
             type: "info"
         }
     ];
@@ -194,8 +199,8 @@ const Code: React.FC<CodeProperties> = (
         >
             {Array.isArray(code) && (
                 <Editor
-                    mode=""
-                    theme=""
+                    mode="text"
+                    theme="github"
                     onChange={() => {}}
                     name={'code' + id}
                     // editorProps={{ $blockScrolling: true }}
