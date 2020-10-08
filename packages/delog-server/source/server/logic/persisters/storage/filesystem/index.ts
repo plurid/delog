@@ -224,7 +224,12 @@ const storageReadDirectory: StorageReadDirectory = async (
     directoryPath: string,
 ) => {
     try {
-        const files = await fs.readdir(directoryPath);
+        const filespath = path.join(
+            BASE_PATH,
+            directoryPath,
+        );
+
+        const files = await fs.readdir(filespath);
 
         return files;
     } catch (error) {
