@@ -8,12 +8,12 @@ const {
 
 
 
-const main = () => {
+const subfolder = () => {
     const endpoint = 'http://localhost:56965/delog';
     const token = '__TESTS__';
 
     delog({
-        text: 'Delogged from main().',
+        text: 'Delogged from subfolder().',
 
         endpoint,
         token,
@@ -38,4 +38,4 @@ const main = () => {
     });
 }
 
-main();
+subfolder();
