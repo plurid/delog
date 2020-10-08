@@ -288,7 +288,11 @@ const Record: React.FC<RecordProperties> = (
                                 }}
                             />
 
-                            <div>
+                            <div
+                                style={{
+                                    marginRight: '0.5rem',
+                                }}
+                            >
                                 <PluridLink
                                     route={`/code/${id}`}
                                 >

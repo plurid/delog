@@ -99,15 +99,6 @@ export const StyledCode = styled.div<IStyledCode>`
         background-size: 14px 14px;
         background-position: 3px 5px;
     }
-
-    .code-editor .ace_indent-guide {
-        background-image: url('') !important;
-    }
-
-    .code-editor .ace_print-margin {
-        width: 0;
-        visibility: none;
-    }
 `;
 
 export const StyledCodeLocation = styled.div`

@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
         useEffect,
     } from 'react';
@@ -102,6 +103,11 @@ const Code: React.FC<CodeProperties> = (
     // #endregion properties
 
 
+    // #region references
+    const editor = useRef<Editor | null>(null);
+    // #endregion references
+
+
     // #region state
     const [
         code,
@@ -174,6 +180,26 @@ const Code: React.FC<CodeProperties> = (
     }, [
         record,
     ]);
+
+    useEffect(() => {
+        if (editor.current) {
+            const caller = record?.context?.call?.caller;
+
+            if (!caller) {
+                return;
+            }
+
+            const {
+                line,
+                column,
+            } = caller;
+
+            editor.current.editor.gotoLine(line, column, false);
+        }
+    }, [
+        record,
+        code,
+    ]);
     // #endregion effects
 
 
@@ -202,17 +228,25 @@ const Code: React.FC<CodeProperties> = (
         >
             {repository && (
                 <StyledCodeLocation>
-                    {repository?.name} // {call?.caller.file}
+                    {repository?.name} // {call?.caller.file} :: L{call?.caller.line}
                 </StyledCodeLocation>
             )}
 
             {Array.isArray(code) && (
                 <Editor
+                    ref={editor}
                     mode="text"
                     theme="github"
                     onChange={() => {}}
                     name={'code' + id}
-                    // editorProps={{ $blockScrolling: true }}
+                    editorProps={{
+                        // $blockScrolling: true,
+                    }}
+                    setOptions={{
+                        copyWithEmptySelection: true,
+                        displayIndentGuides: false,
+                        printMargin: false,
+                    }}
                     fontSize={18}
                     showGutter={true}
                     readOnly={true}
