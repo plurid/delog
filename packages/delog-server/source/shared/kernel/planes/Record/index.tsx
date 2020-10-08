@@ -25,6 +25,8 @@
         PluridIconApps,
         PluridIconFrame,
         PluridIconNewStateline,
+        PluridIconPersonalSpace,
+        PluridIconDocuments,
         PluridIconLoop,
     } from '@plurid/plurid-icons-react';
 
@@ -230,6 +232,7 @@ const Record: React.FC<RecordProperties> = (
                     <StyledRecordErrorExtradata>
                         {error && (
                             <TextItem
+                                icon={PluridIconPersonalSpace}
                                 name="error"
                                 render={(<>{error}</>)}
                             />
@@ -237,6 +240,7 @@ const Record: React.FC<RecordProperties> = (
 
                         {extradata && (
                             <TextItem
+                                icon={PluridIconDocuments}
                                 name="extradata"
                                 render={(<>{extradata}</>)}
                             />

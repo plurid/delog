@@ -30,7 +30,7 @@ export const StyledRecord = styled.div`
 
 
 export const StyledRecordLogFormat = styled.div`
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 `;
 
 
@@ -50,7 +50,7 @@ export const StyledRecordErrorExtradata = styled.div`
     margin-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 0.5rem;
+    grid-gap: 2rem;
 `;
 
 
