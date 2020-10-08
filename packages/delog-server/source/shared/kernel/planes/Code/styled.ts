@@ -101,7 +101,20 @@ export const StyledCode = styled.div<IStyledCode>`
     }
 `;
 
-export const StyledCodeLocation = styled.div`
+
+export interface IStyledCodeLocation {
+    theme: Theme;
+}
+
+export const StyledCodeLocation = styled.div<IStyledCodeLocation>`
     margin-bottom: 1rem;
+
+    a {
+        color: ${
+            ({
+                theme,
+            }: IStyledCodeLocation) => theme.colorSecondary
+        };
+    }
 `;
 // #endregion module

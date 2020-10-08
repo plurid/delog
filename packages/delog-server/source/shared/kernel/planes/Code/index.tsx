@@ -23,6 +23,10 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
+
+    import {
+        DelogInputRecordContextCall,
+    } from '@plurid/delog';
     // #endregion libraries
 
 
@@ -54,6 +58,53 @@
 // #region module
 // HACK: Ace Editor hack to prevent mode/theme lookup bug.
 ace.config.set('basePath', '');
+
+
+const resolveRepositoryLinks = (
+    call?: DelogInputRecordContextCall,
+) => {
+    if (!call) {
+        return {
+            repositoryLink: '',
+            fileLink: '',
+            lineLink: '',
+        };
+    }
+
+    const {
+        repository,
+        caller,
+    } = call;
+
+    const {
+        provider,
+        name,
+    } = repository;
+
+    const {
+        file,
+        line,
+    } = caller;
+
+    const https = 'https://';
+    let repositoryLink = '';
+    let fileLink = '';
+    let lineLink = '';
+
+    switch (provider) {
+        case 'github':
+            repositoryLink = https + 'github.com/' + name.replace('@', '');
+            fileLink = repositoryLink + '/blob/master/' + file;
+            lineLink = fileLink + '#L' + line;
+            break;
+    }
+
+    return {
+        repositoryLink,
+        fileLink,
+        lineLink,
+    };
+}
 
 export interface CodeOwnProperties {
     plurid: PluridComponentProperty;
@@ -213,6 +264,12 @@ const Code: React.FC<CodeProperties> = (
     const call = record.context?.call;
     const repository = call?.repository;
 
+    const {
+        repositoryLink,
+        fileLink,
+        lineLink,
+    } = resolveRepositoryLinks(call)
+
     const annotations: any[] | undefined = call
         ? [
             {
@@ -227,8 +284,32 @@ const Code: React.FC<CodeProperties> = (
             theme={stateGeneralTheme}
         >
             {repository && (
-                <StyledCodeLocation>
-                    {repository?.name} // {call?.caller.file} :: L{call?.caller.line}
+                <StyledCodeLocation
+                    theme={stateGeneralTheme}
+                >
+                    <a
+                        href={repositoryLink}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        {repository?.name}
+                    </a>
+                    &nbsp;//&nbsp;
+                    <a
+                        href={fileLink}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        {call?.caller.file}
+                    </a>
+                    &nbsp;::&nbsp;
+                    <a
+                        href={lineLink}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        L{call?.caller.line}
+                    </a>
                 </StyledCodeLocation>
             )}
 
