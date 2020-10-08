@@ -93,7 +93,7 @@ const resolveRepositoryLinks = (
 
     switch (provider) {
         case 'github':
-            repositoryLink = https + 'github.com/' + name.replace('@', '');
+            repositoryLink = https + 'github.com/' + name;
             fileLink = repositoryLink + '/blob/master/' + file;
             lineLink = fileLink + '#L' + line;
             break;

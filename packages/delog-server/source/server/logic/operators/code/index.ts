@@ -32,7 +32,7 @@ const getCodeLines = async (
 
     const repositoryPath = '/data/repositories/'
         + provider + '/'
-        + name.replace('@', '') + '/'
+        + name + '/'
         + 'root' + '/';
 
     const filepath = repositoryPath + file;
