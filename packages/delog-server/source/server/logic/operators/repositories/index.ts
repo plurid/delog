@@ -43,7 +43,7 @@ export const registerRepositoryMetadata = async (
     } = repository;
 
     await database.store(
-        'repository',
+        'repositories',
         id,
         repository,
     );
@@ -54,7 +54,7 @@ export const deregisterRepository = async (
     id: string,
 ) => {
     const repository: Repository | undefined = await database.get(
-        'repository',
+        'repositories',
         id,
     );
 
@@ -68,7 +68,7 @@ export const deregisterRepository = async (
     } = repository;
 
     const provider: Provider | undefined = await database.get(
-        'provider',
+        'providers',
         providerID,
     );
 
@@ -86,7 +86,7 @@ export const deregisterRepository = async (
     );
 
     await database.obliterate(
-        'repository',
+        'repositories',
         id,
     );
 }
