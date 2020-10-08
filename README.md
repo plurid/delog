@@ -47,6 +47,13 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
 </p>
 
 
+<p align="center">
+    <a target="_blank" href="https://youtu.be/q6PLf5k1HVM">
+        <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-3.png" height="500px">
+    </a>
+</p>
+
+
 
 ### Contents
 

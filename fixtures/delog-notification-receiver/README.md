@@ -42,6 +42,18 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
 </p>
 
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-2.png" height="500px">
+</p>
+
+
+<p align="center">
+    <a target="_blank" href="https://youtu.be/q6PLf5k1HVM">
+        <img src="https://raw.githubusercontent.com/plurid/delog/master/about/screenshots/screenshot-3.png" height="500px">
+    </a>
+</p>
+
+
 
 ### Contents
 
@@ -52,7 +64,7 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
 
 ## About
 
-`Delog` acts as a central logging center. Once configured with a `token`, the `delog` client can point to the network `endpoint`, passing the `token`.
+`Delog` acts as a central logging service. Once configured with a `token`, the `delog` client can point to the network `endpoint`, passing the `token`.
 
 `Delog` can also function as a log-based tester. The `delog` client is set in the testing mode and a `delog` client call will trigger a `tester` in the `delog` endpoint.
 
