@@ -52,26 +52,29 @@ const handleTester = async (
     context: DelogContext,
     logText: string,
 ) => {
-    // read the configuration
+    const {
+        sharedID,
+        sharedOrder,
+    } = context;
+    console.log('context', logText, context);
+
+    if (
+        !sharedID
+        || typeof sharedOrder === 'undefined'
+    ) {
+        return;
+    }
+
+
     const configuration = await parseConfiguration(
         tester.configuration,
     );
+    console.log('configuration', configuration);
 
     if (!configuration) {
         return;
     }
 
-    const {
-        sharedID,
-        sharedOrder,
-    } = context;
-
-    if (
-        !sharedID
-        || !sharedOrder
-    ) {
-        return;
-    }
 
     const {
         phases,
@@ -87,6 +90,8 @@ const handleTester = async (
     if (
         currentPhase.text === logText
     ) {
+        console.log('logText', logText);
+
         if (sharedOrder === 0) {
             // start the test
 
@@ -95,6 +100,7 @@ const handleTester = async (
                 start: Date.now(),
                 sharedID,
             };
+            console.log('test', test);
         }
 
         if (sharedOrder === phases.length) {
@@ -142,7 +148,7 @@ class Tester {
             !suite
             || !scenario
             || !sharedID
-            || !sharedOrder
+            || typeof sharedOrder === 'undefined'
         ) {
             return;
         }
