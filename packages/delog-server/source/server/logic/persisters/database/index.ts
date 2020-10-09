@@ -120,7 +120,7 @@ class Database implements IDatabase {
                     pagination,
                 );
             default:
-                return;
+                return [];
         }
     }
 

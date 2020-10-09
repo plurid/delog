@@ -121,7 +121,7 @@ const handleTester = async (
 
 
 class Tester {
-    private handles: any[] = [];
+    private calls: Record<string, number> = {};
 
     constructor(
     ) {
@@ -161,6 +161,35 @@ class Tester {
             return;
         }
 
+        const called = this.calls[sharedID];
+
+        if (!called) {
+            // check if tests have a test with the sharedID
+            const testInDatabase: any[] = await database.query(
+                'tests',
+                'id',
+                sharedID,
+            );
+
+            if (testInDatabase[0]) {
+                return;
+            }
+
+            const contact = this.setCall(sharedID);
+
+            const testStore = {
+                id: sharedID,
+                contact,
+            };
+
+            await database.store(
+                'test',
+                sharedID,
+                testStore,
+            );
+        }
+
+
         // the log is a testing log
 
         // get the tester for the log
@@ -195,6 +224,23 @@ class Tester {
         //         );
         //     }
         // }
+    }
+
+
+    private setCall(
+        id: string,
+    ) {
+        const now = Date.now();
+
+        this.calls[id] = now;
+
+        return now;
+    }
+
+    private unsetCall(
+        id: string,
+    ) {
+        delete this.calls[id];
     }
 }
 // #endregion module

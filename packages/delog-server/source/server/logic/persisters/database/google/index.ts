@@ -45,7 +45,7 @@ const query: DatabaseQuery = async (
     field,
     value,
 ) => {
-    return;
+    return [];
 }
 
 

@@ -119,7 +119,7 @@ const query: DatabaseQuery = async (
 ) => {
     if (!connection) {
         console.log(mongoNoConnectionError);
-        return;
+        return [];
     }
 
     try {

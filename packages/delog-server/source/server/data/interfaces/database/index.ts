@@ -52,7 +52,7 @@ export type DatabaseQuery = (
     field: string,
     value: string,
     pagination?: DatabasePagination,
-) => Promise<any>;
+) => Promise<any[]>;
 
 
 export type DatabaseSize = (
