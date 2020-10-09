@@ -172,19 +172,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 },
             });
 
-            getAnalyticsLastPeriod(dispatch, {
-                project: stateAnalyticsEntries.project,
-                period: stateAnalyticsEntries.period,
-                type: 'entries',
-            });
-            getAnalyticsLastPeriod(dispatch, {
-                project: stateAnalyticsFaults.project,
-                period: stateAnalyticsFaults.period,
-                type: 'faults',
-            });
-            getAnalyticsSize(dispatch, {
-                project: stateAnalyticsSize.project,
-            });
+            getAnalytics();
         } catch (error) {
             return;
         }
@@ -369,19 +357,7 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             filterUpdate(filterValue);
         }
 
-        getAnalyticsLastPeriod(dispatch, {
-            project: stateAnalyticsEntries.project,
-            period: stateAnalyticsEntries.period,
-            type: 'entries',
-        });
-        getAnalyticsLastPeriod(dispatch, {
-            project: stateAnalyticsFaults.project,
-            period: stateAnalyticsFaults.period,
-            type: 'faults',
-        });
-        getAnalyticsSize(dispatch, {
-            project: stateAnalyticsSize.project,
-        });
+        getAnalytics();
 
         setLoading(false);
     }
@@ -427,6 +403,22 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         } catch (error) {
             return;
         }
+    }
+
+    const getAnalytics = () => {
+        getAnalyticsLastPeriod(dispatch, {
+            project: stateAnalyticsEntries.project,
+            period: stateAnalyticsEntries.period,
+            type: 'entries',
+        });
+        getAnalyticsLastPeriod(dispatch, {
+            project: stateAnalyticsFaults.project,
+            period: stateAnalyticsFaults.period,
+            type: 'faults',
+        });
+        getAnalyticsSize(dispatch, {
+            project: stateAnalyticsSize.project,
+        });
     }
     // #endregion handlers
 
@@ -501,6 +493,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 filterUpdate={filterUpdate}
                 refresh={() => {
                     getRecords(dispatch);
+
+                    getAnalytics();
                 }}
 
                 actionScrollBottom={actionScrollBottom}
