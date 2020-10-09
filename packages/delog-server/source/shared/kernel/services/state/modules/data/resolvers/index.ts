@@ -491,11 +491,17 @@ export const removeEntities = (
     let records = [
         ...newState.records,
     ];
+    let tests = [
+        ...newState.tests,
+    ];
 
 
     switch (type) {
         case 'records':
             records = records.filter(record => !ids.includes(record.id));
+            break;
+        case 'tests':
+            tests = tests.filter(test => !ids.includes(test.id));
             break;
     }
 
@@ -503,6 +509,9 @@ export const removeEntities = (
         ...newState,
         records: [
             ...records,
+        ],
+        tests: [
+            ...tests,
         ],
     };
 }
