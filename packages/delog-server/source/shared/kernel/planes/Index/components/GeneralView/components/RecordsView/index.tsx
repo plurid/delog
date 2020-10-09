@@ -38,6 +38,11 @@
         InputQuery,
     } from '#server/data/interfaces';
 
+    import {
+        AnalyticsRecordsCount,
+        AnalyticsSize,
+    } from '#kernel-data/interfaces';
+
     import EntityView, {
         EntityViewRefAttributes,
     } from '#kernel-components/EntityView';
@@ -51,6 +56,8 @@
 
     import {
         getRecords,
+        getAnalyticsLastPeriod,
+        getAnalyticsSize,
     } from '#kernel-services/logic/queries';
 
     import { AppState } from '#kernel-services/state/store';
@@ -101,6 +108,9 @@ export interface RecordsViewStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateRecords: LoggedRecord[];
+    stateAnalyticsEntries: AnalyticsRecordsCount;
+    stateAnalyticsFaults: AnalyticsRecordsCount;
+    stateAnalyticsSize: AnalyticsSize;
 }
 
 export interface RecordsViewDispatchProperties {
@@ -122,6 +132,9 @@ const RecordsView: React.FC<RecordsViewProperties> = (
         stateGeneralTheme,
         stateInteractionTheme,
         stateRecords,
+        stateAnalyticsEntries,
+        stateAnalyticsFaults,
+        stateAnalyticsSize,
         // #endregion state
 
         // #region dispatch
@@ -157,6 +170,20 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                 variables: {
                     input,
                 },
+            });
+
+            getAnalyticsLastPeriod(dispatch, {
+                project: stateAnalyticsEntries.project,
+                period: stateAnalyticsEntries.period,
+                type: 'entries',
+            });
+            getAnalyticsLastPeriod(dispatch, {
+                project: stateAnalyticsFaults.project,
+                period: stateAnalyticsFaults.period,
+                type: 'faults',
+            });
+            getAnalyticsSize(dispatch, {
+                project: stateAnalyticsSize.project,
             });
         } catch (error) {
             return;
@@ -342,6 +369,20 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             filterUpdate(filterValue);
         }
 
+        getAnalyticsLastPeriod(dispatch, {
+            project: stateAnalyticsEntries.project,
+            period: stateAnalyticsEntries.period,
+            type: 'entries',
+        });
+        getAnalyticsLastPeriod(dispatch, {
+            project: stateAnalyticsFaults.project,
+            period: stateAnalyticsFaults.period,
+            type: 'faults',
+        });
+        getAnalyticsSize(dispatch, {
+            project: stateAnalyticsSize.project,
+        });
+
         setLoading(false);
     }
 
@@ -491,6 +532,9 @@ const mapStateToProperties = (
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateRecords: selectors.data.getRecords(state),
+    stateAnalyticsEntries: selectors.data.getAnalyticsEntries(state),
+    stateAnalyticsFaults: selectors.data.getAnalyticsFaults(state),
+    stateAnalyticsSize: selectors.data.getAnalyticsSize(state),
 });
 
 
