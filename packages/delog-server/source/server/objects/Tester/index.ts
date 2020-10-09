@@ -56,7 +56,6 @@ const handleTester = async (
         sharedID,
         sharedOrder,
     } = context;
-    console.log('context', logText, context);
 
     if (
         !sharedID
@@ -69,7 +68,6 @@ const handleTester = async (
     const configuration = await parseConfiguration(
         tester.configuration,
     );
-    console.log('configuration', configuration);
 
     if (!configuration) {
         return;
@@ -90,7 +88,7 @@ const handleTester = async (
     if (
         currentPhase.text === logText
     ) {
-        console.log('logText', logText);
+        console.log('logText', logText, sharedOrder);
 
         if (sharedOrder === 0) {
             // start the test
@@ -126,6 +124,7 @@ class Tester {
     public async test() {
         const {
             context,
+            project,
         } = this.log;
 
         if (!context) {
@@ -145,7 +144,8 @@ class Tester {
         }
 
         if (
-            !suite
+            !project
+            || !suite
             || !scenario
             || !sharedID
             || typeof sharedOrder === 'undefined'
@@ -161,7 +161,8 @@ class Tester {
 
         for (const tester of testers) {
             if (
-                tester.suite === suite
+                tester.project === project
+                && tester.suite === suite
                 && tester.scenario === scenario
             ) {
                 handleTester(

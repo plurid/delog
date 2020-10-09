@@ -37,6 +37,7 @@ export const types = gql`
 
     type Tester {
         id: String!
+        project: String!
         suite: String!
         scenario: String!
         configuration: String!

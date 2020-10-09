@@ -101,9 +101,10 @@ export interface Format {
 
 export interface Tester {
     id: string;
+    project: string;
     suite: string;
     scenario: string;
-    configuration: string,
+    configuration: string;
     ownedBy: string;
 }
 
