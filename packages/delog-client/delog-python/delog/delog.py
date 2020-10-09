@@ -44,6 +44,10 @@ def delog(
     project: str = PROJECT,
     space: str = SPACE,
 
+    # To be used if the `delog` is meant to be fired only in 'TESTING' `mode` (`context.mode`),
+    # and the `mode` is set dinamically/from outside the enclosing function.
+    tester: bool = False,
+
     # Name of the method from where the log originates.
     method: str = None,
 
@@ -54,12 +58,18 @@ def delog(
 
     context: dict = {},
 ):
+    if not context:
+        context = {}
+
     if not endpoint:
         print("Delog Error :: An endpoint is required.")
         return
 
     if not token:
         print("Delog Error :: A token is required.")
+        return
+
+    if tester and context.get("mode") != 'TESTING':
         return
 
     if GROUND_LEVEL > level:
@@ -69,9 +79,6 @@ def delog(
         endpoint=endpoint,
         token=token,
     )
-
-    if not context:
-        context = {}
 
     call_context = get_caller(
         call=context.get("call"),
