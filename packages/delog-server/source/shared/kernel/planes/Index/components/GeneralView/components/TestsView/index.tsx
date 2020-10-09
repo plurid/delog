@@ -377,7 +377,7 @@ const TestsView: React.FC<TestsViewProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="100px 100px 1fr 30px"
+                rowTemplate="200px 100px 1fr 30px"
                 rowsHeader={rowsHeader}
                 rows={filteredRows}
                 noRows="no tests"
