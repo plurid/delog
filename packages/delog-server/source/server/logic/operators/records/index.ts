@@ -25,6 +25,7 @@
 
     import Formatter from '#server/objects/Formatter';
     import Notifier from '#server/objects/Notifier';
+    import Tester from '#server/objects/Tester';
     // #endregion external
 // #endregion imports
 
@@ -139,8 +140,14 @@ const registerRecord = async (
         log,
     };
 
-    const notifier = new Notifier(loggedRecord);
+    const notifier = new Notifier({
+        type: 'record',
+        data: loggedRecord,
+    });
     notifier.notify();
+
+    const tester = new Tester(loggedRecord);
+    tester.test();
 
     recordsBatcher.push(
         loggedRecord,

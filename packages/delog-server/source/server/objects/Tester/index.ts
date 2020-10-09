@@ -85,6 +85,26 @@ class Tester {
                     continue;
                 }
 
+                const {
+                    phases,
+                } = configuration;
+
+                for (const [index, phase] of phases.entries()) {
+                    if (
+                        phase.text === this.log.text
+                    ) {
+                        if (index === 0) {
+                            // start the test
+                        }
+
+                        if (index === phases.length) {
+                            // stop the test
+                        }
+
+                        // update the test
+                    }
+                }
+
                 // checck if it matches the first stage
 
                 // trigger the test
