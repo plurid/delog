@@ -148,21 +148,9 @@ class Tester {
                 }
 
                 // set tester call
-                const contact = await this.setCall(
+                await this.setCall(
                     sharedID,
                     tester,
-                );
-
-                // write test base to databasee
-                const testStore = {
-                    id: sharedID,
-                    contact,
-                };
-
-                await database.store(
-                    'tests',
-                    sharedID,
-                    testStore,
                 );
             }
 
