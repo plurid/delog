@@ -22,10 +22,10 @@
     import database from '#server/services/database';
     import storage from '#server/services/storage';
     import recordsBatcher from '#server/services/recordsBatcher';
+    import tester from '#server/services/tester';
 
     import Formatter from '#server/objects/Formatter';
     import Notifier from '#server/objects/Notifier';
-    import Tester from '#server/objects/Tester';
     // #endregion external
 // #endregion imports
 
@@ -146,8 +146,7 @@ const registerRecord = async (
     });
     notifier.notify();
 
-    const tester = new Tester(loggedRecord);
-    tester.test();
+    tester.test(loggedRecord);
 
     recordsBatcher.push(
         loggedRecord,

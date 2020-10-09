@@ -121,19 +121,19 @@ const handleTester = async (
 
 
 class Tester {
-    private log: LoggedRecord;
+    private handles: any[] = [];
 
     constructor(
-        log: LoggedRecord,
     ) {
-        this.log = log;
     }
 
-    public async test() {
+    public async test(
+        log: LoggedRecord,
+    ) {
         const {
             context,
             project,
-        } = this.log;
+        } = log;
 
         if (!context) {
             return;
@@ -161,25 +161,40 @@ class Tester {
             return;
         }
 
-        const testers: ITester[] = await database.query(
-            'testers',
-            'ownedBy',
-            this.log.ownedBy,
-        );
+        // the log is a testing log
 
-        for (const tester of testers) {
-            if (
-                tester.project === project
-                && tester.suite === suite
-                && tester.scenario === scenario
-            ) {
-                handleTester(
-                    tester,
-                    context,
-                    this.log,
-                );
-            }
-        }
+        // get the tester for the log
+
+        // check if testing has started
+
+            // if not - start waiting based on the delay
+            // get all the records based on the shared id
+                // if the number of records equals the number of phases start comparing
+                // else start retrying
+                // at timeout fail the test
+
+
+
+
+        // const testers: ITester[] = await database.query(
+        //     'testers',
+        //     'ownedBy',
+        //     this.log.ownedBy,
+        // );
+
+        // for (const tester of testers) {
+        //     if (
+        //         tester.project === project
+        //         && tester.suite === suite
+        //         && tester.scenario === scenario
+        //     ) {
+        //         handleTester(
+        //             tester,
+        //             context,
+        //             log,
+        //         );
+        //     }
+        // }
     }
 }
 // #endregion module
