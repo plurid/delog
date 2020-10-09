@@ -229,6 +229,10 @@ const TestersView: React.FC<TestersViewProperties> = (
     const rowsHeader = (
         <>
             <div>
+                name
+            </div>
+
+            <div>
                 project
             </div>
 
@@ -253,7 +257,7 @@ const TestersView: React.FC<TestersViewProperties> = (
             generalTheme={stateGeneralTheme}
             interactionTheme={stateInteractionTheme}
 
-            rowTemplate="1fr 1fr 1fr 3fr 30px"
+            rowTemplate="1fr 1fr 1fr 1fr 3fr 30px"
             rowsHeader={rowsHeader}
             rows={filteredRows}
             noRows="no testers"

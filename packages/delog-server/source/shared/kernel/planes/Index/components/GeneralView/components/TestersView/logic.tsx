@@ -26,6 +26,7 @@ export const testerRowRenderer = (
 ) => {
     const {
         id,
+        name,
         project,
         suite,
         scenario,
@@ -34,6 +35,10 @@ export const testerRowRenderer = (
 
     return (
         <>
+            <div>
+                {name}
+            </div>
+
             <div>
                 {project}
             </div>
@@ -65,6 +70,7 @@ export const createSearchTerms = (
         tester => {
             const {
                 id,
+                name,
                 project,
                 suite,
                 scenario,
@@ -74,6 +80,7 @@ export const createSearchTerms = (
             const searchTerm = {
                 id,
                 data: [
+                    name.toLowerCase(),
                     project.toLowerCase(),
                     suite.toLowerCase(),
                     scenario.toLowerCase(),

@@ -78,6 +78,7 @@ export const GET_CURRENT_OWNER = gql`
                 }
                 testers {
                     id
+                    name
                     project
                     suite
                     scenario
