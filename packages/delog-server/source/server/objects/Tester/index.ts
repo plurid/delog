@@ -8,6 +8,7 @@
 
     import {
         DelogContext,
+        DelogInputRecordContext,
     } from '@plurid/delog';
     // #endregion libraries
 
@@ -119,9 +120,15 @@ const handleTester = async (
     }
 }
 
+export interface TesterCall {
+    contact: number;
+    data: ITester;
+}
+
 
 class Tester {
-    private calls: Record<string, number> = {};
+    private calls: Record<string, TesterCall> = {};
+    private interval: number = 0;
 
     constructor(
     ) {
@@ -130,36 +137,19 @@ class Tester {
     public async test(
         log: LoggedRecord,
     ) {
-        const {
-            context,
-            project,
-        } = log;
+        const isTestingLog = this.checkTestingLog(
+            log,
+        );
 
-        if (!context) {
+        if (!isTestingLog) {
             return;
         }
 
-        const {
-            mode,
-            suite,
-            scenario,
-            sharedID,
-            sharedOrder,
-        } = context;
-
-        if (mode !== 'TESTING') {
-            return
-        }
-
-        if (
-            !project
-            || !suite
-            || !scenario
-            || !sharedID
-            || typeof sharedOrder === 'undefined'
-        ) {
-            return;
-        }
+        const ownedBy = log.ownedBy;
+        const project = log.project as string;
+        const suite = log.context?.suite as string;
+        const scenario = log.context?.scenario as string;
+        const sharedID = log.context?.sharedID as string;
 
         const called = this.calls[sharedID];
 
@@ -175,18 +165,39 @@ class Tester {
                 return;
             }
 
-            const contact = this.setCall(sharedID);
-
-            const testStore = {
-                id: sharedID,
-                contact,
-            };
-
-            await database.store(
-                'test',
-                sharedID,
-                testStore,
+            const tester: ITester | undefined = await database.aggregate(
+                'testers',
+                [
+                    {
+                        '$match': {
+                            ownedBy,
+                            project,
+                            suite,
+                            scenario,
+                        },
+                    },
+                ],
             );
+
+            if (!tester) {
+                return;
+            }
+
+            const contact = this.setCall(
+                sharedID,
+                tester,
+            );
+
+            // const testStore = {
+            //     id: sharedID,
+            //     contact,
+            // };
+
+            // await database.store(
+            //     'test',
+            //     sharedID,
+            //     testStore,
+            // );
         }
 
 
@@ -227,14 +238,76 @@ class Tester {
     }
 
 
-    private setCall(
-        id: string,
+    private checkTestingLog(
+        log: LoggedRecord,
     ) {
+        const {
+            context,
+            project,
+        } = log;
+
+        if (!context) {
+            return false;
+        }
+
+        const {
+            mode,
+            suite,
+            scenario,
+            sharedID,
+            sharedOrder,
+        } = context;
+
+        if (mode !== 'TESTING') {
+            return false;
+        }
+
+        if (
+            !project
+            || !suite
+            || !scenario
+            || !sharedID
+            || typeof sharedOrder === 'undefined'
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private runner() {
+        if (this.interval) {
+            return;
+        }
+
+        this.interval = setInterval(
+            () => {
+                this.runLoop();
+            },
+            1000,
+        );
+    }
+
+    private runLoop() {
         const now = Date.now();
 
-        this.calls[id] = now;
+        for (const [id, time] of Object.entries(this.calls)) {
+            // check if time is in the past above the threshold
+        }
+    }
 
-        return now;
+    private setCall(
+        id: string,
+        data: ITester,
+    ) {
+        const contact = Date.now();
+
+        this.calls[id] = {
+            contact,
+            data,
+        };
+
+        return contact;
     }
 
     private unsetCall(
