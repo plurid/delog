@@ -116,7 +116,7 @@ export interface TesterConfiguration {
      * The test will run after the delay has passed
      * after the first record hits the server.
      *
-     * Default: `5000` milliseconds.
+     * Default: `5_000` milliseconds.
      */
     startDelay?: number;
 
@@ -130,6 +130,8 @@ export interface TesterConfiguration {
 
     /**
      * The test will timeout after the time passed after the `startDelay`.
+     *
+     * Default: `60_000` milliseconds.
      */
     timeout?: number;
 }
