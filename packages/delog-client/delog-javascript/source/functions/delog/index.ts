@@ -34,6 +34,7 @@ const delog = async (
         text,
         time,
         level,
+        tester,
 
         groundLevel,
 
@@ -63,6 +64,12 @@ const delog = async (
         return;
     }
 
+    if (
+        tester
+        && context?.mode !== 'TESTING'
+    ) {
+        return;
+    }
 
     if (groundLevel > level) {
         return;

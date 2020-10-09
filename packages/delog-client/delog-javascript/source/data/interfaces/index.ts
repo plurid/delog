@@ -30,6 +30,12 @@ export interface DelogData {
     level?: number;
 
     /**
+     * To be used if the `delog` is meant to be fired only in 'TESTING' `mode` (`context.mode`),
+     * and the `mode` is set dinamically/from outside the enclosing function.
+     */
+    tester?: boolean;
+
+    /**
      * Name of the method from where the log originates.
      */
     method?: string;
