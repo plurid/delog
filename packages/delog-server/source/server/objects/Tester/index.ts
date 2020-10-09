@@ -50,7 +50,7 @@ const parseConfiguration = async (
 const handleTester = async (
     tester: ITester,
     context: DelogContext,
-    logText: string,
+    log: LoggedRecord,
 ) => {
     const {
         sharedID,
@@ -86,9 +86,17 @@ const handleTester = async (
     }
 
     if (
-        currentPhase.text === logText
+        currentPhase.text === log.text
+        // && currentPhase.level === log.level
     ) {
-        console.log('logText', logText, sharedOrder);
+        const storedTest = await database.query(
+            'test',
+            'id',
+            sharedID,
+        );
+
+        console.log('logText', log.text, sharedOrder);
+
 
         if (sharedOrder === 0) {
             // start the test
@@ -168,7 +176,7 @@ class Tester {
                 handleTester(
                     tester,
                     context,
-                    this.log.text,
+                    this.log,
                 );
             }
         }

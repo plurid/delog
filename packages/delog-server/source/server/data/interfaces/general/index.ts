@@ -111,6 +111,27 @@ export interface Tester {
 
 export interface TesterConfiguration {
     phases: TesterConfigurationPhase[];
+
+    /**
+     * The test will run after the delay has passed
+     * after the first record hits the server.
+     *
+     * Default: `5000` milliseconds.
+     */
+    startDelay?: number;
+
+    /**
+     * After the `startDelay`, if the test cannot yet start,
+     * it will retry to start.
+     *
+     * Default: equal to `startDelay`.
+     */
+    retryDelay?: number;
+
+    /**
+     * The test will timeout after the time passed after the `startDelay`.
+     */
+    timeout?: number;
 }
 
 
