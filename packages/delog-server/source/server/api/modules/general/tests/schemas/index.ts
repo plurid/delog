@@ -9,7 +9,7 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getTests: ResponseTests!
+        getTests(input: InputQuery): ResponseTests!
     }
 `;
 

@@ -2,6 +2,7 @@
     // #region external
     import {
         Context,
+        InputQuery,
     } from '#server/data/interfaces';
 
     import {
@@ -18,6 +19,7 @@
 export const getTestsLogs = generateMethodLogs('getTests');
 
 const getTests = async (
+    input: InputQuery | undefined,
     context: Context,
 ) => {
     // #region context unpack
@@ -44,6 +46,10 @@ const getTests = async (
 
 
     try {
+        const count = input?.count || 20;
+        const start = input?.start;
+
+
         // #region private usage
         if (privateUsage) {
             logger.log(
@@ -66,6 +72,11 @@ const getTests = async (
                 'tests',
                 'ownedBy',
                 privateOwnerIdentonym,
+                {
+                    count,
+                    type: 'last',
+                    start,
+                },
             );
 
             logger.log(
