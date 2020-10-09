@@ -4,6 +4,7 @@
         Context,
         InputOf,
         InputValueString,
+        InputObliterateTests,
     } from '#server/data/interfaces';
 
     import {
@@ -21,6 +22,14 @@ export default {
         { input }: InputOf<InputValueString>,
         context: Context,
     ) => Tests.Mutation.obliterateTest(
+        input,
+        context,
+    ),
+    obliterateTests: (
+        _: any,
+        { input }: InputOf<InputObliterateTests>,
+        context: Context,
+    ) => Tests.Mutation.obliterateTests(
         input,
         context,
     ),

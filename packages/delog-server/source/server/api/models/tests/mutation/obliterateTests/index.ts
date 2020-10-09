@@ -2,11 +2,11 @@
     // #region external
     import {
         Context,
-        InputValueString,
+        InputObliterateTests,
     } from '#server/data/interfaces';
 
     import {
-        deregisterTest,
+        deregisterTests,
     } from '#server/logic/operators/tests';
 
     import {
@@ -18,11 +18,11 @@
 
 
 // #region module
-export const obliterateTestLogs = generateMethodLogs('obliterateTest');
+export const obliterateTestsLogs = generateMethodLogs('obliterateTests');
 
 
-const obliterateTest = async (
-    input: InputValueString,
+const obliterateTests = async (
+    input: InputObliterateTests,
     context: Context,
 ) => {
     // #region context unpack
@@ -42,30 +42,23 @@ const obliterateTest = async (
 
     // #region log start
     logger.log(
-        obliterateTestLogs.infoStart,
+        obliterateTestsLogs.infoStart,
         logLevels.info,
     );
     // #endregion log start
 
 
     try {
-        // #region input unpack
-        const {
-            value: name,
-        } = input;
-        // #endregion input unpack
-
-
         // #region private usage
         if (privateUsage) {
             logger.log(
-                obliterateTestLogs.infoHandlePrivateUsage,
+                obliterateTestsLogs.infoHandlePrivateUsage,
                 logLevels.trace,
             );
 
             if (!privateOwnerIdentonym) {
                 logger.log(
-                    obliterateTestLogs.infoEndPrivateUsage,
+                    obliterateTestsLogs.infoEndPrivateUsage,
                     logLevels.info,
                 );
 
@@ -74,10 +67,13 @@ const obliterateTest = async (
                 };
             }
 
-            await deregisterTest(name);
+            await deregisterTests(
+                privateOwnerIdentonym,
+                input,
+            );
 
             logger.log(
-                obliterateTestLogs.infoSuccessPrivateUsage,
+                obliterateTestsLogs.infoSuccessPrivateUsage,
                 logLevels.info,
             );
 
@@ -93,14 +89,17 @@ const obliterateTest = async (
 
         if (customLogicUsage && logic) {
             logger.log(
-                obliterateTestLogs.infoHandleCustomLogicUsage,
+                obliterateTestsLogs.infoHandleCustomLogicUsage,
                 logLevels.trace,
             );
 
-            await deregisterTest(name);
+            await deregisterTests(
+                '',
+                input,
+            );
 
             logger.log(
-                obliterateTestLogs.infoEndCustomLogicUsage,
+                obliterateTestsLogs.infoEndCustomLogicUsage,
                 logLevels.info,
             );
 
@@ -112,10 +111,13 @@ const obliterateTest = async (
 
 
         // #region public usage
-        await deregisterTest(name);
+        await deregisterTests(
+            '',
+            input,
+        );
 
         logger.log(
-            obliterateTestLogs.infoSuccess,
+            obliterateTestsLogs.infoSuccess,
             logLevels.info,
         );
 
@@ -126,7 +128,7 @@ const obliterateTest = async (
     } catch (error) {
         // #region error handle
         logger.log(
-            obliterateTestLogs.errorEnd,
+            obliterateTestsLogs.errorEnd,
             logLevels.error,
             error,
         );
@@ -142,5 +144,5 @@ const obliterateTest = async (
 
 
 // #region exports
-export default obliterateTest;
+export default obliterateTests;
 // #endregion exports

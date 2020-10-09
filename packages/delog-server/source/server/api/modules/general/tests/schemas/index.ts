@@ -17,6 +17,7 @@ export const queries = gql`
 export const mutations = gql`
     extend type Mutation {
         obliterateTest(input: InputValueString!): Response!
+        obliterateTests(input: InputObliterateTests): Response!
     }
 `;
 
@@ -40,7 +41,17 @@ export const types = gql`
         status: String!
         tester: String!
     }
+
 `;
+
+
+export const inputs = gql`
+    input InputObliterateTests {
+        filter: String
+        ids: [String!]
+    }
+`;
+
 // #endregion module
 
 
@@ -48,7 +59,8 @@ export const types = gql`
 // #region exports
 export default gql`
     ${queries}
-    ${types}
     ${mutations}
+    ${types}
+    ${inputs}
 `;
 // #endregion exports

@@ -77,6 +77,12 @@ export interface InputObliterateRecords {
 }
 
 
+export interface InputObliterateTests {
+    filter?: string;
+    ids?: string[];
+}
+
+
 
 export interface InputGetAnalyticsLastPeriod {
     project: string;
