@@ -258,11 +258,11 @@ const TestsView: React.FC<TestsViewProperties> = (
     }
 
     const actionScrollBottom = async (
-        records: any[],
+        tests: any[],
     ) => {
         setLoading(true);
 
-        const last = records[records.length - 1];
+        const last = tests[tests.length - 1];
 
         const pagination: InputQuery = {
             count: 10,
