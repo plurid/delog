@@ -7,9 +7,10 @@
     } from '@plurid/plurid-icons-react';
 
     import {
-        PluridIconRunning,
-        PluridIconTimeout,
-        PluridIconWarning,
+        // PluridIconRunning,
+        // PluridIconTimeout,
+        // PluridIconWarning,
+        PluridIconInvalid,
         PluridIconValid,
     } from '@plurid/plurid-icons-react';
     // #endregion libraries
@@ -49,7 +50,7 @@ export const testRowRenderer = (
                             inactive={true}
                         />
                     ) : (
-                        <PluridIconWarning
+                        <PluridIconInvalid
                             inactive={true}
                         />
                     )
