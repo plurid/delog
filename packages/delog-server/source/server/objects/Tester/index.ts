@@ -1,6 +1,14 @@
 // #region imports
     // #region libraries
+    import {
+        uuid,
+    } from '@plurid/plurid-functions';
+
     import Deon from '@plurid/deon';
+
+    import {
+        DelogContext,
+    } from '@plurid/delog';
     // #endregion libraries
 
 
@@ -39,6 +47,67 @@ const parseConfiguration = async (
 }
 
 
+const handleTester = async (
+    tester: ITester,
+    context: DelogContext,
+    logText: string,
+) => {
+    // read the configuration
+    const configuration = await parseConfiguration(
+        tester.configuration,
+    );
+
+    if (!configuration) {
+        return;
+    }
+
+    const {
+        sharedID,
+        sharedOrder,
+    } = context;
+
+    if (
+        !sharedID
+        || !sharedOrder
+    ) {
+        return;
+    }
+
+    const {
+        phases,
+    } = configuration;
+
+    const currentPhase = phases[sharedOrder];
+
+    if (!currentPhase) {
+        // log as error?
+        return;
+    }
+
+    if (
+        currentPhase.text === logText
+    ) {
+        if (sharedOrder === 0) {
+            // start the test
+
+            const test = {
+                id: uuid.generate(),
+                start: Date.now(),
+                sharedID,
+            };
+        }
+
+        if (sharedOrder === phases.length) {
+            // stop the test
+
+            // determine if the test is passed or failed
+        }
+
+        // update the test
+    }
+}
+
+
 class Tester {
     private log: LoggedRecord;
 
@@ -49,21 +118,34 @@ class Tester {
     }
 
     public async test() {
-        if (this.log.context?.mode !== 'TESTING') {
+        const {
+            context,
+        } = this.log;
+
+        if (!context) {
             return;
         }
 
         const {
-            scenario,
+            mode,
             suite,
-        } = this.log.context;
+            scenario,
+            sharedID,
+            sharedOrder,
+        } = context;
 
-        if (!scenario || !suite) {
-            return;
+        if (mode !== 'TESTING') {
+            return
         }
 
-        // get the appropriate tester
-        // check if the log triggers any tester
+        if (
+            !suite
+            || !scenario
+            || !sharedID
+            || !sharedOrder
+        ) {
+            return;
+        }
 
         const testers: ITester[] = await database.query(
             'testers',
@@ -73,49 +155,14 @@ class Tester {
 
         for (const tester of testers) {
             if (
-                tester.scenario === scenario
-                && tester.suite === suite
+                tester.suite === suite
+                && tester.scenario === scenario
             ) {
-                // read the configuration
-                const configuration = await parseConfiguration(
-                    tester.configuration,
+                handleTester(
+                    tester,
+                    context,
+                    this.log.text,
                 );
-
-                if (!configuration) {
-                    continue;
-                }
-
-                const {
-                    phases,
-                } = configuration;
-
-                for (const [index, phase] of phases.entries()) {
-                    if (
-                        phase.text === this.log.text
-                    ) {
-                        if (index === 0) {
-                            // start the test
-                        }
-
-                        if (index === phases.length) {
-                            // stop the test
-                        }
-
-                        // update the test
-                    }
-                }
-
-                // checck if it matches the first stage
-
-                // trigger the test
-
-                // register the test as triggered
-
-                // check if test is triggered
-
-                // check if test ends
-
-                // pass or fail the test
             }
         }
     }
