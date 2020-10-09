@@ -26,12 +26,19 @@ export const testRowRenderer = (
 ) => {
     const {
         id,
+        time,
         status,
         tester,
     } = test;
 
+    const date = (new Date(time * 1000)).toLocaleString();
+
     return (
         <>
+            <div>
+                {date}
+            </div>
+
             <div>
                 {status ? 'success' : 'failed'}
             </div>
@@ -55,15 +62,19 @@ export const createSearchTerms = (
         test => {
             const {
                 id,
+                time,
                 status,
                 tester,
             } = test;
+
+            const date = (new Date(time * 1000)).toLocaleString();
 
             const searchTerm = {
                 id,
                 data: [
                     status ? 'success' : 'failed',
                     tester.toLowerCase(),
+                    date.toLowerCase(),
                 ],
             };
 
