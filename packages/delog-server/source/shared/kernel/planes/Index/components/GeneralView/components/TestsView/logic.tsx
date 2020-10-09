@@ -33,7 +33,7 @@ export const testRowRenderer = (
     return (
         <>
             <div>
-                {status}
+                {status ? 'success' : 'failed'}
             </div>
 
             <div>
@@ -62,7 +62,7 @@ export const createSearchTerms = (
             const searchTerm = {
                 id,
                 data: [
-                    status.toLowerCase(),
+                    status ? 'success' : 'failed',
                     tester.toLowerCase(),
                 ],
             };
