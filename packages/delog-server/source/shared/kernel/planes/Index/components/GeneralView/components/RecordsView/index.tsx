@@ -357,8 +357,6 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             filterUpdate(filterValue);
         }
 
-        getAnalytics();
-
         setLoading(false);
     }
 
@@ -389,6 +387,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
                     },
                 });
 
+                getAnalytics();
+
                 return;
             }
 
@@ -400,6 +400,8 @@ const RecordsView: React.FC<RecordsViewProperties> = (
             await client.mutate({
                 mutation: OBLITERATE_RECORDS,
             });
+
+            getAnalytics();
         } catch (error) {
             return;
         }
