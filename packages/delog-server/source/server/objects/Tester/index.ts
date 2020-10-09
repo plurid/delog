@@ -11,6 +11,7 @@
         TesterConfiguration,
         TesterCall,
         RequiredTesterConfiguration,
+        Test,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -314,7 +315,7 @@ class Tester {
             }
         }
 
-        const testStore = {
+        const testStore: Test = {
             id: callID,
             status: testStatus,
             tester: testerID,

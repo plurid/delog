@@ -124,7 +124,7 @@ export type LoggedRecord = Record & {
 export interface Test {
     id: string;
     time: number;
-    status: string;
+    status: boolean;
     tester: string;
     ownedBy: string;
 }

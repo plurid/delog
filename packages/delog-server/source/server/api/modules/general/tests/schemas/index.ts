@@ -38,10 +38,9 @@ export const types = gql`
     type Test {
         id: String!
         time: Int!
-        status: String!
+        status: Boolean!
         tester: String!
     }
-
 `;
 
 
@@ -51,7 +50,6 @@ export const inputs = gql`
         ids: [String!]
     }
 `;
-
 // #endregion module
 
 
