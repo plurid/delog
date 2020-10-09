@@ -226,7 +226,7 @@ describe('delog - tester', () => {
                 mode: 'TESTING',
                 suite: 'two',
                 scenario: 'three',
-                sharedID: 'one',
+                sharedID: 'one' + Math.random(),
             },
         );
 
@@ -236,7 +236,7 @@ describe('delog - tester', () => {
         //         mode: 'TESTING',
         //         suite: 'two',
         //         scenario: 'four',
-        //         sharedID: 'two',
+        //         sharedID: 'two' + Math.random(),
         //     },
         // );
     });
