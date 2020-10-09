@@ -297,6 +297,8 @@ class Tester {
             configuration,
         } = testerCall;
 
+        const testerID = testerCall.data.id;
+
         const {
             phases,
         } = configuration;
@@ -314,6 +316,7 @@ class Tester {
         const testStore = {
             id: callID,
             status: testStatus,
+            tester: testerID,
         };
 
         await database.store(
