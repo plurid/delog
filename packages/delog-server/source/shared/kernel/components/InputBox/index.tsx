@@ -22,6 +22,7 @@ export interface InputBoxProperties {
     theme: any;
     atChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     atKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    style?: React.CSSProperties;
 }
 
 const InputBox: React.FC<InputBoxProperties> = (
@@ -34,6 +35,7 @@ const InputBox: React.FC<InputBoxProperties> = (
         atChange,
         atKeyDown,
         theme,
+        style,
     } = properties;
     // #endregion properties
 
@@ -61,6 +63,9 @@ const InputBox: React.FC<InputBoxProperties> = (
                     autoCapitalize="false"
                     autoComplete="false"
                     autoCorrect="false"
+                    style={{
+                        ...style,
+                    }}
                 />
             </StyledTextBox>
         </StyledInputBox>

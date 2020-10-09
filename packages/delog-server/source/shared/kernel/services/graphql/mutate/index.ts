@@ -251,6 +251,7 @@ export const GENERATE_TESTER = gql`
             }
             data {
                 id
+                project
                 suite
                 scenario
                 configuration

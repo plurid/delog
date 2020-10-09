@@ -211,6 +211,9 @@ const Tester: React.FC<TesterProperties> = (
                 text={testerConfiguration}
                 theme={theme}
                 atChange={(event) => setTesterConfiguration(event.target.value)}
+                style={{
+                    fontFamily: `'Source Code Pro', monospace`,
+                }}
             />
 
             <div>
