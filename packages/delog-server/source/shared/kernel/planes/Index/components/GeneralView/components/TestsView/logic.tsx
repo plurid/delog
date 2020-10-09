@@ -33,8 +33,8 @@ export const testRowRenderer = (
 ) => {
     const {
         id,
-        time,
         status,
+        time,
         tester,
     } = test;
 
@@ -45,9 +45,13 @@ export const testRowRenderer = (
             <div>
                 {status
                     ? (
-                        <PluridIconValid />
+                        <PluridIconValid
+                            inactive={true}
+                        />
                     ) : (
-                        <PluridIconWarning />
+                        <PluridIconWarning
+                            inactive={true}
+                        />
                     )
                 }
             </div>
@@ -75,8 +79,8 @@ export const createSearchTerms = (
         test => {
             const {
                 id,
-                time,
                 status,
+                time,
                 tester,
             } = test;
 
