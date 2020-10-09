@@ -2,6 +2,7 @@
     // #region external
     import {
         Context,
+        InputOf,
     } from '#server/data/interfaces';
 
     import {
@@ -19,6 +20,14 @@ export default {
         __: any,
         context: Context,
     ) => Setup.Query.getSetup(
+        context,
+    ),
+    verifyUniqueID: (
+        _: any,
+        { input }: InputOf<any>,
+        context: Context,
+    ) => Setup.Query.verifyUniqueID(
+        input,
         context,
     ),
 };

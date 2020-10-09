@@ -10,6 +10,7 @@
 export const queries = gql`
     extend type Query {
         getSetup: ResponseSetup!
+        verifyUniqueID(input: InputVerifyUniqueID!): Response!
     }
 `;
 
@@ -25,6 +26,14 @@ export const types = gql`
         projects: [Project!]
     }
 `;
+
+
+export const input = gql`
+    input InputVerifyUniqueID {
+        type: String!
+        value: String!
+    }
+`;
 // #endregion module
 
 
@@ -33,5 +42,6 @@ export const types = gql`
 export default gql`
     ${queries}
     ${types}
+    ${input}
 `;
 // #endregion exports
