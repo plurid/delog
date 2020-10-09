@@ -157,8 +157,8 @@ export const GET_RECORDS = gql`
 
 
 export const GET_TESTS = gql`
-    query GetTests {
-        getTests {
+    query GetTests($input: InputQuery) {
+        getTests(input: $input) {
             status
             error {
                 path
@@ -169,6 +169,7 @@ export const GET_TESTS = gql`
                 id
                 status
                 tester
+                time
             }
         }
     }
