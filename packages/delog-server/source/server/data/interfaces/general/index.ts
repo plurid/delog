@@ -123,6 +123,7 @@ export type LoggedRecord = Record & {
 
 export interface Test {
     id: string;
+    time: number;
     status: string;
     tester: string;
     ownedBy: string;

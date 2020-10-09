@@ -36,6 +36,7 @@ export const types = gql`
 
     type Test {
         id: String!
+        time: Int!
         status: String!
         tester: String!
     }

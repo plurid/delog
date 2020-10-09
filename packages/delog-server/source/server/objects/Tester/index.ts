@@ -298,6 +298,7 @@ class Tester {
         } = testerCall;
 
         const testerID = testerCall.data.id;
+        const ownedBy = testerCall.data.ownedBy;
 
         const {
             phases,
@@ -317,6 +318,8 @@ class Tester {
             id: callID,
             status: testStatus,
             tester: testerID,
+            time: Math.floor(Date.now() / 1000),
+            ownedBy,
         };
 
         await database.store(
