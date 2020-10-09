@@ -354,11 +354,11 @@ const TestsView: React.FC<TestsViewProperties> = (
     const rowsHeader = (
         <>
             <div>
-                time
+                status
             </div>
 
             <div>
-                status
+                time
             </div>
 
             <div>
@@ -377,7 +377,7 @@ const TestsView: React.FC<TestsViewProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="200px 100px 1fr 30px"
+                rowTemplate="50px 200px 1fr 30px"
                 rowsHeader={rowsHeader}
                 rows={filteredRows}
                 noRows="no tests"

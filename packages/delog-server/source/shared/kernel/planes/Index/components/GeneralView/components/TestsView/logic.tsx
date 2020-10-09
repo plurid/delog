@@ -5,6 +5,13 @@
     import {
         PluridIconDelete,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridIconRunning,
+        PluridIconTimeout,
+        PluridIconWarning,
+        PluridIconValid,
+    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
@@ -36,11 +43,17 @@ export const testRowRenderer = (
     return (
         <>
             <div>
-                {date}
+                {status
+                    ? (
+                        <PluridIconValid />
+                    ) : (
+                        <PluridIconWarning />
+                    )
+                }
             </div>
 
             <div>
-                {status ? 'success' : 'failed'}
+                {date}
             </div>
 
             <div>
