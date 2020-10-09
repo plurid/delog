@@ -158,6 +158,24 @@ describe('delog - tester', () => {
                 text: 'Test Start',
             });
 
+            delog({
+                endpoint,
+                token,
+
+                project: 'one',
+                space: 'space-name',
+
+                level: delogLevels.info,
+                method: 'method-name',
+
+                context: {
+                    ...testContext,
+                    sharedOrder: 1,
+                },
+
+                text: 'Test Middle',
+            });
+
             if (value < 0.5) {
                 delog({
                     endpoint,
@@ -171,7 +189,7 @@ describe('delog - tester', () => {
 
                     context: {
                         ...testContext,
-                        sharedOrder: 1,
+                        sharedOrder: 2,
                     },
 
                     text: 'Test End Branch A',
@@ -189,7 +207,7 @@ describe('delog - tester', () => {
 
                     context: {
                         ...testContext,
-                        sharedOrder: 1,
+                        sharedOrder: 3,
                     },
 
                     text: 'Test End Branch B',
