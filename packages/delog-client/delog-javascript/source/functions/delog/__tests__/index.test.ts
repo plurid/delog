@@ -134,7 +134,7 @@ describe('delog - simple', () => {
 });
 
 
-describe('delog - tester', () => {
+describe.only('delog - tester', () => {
     it('simple tester', () => {
         const outsideFunction = (
             value: number,
@@ -220,25 +220,25 @@ describe('delog - tester', () => {
             0.3,
         );
 
-        outsideFunction(
-            0.4,
-            {
-                mode: 'TESTING',
-                suite: 'two',
-                scenario: 'three',
-                sharedID: 'one',
-            },
-        );
+        // outsideFunction(
+        //     0.4,
+        //     {
+        //         mode: 'TESTING',
+        //         suite: 'two',
+        //         scenario: 'three',
+        //         sharedID: 'one',
+        //     },
+        // );
 
-        outsideFunction(
-            0.6,
-            {
-                mode: 'TESTING',
-                suite: 'two',
-                scenario: 'four',
-                sharedID: 'two',
-            },
-        );
+        // outsideFunction(
+        //     0.6,
+        //     {
+        //         mode: 'TESTING',
+        //         suite: 'two',
+        //         scenario: 'four',
+        //         sharedID: 'two',
+        //     },
+        // );
     });
 });
 // #endregion module
