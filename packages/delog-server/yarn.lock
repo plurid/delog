@@ -688,6 +688,13 @@
     graphql-tag "^2.11.0"
     subscriptions-transport-ws "^0.9.18"
 
+"@plurid/deon@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@plurid/deon/-/deon-0.0.13.tgz#6e4389af77d70fe53acf9d93dcc0b3b2fda3e49a"
+  integrity sha512-hqPK19uBTbpEtqTZCi/uZRPc5ybmFMx2UTwiiQCwF+eNTSNHLFUWlx/ouD+l+sf2G80IxLSs01Zg4nrV/aGujg==
+  dependencies:
+    cross-fetch "^3.0.6"
+
 "@plurid/plurid-data@^0.1.159":
   version "0.1.159"
   resolved "https://registry.yarnpkg.com/@plurid/plurid-data/-/plurid-data-0.1.159.tgz#e07dc2a8eb4508b4438226ac8cc6d23ea8457abb"

@@ -55,6 +55,7 @@
         "@apollo/client": "^3.2.2",
         "@google-cloud/storage": "^5.3.0",
         "@plurid/delog": "^0.0.8",
+        "@plurid/deon": "^0.0.13",
         "@plurid/plurid-data": "^0.1.159",
         "@plurid/plurid-engine": "^0.1.100",
         "@plurid/plurid-functions": "^0.1.15",
