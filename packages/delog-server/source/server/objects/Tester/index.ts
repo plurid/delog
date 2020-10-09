@@ -68,20 +68,11 @@ const compareRecords = (
     a: LoggedRecord,
     b: LoggedRecord,
 ) => {
-    if (
-        !a.context
-        || !b.context
-        || !a.context.sharedOrder
-        || !b.context.sharedOrder
-    ) {
-        return 0;
-    }
-
-    if (a.context.sharedOrder < b.context.sharedOrder) {
+    if ((a as any).context.sharedOrder < (b as any).context.sharedOrder) {
         return -1;
     }
 
-    if (a.context.sharedOrder > b.context.sharedOrder) {
+    if ((a as any).context.sharedOrder > (b as any).context.sharedOrder) {
         return 1;
     }
 
