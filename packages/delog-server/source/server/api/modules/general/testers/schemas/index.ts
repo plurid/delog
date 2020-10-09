@@ -37,6 +37,7 @@ export const types = gql`
 
     type Tester {
         id: String!
+        name: String!
         project: String!
         suite: String!
         scenario: String!
@@ -51,6 +52,8 @@ export const types = gql`
 
 export const inputs = gql`
     input InputGenerateTester {
+        id: String
+        name: String!
         project: String!
         suite: String!
         scenario: String!

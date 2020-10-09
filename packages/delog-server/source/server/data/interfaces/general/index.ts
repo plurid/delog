@@ -101,6 +101,7 @@ export interface Format {
 
 export interface Tester {
     id: string;
+    name: string;
     project: string;
     suite: string;
     scenario: string;
