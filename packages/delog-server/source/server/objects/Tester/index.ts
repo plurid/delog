@@ -1,8 +1,14 @@
 // #region imports
+    // #region libraries
+    import Deon from '@plurid/deon';
+    // #endregion libraries
+
+
     // #region external
     import {
         LoggedRecord,
         Tester as ITester,
+        TesterConfiguration,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -12,6 +18,27 @@
 
 
 // #region module
+const parseConfiguration = async (
+    data: string,
+) => {
+    try {
+        const deon = new Deon();
+
+        const parsedData: TesterConfiguration = await deon.parse(data);
+
+        return parsedData;
+    } catch (error) {
+        try {
+            const parsedData: TesterConfiguration = JSON.parse(data);
+
+            return parsedData;
+        } catch (error) {
+            return;
+        }
+    }
+}
+
+
 class Tester {
     private log: LoggedRecord;
 
@@ -50,6 +77,13 @@ class Tester {
                 && tester.suite === suite
             ) {
                 // read the configuration
+                const configuration = await parseConfiguration(
+                    tester.configuration,
+                );
+
+                if (!configuration) {
+                    continue;
+                }
 
                 // checck if it matches the first stage
 

@@ -108,6 +108,18 @@ export interface Tester {
 }
 
 
+export interface TesterConfiguration {
+    phases: TesterConfigurationPhase[];
+}
+
+
+export interface TesterConfigurationPhase {
+    method?: string;
+    text: string;
+    level: number | string;
+}
+
+
 export type Record = DelogInputRecord & {
     id: string;
     text: string;
