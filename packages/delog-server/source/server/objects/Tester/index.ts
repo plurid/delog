@@ -1,15 +1,6 @@
 // #region imports
     // #region libraries
-    import {
-        uuid,
-    } from '@plurid/plurid-functions';
-
     import Deon from '@plurid/deon';
-
-    import {
-        DelogContext,
-        DelogInputRecordContext,
-    } from '@plurid/delog';
     // #endregion libraries
 
 
@@ -18,6 +9,8 @@
         LoggedRecord,
         Tester as ITester,
         TesterConfiguration,
+        TesterCall,
+        RequiredTesterConfiguration,
     } from '#server/data/interfaces';
 
     import database from '#server/services/database';
@@ -27,6 +20,28 @@
 
 
 // #region module
+const makeRequiredTesterConfiguration = (
+    data: TesterConfiguration
+) => {
+    const {
+        phases,
+        timeout,
+    } = data;
+
+    const startDelay = data.startDelay ?? 5_000;
+    const retryDelay = data.retryDelay ?? startDelay;
+
+    const requiredTesterConfiguration: RequiredTesterConfiguration = {
+        phases,
+        startDelay,
+        retryDelay,
+        timeout: timeout ?? 60_000,
+    };
+
+    return requiredTesterConfiguration;
+}
+
+
 const parseConfiguration = async (
     data: string,
 ) => {
@@ -35,12 +50,12 @@ const parseConfiguration = async (
 
         const parsedData: TesterConfiguration = await deon.parse(data);
 
-        return parsedData;
+        return makeRequiredTesterConfiguration(parsedData);
     } catch (error) {
         try {
             const parsedData: TesterConfiguration = JSON.parse(data);
 
-            return parsedData;
+            return makeRequiredTesterConfiguration(parsedData);
         } catch (error) {
             return;
         }
@@ -48,81 +63,28 @@ const parseConfiguration = async (
 }
 
 
-const handleTester = async (
-    tester: ITester,
-    context: DelogContext,
-    log: LoggedRecord,
+const compareRecords = (
+    a: LoggedRecord,
+    b: LoggedRecord,
 ) => {
-    const {
-        sharedID,
-        sharedOrder,
-    } = context;
-
     if (
-        !sharedID
-        || typeof sharedOrder === 'undefined'
+        !a.context
+        || !b.context
+        || !a.context.sharedOrder
+        || !b.context.sharedOrder
     ) {
-        return;
+        return 0;
     }
 
-
-    const configuration = await parseConfiguration(
-        tester.configuration,
-    );
-
-    if (!configuration) {
-        return;
+    if (a.context.sharedOrder < b.context.sharedOrder) {
+        return -1;
     }
 
-
-    const {
-        phases,
-    } = configuration;
-
-    const currentPhase = phases[sharedOrder];
-
-    if (!currentPhase) {
-        // log as error?
-        return;
+    if (a.context.sharedOrder > b.context.sharedOrder) {
+        return 1;
     }
 
-    if (
-        currentPhase.text === log.text
-        // && currentPhase.level === log.level
-    ) {
-        const storedTest = await database.query(
-            'test',
-            'id',
-            sharedID,
-        );
-
-        console.log('logText', log.text, sharedOrder);
-
-
-        if (sharedOrder === 0) {
-            // start the test
-
-            const test = {
-                id: uuid.generate(),
-                start: Date.now(),
-                sharedID,
-            };
-            console.log('test', test);
-        }
-
-        if (sharedOrder === phases.length) {
-            // stop the test
-
-            // determine if the test is passed or failed
-        }
-
-        // update the test
-    }
-}
-
-export interface TesterCall {
-    contact: number;
-    data: ITester;
+    return 0;
 }
 
 
@@ -130,111 +92,84 @@ class Tester {
     private calls: Record<string, TesterCall> = {};
     private interval: number = 0;
 
-    constructor(
-    ) {
-    }
 
     public async test(
         log: LoggedRecord,
     ) {
-        const isTestingLog = this.checkTestingLog(
-            log,
-        );
+        try {
+            const isTestingLog = this.checkTestingLog(
+                log,
+            );
 
-        if (!isTestingLog) {
+            if (!isTestingLog) {
+                return;
+            }
+
+            const sharedID = log.context?.sharedID as string;
+
+            const called = this.calls[sharedID];
+
+            if (!called) {
+                const ownedBy = log.ownedBy;
+                const project = log.project as string;
+                const suite = log.context?.suite as string;
+                const scenario = log.context?.scenario as string;
+
+                // check if tests have a test with the sharedID
+                const testInDatabase: any[] = await database.query(
+                    'tests',
+                    'id',
+                    sharedID,
+                );
+
+                if (testInDatabase[0]) {
+                    return;
+                }
+
+                // get tester
+                const testerAggregate: ITester[] = await database.aggregate(
+                    'testers',
+                    [
+                        {
+                            '$match': {
+                                ownedBy,
+                                project,
+                                suite,
+                                scenario,
+                            },
+                        },
+                    ],
+                );
+
+                const tester = testerAggregate[0];
+
+                if (!tester) {
+                    return;
+                }
+
+                // set tester call
+                const contact = await this.setCall(
+                    sharedID,
+                    tester,
+                );
+
+                // write test base to databasee
+                const testStore = {
+                    id: sharedID,
+                    contact,
+                };
+
+                await database.store(
+                    'tests',
+                    sharedID,
+                    testStore,
+                );
+            }
+
+            this.testRunner();
+        } catch (error) {
             return;
         }
-
-        const ownedBy = log.ownedBy;
-        const project = log.project as string;
-        const suite = log.context?.suite as string;
-        const scenario = log.context?.scenario as string;
-        const sharedID = log.context?.sharedID as string;
-
-        const called = this.calls[sharedID];
-
-        if (!called) {
-            // check if tests have a test with the sharedID
-            const testInDatabase: any[] = await database.query(
-                'tests',
-                'id',
-                sharedID,
-            );
-
-            if (testInDatabase[0]) {
-                return;
-            }
-
-            const tester: ITester | undefined = await database.aggregate(
-                'testers',
-                [
-                    {
-                        '$match': {
-                            ownedBy,
-                            project,
-                            suite,
-                            scenario,
-                        },
-                    },
-                ],
-            );
-
-            if (!tester) {
-                return;
-            }
-
-            const contact = this.setCall(
-                sharedID,
-                tester,
-            );
-
-            // const testStore = {
-            //     id: sharedID,
-            //     contact,
-            // };
-
-            // await database.store(
-            //     'test',
-            //     sharedID,
-            //     testStore,
-            // );
-        }
-
-
-        // the log is a testing log
-
-        // get the tester for the log
-
-        // check if testing has started
-
-            // if not - start waiting based on the delay
-            // get all the records based on the shared id
-                // if the number of records equals the number of phases start comparing
-                // else start retrying
-                // at timeout fail the test
-
-
-
-
-        // const testers: ITester[] = await database.query(
-        //     'testers',
-        //     'ownedBy',
-        //     this.log.ownedBy,
-        // );
-
-        // for (const tester of testers) {
-        //     if (
-        //         tester.project === project
-        //         && tester.suite === suite
-        //         && tester.scenario === scenario
-        //     ) {
-        //         handleTester(
-        //             tester,
-        //             context,
-        //             log,
-        //         );
-        //     }
-        // }
     }
 
 
@@ -275,36 +210,64 @@ class Tester {
         return true;
     }
 
-    private runner() {
+    private testRunner() {
         if (this.interval) {
             return;
         }
 
         this.interval = setInterval(
             () => {
-                this.runLoop();
+                this.testRunnerLoop();
             },
             1000,
         );
     }
 
-    private runLoop() {
+    private testRunnerLoop() {
+        if (Object.entries(this.calls).length === 0) {
+            clearInterval(this.interval);
+            this.interval = 0;
+            return;
+        }
+
         const now = Date.now();
 
-        for (const [id, time] of Object.entries(this.calls)) {
-            // check if time is in the past above the threshold
+        for (const [id, call] of Object.entries(this.calls)) {
+            const {
+                contact,
+                configuration,
+            } = call;
+
+            // check if the past is above the delay threshold
+            const testTime = contact + configuration.startDelay;
+
+            if (testTime > now) {
+                // try to handle test
+                this.handleTester(id);
+            }
+
+            // continue;
         }
     }
 
-    private setCall(
+    private async setCall(
         id: string,
         data: ITester,
     ) {
+        const configuration = await parseConfiguration(
+            data.configuration,
+        );
+
+        if (!configuration) {
+            return;
+        }
+
         const contact = Date.now();
 
         this.calls[id] = {
             contact,
             data,
+            configuration,
         };
 
         return contact;
@@ -314,6 +277,66 @@ class Tester {
         id: string,
     ) {
         delete this.calls[id];
+    }
+
+    private async handleTester(
+        callID: string,
+    ) {
+        const testerCall = this.calls[callID];
+
+        if (!testerCall) {
+            return;
+        }
+
+        const records: LoggedRecord[] = await database.aggregate(
+            'records',
+            [
+                {
+                    '$match': {
+                        'context.sharedID': callID,
+                    },
+                },
+            ],
+        );
+
+        if (records.length === 0) {
+            return;
+        }
+
+        const sortedRecords = records.sort(compareRecords);
+
+        const {
+            configuration,
+        } = testerCall;
+
+        const {
+            phases,
+        } = configuration;
+
+        let testStatus = true;
+
+        for (const [index, record] of sortedRecords.entries()) {
+            if (record.text !== phases[index].text) {
+                // test failed
+                testStatus = false;
+                break;
+            }
+        }
+
+        const testStore = {
+            id: callID,
+            status: testStatus,
+        };
+
+        await database.store(
+            'tests',
+            callID,
+            testStore,
+        );
+
+        this.unsetCall(
+            callID,
+        );
     }
 }
 // #endregion module
