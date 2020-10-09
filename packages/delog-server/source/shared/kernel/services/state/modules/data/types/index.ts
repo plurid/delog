@@ -102,7 +102,8 @@ export interface AddEntitiesAction {
 
 
 export type RemoveableEntitiesType =
-    | 'records';
+    | 'records'
+    | 'tests';
 
 export const REMOVE_ENTITIES = 'REMOVE_ENTITIES';
 export interface RemoveEntitiesPayload {

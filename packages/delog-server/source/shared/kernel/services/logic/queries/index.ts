@@ -229,6 +229,7 @@ const getRecords = async (
 
 const getTests = async (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    pagination?: InputQuery,
 ) => {
     const dispatchDataAddEntities: typeof actions.data.addEntities = (
         payload,
@@ -237,9 +238,17 @@ const getTests = async (
     );
 
     try {
+        const input = {
+            count: pagination?.count,
+            start: pagination?.start,
+        };
+
         const query = await client.query({
             query: GET_TESTS,
             fetchPolicy: 'no-cache',
+            variables: {
+                input,
+            },
         });
 
         const response = query.data.getTests;
@@ -253,6 +262,7 @@ const getTests = async (
         dispatchDataAddEntities({
             type: 'tests',
             data: tests,
+            push: pagination ? 'CONCATENATE' : '',
         });
 
         return true;

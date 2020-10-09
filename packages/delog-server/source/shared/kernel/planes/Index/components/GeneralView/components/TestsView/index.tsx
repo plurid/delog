@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import React, {
+        useRef,
         useState,
         useEffect,
     } from 'react';
@@ -12,6 +13,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridLinkButton,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -21,15 +26,27 @@
     } from '#server/utilities/general';
 
     import {
+        parseFilter,
+    } from '#server/utilities/filter';
+
+    import {
+        logLevelsText,
+    } from '#server/data/constants/logger';
+
+    import {
         Test,
+        InputQuery,
     } from '#server/data/interfaces';
 
-    import EntityView from '#kernel-components/EntityView';
+    import EntityView, {
+        EntityViewRefAttributes,
+    } from '#kernel-components/EntityView';
 
     import client from '#kernel-services/graphql/client';
 
     import {
         OBLITERATE_TEST,
+        OBLITERATE_TESTS,
     } from '#kernel-services/graphql/mutate';
 
     import {
@@ -51,6 +68,10 @@
         testRowRenderer,
         createSearchTerms,
     } from './logic';
+
+    import {
+        StyledObliterateButton,
+    } from './styled';
     // #endregion internal
 // #endregion imports
 
@@ -85,6 +106,7 @@ export interface TestsViewStateProperties {
 export interface TestsViewDispatchProperties {
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
     dispatchRemoveEntity: typeof actions.data.removeEntity;
+    dispatchRemoveEntities: typeof actions.data.removeEntities;
 }
 
 export type TestsViewProperties = TestsViewOwnProperties
@@ -105,9 +127,15 @@ const TestsView: React.FC<TestsViewProperties> = (
         // #region dispatch
         dispatch,
         dispatchRemoveEntity,
+        dispatchRemoveEntities,
         // #endregion dispatch
     } = properties;
     // #endregion properties
+
+
+    // #region references
+    const entityView = useRef<EntityViewRefAttributes | null>(null);
+    // #endregion references
 
 
     // #region handlers
@@ -150,6 +178,21 @@ const TestsView: React.FC<TestsViewProperties> = (
             ),
         ),
     );
+
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
+
+    const [
+        filterValue,
+        setFilterValue,
+    ] = useState('');
+
+    const [
+        filterIDs,
+        setFilterIDs,
+    ] = useState<string[]>([]);
     // #endregion state
 
 
@@ -157,33 +200,128 @@ const TestsView: React.FC<TestsViewProperties> = (
     const filterUpdate = (
         rawValue: string,
     ) => {
-        const value = rawValue.toLowerCase();
+        setFilterValue(rawValue);
 
-        const filterIDs = getFilterIDs(
-            searchTerms,
-            value,
+        if (!rawValue) {
+            setFilteredRows(
+                stateTests.map(
+                    test => testRowRenderer(
+                        test,
+                        handleTestObliterate,
+                    ),
+                ),
+            );
+
+            return;
+        }
+
+        const parsedFilter = parseFilter(rawValue);
+
+        if (!parsedFilter) {
+            return;
+        }
+
+
+        if (typeof parsedFilter === 'string') {
+            const value = rawValue.toLowerCase();
+
+            const filterIDs = getFilterIDs(
+                searchTerms,
+                value,
+            );
+
+            setFilterIDs(filterIDs);
+
+            const filteredTests = stateTests.filter(stateTest => {
+                if (filterIDs.includes(stateTest.id)) {
+                    return true;
+                }
+
+                return false;
+            });
+
+            const sortedTests = filteredTests.sort(
+                compareValues('time', 'desc'),
+            );
+
+            setFilteredRows(
+                sortedTests.map(
+                    test => testRowRenderer(
+                        test,
+                        handleTestObliterate,
+                    ),
+                ),
+            );
+
+            return;
+        }
+    }
+
+    const actionScrollBottom = async (
+        records: any[],
+    ) => {
+        setLoading(true);
+
+        const last = records[records.length - 1];
+
+        const pagination: InputQuery = {
+            count: 10,
+            start: last?.id,
+        };
+
+        await getTests(
+            dispatch,
+            pagination,
         );
 
-        const filteredTests = stateTests.filter(stateTest => {
-            if (filterIDs.includes(stateTest.id)) {
-                return true;
+        if (filterValue) {
+            filterUpdate(filterValue);
+        }
+
+        setLoading(false);
+    }
+
+    const obliterateTests = async () => {
+        try {
+            if (filterValue) {
+                const ids = [
+                    ...filterIDs,
+                ];
+
+                if (entityView.current) {
+                    entityView.current.resetFilterValue();
+                }
+
+                dispatchRemoveEntities({
+                    type: 'tests',
+                    ids,
+                });
+
+                const input = {
+                    ids,
+                };
+
+                await client.mutate({
+                    mutation: OBLITERATE_TESTS,
+                    variables: {
+                        input,
+                    },
+                });
+
+                return;
             }
 
-            return false;
-        });
+            dispatchRemoveEntities({
+                type: 'tests',
+                ids: stateTests.map(test => test.id),
+            });
 
-        const sortedTests = filteredTests.sort(
-            compareValues('name'),
-        );
-
-        setFilteredRows(
-            sortedTests.map(
-                test => testRowRenderer(
-                    test,
-                    handleTestObliterate,
-                ),
-            ),
-        );
+            await client.mutate({
+                mutation: OBLITERATE_TESTS,
+            });
+        } catch (error) {
+            return;
+        }
     }
     // #endregion handlers
 
@@ -228,20 +366,44 @@ const TestsView: React.FC<TestsViewProperties> = (
     );
 
     return (
-        <EntityView
-            generalTheme={stateGeneralTheme}
-            interactionTheme={stateInteractionTheme}
+        <>
+            <EntityView
+                ref={entityView}
 
-            rowTemplate="100px 1fr 30px"
-            rowsHeader={rowsHeader}
-            rows={filteredRows}
-            noRows="no tests"
+                generalTheme={stateGeneralTheme}
+                interactionTheme={stateInteractionTheme}
 
-            filterUpdate={filterUpdate}
-            refresh={() => {
-                getTests(dispatch);
-            }}
-        />
+                rowTemplate="100px 1fr 30px"
+                rowsHeader={rowsHeader}
+                rows={filteredRows}
+                noRows="no tests"
+
+                entities={stateTests}
+                loading={loading ? 1 : 0}
+
+                filterUpdate={filterUpdate}
+                refresh={() => {
+                    getTests(dispatch);
+                }}
+
+                actionScrollBottom={actionScrollBottom}
+            />
+
+            {stateTests.length > 0
+            && (filterValue ? filteredRows.length > 0 : true)
+            && (
+                <StyledObliterateButton>
+                    <PluridLinkButton
+                        text={filterValue
+                            ? `obliterate with filter '${filterValue}'`
+                            : 'obliterate'
+                        }
+                        atClick={() => obliterateTests()}
+                        inline={true}
+                    />
+                </StyledObliterateButton>
+            )}
+        </>
     );
     // #endregion render
 }
@@ -264,6 +426,11 @@ const mapDispatchToProperties = (
         payload,
     ) => dispatch (
         actions.data.removeEntity(payload),
+    ),
+    dispatchRemoveEntities: (
+        payload,
+    ) => dispatch (
+        actions.data.removeEntities(payload),
     ),
 });
 
