@@ -20,7 +20,7 @@ const token = '__TESTS__';
 
 
 describe('delog - simple', () => {
-    it.only('works', () => {
+    it('works', () => {
         delog({
             text: 'works',
 
@@ -134,8 +134,8 @@ describe('delog - simple', () => {
 });
 
 
-describe.only('delog - tester', () => {
-    it('simple tester', () => {
+describe('delog - tester', () => {
+    it.only('simple tester', () => {
         const outsideFunction = (
             value: number,
             testContext?: DelogTestingContext,
@@ -216,19 +216,19 @@ describe.only('delog - tester', () => {
         }
 
 
-        outsideFunction(
-            0.3,
-        );
-
         // outsideFunction(
-        //     0.4,
-        //     {
-        //         mode: 'TESTING',
-        //         suite: 'two',
-        //         scenario: 'three',
-        //         sharedID: 'one',
-        //     },
+        //     0.3,
         // );
+
+        outsideFunction(
+            0.4,
+            {
+                mode: 'TESTING',
+                suite: 'two',
+                scenario: 'three',
+                sharedID: 'one',
+            },
+        );
 
         // outsideFunction(
         //     0.6,
