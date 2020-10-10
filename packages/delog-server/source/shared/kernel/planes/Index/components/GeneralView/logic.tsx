@@ -16,7 +16,7 @@
         PluridIconContact,
         PluridIconCommand,
         PluridIconInfo,
-        PluridIconLink,
+        PluridIconNewStateline,
         PluridIconArrowRight,
         PluridIconDocuments,
         PluridIconExternalLink,
@@ -96,7 +96,7 @@ export const generalSelectorsIcons = {
     notifiers: PluridIconContact,
     testers: PluridIconCommand,
     records: PluridIconInfo,
-    tests: PluridIconLink,
+    tests: PluridIconNewStateline,
 };
 
 
@@ -290,7 +290,7 @@ export const renderGeneralView = (
                                                     manual
                                                 </div>
 
-                                                <PluridIconExternalLink/>
+                                                <PluridIconExternalLink />
                                             </>
                                         )}
                                     </StyledGeneralHelpItem>
