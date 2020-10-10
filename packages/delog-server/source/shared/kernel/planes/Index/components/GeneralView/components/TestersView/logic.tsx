@@ -52,6 +52,10 @@ const Configuration: React.FC<ConfigurationProperties> = (
             <PluridLinkButton
                 text={showConfiguration ? 'hide' : 'show'}
                 atClick={() => setShowConfiguration(show => !show)}
+                inline={true}
+                style={{
+                    border: 'none',
+                }}
             />
 
             {showConfiguration && (
