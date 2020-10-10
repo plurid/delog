@@ -43,19 +43,17 @@ export const testRowRenderer = (
 
     return (
         <>
-            <div>
-                {status
-                    ? (
-                        <PluridIconValid
-                            inactive={true}
-                        />
-                    ) : (
-                        <PluridIconInvalid
-                            inactive={true}
-                        />
-                    )
-                }
-            </div>
+            {status
+                ? (
+                    <PluridIconValid
+                        inactive={true}
+                    />
+                ) : (
+                    <PluridIconInvalid
+                        inactive={true}
+                    />
+                )
+            }
 
             <div>
                 {date}
