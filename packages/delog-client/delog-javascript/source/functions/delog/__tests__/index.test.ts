@@ -206,7 +206,7 @@ describe('delog - tester', () => {
 
                 context: {
                     ...testContext,
-                    sharedOrder: 3,
+                    sharedOrder: 2,
                 },
 
                 text: 'Test End Branch B',
