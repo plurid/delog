@@ -13,7 +13,7 @@
 export const DATABASE_TYPE = (process.env.DELOG_DATABASE_TYPE as DatabaseType | undefined)
     || 'mongo';
 
-export const STORAGE_TYPE = (process.env.PERFORMER_STORAGE_TYPE as StorageType | undefined)
+export const STORAGE_TYPE = (process.env.DELOG_STORAGE_TYPE as StorageType | undefined)
     || 'filesystem';
 
 
