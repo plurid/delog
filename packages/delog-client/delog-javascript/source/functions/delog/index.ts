@@ -38,6 +38,7 @@ const delog = async (
 
         groundLevel,
 
+        graphqlClient,
         endpoint,
         token,
 
@@ -54,12 +55,12 @@ const delog = async (
     } = configuration;
 
 
-    if (!endpoint) {
+    if (!endpoint && graphqlClient) {
         console.log('Delog Error :: An endpoint is required.');
         return;
     }
 
-    if (!token) {
+    if (!token && graphqlClient) {
         console.log('Delog Error :: A token is required.');
         return;
     }
@@ -80,7 +81,7 @@ const delog = async (
             context?.call,
         );
 
-        const graphql = client(
+        const graphql = graphqlClient || client(
             endpoint,
             token,
         );
