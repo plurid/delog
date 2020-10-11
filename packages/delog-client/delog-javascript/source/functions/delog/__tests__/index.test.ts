@@ -135,11 +135,65 @@ describe('delog - simple', () => {
 
 
 describe('delog - tester', () => {
-    it.only('simple tester', () => {
-        const outsideFunction = (
-            value: number,
-            testContext?: DelogTestingContext,
-        ) => {
+    const outsideFunction = (
+        value: number,
+        testContext?: DelogTestingContext,
+    ) => {
+        delog({
+            endpoint,
+            token,
+
+            project: 'one',
+            space: 'space-name',
+
+            level: delogLevels.info,
+            method: 'method-name',
+
+            context: {
+                ...testContext,
+                sharedOrder: 0,
+            },
+
+            text: 'Test Start',
+        });
+
+        delog({
+            endpoint,
+            token,
+
+            project: 'one',
+            space: 'space-name',
+
+            level: delogLevels.info,
+            method: 'method-name',
+
+            context: {
+                ...testContext,
+                sharedOrder: 1,
+            },
+
+            text: 'Test Middle',
+        });
+
+        if (value < 0.5) {
+            delog({
+                endpoint,
+                token,
+
+                project: 'one',
+                space: 'space-name',
+
+                level: delogLevels.error,
+                method: 'method-name',
+
+                context: {
+                    ...testContext,
+                    sharedOrder: 2,
+                },
+
+                text: 'Test End Branch A',
+            });
+        } else {
             delog({
                 endpoint,
                 token,
@@ -152,73 +206,19 @@ describe('delog - tester', () => {
 
                 context: {
                     ...testContext,
-                    sharedOrder: 0,
+                    sharedOrder: 3,
                 },
 
-                text: 'Test Start',
+                text: 'Test End Branch B',
             });
-
-            delog({
-                endpoint,
-                token,
-
-                project: 'one',
-                space: 'space-name',
-
-                level: delogLevels.info,
-                method: 'method-name',
-
-                context: {
-                    ...testContext,
-                    sharedOrder: 1,
-                },
-
-                text: 'Test Middle',
-            });
-
-            if (value < 0.5) {
-                delog({
-                    endpoint,
-                    token,
-
-                    project: 'one',
-                    space: 'space-name',
-
-                    level: delogLevels.error,
-                    method: 'method-name',
-
-                    context: {
-                        ...testContext,
-                        sharedOrder: 2,
-                    },
-
-                    text: 'Test End Branch A',
-                });
-            } else {
-                delog({
-                    endpoint,
-                    token,
-
-                    project: 'one',
-                    space: 'space-name',
-
-                    level: delogLevels.info,
-                    method: 'method-name',
-
-                    context: {
-                        ...testContext,
-                        sharedOrder: 3,
-                    },
-
-                    text: 'Test End Branch B',
-                });
-            }
         }
+    }
 
 
-        // outsideFunction(
-        //     0.3,
-        // );
+    it.only('simple tester', () => {
+        outsideFunction(
+            0.3,
+        );
 
         outsideFunction(
             0.4,
@@ -230,15 +230,15 @@ describe('delog - tester', () => {
             },
         );
 
-        // outsideFunction(
-        //     0.6,
-        //     {
-        //         mode: 'TESTING',
-        //         suite: 'two',
-        //         scenario: 'four',
-        //         sharedID: 'two' + Math.random(),
-        //     },
-        // );
+        outsideFunction(
+            0.6,
+            {
+                mode: 'TESTING',
+                suite: 'two',
+                scenario: 'four',
+                sharedID: 'two' + Math.random(),
+            },
+        );
     });
 });
 // #endregion module
