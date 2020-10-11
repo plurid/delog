@@ -254,8 +254,6 @@ class Tester {
             return;
         }
 
-        this.calls[callID].inHandle = true;
-
         const records: LoggedRecord[] = await database.aggregate(
             'records',
             [
@@ -270,6 +268,13 @@ class Tester {
         if (records.length === 0) {
             return;
         }
+
+        if (this.calls[callID].inHandle) {
+            return;
+        }
+
+
+        this.calls[callID].inHandle = true;
 
         const indexedRecords = {};
 
