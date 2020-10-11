@@ -8,6 +8,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        useDebouncedCallback,
+    } from '@plurid/plurid-functions-react';
     // #endregion libraries
 
 
@@ -128,6 +132,10 @@ const Tester: React.FC<TesterProperties> = (
         testerConfiguration,
         setTesterConfiguration,
     ] = useState('');
+    const [
+        testerError,
+        setTesterError,
+    ] = useState('');
 
     const [
         validTester,
@@ -178,10 +186,17 @@ const Tester: React.FC<TesterProperties> = (
 
         if (isUnique) {
             setTesterUniqueID(true);
+            setTesterError('');
         } else {
             setTesterUniqueID(false);
+            setTesterError('the id must be unique');
         }
     }
+
+    const debouncedVerifyUniqueID = useDebouncedCallback(
+        handleVerifyUniqueID,
+        1000,
+    );
     // #endregion handlers
 
 
@@ -205,7 +220,7 @@ const Tester: React.FC<TesterProperties> = (
             if (dataEntered) {
                 setValidTester(true);
             } else {
-               setValidTester(false);
+                setValidTester(false);
             }
         } else {
             if (
@@ -214,7 +229,7 @@ const Tester: React.FC<TesterProperties> = (
             ) {
                 setValidTester(true);
             } else {
-               setValidTester(false);
+                setValidTester(false);
             }
         }
     }, [
@@ -243,6 +258,8 @@ const Tester: React.FC<TesterProperties> = (
                 text={testerID}
                 theme={theme}
                 atChange={(event) => {
+                    setTesterError('');
+
                     const {
                         value,
                     } = event.target;
@@ -251,7 +268,7 @@ const Tester: React.FC<TesterProperties> = (
                         value,
                     );
 
-                    handleVerifyUniqueID(
+                    debouncedVerifyUniqueID(
                         value,
                     );
                 }}
@@ -320,9 +337,12 @@ const Tester: React.FC<TesterProperties> = (
                 </div>
             )}
 
-            {testerID && !testerUniqueID && (
+            {testerID
+            && !testerUniqueID
+            && testerError
+            && (
                 <div>
-                    the id must be unique
+                    {testerError}
                 </div>
             )}
         </StyledTester>
