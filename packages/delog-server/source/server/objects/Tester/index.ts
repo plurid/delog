@@ -296,19 +296,29 @@ class Tester {
             phases,
         } = configuration;
 
-        let testStatus = true;
+        const phasesStatus = [];
 
-        if (sortedRecords.length === phases.length) {
-            for (const [index, record] of sortedRecords.entries()) {
-                if (record.text !== phases[index].text) {
-                    // test failed
-                    testStatus = false;
-                    break;
-                }
+        for (const [index, phase] of phases.entries()) {
+            const record = sortedRecords[index];
+
+            if (!record) {
+                phasesStatus[index] = 0;
+                continue;
             }
-        } else {
-            testStatus = false;
+
+            if (
+                phase.text !== record.text
+            ) {
+                phasesStatus[index] = 0;
+                continue;
+            }
+
+            phasesStatus[index] = 1;
         }
+
+        const phasesResult = phasesStatus.reduce((accumulator, value) => accumulator + value, 0);
+
+        let testStatus = (phasesResult / phases.length) === 1;
 
         const testStore: Test = {
             id: callID,
@@ -316,6 +326,7 @@ class Tester {
             tester: testerID,
             time: Math.floor(Date.now() / 1000),
             ownedBy,
+            phasesStatus,
         };
 
         await database.store(

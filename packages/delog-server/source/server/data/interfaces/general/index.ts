@@ -128,6 +128,7 @@ export interface Test {
     status: boolean;
     tester: string;
     ownedBy: string;
+    phasesStatus: number[];
 }
 
 
