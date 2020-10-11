@@ -87,6 +87,10 @@ export const testerRowRenderer = (
     return (
         <>
             <div>
+                {id}
+            </div>
+
+            <div>
                 {name}
             </div>
 
@@ -131,6 +135,7 @@ export const createSearchTerms = (
             const searchTerm = {
                 id,
                 data: [
+                    id.toLowerCase(),
                     name.toLowerCase(),
                     project.toLowerCase(),
                     suite.toLowerCase(),
