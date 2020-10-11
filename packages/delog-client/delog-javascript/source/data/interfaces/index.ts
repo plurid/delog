@@ -66,7 +66,7 @@ export interface DelogData {
 
 
 export type RequiredDelogData = Required<
-    Omit<DelogData, 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
+    Omit<DelogData, 'graphqlClient' | 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
 > & {
     time: number;
 
