@@ -16,13 +16,19 @@
             ],
         },
 
-        "outDir": "build",
+        "plugins": [
+            {
+                "transform": "typescript-transform-paths",
+                "afterDeclarations": true,
+            },
+        ],
+
+        "outDir": "distribution",
         "typeRoots": [
             "node_modules/@types",
         ],
 
         "declaration": true,
-        "declarationDir": "distribution",
         "sourceMap": true,
         "allowJs": false,
         "esModuleInterop": true,
