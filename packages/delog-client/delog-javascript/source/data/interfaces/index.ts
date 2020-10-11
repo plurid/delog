@@ -2,7 +2,7 @@
     // #region libraries
     import {
         ApolloClient,
-        NormalizedCache,
+        NormalizedCacheObject,
     } from '@apollo/client/core';
     // #endregion libraries
 // #endregion imports
@@ -16,7 +16,7 @@ export interface DelogData {
 
 
     // Configuration optionals.
-    graphqlClient?: ApolloClient<NormalizedCache>,
+    graphqlClient?: ApolloClient<NormalizedCacheObject>,
 
     endpoint?: string;
     token?: string;
