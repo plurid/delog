@@ -12,6 +12,7 @@
     import IndexPlane from '#kernel-planes/Index';
     import RecordPlane from '#kernel-planes/Record';
     import CodePlane from '#kernel-planes/Code';
+    import TestPlane from '#kernel-planes/Test';
     import NotFoundPlane from '#kernel-planes/NotFound';
 
     import Head from '#kernel-components/Head';
@@ -49,6 +50,13 @@ const indexRoute: PluridRoute = {
             component: {
                 kind: 'react',
                 element: CodePlane,
+            },
+        },
+        {
+            value: '/test/:id',
+            component: {
+                kind: 'react',
+                element: TestPlane,
             },
         },
     ],

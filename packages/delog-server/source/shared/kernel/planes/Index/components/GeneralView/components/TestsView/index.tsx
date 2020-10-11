@@ -365,6 +365,10 @@ const TestsView: React.FC<TestsViewProperties> = (
                 tester
             </div>
 
+            <div>
+                details
+            </div>
+
             <div />
         </>
     );
@@ -377,7 +381,7 @@ const TestsView: React.FC<TestsViewProperties> = (
                 generalTheme={stateGeneralTheme}
                 interactionTheme={stateInteractionTheme}
 
-                rowTemplate="70px 200px 1fr 30px"
+                rowTemplate="70px 200px 1fr 100px 30px"
                 rowsHeader={rowsHeader}
                 rows={filteredRows}
                 noRows="no tests"

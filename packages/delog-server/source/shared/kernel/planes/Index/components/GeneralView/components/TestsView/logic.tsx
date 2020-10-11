@@ -4,15 +4,17 @@
 
     import {
         PluridIconDelete,
-    } from '@plurid/plurid-icons-react';
-
-    import {
+        PluridIconInfo,
         // PluridIconRunning,
         // PluridIconTimeout,
         // PluridIconWarning,
         PluridIconInvalid,
         PluridIconValid,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridLink,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -62,6 +64,15 @@ export const testRowRenderer = (
             <div>
                 {tester}
             </div>
+
+            <PluridLink
+                route={`/test/${id}`}
+                devisible={true}
+            >
+                <PluridIconInfo
+                    atClick={() => {}}
+                />
+            </PluridLink>
 
             <PluridIconDelete
                 atClick={() => handleTestObliterate(id)}
