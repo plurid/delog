@@ -24,15 +24,6 @@ const LOGIN = gql`
         }
     }
 `;
-
-
-const RECORD = gql`
-    mutation DelogMutationRecord($input: DelogInputRecord!) {
-        delogMutationRecord(input: $input) {
-            status
-        }
-    }
-`;
 // #endregion module
 
 
@@ -40,6 +31,5 @@ const RECORD = gql`
 // #region exports
 export {
     LOGIN,
-    RECORD,
 };
 // #endregion exports

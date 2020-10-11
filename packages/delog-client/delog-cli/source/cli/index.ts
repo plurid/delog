@@ -150,6 +150,10 @@ const main = async (
             '3',
         )
         .option(
+            '-t, --tester <tester>',
+            'tester',
+        )
+        .option(
             '-p, --project <project>',
             'project',
         )
@@ -192,6 +196,8 @@ const main = async (
 
                     format,
 
+                    tester,
+
                     method,
                     error,
                     extradata,
@@ -217,6 +223,8 @@ const main = async (
                     space,
 
                     format,
+
+                    tester,
 
                     method,
                     error,

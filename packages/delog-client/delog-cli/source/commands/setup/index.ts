@@ -1,10 +1,6 @@
 // #region imports
     // #region external
     import {
-        getDelog,
-    } from '../../services/utilities';
-
-    import {
         getConfiguration,
         updateConfiguration,
     } from '../../services/utilities'
