@@ -162,7 +162,9 @@ const deregisterRecord = async (
     try {
         await database.obliterate(
             'records',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

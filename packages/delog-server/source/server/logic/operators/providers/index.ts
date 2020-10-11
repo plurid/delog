@@ -55,7 +55,9 @@ const deregisterProvider = async (
 ) => {
     await database.obliterate(
         'providers',
-        input.value,
+        {
+            id: input.value,
+        },
     );
 }
 // #endregion module

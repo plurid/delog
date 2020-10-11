@@ -263,23 +263,23 @@ class Database implements IDatabase {
 
     public async obliterate(
         entity: string,
-        id: string,
+        filter: Record<string, any>,
     ) {
         switch (this.type) {
             case databaseType.amazon:
                 return amazonDatabase.obliterate(
                     entity,
-                    id,
+                    filter,
                 );
             case databaseType.google:
                 return googleDatabase.obliterate(
                     entity,
-                    id,
+                    filter,
                 );
             case databaseType.mongo:
                 return mongoDatabase.obliterate(
                     entity,
-                    id,
+                    filter,
                 );
             default:
                 return;
@@ -288,7 +288,7 @@ class Database implements IDatabase {
 
     public async obliterateAll(
         entity: string,
-        filter?: Record<string, string>,
+        filter?: Record<string, any>,
     ) {
         switch (this.type) {
             case databaseType.amazon:

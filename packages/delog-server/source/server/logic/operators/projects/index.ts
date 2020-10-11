@@ -46,7 +46,9 @@ const deregisterProject = async (
     try {
         await database.obliterate(
             'projects',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

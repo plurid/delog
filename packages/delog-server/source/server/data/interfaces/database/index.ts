@@ -102,12 +102,12 @@ export type DatabaseUpdate = (
 
 export type DatabaseObliterate = (
     entity: string,
-    id: string,
+    filter: Record<string, any>,
 ) => Promise<any>;
 
 
 export type DatabaseObliterateAll = (
     entity: string,
-    filter?: Record<string, string>,
+    filter?: Record<string, any>,
 ) => Promise<any>;
 // #endregion module

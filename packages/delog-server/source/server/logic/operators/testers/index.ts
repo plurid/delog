@@ -43,11 +43,15 @@ const registerTester = async (
 
 const deregisterTester = async (
     id: string,
+    ownedBy: string,
 ) => {
     try {
         await database.obliterate(
             'testers',
-            id,
+            {
+                id,
+                ownedBy,
+            },
         );
     } catch (error) {
         return;

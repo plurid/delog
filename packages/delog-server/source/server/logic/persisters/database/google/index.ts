@@ -94,7 +94,7 @@ const update: DatabaseUpdate = async (
 
 const obliterate: DatabaseObliterate = async (
     entity,
-    id,
+    filter,
 ) => {
     return;
 }
@@ -102,6 +102,7 @@ const obliterate: DatabaseObliterate = async (
 
 const obliterateAll: DatabaseObliterateAll = async (
     entity,
+    filter,
 ) => {
     return;
 }

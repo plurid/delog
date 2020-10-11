@@ -51,7 +51,7 @@ const obliterateTester = async (
     try {
         // #region input unpack
         const {
-            value: name,
+            value: id,
         } = input;
         // #endregion input unpack
 
@@ -74,7 +74,10 @@ const obliterateTester = async (
                 };
             }
 
-            await deregisterTester(name);
+            await deregisterTester(
+                id,
+                privateOwnerIdentonym,
+            );
 
             logger.log(
                 obliterateTesterLogs.infoSuccessPrivateUsage,
@@ -97,7 +100,10 @@ const obliterateTester = async (
                 logLevels.trace,
             );
 
-            await deregisterTester(name);
+            await deregisterTester(
+                id,
+                '',
+            );
 
             logger.log(
                 obliterateTesterLogs.infoEndCustomLogicUsage,
@@ -112,7 +118,10 @@ const obliterateTester = async (
 
 
         // #region public usage
-        await deregisterTester(name);
+        await deregisterTester(
+            id,
+            '',
+        );
 
         logger.log(
             obliterateTesterLogs.infoSuccess,

@@ -59,7 +59,9 @@ const deregisterNotifier = async (
     try {
         await database.obliterate(
             'notifiers',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

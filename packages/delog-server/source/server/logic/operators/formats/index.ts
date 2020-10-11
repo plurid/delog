@@ -53,7 +53,9 @@ const deregisterFormat = async (
     try {
         await database.obliterate(
             'formats',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

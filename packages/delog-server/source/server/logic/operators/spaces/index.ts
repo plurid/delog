@@ -53,7 +53,9 @@ const deregisterSpace = async (
     try {
         await database.obliterate(
             'spaces',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

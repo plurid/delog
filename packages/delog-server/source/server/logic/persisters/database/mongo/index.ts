@@ -308,7 +308,7 @@ const update: DatabaseUpdate = async (
 
 const obliterate: DatabaseObliterate = async (
     entity,
-    id,
+    filter,
 ) => {
     if (!connection) {
         console.log(mongoNoConnectionError);
@@ -321,7 +321,7 @@ const obliterate: DatabaseObliterate = async (
         const collection = database.collection(entity);
 
         const deletion = await collection.deleteOne({
-            id,
+            ...filter,
         });
 
         if (deletion.deletedCount !== 1) {

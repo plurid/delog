@@ -87,7 +87,9 @@ export const deregisterRepository = async (
 
     await database.obliterate(
         'repositories',
-        id,
+        {
+            id,
+        },
     );
 }
 
