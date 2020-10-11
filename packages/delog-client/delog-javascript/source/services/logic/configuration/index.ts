@@ -52,6 +52,8 @@ const getConfiguration = (
         time,
         level: data.level || delogLevels.info,
 
+        graphqlClient: data.graphqlClient,
+
         groundLevel: GROUND_LEVEL,
 
         endpoint: data.endpoint || ENDPOINT,
