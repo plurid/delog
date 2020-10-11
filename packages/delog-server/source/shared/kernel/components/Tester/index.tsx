@@ -168,10 +168,12 @@ const Tester: React.FC<TesterProperties> = (
         }
     }
 
-    const handleVerifyUniqueID = async () => {
+    const handleVerifyUniqueID = async (
+        value: string,
+    ) => {
         const isUnique = await verifyUniqueID({
             type: 'testers',
-            value: testerID,
+            value,
         });
 
         if (isUnique) {
@@ -241,9 +243,17 @@ const Tester: React.FC<TesterProperties> = (
                 text={testerID}
                 theme={theme}
                 atChange={(event) => {
-                    setTesterID(event.target.value);
+                    const {
+                        value,
+                    } = event.target;
 
-                    handleVerifyUniqueID();
+                    setTesterID(
+                        value,
+                    );
+
+                    handleVerifyUniqueID(
+                        value,
+                    );
                 }}
                 atKeyDown={handleEnter}
             />

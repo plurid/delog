@@ -84,7 +84,11 @@ const get: DatabaseGet = async (
 
         const collection = database.collection(entity);
 
-        return;
+        const item = await collection.findOne({
+            id,
+        });
+
+        return item;
     } catch (error) {
         return;
     }
