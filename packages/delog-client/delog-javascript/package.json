@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Cloud-Native Logger Client",
     "keywords": [
         "delog",
@@ -39,7 +39,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@apollo/client": "^3.2.2",
+        "@apollo/client": "^3.2.3",
         "@plurid/plurid-functions": "^0.1.15",
         "cross-fetch": "^3.0.6",
         "graphql": "^15.3.0",
@@ -49,10 +49,10 @@
     "devDependencies": {
         "@rollup/plugin-commonjs": "^15.1.0",
         "@rollup/plugin-node-resolve": "^9.0.0",
-        "@types/node": "^14.11.5",
+        "@types/node": "^14.11.8",
         "@typescript-eslint/eslint-plugin": "^4.4.0",
         "@typescript-eslint/parser": "^4.4.0",
-        "eslint": "^7.10.0",
+        "eslint": "^7.11.0",
         "jest": "^26.5.2",
         "jest-config": "^26.5.2",
         "react": "^16.13.1",
