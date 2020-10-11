@@ -68,7 +68,7 @@ export interface DelogData {
 export type RequiredDelogData = Required<
     Omit<DelogData, 'graphqlClient' | 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
 > & {
-    graphqlClient?: ApolloClient<NormalizedCache>,
+    graphqlClient?: ApolloClient<NormalizedCacheObject>,
 
     time: number;
 
