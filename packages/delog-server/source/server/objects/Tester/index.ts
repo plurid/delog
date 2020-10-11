@@ -298,12 +298,16 @@ class Tester {
 
         let testStatus = true;
 
-        for (const [index, record] of sortedRecords.entries()) {
-            if (record.text !== phases[index].text) {
-                // test failed
-                testStatus = false;
-                break;
+        if (sortedRecords.length === phases.length) {
+            for (const [index, record] of sortedRecords.entries()) {
+                if (record.text !== phases[index].text) {
+                    // test failed
+                    testStatus = false;
+                    break;
+                }
             }
+        } else {
+            testStatus = false;
         }
 
         const testStore: Test = {
