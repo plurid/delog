@@ -51,5 +51,6 @@ export interface TesterCall {
     contact: number;
     data: Tester;
     configuration: RequiredTesterConfiguration;
+    inHandle?: boolean;
 }
 // #endregion module

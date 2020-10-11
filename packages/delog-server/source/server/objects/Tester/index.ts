@@ -64,22 +64,6 @@ const parseConfiguration = async (
 }
 
 
-const compareRecords = (
-    a: LoggedRecord,
-    b: LoggedRecord,
-) => {
-    if ((a as any).context.sharedOrder < (b as any).context.sharedOrder) {
-        return -1;
-    }
-
-    if ((a as any).context.sharedOrder > (b as any).context.sharedOrder) {
-        return 1;
-    }
-
-    return 0;
-}
-
-
 class Tester {
     private calls: Record<string, TesterCall> = {};
     private interval: number = 0;
@@ -223,7 +207,9 @@ class Tester {
 
             if (testTime > now) {
                 // try to handle test
-                this.handleTester(id);
+                if (!this.calls[id].inHandle) {
+                    this.handleTester(id);
+                }
             }
 
             // continue;
@@ -268,6 +254,8 @@ class Tester {
             return;
         }
 
+        this.calls[callID].inHandle = true;
+
         const records: LoggedRecord[] = await database.aggregate(
             'records',
             [
@@ -283,7 +271,6 @@ class Tester {
             return;
         }
 
-        // const sortedRecords = records.sort(compareRecords);
         const indexedRecords = {};
 
         for (const record of records) {
@@ -307,7 +294,6 @@ class Tester {
         const phasesStatus = [];
 
         for (const [index, phase] of phases.entries()) {
-            // const record = sortedRecords[index];
             const record = indexedRecords[index];
 
             if (!record) {
