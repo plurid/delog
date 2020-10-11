@@ -28,6 +28,7 @@
         GET_ANALYTICS_LAST_PERIOD,
         GET_ANALYTICS_SIZE,
         GET_CODE,
+        VERIFY_UNIQUE_ID,
     } from '#kernel-services/graphql/query';
 
     import actions from '#kernel-services/state/actions';
@@ -508,6 +509,31 @@ const getCode = async (
         return false;
     }
 }
+
+
+const verifyUniqueID = async (
+    input: any,
+) => {
+    try {
+        const query = await client.query({
+            query: VERIFY_UNIQUE_ID,
+            variables: {
+                input,
+            },
+            fetchPolicy: 'no-cache',
+        });
+
+        const response = query.data.verifyUniqueID;
+
+        if (!response.status) {
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 // #endregion module
 
 
@@ -522,5 +548,6 @@ export {
     getAnalyticsLastPeriod,
     getAnalyticsSize,
     getCode,
+    verifyUniqueID,
 };
 // #endregion exports

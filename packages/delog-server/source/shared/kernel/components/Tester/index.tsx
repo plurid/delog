@@ -21,6 +21,10 @@
     } from '#kernel-services/logic/mutations';
 
     import {
+        verifyUniqueID,
+    } from '#kernel-services/logic/queries';
+
+    import {
         GENERATE_TESTER,
     } from '#kernel-services/graphql/mutate';
 
@@ -97,6 +101,10 @@ const Tester: React.FC<TesterProperties> = (
 
     // #region state
     const [
+        testerUniqueID,
+        setTesterUniqueID,
+    ] = useState(false);
+    const [
         testerID,
         setTesterID,
     ] = useState('');
@@ -159,11 +167,26 @@ const Tester: React.FC<TesterProperties> = (
             addTester();
         }
     }
+
+    const handleVerifyUniqueID = async () => {
+        const isUnique = await verifyUniqueID({
+            type: 'testers',
+            value: testerID,
+        });
+
+        if (isUnique) {
+            setTesterUniqueID(true);
+        } else {
+            setTesterUniqueID(false);
+        }
+    }
     // #endregion handlers
 
 
     // #region effects
     useEffect(() => {
+        let dataEntered = false;
+
         if (
             testerName
             && testerProject
@@ -171,11 +194,30 @@ const Tester: React.FC<TesterProperties> = (
             && testerScenario
             && testerConfiguration
         ) {
-            setValidTester(true);
+            dataEntered = true;
         } else {
-            setValidTester(false);
+            dataEntered = false;
+        }
+
+        if (!testerID) {
+            if (dataEntered) {
+                setValidTester(true);
+            } else {
+               setValidTester(false);
+            }
+        } else {
+            if (
+                testerUniqueID
+                && dataEntered
+            ) {
+                setValidTester(true);
+            } else {
+               setValidTester(false);
+            }
         }
     }, [
+        testerUniqueID,
+        testerID,
         testerName,
         testerProject,
         testerSuite,
@@ -198,7 +240,11 @@ const Tester: React.FC<TesterProperties> = (
                 name="id"
                 text={testerID}
                 theme={theme}
-                atChange={(event) => setTesterID(event.target.value)}
+                atChange={(event) => {
+                    setTesterID(event.target.value);
+
+                    handleVerifyUniqueID();
+                }}
                 atKeyDown={handleEnter}
             />
 
@@ -261,6 +307,12 @@ const Tester: React.FC<TesterProperties> = (
                         theme={theme}
                         level={2}
                     />
+                </div>
+            )}
+
+            {testerID && !testerUniqueID && (
+                <div>
+                    the id must be unique
                 </div>
             )}
         </StyledTester>

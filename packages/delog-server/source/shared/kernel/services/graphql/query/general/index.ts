@@ -207,4 +207,18 @@ export const GET_CODE = gql`
         }
     }
 `;
+
+
+export const VERIFY_UNIQUE_ID = gql`
+    query VerifyUniqueID($input: InputVerifyUniqueID!) {
+        verifyUniqueID(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
 // #endregion module
