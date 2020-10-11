@@ -53,7 +53,7 @@ export interface DelogData {
 
 
 export type RequiredDelogData = Required<
-    Omit<DelogData, 'project' | 'space' | 'format' | 'method' | 'error' | 'extradata' | 'context'>
+    Omit<DelogData, 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
 > & {
     time: number;
 
@@ -64,6 +64,7 @@ export type RequiredDelogData = Required<
 
     format?: string;
 
+    tester?: boolean;
     method?: string;
     error?: string;
     extradata?: string;
