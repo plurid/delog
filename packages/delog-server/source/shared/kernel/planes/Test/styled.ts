@@ -27,4 +27,20 @@ export const StyledTest = styled.div`
         margin: 0;
     }
 `;
+
+
+export const StyledTestPhases = styled.div`
+    margin-top: 2rem;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        /* cursor: pointer; */
+        padding: 0.7rem 0;
+    }
+`;
 // #endregion module

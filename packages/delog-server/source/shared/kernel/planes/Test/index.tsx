@@ -40,6 +40,7 @@
     // #region internal
     import {
         StyledTest,
+        StyledTestPhases,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -138,22 +139,27 @@ const Test: React.FC<TestProperties> = (
                     {date}
                 </h2>
 
-                <div>
-                    {phasesStatus.map((phaseStatus, index) => {
-                        return (
-                            <TextItem
-                                key={index}
-                                icon={!!phaseStatus ? PluridIconValid : PluridIconInvalid}
-                                name={!!phaseStatus ? 'passed' : 'failed'}
-                                render={(
-                                    <div>
-                                        phase {index}
-                                    </div>
-                                )}
-                            />
-                        );
-                    })}
-                </div>
+                <StyledTestPhases>
+                    <ul>
+                        {phasesStatus.map((phaseStatus, index) => {
+                            return (
+                                <li
+                                    key={index}
+                                >
+                                    <TextItem
+                                        icon={!!phaseStatus ? PluridIconValid : PluridIconInvalid}
+                                        name={!!phaseStatus ? 'passed' : 'failed'}
+                                        render={(
+                                            <div>
+                                                phase {index}
+                                            </div>
+                                        )}
+                                    />
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </StyledTestPhases>
            </StyledTest>
         );
     }
