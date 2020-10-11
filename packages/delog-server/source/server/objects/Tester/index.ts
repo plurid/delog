@@ -283,7 +283,15 @@ class Tester {
             return;
         }
 
-        const sortedRecords = records.sort(compareRecords);
+        // const sortedRecords = records.sort(compareRecords);
+        const indexedRecords = {};
+
+        for (const record of records) {
+            indexedRecords[record.context?.sharedOrder || 0] = {
+                ...record,
+            };
+        }
+
 
         const {
             configuration,
@@ -299,7 +307,8 @@ class Tester {
         const phasesStatus = [];
 
         for (const [index, phase] of phases.entries()) {
-            const record = sortedRecords[index];
+            // const record = sortedRecords[index];
+            const record = indexedRecords[index];
 
             if (!record) {
                 phasesStatus[index] = 0;
