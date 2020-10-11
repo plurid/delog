@@ -46,6 +46,7 @@
     // #region internal
     import {
         StyledTester,
+        StyledTesterError,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -341,9 +342,9 @@ const Tester: React.FC<TesterProperties> = (
             && !testerUniqueID
             && testerError
             && (
-                <div>
+                <StyledTesterError>
                     {testerError}
-                </div>
+                </StyledTesterError>
             )}
         </StyledTester>
     );

@@ -21,4 +21,9 @@ export const StyledTester = styled.div<IStyledTester>`
     text-align: center;
     min-height: 700px;
 `;
+
+
+export const StyledTesterError = styled.div`
+    margin: 2rem 0;
+`;
 // #endregion module
