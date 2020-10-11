@@ -40,6 +40,7 @@ export const types = gql`
         time: Int!
         status: Boolean!
         tester: String!
+        phasesStatus: [Int!]!
     }
 `;
 
