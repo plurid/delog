@@ -171,6 +171,7 @@ export const GET_TESTS = gql`
                 status
                 tester
                 time
+                phasesStatus
             }
         }
     }

@@ -14,6 +14,11 @@
     } from '@plurid/plurid-themes';
 
     import {
+        PluridIconValid,
+        PluridIconInvalid,
+    } from '@plurid/plurid-icons-react';
+
+    import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
     // #endregion libraries
@@ -23,6 +28,8 @@
     import {
         Test,
     } from '#server/data/interfaces';
+
+    import TextItem from '#kernel-components/TextItem';
 
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
@@ -110,19 +117,43 @@ const Test: React.FC<TestProperties> = (
             time,
             tester,
             status,
+            phasesStatus,
         } = test;
 
         const date = new Date(time * 1000).toLocaleString();
 
         return (
             <StyledTest>
-                <h1>
-                    {tester} - {status ? 'passed' : 'failed'}
-                </h1>
+                <TextItem
+                    icon={status ? PluridIconValid : PluridIconInvalid}
+                    name={status ? 'passed' : 'failed'}
+                    render={(
+                        <h1>
+                            {tester}
+                        </h1>
+                    )}
+                />
 
                 <h2>
                     {date}
                 </h2>
+
+                <div>
+                    {phasesStatus.map((phaseStatus, index) => {
+                        return (
+                            <TextItem
+                                key={index}
+                                icon={!!phaseStatus ? PluridIconValid : PluridIconInvalid}
+                                name={!!phaseStatus ? 'passed' : 'failed'}
+                                render={(
+                                    <div>
+                                        phase {index}
+                                    </div>
+                                )}
+                            />
+                        );
+                    })}
+                </div>
            </StyledTest>
         );
     }

@@ -45,6 +45,8 @@
         LoggedRecord,
     } from '#server/data/interfaces';
 
+    import TextItem from '#kernel-components/TextItem';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     // import actions from '#kernel-services/state/actions';
@@ -61,8 +63,6 @@
         StyledRecordContext,
         StyledRecordContextGroup,
     } from './styled';
-
-    import TextItem from './components/TextItem';
     // #endregion internal
 // #endregion imports
 
