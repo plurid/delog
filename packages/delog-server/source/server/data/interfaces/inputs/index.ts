@@ -120,4 +120,10 @@ export interface InputGetCodeContext {
     line: number;
     column: number;
 }
+
+
+export interface InputVerifyUniqueID {
+    type: string;
+    value: string;
+}
 // #endregion module

@@ -2,7 +2,10 @@
     // #region external
     import {
         Context,
+        InputVerifyUniqueID,
     } from '#server/data/interfaces';
+
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -10,7 +13,7 @@
 
 // #region module
 const verifyUniqueID = async (
-    input: any,
+    input: InputVerifyUniqueID,
     context: Context,
 ) => {
     const {
@@ -18,23 +21,43 @@ const verifyUniqueID = async (
         privateOwnerIdentonym,
     } = context;
 
+    try {
+        const {
+            type,
+            value,
+        } = input;
 
-    if (privateUsage) {
-        if (!privateOwnerIdentonym) {
+        if (privateUsage) {
+            if (!privateOwnerIdentonym) {
+                return {
+                    status: false,
+                };
+            }
+
+            const exists = await database.get(
+                type,
+                value,
+            );
+
+            if (exists) {
+                return {
+                    status: false,
+                };
+            }
+
             return {
-                status: false,
+                status: true,
             };
         }
 
         return {
-            status: true,
+            status: false,
+        };
+    } catch (error) {
+        return {
+            status: false,
         };
     }
-
-
-    return {
-        status: true,
-    };
 }
 // #endregion module
 
