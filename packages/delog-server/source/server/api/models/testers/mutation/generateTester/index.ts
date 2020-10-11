@@ -51,6 +51,8 @@ const generateTester = async (
     try {
         // #region input unpack
         const {
+            id,
+            name,
             project,
             suite,
             scenario,
@@ -60,6 +62,8 @@ const generateTester = async (
 
 
         const data: any = {
+            id,
+            name,
             project,
             suite,
             scenario,

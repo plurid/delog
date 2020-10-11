@@ -64,6 +64,8 @@ export interface InputGenerateNotifier {
 
 
 export interface InputGenerateTester {
+    id?: string;
+    name: string;
     project: string;
     suite: string;
     scenario: string;
