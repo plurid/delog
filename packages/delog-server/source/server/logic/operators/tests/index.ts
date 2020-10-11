@@ -17,7 +17,9 @@ const deregisterTest = async (
     try {
         await database.obliterate(
             'tests',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;

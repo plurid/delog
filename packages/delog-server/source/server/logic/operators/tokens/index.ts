@@ -50,7 +50,9 @@ const deregisterToken = async (
     try {
         await database.obliterate(
             'tokens',
-            id,
+            {
+                id,
+            },
         );
     } catch (error) {
         return;
