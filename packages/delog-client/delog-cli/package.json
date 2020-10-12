@@ -16,7 +16,7 @@
         "email": "source@plurid.com",
         "url": "https://github.com/plurid/delog/issues"
     },
-    "homepage": "https://github.com/plurid/delog/blob/master/packages/delog-cli/README.md",
+    "homepage": "https://github.com/plurid/delog/blob/master/packages/delog-client/delog-cli/README.md",
     "publishConfig": {
         "access": "public"
     },
