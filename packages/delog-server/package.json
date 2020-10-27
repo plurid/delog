@@ -66,8 +66,6 @@
         "@plurid/plurid-react-server": "^0.1.84",
         "@plurid/plurid-themes": "^0.1.27",
         "@plurid/plurid-ui-react": "^0.1.89",
-        "@rollup/plugin-commonjs": "^15.1.0",
-        "@rollup/plugin-node-resolve": "^9.0.0",
         "ace-builds": "^1.4.12",
         "adm-zip": "^0.4.16",
         "apollo-server-express": "^2.18.2",
@@ -98,6 +96,8 @@
     "devDependencies": {
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-url": "^5.0.1",
+        "@rollup/plugin-commonjs": "^15.1.0",
+        "@rollup/plugin-node-resolve": "^9.0.0",
         "@types/adm-zip": "^0.4.33",
         "@types/bson": "^4.0.2",
         "@types/cookie-parser": "^1.4.2",
