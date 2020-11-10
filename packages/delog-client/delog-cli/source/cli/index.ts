@@ -34,7 +34,7 @@ const main = async (
     program
         .name('delog')
         .usage('<command>')
-        .version('0.0.0', '-v, --version')
+        .version('0.0.7', '-v, --version')
         .action(() => {
             program.outputHelp();
         });

@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog-cli",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Command-Line Interface for Delog",
     "keywords": [
         "delog",
@@ -45,7 +45,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.2.5",
-        "@plurid/delog": "^0.0.13",
+        "@plurid/delog": "^0.0.14",
         "@plurid/deon": "^0.0.35",
         "@plurid/plurid-functions": "^0.1.18",
         "commander": "^6.2.0",
