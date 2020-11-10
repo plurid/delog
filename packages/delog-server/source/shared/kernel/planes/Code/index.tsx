@@ -10,12 +10,6 @@
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
 
-    import Editor from 'react-ace';
-
-    import * as ace from 'ace-builds';
-    import 'ace-builds/src-noconflict/mode-text';
-    import 'ace-builds/src-noconflict/theme-github';
-
     import {
         Theme,
     } from '@plurid/plurid-themes';
@@ -56,10 +50,6 @@
 
 
 // #region module
-// HACK: Ace Editor hack to prevent mode/theme lookup bug.
-ace.config.set('basePath', '');
-
-
 const resolveRepositoryLinks = (
     call?: DelogInputRecordContextCall,
 ) => {
@@ -155,11 +145,16 @@ const Code: React.FC<CodeProperties> = (
 
 
     // #region references
-    const editor = useRef<Editor | null>(null);
+    const editorRef = useRef<any | null>(null);
     // #endregion references
 
 
     // #region state
+    const [
+        editor,
+        setEditor,
+    ] = useState((<></>));
+
     const [
         code,
         setCode,
@@ -178,6 +173,18 @@ const Code: React.FC<CodeProperties> = (
         }
 
         const loadCode = async () => {
+            if (typeof window === 'undefined') {
+                return;
+            }
+
+            const Editor = (await import('react-ace')).default;
+
+            const ace = (await import('ace-builds'));
+            await import('ace-builds/src-noconflict/mode-text');
+            await import('ace-builds/src-noconflict/theme-github');
+            ace.config.set('basePath', '');
+
+
             const call = record.context?.call;
 
             if (!call) {
@@ -224,6 +231,46 @@ const Code: React.FC<CodeProperties> = (
                 return;
             }
 
+            const annotations: any[] | undefined = call
+                ? [
+                    {
+                        row: call.caller.line,
+                        column: call.caller.column,
+                        type: 'info',
+                    },
+                ] : undefined;
+
+            const editor = (
+                <Editor
+                    ref={editorRef}
+                    mode="text"
+                    theme="github"
+                    onChange={() => {}}
+                    name={'code-123'}
+                    editorProps={{
+                        // $blockScrolling: true,
+                    }}
+                    setOptions={{
+                        copyWithEmptySelection: true,
+                        displayIndentGuides: false,
+                        printMargin: false,
+                        useSoftTabs: true,
+                    }}
+                    tabSize={4}
+                    fontSize={18}
+                    showGutter={true}
+                    readOnly={true}
+                    width="100%"
+                    // height="400px"
+
+                    value={lines.join('\n')}
+
+                    annotations={annotations}
+                    className="code-editor"
+                />
+            );
+
+            setEditor(editor);
             setCode(lines);
         }
 
@@ -233,7 +280,7 @@ const Code: React.FC<CodeProperties> = (
     ]);
 
     useEffect(() => {
-        if (editor.current) {
+        if (editorRef.current) {
             const caller = record?.context?.call?.caller;
 
             if (!caller) {
@@ -245,7 +292,7 @@ const Code: React.FC<CodeProperties> = (
                 column,
             } = caller;
 
-            editor.current.editor.gotoLine(line, column, false);
+            editorRef.current.editor.gotoLine(line, column, false);
         }
     }, [
         record,
@@ -268,16 +315,7 @@ const Code: React.FC<CodeProperties> = (
         repositoryLink,
         fileLink,
         lineLink,
-    } = resolveRepositoryLinks(call)
-
-    const annotations: any[] | undefined = call
-        ? [
-            {
-                row: call.caller.line,
-                column: call.caller.column,
-                type: 'info',
-            },
-        ] : undefined;
+    } = resolveRepositoryLinks(call);
 
     return (
         <StyledCode
@@ -314,29 +352,9 @@ const Code: React.FC<CodeProperties> = (
             )}
 
             {Array.isArray(code) && (
-                <Editor
-                    ref={editor}
-                    mode="text"
-                    theme="github"
-                    onChange={() => {}}
-                    name={'code' + id}
-                    editorProps={{
-                        // $blockScrolling: true,
-                    }}
-                    setOptions={{
-                        copyWithEmptySelection: true,
-                        displayIndentGuides: false,
-                        printMargin: false,
-                    }}
-                    fontSize={18}
-                    showGutter={true}
-                    readOnly={true}
-                    width="100%"
-                    value={code.join('\n')}
-
-                    annotations={annotations}
-                    className="code-editor"
-                />
+                <>
+                    {editor}
+                </>
             )}
         </StyledCode>
     );
