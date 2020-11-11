@@ -318,7 +318,7 @@ class Tester {
 
         const phasesResult = phasesStatus.reduce((accumulator, value) => accumulator + value, 0);
 
-        let testStatus = (phasesResult / phases.length) === 1;
+        const testStatus = (phasesResult / phases.length) === 1;
 
         const testStore: Test = {
             id: callID,

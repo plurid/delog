@@ -3,9 +3,9 @@ const humanByteSize = (
     size: number,
 ) => {
     if (size < 1024) return size + ' B';
-    let i = Math.floor(Math.log(size) / Math.log(1024));
+    const i = Math.floor(Math.log(size) / Math.log(1024));
     let num: number | string = (size / Math.pow(1024, i));
-    let round = Math.round(num);
+    const round = Math.round(num);
 
     num = round < 10
         ? num.toFixed(2)

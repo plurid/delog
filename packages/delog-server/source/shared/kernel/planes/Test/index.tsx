@@ -149,8 +149,8 @@ const Test: React.FC<TestProperties> = (
                                     key={index}
                                 >
                                     <PluridTextItem
-                                        icon={!!phaseStatus ? PluridIconValid : PluridIconInvalid}
-                                        name={!!phaseStatus ? 'passed' : 'failed'}
+                                        icon={phaseStatus ? PluridIconValid : PluridIconInvalid}
+                                        name={phaseStatus ? 'passed' : 'failed'}
                                         render={(
                                             <div>
                                                 phase {index}

@@ -202,7 +202,7 @@ export const removeEntity = (
     let tests = [
         ...newState.tests,
     ];
-    let code = {
+    const code = {
         ...newState.code,
     };
 
