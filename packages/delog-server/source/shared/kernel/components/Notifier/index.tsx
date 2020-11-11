@@ -12,6 +12,7 @@
     import {
         PluridInputLine,
         PluridInputBox,
+        PluridInputSwitch,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
@@ -30,8 +31,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputSwitch from '../InputSwitch';
     // #endregion external
 
 
@@ -353,7 +352,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputSwitch
+                    <PluridInputSwitch
                         name="secure"
                         checked={notifierSecure}
                         theme={theme}

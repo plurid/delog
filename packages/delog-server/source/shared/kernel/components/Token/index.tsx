@@ -10,6 +10,7 @@
 
     import {
         PluridInputLine,
+        PluridCopyableLine,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
@@ -33,8 +34,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import CopyableField from '../CopyableField';
     // #endregion external
 
 
@@ -214,7 +213,7 @@ const Token: React.FC<TokenProperties> = (
                         </div>
 
                         <StyledTokenValue>
-                            <CopyableField
+                            <PluridCopyableLine
                                 data={tokenValue}
                             />
                         </StyledTokenValue>

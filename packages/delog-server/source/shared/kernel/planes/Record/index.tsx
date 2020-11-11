@@ -32,6 +32,7 @@
 
     import {
         PluridLinkButton,
+        PluridTextItem,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
@@ -44,8 +45,6 @@
     import {
         LoggedRecord,
     } from '#server/data/interfaces';
-
-    import TextItem from '#kernel-components/TextItem';
 
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
@@ -163,7 +162,7 @@ const Record: React.FC<RecordProperties> = (
         return (
             <StyledRecord>
                 <StyledRecordLogFormat>
-                    <TextItem
+                    <PluridTextItem
                         name="log"
                         render={(
                             <h1>
@@ -172,7 +171,7 @@ const Record: React.FC<RecordProperties> = (
                         )}
                     />
 
-                    <TextItem
+                    <PluridTextItem
                         icon={PluridIconEdit}
                         name="format"
                         render={(
@@ -185,13 +184,13 @@ const Record: React.FC<RecordProperties> = (
 
 
                 <StyledRecordLevelTime>
-                    <TextItem
+                    <PluridTextItem
                         icon={PluridIconOrder}
                         name="level"
                         render={(<>{logLevelText}</>)}
                     />
 
-                    <TextItem
+                    <PluridTextItem
                         icon={PluridIconTimeout}
                         name="time"
                         render={(<>{date}</>)}
@@ -202,7 +201,7 @@ const Record: React.FC<RecordProperties> = (
                 {(project || space || method) && (
                     <StyledRecordProjectSpaceMethod>
                         {project && (
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconApps}
                                 name="project"
                                 render={(<>{project}</>)}
@@ -210,7 +209,7 @@ const Record: React.FC<RecordProperties> = (
                         )}
 
                         {space && (
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconFrame}
                                 name="space"
                                 render={(<>{space}</>)}
@@ -218,7 +217,7 @@ const Record: React.FC<RecordProperties> = (
                         )}
 
                         {method && (
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconNewStateline}
                                 name="method"
                                 render={(<>{method}</>)}
@@ -231,7 +230,7 @@ const Record: React.FC<RecordProperties> = (
                 {(error || extradata) && (
                     <StyledRecordErrorExtradata>
                         {error && (
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconPersonalSpace}
                                 name="error"
                                 render={(<>{error}</>)}
@@ -239,7 +238,7 @@ const Record: React.FC<RecordProperties> = (
                         )}
 
                         {extradata && (
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconDocuments}
                                 name="extradata"
                                 render={(<>{extradata}</>)}
@@ -252,7 +251,7 @@ const Record: React.FC<RecordProperties> = (
                 {context && (
                     <StyledRecordContext>
                         <StyledRecordContextGroup>
-                            <TextItem
+                            <PluridTextItem
                                 icon={PluridIconLoop}
                                 name="context"
                                 render={(

@@ -1,6 +1,10 @@
 // #region imports
     // #region libraries
     import React from 'react';
+
+    import {
+        PluridInputSwitch,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -8,8 +12,6 @@
     import {
         notificationTypes,
     } from '#server/data/constants/notifier';
-
-    import InputSwitch from '#kernel-components/InputSwitch';
     // #endregion external
 
 
@@ -64,7 +66,7 @@ const NotifyOn: React.FC<NotifyOnProperties> = (
                         <li
                             key={field}
                         >
-                            <InputSwitch
+                            <PluridInputSwitch
                                 name={fieldText}
                                 checked={selected.includes(field)}
                                 theme={theme}
