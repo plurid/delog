@@ -760,10 +760,10 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.27.tgz#426cf8bb9dada8c2ac43e7978d1d2894eba62bd0"
   integrity sha512-5SZ6sTDxfRmhfp4CWSndWI0NWQNAevx/XHsyAmElCBX8TOl2qMzH1jkT63TZL5NuclzVzQkJYVughbGhSbsqrQ==
 
-"@plurid/plurid-ui-react@^0.1.93":
-  version "0.1.93"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.93.tgz#9dea7dceae8ea6116446fe7f19e8919c364d16cc"
-  integrity sha512-iK1yc8zbRRhd1sw19NO/2HKVbETqXfhsK6VtmYtxiDeyU56X4FjuvLNUn0awtU3Os4pFwGOS8VN2WM8LNfi8IA==
+"@plurid/plurid-ui-react@^0.1.94":
+  version "0.1.94"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.94.tgz#9ec7bc2fac6eea20ab12a1518279367665fdb526"
+  integrity sha512-zaeZY/m+C4Fq9VrdhPrwKjxcgNVywLYGmFzAsrfVgZ2sOh57h8TSMI6s/sqwKS5clp9ybt/OBwGJwbQ6xC6kFw==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
