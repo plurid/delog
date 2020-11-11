@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@apollo/client@^3.2.3", "@apollo/client@^3.2.5":
+"@apollo/client@^3.2.5":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.2.5.tgz#24e0a6faa1d231ab44807af237c6227410c75c4d"
   integrity sha512-zpruxnFMz6K94gs2pqc3sidzFDbQpKT5D6P/J/I9s8ekHZ5eczgnRp6pqXC86Bh7+44j/btpmOT0kwiboyqTnA==
@@ -422,10 +422,10 @@
   resolved "https://registry.yarnpkg.com/@google-cloud/promisify/-/promisify-2.0.3.tgz#f934b5cdc939e3c7039ff62b9caaf59a9d89e3a8"
   integrity sha512-d4VSA86eL/AFTe5xtyZX+ePUjE8dIFu2T8zmdeNBSa5/kNgXPCx/o/wbFNHAGLJdGnk1vddRuMESD9HbOC8irw==
 
-"@google-cloud/storage@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.4.0.tgz#3647f378c45983224b6b02be68994fadabc2d76b"
-  integrity sha512-3sp1y6og1vEUgiN7s9SkP1zKwjsFKqBSz9y8KJKblyy2gfZnMLm4Sdw4oeZrQsDG6UKAbKq1KHe36b72SHeMIg==
+"@google-cloud/storage@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.5.0.tgz#6b3513b1e05534da04c26313af5a59b84bba5cb6"
+  integrity sha512-Pat83kHNnKJpEHUirtQtCoAJ2K3OlEo2ZcSlPjierJnEKnhbIQPyJ6mAbs/ovm3K3QDQhouKJ9QSONkFPEwQuA==
   dependencies:
     "@google-cloud/common" "^3.3.0"
     "@google-cloud/paginator" "^3.0.0"
@@ -689,15 +689,15 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@plurid/delog@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.13.tgz#28923562517a84006a0c905ddfaea96b410c8a08"
-  integrity sha512-eQ/Frs6ltwpQugSNCHHJc8wWgp9y1FGC+P8NE7j3YjgRoUNnfyBYv6/Liq36tW0igfBY0qNzY3OX0hgCJBhhcA==
+"@plurid/delog@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@plurid/delog/-/delog-0.0.14.tgz#2fb03fa07991c72003b5fcae293930ed2b10e2b1"
+  integrity sha512-fEY6U6u4BEE66LiLJ056ewMOD9xN77pWkjqd7difMqRDFFa6Jd+EQT5nAXQINqCqlN4KVr2urkX/7hksRWlaJw==
   dependencies:
-    "@apollo/client" "^3.2.3"
-    "@plurid/plurid-functions" "^0.1.15"
+    "@apollo/client" "^3.2.5"
+    "@plurid/plurid-functions" "^0.1.18"
     cross-fetch "^3.0.6"
-    graphql "^15.3.0"
+    graphql "^15.4.0"
     graphql-tag "^2.11.0"
     subscriptions-transport-ws "^0.9.18"
 
@@ -724,11 +724,6 @@
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@plurid/plurid-functions-react/-/plurid-functions-react-0.0.4.tgz#a8cb20d20d4c4937b114b29ad021a20c8d19d632"
   integrity sha512-1JMJzO/+jz6aIK0jBCf6iUoPXLJJ7FY7UCNK9jU+jcEL9e9iejQPVtdyVE0jqFv0BBXD2BrjBFFgjCTYoBkzWA==
-
-"@plurid/plurid-functions@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-functions/-/plurid-functions-0.1.15.tgz#4900bf02bb36240e8d2cafd1d27c0e9712ac3ebf"
-  integrity sha512-gTzhFlbK6G5jE+KBpcT4UlnO9poUOLLihXS3qwAYtu3ldSvGbu4g+bKJgaAwTBmS+t8B6vWntU5qXyi4pdX/7A==
 
 "@plurid/plurid-functions@^0.1.18":
   version "0.1.18"
@@ -765,10 +760,10 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.27.tgz#426cf8bb9dada8c2ac43e7978d1d2894eba62bd0"
   integrity sha512-5SZ6sTDxfRmhfp4CWSndWI0NWQNAevx/XHsyAmElCBX8TOl2qMzH1jkT63TZL5NuclzVzQkJYVughbGhSbsqrQ==
 
-"@plurid/plurid-ui-react@^0.1.92":
-  version "0.1.92"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.92.tgz#38d743f68d6a21365eb7b9ca74bfc40da422468c"
-  integrity sha512-NxbIJr0Lwcs4EKbuUHUHFaBVg/Za8UHYWPlUVv/Dw2shphwbojc6ZOlVEVOhfrKldd1SgpZRLf9CcM4+BeCu6A==
+"@plurid/plurid-ui-react@^0.1.93":
+  version "0.1.93"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.93.tgz#9dea7dceae8ea6116446fe7f19e8919c364d16cc"
+  integrity sha512-iK1yc8zbRRhd1sw19NO/2HKVbETqXfhsK6VtmYtxiDeyU56X4FjuvLNUn0awtU3Os4pFwGOS8VN2WM8LNfi8IA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -1059,7 +1054,7 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/express@*", "@types/express@^4.17.8":
+"@types/express@*":
   version "4.17.8"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.8.tgz#3df4293293317e61c60137d273a2e96cd8d5f27a"
   integrity sha512-wLhcKh3PMlyA2cNAB9sjM1BntnhPMiM0JOBwPBqttjHev2428MLEB4AYVN+d8s2iyCVZac+o41Pflm/ZH5vLXQ==
@@ -1073,6 +1068,16 @@
   version "4.17.7"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.7.tgz#42045be6475636d9801369cd4418ef65cdb0dd59"
   integrity sha512-dCOT5lcmV/uC2J9k0rPafATeeyz+99xTt54ReX11/LObZgfzJqZNcW27zGhYyX+9iSEGXGt5qLPwRSvBZcLvtQ==
+  dependencies:
+    "@types/body-parser" "*"
+    "@types/express-serve-static-core" "*"
+    "@types/qs" "*"
+    "@types/serve-static" "*"
+
+"@types/express@^4.17.9":
+  version "4.17.9"
+  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.9.tgz#f5f2df6add703ff28428add52bdec8a1091b0a78"
+  integrity sha512-SDzEIZInC4sivGIFY4Sz1GG6J9UObPwCInYJjko2jzOf/Imx/dlpume6Xxwj1ORL82tBbmN4cPDIDkLbWHk9hw==
   dependencies:
     "@types/body-parser" "*"
     "@types/express-serve-static-core" "*"
@@ -2189,10 +2194,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-sdk@^2.788.0:
-  version "2.788.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.788.0.tgz#020f84975db9623d0a434105991e7074c488693f"
-  integrity sha512-UKc+4MFRezIkgk668mylj7MpVD2dCtiDBppgx05SwYSDGT60bixrKv3nE/YJK+gAv53CWVf7WL6hNv76+TWkTA==
+aws-sdk@^2.789.0:
+  version "2.789.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.789.0.tgz#a1b0a8b8b4227a7947c04e8d75239ba27d2deb93"
+  integrity sha512-Jqq+M4N0EgkyS4OPf05UHa7IWUcpuBdnpwMRgBnu4Ju6PxpOTh1UQcmYepVmIN3m6YVpLwFctEYzAMJFM3LT1A==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -8254,7 +8259,7 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-ace@^9.1.4:
+react-ace@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-9.2.0.tgz#204873cafc2540b9e7580a483ffaccb6acda5edd"
   integrity sha512-vuxDt/8+szWsS8TdrgChRk9TFrbHCrzCUvAb2fRN9iziQZwwHYgFQfaUcnv/+7gysK/pJng9Zeuh3svEweiKwg==
