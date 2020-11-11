@@ -5,6 +5,10 @@
     import {
         PluridIconDelete,
     } from '@plurid/plurid-icons-react';
+
+    import {
+        PluridCopyableLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -12,8 +16,6 @@
     import {
         Project,
     } from '#server/data/interfaces';
-
-    import CopyableField from '#kernel-components/CopyableField';
     // #endregion external
 // #endregion imports
 
@@ -33,7 +35,7 @@ export const projectRowRenderer = (
 
     return (
         <>
-            <CopyableField
+            <PluridCopyableLine
                 data={id}
             />
 
