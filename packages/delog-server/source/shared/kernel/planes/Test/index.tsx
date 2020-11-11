@@ -21,6 +21,10 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
+
+    import {
+        PluridTextItem,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -28,8 +32,6 @@
     import {
         Test,
     } from '#server/data/interfaces';
-
-    import TextItem from '#kernel-components/TextItem';
 
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
@@ -125,7 +127,7 @@ const Test: React.FC<TestProperties> = (
 
         return (
             <StyledTest>
-                <TextItem
+                <PluridTextItem
                     icon={status ? PluridIconValid : PluridIconInvalid}
                     name={status ? 'passed' : 'failed'}
                     render={(
@@ -146,7 +148,7 @@ const Test: React.FC<TestProperties> = (
                                 <li
                                     key={index}
                                 >
-                                    <TextItem
+                                    <PluridTextItem
                                         icon={!!phaseStatus ? PluridIconValid : PluridIconInvalid}
                                         name={!!phaseStatus ? 'passed' : 'failed'}
                                         render={(
