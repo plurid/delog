@@ -300,29 +300,25 @@ const Repository: React.FC<RepositoryProperties> = (
                             })}
                         </ul>
 
-                        <div>
-                            <StyledPluridPureButton
-                                text="Link Repositories"
-                                atClick={() => handleLinkRepositories()}
-                                disabled={selectedRepositories.length === 0}
-                                theme={theme}
-                                level={2}
-                            />
-                        </div>
+                        <StyledPluridPureButton
+                            text="Link Repositories"
+                            atClick={() => handleLinkRepositories()}
+                            disabled={selectedRepositories.length === 0}
+                            theme={theme}
+                            level={2}
+                        />
                     </>
                 )}
 
                 {(!loading || !providerID)
                 && cancel
                 && (
-                    <div>
-                        <StyledPluridLinkButton
-                            text="cancel"
-                            atClick={() => cancel()}
-                            theme={theme}
-                            level={2}
-                        />
-                    </div>
+                    <StyledPluridLinkButton
+                        text="cancel"
+                        atClick={() => cancel()}
+                        theme={theme}
+                        level={2}
+                    />
                 )}
             </StyledRepositoryWrapper>
         </StyledRepository>

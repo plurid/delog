@@ -7,6 +7,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -28,8 +32,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -139,7 +141,7 @@ const Project: React.FC<ProjectProperties> = (
                 generate project
             </StyledH1>
 
-            <InputLine
+            <PluridInputLine
                 name="name"
                 text={projectName}
                 theme={theme}
@@ -147,24 +149,20 @@ const Project: React.FC<ProjectProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <div>
-                <StyledPluridPureButton
-                    text="Generate Project"
-                    atClick={() => addProject()}
-                    level={2}
-                    disabled={!projectName}
-                />
-            </div>
+            <StyledPluridPureButton
+                text="Generate Project"
+                atClick={() => addProject()}
+                level={2}
+                disabled={!projectName}
+            />
 
             {cancel && (
-                <div>
-                    <StyledPluridLinkButton
-                        text="cancel"
-                        atClick={() => cancel()}
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
+                <StyledPluridLinkButton
+                    text="cancel"
+                    atClick={() => cancel()}
+                    theme={theme}
+                    level={2}
+                />
             )}
         </StyledProject>
     );

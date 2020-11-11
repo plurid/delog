@@ -14,6 +14,7 @@
 
     import {
         PluridPureButton,
+        PluridInputLine,
     } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
@@ -26,8 +27,6 @@
     import {
         LOGIN,
     } from '#kernel-services/graphql/mutate';
-
-    import InputLine from '#kernel-components/InputLine';
 
     import {
         getCurrentOwner,
@@ -167,7 +166,7 @@ const PrivateView: React.FC<PrivateViewProperties> = (
             </h1>
 
             <StyledLoginButtons>
-                <InputLine
+                <PluridInputLine
                     text={identonym}
                     name="identonym"
                     theme={stateInteractionTheme}
@@ -175,7 +174,7 @@ const PrivateView: React.FC<PrivateViewProperties> = (
                     atKeyDown={(event) => handleEnter(event)}
                 />
 
-                <InputLine
+                <PluridInputLine
                     text={key}
                     name="key"
                     type="password"

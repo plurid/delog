@@ -12,6 +12,11 @@
     import {
         useDebouncedCallback,
     } from '@plurid/plurid-functions-react';
+
+    import {
+        PluridInputLine,
+        PluridInputBox,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -37,9 +42,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputLine from '../InputLine';
-    import InputBox from '../InputBox';
     // #endregion external
 
 
@@ -254,7 +256,7 @@ const Tester: React.FC<TesterProperties> = (
                 generate tester
             </StyledH1>
 
-            <InputLine
+            <PluridInputLine
                 name="id"
                 text={testerID}
                 theme={theme}
@@ -276,7 +278,7 @@ const Tester: React.FC<TesterProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="name"
                 text={testerName}
                 theme={theme}
@@ -284,7 +286,7 @@ const Tester: React.FC<TesterProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="project"
                 text={testerProject}
                 theme={theme}
@@ -292,7 +294,7 @@ const Tester: React.FC<TesterProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="suite"
                 text={testerSuite}
                 theme={theme}
@@ -300,7 +302,7 @@ const Tester: React.FC<TesterProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="scenario"
                 text={testerScenario}
                 theme={theme}
@@ -308,7 +310,7 @@ const Tester: React.FC<TesterProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputBox
+            <PluridInputBox
                 name="configuration"
                 text={testerConfiguration}
                 theme={theme}

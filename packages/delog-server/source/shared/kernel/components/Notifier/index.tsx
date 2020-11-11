@@ -8,6 +8,11 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+        PluridInputBox,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -26,8 +31,6 @@
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
 
-    import InputLine from '../InputLine';
-    import InputBox from '../InputBox';
     import InputSwitch from '../InputSwitch';
     // #endregion external
 
@@ -303,7 +306,7 @@ const Notifier: React.FC<NotifierProperties> = (
                 select={(element) => setNotifierType(element)}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="name"
                 text={notifierName}
                 theme={theme}
@@ -313,7 +316,7 @@ const Notifier: React.FC<NotifierProperties> = (
 
             {notifierType === 'api' && (
                 <>
-                    <InputLine
+                    <PluridInputLine
                         name="endpoint"
                         text={notifierEndpoint}
                         theme={theme}
@@ -321,7 +324,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputLine
+                    <PluridInputLine
                         name="secret"
                         text={notifierSecret}
                         theme={theme}
@@ -334,7 +337,7 @@ const Notifier: React.FC<NotifierProperties> = (
 
             {notifierType === 'email' && (
                 <>
-                    <InputLine
+                    <PluridInputLine
                         name="host"
                         text={notifierHost}
                         theme={theme}
@@ -342,7 +345,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputLine
+                    <PluridInputLine
                         name="port"
                         text={notifierPort}
                         theme={theme}
@@ -357,7 +360,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atChange={() => setNotifierSecure(secure => !secure)}
                     />
 
-                    <InputLine
+                    <PluridInputLine
                         name="username"
                         text={notifierUsername}
                         theme={theme}
@@ -365,7 +368,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputLine
+                    <PluridInputLine
                         name="password"
                         text={notifierPassword}
                         theme={theme}
@@ -373,7 +376,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputLine
+                    <PluridInputLine
                         name="sender"
                         text={notifierSender}
                         theme={theme}
@@ -381,7 +384,7 @@ const Notifier: React.FC<NotifierProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <InputBox
+                    <PluridInputBox
                         name="notify to"
                         text={notifierNotifyTo}
                         theme={theme}
@@ -396,14 +399,12 @@ const Notifier: React.FC<NotifierProperties> = (
                 select={selectNotifyOn}
             />
 
-            <div>
-                <StyledPluridPureButton
-                    text="Generate Notifier"
-                    atClick={() => addNotifier()}
-                    level={2}
-                    disabled={!validNotifier}
-                />
-            </div>
+            <StyledPluridPureButton
+                text="Generate Notifier"
+                atClick={() => addNotifier()}
+                level={2}
+                disabled={!validNotifier}
+            />
 
             {cancel && (
                 <StyledPluridLinkButton

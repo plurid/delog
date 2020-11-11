@@ -8,6 +8,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -29,8 +33,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -166,7 +168,7 @@ const Space: React.FC<SpaceProperties> = (
                 generate space
             </StyledH1>
 
-            <InputLine
+            <PluridInputLine
                 name="name"
                 text={spaceName}
                 theme={theme}
@@ -174,7 +176,7 @@ const Space: React.FC<SpaceProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="project"
                 text={spaceProject}
                 theme={theme}
@@ -182,24 +184,20 @@ const Space: React.FC<SpaceProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <div>
-                <StyledPluridPureButton
-                    text="Generate Space"
-                    atClick={() => addSpace()}
-                    level={2}
-                    disabled={!validSpace}
-                />
-            </div>
+            <StyledPluridPureButton
+                text="Generate Space"
+                atClick={() => addSpace()}
+                level={2}
+                disabled={!validSpace}
+            />
 
             {cancel && (
-                <div>
-                    <StyledPluridLinkButton
-                        text="cancel"
-                        atClick={() => cancel()}
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
+                <StyledPluridLinkButton
+                    text="cancel"
+                    atClick={() => cancel()}
+                    theme={theme}
+                    level={2}
+                />
             )}
         </StyledSpace>
     );

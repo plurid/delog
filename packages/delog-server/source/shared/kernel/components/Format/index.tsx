@@ -8,6 +8,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -29,8 +33,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -166,7 +168,7 @@ const Format: React.FC<FormatProperties> = (
                 generate format
             </StyledH1>
 
-            <InputLine
+            <PluridInputLine
                 name="identifier"
                 text={formatIdentifier}
                 theme={theme}
@@ -174,7 +176,7 @@ const Format: React.FC<FormatProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="transform"
                 text={formatTransform}
                 theme={theme}
@@ -182,24 +184,20 @@ const Format: React.FC<FormatProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <div>
-                <StyledPluridPureButton
-                    text="Generate Format"
-                    atClick={() => addFormat()}
-                    level={2}
-                    disabled={!validFormat}
-                />
-            </div>
+            <StyledPluridPureButton
+                text="Generate Format"
+                atClick={() => addFormat()}
+                level={2}
+                disabled={!validFormat}
+            />
 
             {cancel && (
-                <div>
-                    <StyledPluridLinkButton
-                        text="cancel"
-                        atClick={() => cancel()}
-                        theme={theme}
-                        level={2}
-                    />
-                </div>
+                <StyledPluridLinkButton
+                    text="cancel"
+                    atClick={() => cancel()}
+                    theme={theme}
+                    level={2}
+                />
             )}
         </StyledFormat>
     );

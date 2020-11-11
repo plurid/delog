@@ -7,6 +7,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -30,7 +34,6 @@
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
 
-    import InputLine from '../InputLine';
     import CopyableField from '../CopyableField';
     // #endregion external
 
@@ -165,7 +168,7 @@ const Token: React.FC<TokenProperties> = (
                         generate token
                     </StyledH1>
 
-                    <InputLine
+                    <PluridInputLine
                         name="name"
                         text={tokenName}
                         theme={theme}
@@ -173,24 +176,20 @@ const Token: React.FC<TokenProperties> = (
                         atKeyDown={handleEnter}
                     />
 
-                    <div>
-                        <StyledPluridPureButton
-                            text="Generate Token"
-                            atClick={() => addToken()}
-                            level={2}
-                            disabled={!tokenName}
-                        />
-                    </div>
+                    <StyledPluridPureButton
+                        text="Generate Token"
+                        atClick={() => addToken()}
+                        level={2}
+                        disabled={!tokenName}
+                    />
 
                     {cancel && (
-                        <div>
-                            <StyledPluridLinkButton
-                                text="cancel"
-                                atClick={() => cancel()}
-                                theme={theme}
-                                level={2}
-                            />
-                        </div>
+                        <StyledPluridLinkButton
+                            text="cancel"
+                            atClick={() => cancel()}
+                            theme={theme}
+                            level={2}
+                        />
                     )}
                 </>
             )}

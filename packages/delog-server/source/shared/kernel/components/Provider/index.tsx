@@ -8,6 +8,10 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridInputLine,
+    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -29,8 +33,6 @@
         StyledPluridPureButton,
         StyledPluridLinkButton,
     } from '#kernel-services/styled';
-
-    import InputLine from '../InputLine';
     // #endregion external
 
 
@@ -181,7 +183,7 @@ const Provider: React.FC<ProviderProperties> = (
                 setSelectedProvider={setProviderType}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="name"
                 text={providerName}
                 theme={theme}
@@ -189,7 +191,7 @@ const Provider: React.FC<ProviderProperties> = (
                 atKeyDown={handleEnter}
             />
 
-            <InputLine
+            <PluridInputLine
                 name="token"
                 text={providerToken}
                 theme={theme}
