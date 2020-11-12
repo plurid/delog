@@ -9,6 +9,8 @@
 
 
 // #region module
+const QUIET = process.env.DELOG_QUIET === 'true';
+
 const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || DELOG_GROUND_LEVEL_ALL;
 
 const FORMAT = process.env.DELOG_FORMAT || '';
@@ -32,6 +34,8 @@ const REPOSITORY_BASEPATH = process.env.DELOG_REPOSITORY_BASEPATH || '__MATCH_CU
 
 // #region exports
 export {
+    QUIET,
+
     GROUND_LEVEL,
 
     FORMAT,

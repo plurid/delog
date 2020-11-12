@@ -17,6 +17,7 @@
     } from '#services/logic';
 
     import {
+        consoleLog,
         stringifyError,
     } from '#services/utilities';
     // #endregion external
@@ -56,12 +57,12 @@ const delog = async (
 
 
     if (!endpoint && !graphqlClient) {
-        console.log('Delog Error :: An endpoint is required.');
+        consoleLog('Delog Error :: An endpoint is required.');
         return;
     }
 
     if (!token && !graphqlClient) {
-        console.log('Delog Error :: A token is required.');
+        consoleLog('Delog Error :: A token is required.');
         return;
     }
 
@@ -126,7 +127,7 @@ const delog = async (
 
         return true;
     } catch (error) {
-        console.log('Delog Error ::', stringifyError(error));
+        consoleLog('Delog Error :: ' + stringifyError(error));
 
         return;
     }
