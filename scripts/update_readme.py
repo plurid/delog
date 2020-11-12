@@ -30,10 +30,10 @@ def main():
     root_path = os.path.split(os.path.dirname(__file__))[0]
 
     readme_paths = [
-        'packages/delog-client/delog-cli/README',
-        'packages/delog-client/delog-javascript/README',
-        'packages/delog-client/delog-python/README',
-        'packages/delog-server/README',
+        'packages/delog-client/delog-cli/README.md',
+        'packages/delog-client/delog-javascript/README.md',
+        'packages/delog-client/delog-python/README.md',
+        'packages/delog-server/README.md',
     ]
 
     update_readme(
