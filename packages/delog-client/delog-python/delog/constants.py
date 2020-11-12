@@ -5,6 +5,8 @@ import os
 
 
 #region module
+QUIET = os.environ.get('DELOG_QUIET', '')
+
 GROUND_LEVEL = int(os.environ.get('DELOG_GROUND_LEVEL', 0))
 
 FORMAT = os.environ.get('DELOG_FORMAT', '')

@@ -19,6 +19,10 @@ from delog.constants import (
 from delog.caller import (
     get_caller,
 )
+
+from delog.utilities import (
+    console_log,
+)
 #endregion imports
 
 
@@ -62,59 +66,62 @@ def delog(
         context = {}
 
     if not endpoint:
-        print("Delog Error :: An endpoint is required.")
+        console_log("Delog Error :: An endpoint is required.")
         return
 
     if not token:
-        print("Delog Error :: A token is required.")
+        console_log("Delog Error :: A token is required.")
         return
 
-    if tester and context.get("mode") != 'TESTING':
+    if tester and context.get("mode") != "TESTING":
         return
 
     if GROUND_LEVEL > level:
         return
 
-    graphql_client = client(
-        endpoint=endpoint,
-        token=token,
-    )
+    try:
+        graphql_client = client(
+            endpoint=endpoint,
+            token=token,
+        )
 
-    call_context = get_caller(
-        call=context.get("call"),
-    )
+        call_context = get_caller(
+            call=context.get("call"),
+        )
 
-    log_time = int(time.time())
-    error_string = repr(error)
-    input_context = {
-        "mode": context.get("mode", "LOGGING"),
-        "scenario": context.get("scenario", None),
-        "suite": context.get("suite", None),
-        "sharedID": context.get("shared_id", None),
-        "sharedOrder": context.get("shared_order", None),
-        "call": call_context,
-    };
+        log_time = int(time.time())
+        error_string = repr(error)
+        input_context = {
+            "mode": context.get("mode", "LOGGING"),
+            "scenario": context.get("scenario", None),
+            "suite": context.get("suite", None),
+            "sharedID": context.get("shared_id", None),
+            "sharedOrder": context.get("shared_order", None),
+            "call": call_context,
+        };
 
-    variables = {
-        "input": {
-            "text": text,
-            "time": log_time,
-            "level": level,
+        variables = {
+            "input": {
+                "text": text,
+                "time": log_time,
+                "level": level,
 
-            "project": project,
-            "space": space,
+                "project": project,
+                "space": space,
 
-            "format": format,
+                "format": format,
 
-            "method": method,
-            "error": error_string,
-            "extradata": extradata,
-            "context": input_context,
+                "method": method,
+                "error": error_string,
+                "extradata": extradata,
+                "context": input_context,
+            }
         }
-    }
 
-    graphql_client.execute(
-        query=RECORD,
-        variables=variables,
-    )
+        graphql_client.execute(
+            query=RECORD,
+            variables=variables,
+        )
+    except:
+        console_log("Delog Error :: Something went wrong.")
 #endregion module
