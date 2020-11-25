@@ -77,11 +77,11 @@ export const downloadRepository = async (
             cwd: repositoryPath,
         }, (error) => {
             if (error) {
-                console.log(error)
+                console.log(error);
                 reject(0);
             }
 
-            resolve();
+            resolve(true);
         });
     });
 }
