@@ -98,7 +98,7 @@ describe('delog - simple', () => {
 
         await new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve();
+                resolve(true);
             }, 120_000);
         });
     });
@@ -126,7 +126,7 @@ describe('delog - simple', () => {
                         extradata: JSON.stringify({one: 'two'}),
                     });
 
-                    resolve();
+                    resolve(true);
                 }, 100);
             })
         }
