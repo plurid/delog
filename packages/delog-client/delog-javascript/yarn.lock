@@ -547,10 +547,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@plurid/plurid-functions@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-functions/-/plurid-functions-0.1.18.tgz#b01a9c6847639fc0b72d29a8c30cac86318b6bf4"
-  integrity sha512-tHWjpdpd11nGGpY4lxUpQyNZVmjNbMfD713L2+BLCV+EFMMDjVsWJEK1uUN4BnmifcOeiW9Ou1iq+Nt/R3HF7A==
+"@plurid/plurid-functions@0.0.0-0":
+  version "0.0.0-0"
+  resolved "https://npm.plurid.cloud/@plurid%2fplurid-functions/-/plurid-functions-0.0.0-0.tgz#55b75f6bb99986aec3a75fe1e0b5fff81796b27b"
+  integrity sha512-9YEtEHe69IBBvrQLjFB3KYrWQVHKzWwvmk3qH5j79shYK0y32PiPmL8QC4LnhlNExTfGfjY1B89sMsz6F2yT3g==
 
 "@rollup/plugin-commonjs@^16.0.0":
   version "16.0.0"
@@ -3754,10 +3754,10 @@ rollup-plugin-typescript2@^0.29.0:
     resolve "1.17.0"
     tslib "2.0.1"
 
-rollup@^2.33.3:
-  version "2.33.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.3.tgz#ae72ce31f992b09a580072951bfea76e9df17342"
-  integrity sha512-RpayhPTe4Gu/uFGCmk7Gp5Z9Qic2VsqZ040G+KZZvsZYdcuWaJg678JeDJJvJeEQXminu24a2au+y92CUWVd+w==
+rollup@^2.34.0:
+  version "2.34.0"
+  resolved "https://npm.plurid.cloud/rollup/-/rollup-2.34.0.tgz#ecc7f1d4ce2cb88bb51bec2f56b984f3c35b8271"
+  integrity sha512-dW5iLvttZzdVehjEuNJ1bWvuMEJjOWGmnuFS82WeKHTGXDkRHQeq/ExdifkSyJv9dLcR86ysKRmrIDyR6O0X8g==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -4368,10 +4368,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript-transform-paths@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/typescript-transform-paths/-/typescript-transform-paths-2.0.4.tgz#ccda603192fc2ed15abfc2f8cadfa7c22fea2404"
-  integrity sha512-DVMmuMqX05PnTa2jSfpDruXs17GjHqATdNvt4wQQKIVsGyIjDe3ZlXW25xuiFJN/Lga0x3Q+iDvMOmtPq6ixOw==
+typescript-transform-paths@^2.1.0:
+  version "2.1.0"
+  resolved "https://npm.plurid.cloud/typescript-transform-paths/-/typescript-transform-paths-2.1.0.tgz#3d5c492910c59ce1a7bb762d3078185cbd11940d"
+  integrity sha512-xBzFzS5LTfTjyuT4fuqIk3MLDWsrJTNFs3y17CwVR54G6G/KtTZcVc9UjChgDTuoBffd+Q3oD99UtyDXRpuy/g==
 
 typescript@^4.1.2:
   version "4.1.2"
