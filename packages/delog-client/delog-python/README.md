@@ -77,6 +77,7 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
     + [Building](building)
     + [Testing](testing)
 + [Packages](#packages)
++ [Codeophon](#codeophon)
 
 
 
@@ -240,3 +241,10 @@ to verify the connection.
 [@plurid/delog-client-python][delog-client-python] • the `Python` client
 
 [delog-client-python]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-python
+
+
+
+## [Codeophon](https://github.com/ly3xqhl8g9/codeophon)
+
++ licensing: [delicense](https://github.com/ly3xqhl8g9/delicense)
++ versioning: [αver](https://github.com/ly3xqhl8g9/alpha-versioning)
