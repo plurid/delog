@@ -42,7 +42,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.2.9",
-        "@plurid/plurid-functions": "^0.1.18",
+        "@plurid/plurid-functions": "0.0.0-0",
         "cross-fetch": "^3.0.6",
         "graphql": "^15.4.0",
         "graphql-tag": "^2.11.0",

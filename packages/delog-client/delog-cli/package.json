@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog-cli",
-    "version": "0.0.7",
+    "version": "0.0.0-0",
     "description": "Command-Line Interface for Delog",
     "keywords": [
         "delog",
@@ -21,7 +21,7 @@
         "access": "public"
     },
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=12"
     },
     "main": "distribution/index.js",
     "module": "distribution/index.es.js",
@@ -45,9 +45,9 @@
     },
     "dependencies": {
         "@apollo/client": "^3.2.9",
-        "@plurid/delog": "^0.0.14",
-        "@plurid/deon": "^0.0.42",
-        "@plurid/plurid-functions": "^0.1.18",
+        "@plurid/delog": "0.0.0-0",
+        "@plurid/deon": "0.0.0-0",
+        "@plurid/plurid-functions": "0.0.0-0",
         "commander": "^6.2.0",
         "cross-fetch": "^3.0.6",
         "graphql": "^15.4.0",
