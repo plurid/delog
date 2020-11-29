@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog",
-    "version": "0.0.14",
+    "version": "0.0.0-0",
     "description": "Cloud-Native Logger Client",
     "keywords": [
         "delog",
@@ -21,7 +21,8 @@
         "access": "public"
     },
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=12",
+        "npm": ">=6"
     },
     "main": "distribution/index.js",
     "module": "distribution/index.es.js",
