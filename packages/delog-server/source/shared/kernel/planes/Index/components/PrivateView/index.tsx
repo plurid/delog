@@ -11,11 +11,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        PluridPureButton,
-        PluridInputLine,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -35,6 +30,11 @@
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
+
+    import {
+        PluridPureButton,
+        PluridInputLine,
+    } from '#kernel-services/styled';
     // #endregion external
 
 

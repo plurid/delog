@@ -8,12 +8,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        PluridInputLine,
-        PluridInputBox,
-        PluridInputSwitch,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -30,6 +24,10 @@
         StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
+
+        PluridInputLine,
+        PluridInputBox,
+        PluridInputSwitch,
     } from '#kernel-services/styled';
     // #endregion external
 

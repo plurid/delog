@@ -1,15 +1,15 @@
 // #region imports
     // #region libraries
     import React from 'react';
-
-    import {
-        PluridPureButton,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
     // #region external
     import delogLogo from '../../assets/delog-logo.png';
+
+    import {
+        PluridPureButton,
+    } from '#kernel-services/styled';
     // #endregion external
 
 

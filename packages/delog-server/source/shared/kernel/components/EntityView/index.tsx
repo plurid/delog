@@ -13,12 +13,6 @@
     } from '@plurid/plurid-themes';
 
     import {
-        PluridTextline,
-        PluridPureButton,
-        PluridSpinner,
-    } from '@plurid/plurid-ui-react';
-
-    import {
         PluridIconReset,
         PluridIconDelete,
     } from '@plurid/plurid-icons-react';
@@ -27,6 +21,15 @@
         useThrottledCallback,
     } from '@plurid/plurid-functions-react';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        PluridTextline,
+        PluridPureButton,
+        PluridSpinner,
+    } from '#kernel-services/styled';
+    // #endregion external
 
 
     // #region internal

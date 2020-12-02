@@ -21,10 +21,6 @@
     import {
         PluridComponentProperty,
     } from '@plurid/plurid-react';
-
-    import {
-        PluridTextItem,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -36,6 +32,10 @@
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     // import actions from '#kernel-services/state/actions';
+
+    import {
+        PluridTextItem,
+    } from '#kernel-services/styled';
     // #endregion external
 
 

@@ -17,12 +17,15 @@
     import {
         PluridIconReset,
     } from '@plurid/plurid-icons-react';
+    // #endregion libraries
 
+
+    // #region external
     import {
         PluridDropdown,
         PluridRefreshButton,
-    } from '@plurid/plurid-ui-react';
-    // #endregion libraries
+    } from '#kernel-services/styled';
+    // #endregion external
 
 
     // #region internal

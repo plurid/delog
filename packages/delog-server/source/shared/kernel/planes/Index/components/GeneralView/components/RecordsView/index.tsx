@@ -13,10 +13,6 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        PluridLinkButton,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -67,6 +63,10 @@
     import {
         getFilterIDs,
     } from '#kernel-services/utilities';
+
+    import {
+        PluridLinkButton,
+    } from '#kernel-services/styled';
     // #endregion external
 
 

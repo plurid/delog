@@ -1,10 +1,6 @@
 // #region imports
     // #region libraries
     import React from 'react';
-
-    import {
-        PluridInputSwitch,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -12,6 +8,10 @@
     import {
         notificationTypes,
     } from '#server/data/constants/notifier';
+
+    import {
+        PluridInputSwitch,
+    } from '#kernel-services/styled';
     // #endregion external
 
 

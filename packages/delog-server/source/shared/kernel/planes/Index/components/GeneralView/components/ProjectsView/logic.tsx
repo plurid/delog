@@ -5,10 +5,6 @@
     import {
         PluridIconDelete,
     } from '@plurid/plurid-icons-react';
-
-    import {
-        PluridCopyableLine,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -16,6 +12,10 @@
     import {
         Project,
     } from '#server/data/interfaces';
+
+    import {
+        PluridCopyableLine,
+    } from '#kernel-services/styled';
     // #endregion external
 // #endregion imports
 

@@ -12,11 +12,6 @@
     import {
         useDebouncedCallback,
     } from '@plurid/plurid-functions-react';
-
-    import {
-        PluridInputLine,
-        PluridInputBox,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -41,6 +36,9 @@
         StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
+
+        PluridInputLine,
+        PluridInputBox,
     } from '#kernel-services/styled';
     // #endregion external
 

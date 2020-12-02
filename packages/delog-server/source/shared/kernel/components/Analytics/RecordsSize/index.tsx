@@ -7,15 +7,15 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        PluridDropdown,
-        PluridRefreshButton,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
     // #region external
+    import {
+        PluridDropdown,
+        PluridRefreshButton,
+    } from '#kernel-services/styled';
+
     import {
         humanByteSize,
     } from '#kernel-services/utilities';

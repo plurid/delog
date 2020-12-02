@@ -6,10 +6,6 @@
         PluridIconValid,
         PluridIconDelete,
     } from '@plurid/plurid-icons-react';
-
-    import {
-        PluridLinkButton,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -17,6 +13,10 @@
     import {
         ClientProvider,
     } from '#server/data/interfaces';
+
+    import {
+        PluridLinkButton,
+    } from '#kernel-services/styled';
     // #endregion external
 // #endregion imports
 

@@ -3,16 +3,54 @@
     import styled from 'styled-components';
 
     import {
-        PluridTextline,
-        PluridPureButton,
-        PluridLinkButton,
-    } from '@plurid/plurid-ui-react';
+        universal,
+    } from '@plurid/plurid-ui-components-react';
     // #endregion libraries
 // #endregion imports
 
 
 
 // #region module
+const {
+    buttons: {
+        PureButton: PluridPureButton,
+        LinkButton: PluridLinkButton,
+        RefreshButton: PluridRefreshButton,
+    },
+    inputs: {
+        Textline: PluridTextline,
+        Dropdown: PluridDropdown,
+        InputLine: PluridInputLine,
+        InputSwitch: PluridInputSwitch,
+        InputBox: PluridInputBox,
+    },
+    markers: {
+        Spinner: PluridSpinner,
+    },
+    varia: {
+        CopyableLine: PluridCopyableLine,
+        TextItem: PluridTextItem,
+    },
+} = universal;
+
+export {
+    PluridPureButton,
+    PluridLinkButton,
+    PluridRefreshButton,
+
+    PluridTextline,
+    PluridDropdown,
+    PluridInputLine,
+    PluridInputSwitch,
+    PluridInputBox,
+
+    PluridSpinner,
+
+    PluridCopyableLine,
+    PluridTextItem,
+};
+
+
 export const StyledH1 = styled.h1`
     margin-bottom: 2rem;
 `;

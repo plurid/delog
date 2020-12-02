@@ -12,10 +12,6 @@
     import {
         graphql,
     } from '@plurid/plurid-functions';
-
-    import {
-        PluridSpinner,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -37,6 +33,8 @@
     import {
         StyledPluridPureButton,
         StyledPluridLinkButton,
+
+        PluridSpinner,
     } from '#kernel-services/styled';
     // #endregion external
 

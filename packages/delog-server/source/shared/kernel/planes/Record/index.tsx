@@ -29,11 +29,6 @@
         PluridIconDocuments,
         PluridIconLoop,
     } from '@plurid/plurid-icons-react';
-
-    import {
-        PluridLinkButton,
-        PluridTextItem,
-    } from '@plurid/plurid-ui-react';
     // #endregion libraries
 
 
@@ -49,6 +44,11 @@
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     // import actions from '#kernel-services/state/actions';
+
+    import {
+        PluridLinkButton,
+        PluridTextItem,
+    } from '#kernel-services/styled';
     // #endregion external
 
 
