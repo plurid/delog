@@ -14,7 +14,7 @@
     } from '#server/data/interfaces';
 
     import {
-        PluridLinkButton,
+        PluridCopyableLine,
     } from '#kernel-services/styled';
     // #endregion external
 // #endregion imports
