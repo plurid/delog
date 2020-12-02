@@ -26,8 +26,6 @@ const config = {
         children: true,
     },
 
-    devtool: '',
-
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -58,7 +56,7 @@ const config = {
         plugins.processEnvironmentPlugin,
         plugins.copyPlugin,
         plugins.compressionPluginBrotli,
-        plugins.compressionPluginGzip,
+        // plugins.compressionPluginGzip,
     ],
 };
 

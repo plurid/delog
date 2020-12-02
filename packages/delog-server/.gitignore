@@ -71,6 +71,11 @@ jspm_packages/
 .env.development
 .env.production
 
+# deon environment
+environment/local.deon
+environment/development.deon
+environment/production.deon
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
