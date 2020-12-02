@@ -3,9 +3,9 @@
     import {
         Context,
         InputVerifyUniqueID,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

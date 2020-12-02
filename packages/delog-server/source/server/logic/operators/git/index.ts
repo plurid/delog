@@ -11,7 +11,7 @@
     // #region external
     import {
         BASE_PATH,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

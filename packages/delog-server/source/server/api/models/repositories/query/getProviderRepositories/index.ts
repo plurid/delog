@@ -3,16 +3,16 @@
     import {
         Context,
         InputValueString,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         getRepositoriesData,
-    } from '#server/api/requesters';
+    } from '~server/api/requesters';
 
     import {
         compareValues,
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

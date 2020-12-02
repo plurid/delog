@@ -27,15 +27,15 @@
     // #region external
     import {
         Test,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    // import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    // import actions from '~kernel-services/state/actions';
 
     import {
         PluridTextItem,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

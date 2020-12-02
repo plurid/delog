@@ -25,14 +25,14 @@
         DatabaseUpdate,
         DatabaseObliterate,
         DatabaseObliterateAll,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         MONGO_USERNAME,
         MONGO_PASSWORD,
         MONGO_ADDRESS,
         MONGO_CONNECTION_STRING,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

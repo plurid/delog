@@ -3,15 +3,15 @@
     import {
         Context,
         InputGenerateFormat,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerFormat,
-    } from '#server/logic/operators/formats';
+    } from '~server/logic/operators/formats';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

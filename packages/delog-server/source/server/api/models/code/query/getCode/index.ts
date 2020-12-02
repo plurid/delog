@@ -3,15 +3,15 @@
     import {
         Context,
         InputGetCode,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         getCodeLines,
-    } from '#server/logic/operators/code';
+    } from '~server/logic/operators/code';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

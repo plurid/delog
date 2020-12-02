@@ -3,15 +3,15 @@
     import {
         Context,
         InputAddProvider,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerProvider,
-    } from '#server/logic/operators/providers';
+    } from '~server/logic/operators/providers';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

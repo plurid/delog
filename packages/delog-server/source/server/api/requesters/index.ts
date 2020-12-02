@@ -2,20 +2,20 @@
     // #region external
     import {
         InputLinkRepository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         BITBUCKET_PROVIDER,
         GITHUB_PROVIDER,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
     import {
         loadProviders,
-    } from '#server/logic/loader';
+    } from '~server/logic/loader';
 
     import {
         registerRepositoryMetadata,
-    } from '#server/logic/operators/repositories';
+    } from '~server/logic/operators/repositories';
     // #endregion external
 
 

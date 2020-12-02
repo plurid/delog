@@ -27,15 +27,15 @@
     // #region external
     import {
         LoggedRecord,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         getCode,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    // import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    // import actions from '~kernel-services/state/actions';
     // #endregion external
 
 

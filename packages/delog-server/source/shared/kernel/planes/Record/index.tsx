@@ -35,20 +35,20 @@
     // #region external
     import {
         logLevelsText,
-    } from '#server/data/constants/logger';
+    } from '~server/data/constants/logger';
 
     import {
         LoggedRecord,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    // import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    // import actions from '~kernel-services/state/actions';
 
     import {
         PluridLinkButton,
         PluridTextItem,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

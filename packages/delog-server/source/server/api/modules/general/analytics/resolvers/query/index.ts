@@ -5,11 +5,11 @@
         InputGetAnalyticsLastPeriod,
         InputGetAnalyticsSize,
         Context,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         Analytics,
-    } from '#server/api/models';
+    } from '~server/api/models';
     // #endregion external
 // #endregion imports
 

@@ -9,7 +9,7 @@
 
     import {
         PluridPureButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

@@ -12,23 +12,23 @@
     import {
         Repository,
         Provider,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         repositoriesPath,
         BASE_PATH_REPOSITORIES,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
     import {
         CodeProvider,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         loadRepositories,
-    } from '#server/logic/loader';
+    } from '~server/logic/loader';
 
-    import database from '#server/services/database';
-    import storage from '#server/services/storage';
+    import database from '~server/services/database';
+    import storage from '~server/services/storage';
     // #endregion external
 // #endregion imports
 

@@ -3,15 +3,15 @@
     import {
         Context,
         InputObliterateTests,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         deregisterTests,
-    } from '#server/logic/operators/tests';
+    } from '~server/logic/operators/tests';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

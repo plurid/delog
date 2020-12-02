@@ -11,7 +11,7 @@
     // #region external
     import {
         ClientNotifier,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
     // #endregion external
 
 

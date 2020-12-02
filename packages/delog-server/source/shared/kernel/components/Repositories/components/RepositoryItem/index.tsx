@@ -16,7 +16,7 @@
     // #region external
     import {
         Repository as IRepository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
     // #endregion external
 
 

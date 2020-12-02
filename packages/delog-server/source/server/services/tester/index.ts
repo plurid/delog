@@ -1,6 +1,6 @@
 // #region imports
     // #region external
-    import Tester from '#server/objects/Tester';
+    import Tester from '~server/objects/Tester';
     // #endregion external
 // #endregion imports
 

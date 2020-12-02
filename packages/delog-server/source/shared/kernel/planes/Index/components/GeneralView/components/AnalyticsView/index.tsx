@@ -15,25 +15,25 @@
     // #region external
     import {
         Project,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         AnalyticsRecordsCount,
         AnalyticsSize,
-    } from '#kernel-data/interfaces';
+    } from '~kernel-data/interfaces';
 
-    import RecordsPieChart from '#kernel-components/Analytics/RecordsPieChart';
-    import RecordsSize from '#kernel-components/Analytics/RecordsSize';
+    import RecordsPieChart from '~kernel-components/Analytics/RecordsPieChart';
+    import RecordsSize from '~kernel-components/Analytics/RecordsSize';
 
     import {
         getProjects,
         getAnalyticsLastPeriod,
         getAnalyticsSize,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 

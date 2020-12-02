@@ -3,15 +3,15 @@
     import {
         Context,
         InputGenerateSpace,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerSpace,
-    } from '#server/logic/operators/spaces';
+    } from '~server/logic/operators/spaces';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

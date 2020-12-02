@@ -11,11 +11,11 @@
     // #region external
     import {
         Space,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         PluridCopyableLine,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 // #endregion imports
 

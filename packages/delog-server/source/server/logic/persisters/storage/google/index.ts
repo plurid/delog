@@ -7,7 +7,7 @@
     // #region external
     import {
         QUIET,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
     import {
         Storage,
@@ -18,7 +18,7 @@
         StorageObliterateAll,
         StorageGenerateLocations,
         StorageReadDirectory,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
     // #endregion external
 // #endregion imports
 

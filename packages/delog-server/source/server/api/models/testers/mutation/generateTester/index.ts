@@ -3,15 +3,15 @@
     import {
         Context,
         InputGenerateTester,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerTester,
-    } from '#server/logic/operators/testers';
+    } from '~server/logic/operators/testers';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

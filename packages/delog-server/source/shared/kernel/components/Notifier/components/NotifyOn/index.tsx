@@ -7,11 +7,11 @@
     // #region external
     import {
         notificationTypes,
-    } from '#server/data/constants/notifier';
+    } from '~server/data/constants/notifier';
 
     import {
         PluridInputSwitch,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

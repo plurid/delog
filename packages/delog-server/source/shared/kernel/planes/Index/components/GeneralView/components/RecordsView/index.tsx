@@ -19,54 +19,54 @@
     // #region external
     import {
         compareValues,
-    } from '#server/utilities/general';
+    } from '~server/utilities/general';
 
     import {
         parseFilter,
-    } from '#server/utilities/filter';
+    } from '~server/utilities/filter';
 
     import {
         logLevelsText,
-    } from '#server/data/constants/logger';
+    } from '~server/data/constants/logger';
 
     import {
         LoggedRecord,
         InputQuery,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         AnalyticsRecordsCount,
         AnalyticsSize,
-    } from '#kernel-data/interfaces';
+    } from '~kernel-data/interfaces';
 
     import EntityView, {
         EntityViewRefAttributes,
-    } from '#kernel-components/EntityView';
+    } from '~kernel-components/EntityView';
 
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         OBLITERATE_RECORD,
         OBLITERATE_RECORDS,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         getRecords,
         getAnalyticsLastPeriod,
         getAnalyticsSize,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    import actions from '~kernel-services/state/actions';
 
     import {
         getFilterIDs,
-    } from '#kernel-services/utilities';
+    } from '~kernel-services/utilities';
 
     import {
         PluridLinkButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

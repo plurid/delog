@@ -4,11 +4,11 @@
         Context,
         InputOf,
         InputGetCode,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         Code,
-    } from '#server/api/models';
+    } from '~server/api/models';
     // #endregion external
 // #endregion imports
 

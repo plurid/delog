@@ -129,6 +129,11 @@ const baseConfig = {
                 configFile: path.resolve(__dirname, '../../tsconfig.json'),
             }),
         ],
+
+        fallback: {
+            'crypto': false,
+            'stream': false,
+        },
     },
 
     stats: {

@@ -10,7 +10,7 @@
     import {
         logLevel,
         logLevels,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

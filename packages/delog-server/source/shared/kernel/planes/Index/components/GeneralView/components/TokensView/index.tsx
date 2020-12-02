@@ -18,31 +18,31 @@
     // #region external
     import {
         compareValues,
-    } from '#server/utilities/general';
+    } from '~server/utilities/general';
 
     import {
         ClientToken,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import EntityView from '#kernel-components/EntityView';
+    import EntityView from '~kernel-components/EntityView';
 
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         OBLITERATE_TOKEN,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         getCurrentOwner,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    import actions from '~kernel-services/state/actions';
 
     import {
         getFilterIDs,
-    } from '#kernel-services/utilities';
+    } from '~kernel-services/utilities';
     // #endregion external
 
 

@@ -14,15 +14,15 @@
     import {
         Token as IToken,
         ClientToken,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         addEntityMutation,
-    } from '#kernel-services/logic/mutations';
+    } from '~kernel-services/logic/mutations';
 
     import {
         GENERATE_TOKEN,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         StyledH1,
@@ -31,7 +31,7 @@
 
         PluridInputLine,
         PluridCopyableLine,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

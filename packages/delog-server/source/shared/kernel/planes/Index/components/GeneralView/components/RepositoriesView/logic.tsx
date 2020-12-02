@@ -11,11 +11,11 @@
     // #region external
     import {
         Repository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         PluridLinkButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 // #endregion imports
 

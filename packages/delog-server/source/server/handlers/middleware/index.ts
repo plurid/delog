@@ -13,14 +13,14 @@
     import {
         DelogLogic,
         DelogRequest,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         HEALTH_CHECK_ENDPOINT,
 
         Headers,
         ContentTypes,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

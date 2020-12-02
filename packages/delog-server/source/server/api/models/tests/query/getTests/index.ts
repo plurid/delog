@@ -3,13 +3,13 @@
     import {
         Context,
         InputQuery,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

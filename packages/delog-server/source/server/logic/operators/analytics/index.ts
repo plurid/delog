@@ -3,13 +3,13 @@
     import {
         InputGetAnalyticsLastPeriod,
         InputGetAnalyticsSize,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         logLevels,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

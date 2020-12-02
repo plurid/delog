@@ -3,15 +3,15 @@
     import {
         InputGetAnalyticsSize,
         Context,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
 
     import {
         analyticsSize,
-    } from '#server/logic/operators/analytics';
+    } from '~server/logic/operators/analytics';
     // #endregion external
 // #endregion imports
 

@@ -2,11 +2,11 @@
     // #region external
     import {
         Record as DelogRecord,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         logLevelsText,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

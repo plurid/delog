@@ -11,7 +11,7 @@
         Tester,
         LoggedRecord,
         Test,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
     // #endregion libraries
 
 
@@ -19,7 +19,7 @@
     import {
         AnalyticsRecordsCount,
         AnalyticsSize,
-    } from '#kernel-data/interfaces';
+    } from '~kernel-data/interfaces';
     // #endregion exports
 // #endregion imports
 

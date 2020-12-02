@@ -1,4 +1,4 @@
-FROM node:12-alpine AS builder
+FROM node:14-alpine AS builder
 
 
 WORKDIR /app
@@ -7,8 +7,17 @@ WORKDIR /app
 COPY . .
 
 
+ARG NPM_TOKEN
+ARG NPM_REGISTRY=registry.npmjs.org
+
+ENV NPM_TOKEN $NPM_TOKEN
+ENV NPM_REGISTRY $NPM_REGISTRY
+
 ENV ENV_MODE production
 ENV NODE_ENV production
+
+# Write environment variables into .npmrc
+RUN ( echo "cat <<EOF" ; cat ./configurations/.npmrcx ; echo EOF ) | sh > ./.npmrc
 
 
 RUN yarn install --production false --network-timeout 1000000
@@ -19,7 +28,7 @@ RUN yarn build.production
 
 
 
-FROM node:12-alpine
+FROM node:14-alpine
 
 
 ARG PORT=56965
@@ -83,12 +92,15 @@ ENV DELOG_OPTIMIZATION_BATCH_WRITE_SIZE=$DELOG_OPTIMIZATION_BATCH_WRITE_SIZE
 ENV DELOG_OPTIMIZATION_BATCH_WRITE_TIME=$DELOG_OPTIMIZATION_BATCH_WRITE_TIME
 
 
+COPY --from=builder /app/.npmrc ./
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/scripts ./scripts
 
 
 RUN yarn install --production --network-timeout 1000000
+
+RUN rm -f .npmrc
 
 
 CMD ["yarn", "start"]

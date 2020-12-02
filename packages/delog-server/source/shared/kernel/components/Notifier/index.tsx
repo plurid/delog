@@ -14,11 +14,11 @@
     // #region external
     import {
         addEntityMutation,
-    } from '#kernel-services/logic/mutations';
+    } from '~kernel-services/logic/mutations';
 
     import {
         GENERATE_NOTIFIER,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         StyledH1,
@@ -28,7 +28,7 @@
         PluridInputLine,
         PluridInputBox,
         PluridInputSwitch,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

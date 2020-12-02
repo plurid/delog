@@ -12,11 +12,11 @@
     // #region external
     import {
         ClientProvider,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         PluridLinkButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 // #endregion imports
 

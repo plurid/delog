@@ -5,15 +5,15 @@
         InputGenerateNotifier,
         ClientNotifier,
         NotifierType,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerNotifier,
-    } from '#server/logic/operators/notifiers';
+    } from '~server/logic/operators/notifiers';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

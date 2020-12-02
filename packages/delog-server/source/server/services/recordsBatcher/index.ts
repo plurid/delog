@@ -2,15 +2,15 @@
     // #region external
     import {
         LoggedRecord,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         DATABASE_TYPE,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
-    import Database from '#server/logic/persisters/database';
+    import Database from '~server/logic/persisters/database';
 
-    import Batcher from '#server/objects/Batcher';
+    import Batcher from '~server/objects/Batcher';
     // #endregion external
 // #endregion imports
 

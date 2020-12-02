@@ -2,12 +2,12 @@
     // #region external
     import {
         Database,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         OPTIMIZATION_BATCH_WRITE_SIZE,
         OPTIMIZATION_BATCH_WRITE_TIME,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

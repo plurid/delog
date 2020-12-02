@@ -18,24 +18,24 @@
     // #region external
     import {
         Repository as IRepository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         GET_PROVIDER_REPOSITORIES,
-    } from '#kernel-services/graphql/query';
+    } from '~kernel-services/graphql/query';
 
     import {
         LINK_REPOSITORY,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         StyledPluridPureButton,
         StyledPluridLinkButton,
 
         PluridSpinner,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

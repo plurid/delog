@@ -24,7 +24,7 @@
     import {
         PluridDropdown,
         PluridRefreshButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

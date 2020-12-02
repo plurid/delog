@@ -18,19 +18,19 @@
     // #region external
     import {
         Tester as ITester,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         addEntityMutation,
-    } from '#kernel-services/logic/mutations';
+    } from '~kernel-services/logic/mutations';
 
     import {
         verifyUniqueID,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
     import {
         GENERATE_TESTER,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         StyledH1,
@@ -39,7 +39,7 @@
 
         PluridInputLine,
         PluridInputBox,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

@@ -14,11 +14,11 @@
     import {
         PluridDropdown,
         PluridRefreshButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
 
     import {
         humanByteSize,
-    } from '#kernel-services/utilities';
+    } from '~kernel-services/utilities';
     // #endregion external
 
 

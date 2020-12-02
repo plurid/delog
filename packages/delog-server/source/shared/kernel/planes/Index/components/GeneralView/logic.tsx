@@ -28,18 +28,18 @@
     // #region external
     import delogLogo from '../../assets/delog-logo.png';
 
-    import Token from '#kernel-components/Token';
-    import Project from '#kernel-components/Project';
-    import Space from '#kernel-components/Space';
-    import Provider from '#kernel-components/Provider';
-    import Repositories from '#kernel-components/Repositories';
-    import Format from '#kernel-components/Format';
-    import Notifier from '#kernel-components/Notifier';
-    import Tester from '#kernel-components/Tester';
+    import Token from '~kernel-components/Token';
+    import Project from '~kernel-components/Project';
+    import Space from '~kernel-components/Space';
+    import Provider from '~kernel-components/Provider';
+    import Repositories from '~kernel-components/Repositories';
+    import Format from '~kernel-components/Format';
+    import Notifier from '~kernel-components/Notifier';
+    import Tester from '~kernel-components/Tester';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 

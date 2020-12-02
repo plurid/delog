@@ -21,7 +21,7 @@
     // #region external
     import {
         Test,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
     // #endregion external
 // #endregion imports
 

@@ -3,15 +3,15 @@
     import {
         Context,
         InputGenerateToken,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         registerToken,
-    } from '#server/logic/operators/tokens';
+    } from '~server/logic/operators/tokens';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

@@ -14,15 +14,15 @@
     // #region external
     import {
         Provider as IProvider,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         ADD_PROVIDER,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         addEntityMutation,
-    } from '#kernel-services/logic/mutations';
+    } from '~kernel-services/logic/mutations';
 
     import {
         StyledH1,
@@ -30,7 +30,7 @@
         StyledPluridLinkButton,
 
         PluridInputLine,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

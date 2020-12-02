@@ -12,7 +12,7 @@
     // #region external
     import {
         GITHUB_API,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
     // #endregion external
 // #endregion imports
 

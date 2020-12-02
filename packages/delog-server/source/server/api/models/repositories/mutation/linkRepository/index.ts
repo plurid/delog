@@ -3,15 +3,15 @@
     import {
         Context,
         InputLinkRepository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         handleLinkRepository,
-    } from '#server/api/requesters';
+    } from '~server/api/requesters';
 
     import {
         generateMethodLogs,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

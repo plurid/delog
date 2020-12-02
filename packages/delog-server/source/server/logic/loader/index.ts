@@ -9,13 +9,13 @@
         Repository,
         Format,
         ClientNotifier,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         extractClientNotifierData,
-    } from '#server/logic/operators/notifiers';
+    } from '~server/logic/operators/notifiers';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

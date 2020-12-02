@@ -12,13 +12,13 @@
     // #region external
     import {
         InputQuery,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         AnalyticsRecordsCount,
-    } from '#kernel-data/interfaces';
+    } from '~kernel-data/interfaces';
 
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         GET_CURRENT_OWNER,
@@ -29,9 +29,9 @@
         GET_ANALYTICS_SIZE,
         GET_CODE,
         VERIFY_UNIQUE_ID,
-    } from '#kernel-services/graphql/query';
+    } from '~kernel-services/graphql/query';
 
-    import actions from '#kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 

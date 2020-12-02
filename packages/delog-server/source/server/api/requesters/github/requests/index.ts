@@ -16,12 +16,12 @@
     import {
         BASE_PATH_REPOSITORIES,
         BASE_PATH,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
     import {
         Provider,
         Repository,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         requester,

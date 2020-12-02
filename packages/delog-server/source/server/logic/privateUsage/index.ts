@@ -15,9 +15,9 @@
         PRIVATE_OWNER_IDENTONYM,
 
         TEST_MODE,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

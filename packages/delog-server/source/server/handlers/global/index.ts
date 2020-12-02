@@ -1,6 +1,6 @@
 // #region imports
     // #region external
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

@@ -17,15 +17,15 @@
         Record,
         LoggedRecord,
         InputObliterateRecords,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import database from '#server/services/database';
-    import storage from '#server/services/storage';
-    import recordsBatcher from '#server/services/recordsBatcher';
-    import tester from '#server/services/tester';
+    import database from '~server/services/database';
+    import storage from '~server/services/storage';
+    import recordsBatcher from '~server/services/recordsBatcher';
+    import tester from '~server/services/tester';
 
-    import Formatter from '#server/objects/Formatter';
-    import Notifier from '#server/objects/Notifier';
+    import Formatter from '~server/objects/Formatter';
+    import Notifier from '~server/objects/Notifier';
     // #endregion external
 // #endregion imports
 
