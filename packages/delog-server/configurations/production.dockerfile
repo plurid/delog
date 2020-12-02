@@ -10,11 +10,13 @@ COPY . .
 ARG NPM_TOKEN
 ARG NPM_REGISTRY=registry.npmjs.org
 
-ENV NPM_TOKEN $NPM_TOKEN
-ENV NPM_REGISTRY $NPM_REGISTRY
-
 ENV ENV_MODE production
 ENV NODE_ENV production
+
+ENV PLURID_BUILD_DIRECTORY build
+
+ENV NPM_TOKEN $NPM_TOKEN
+ENV NPM_REGISTRY $NPM_REGISTRY
 
 # Write environment variables into .npmrc
 RUN ( echo "cat <<EOF" ; cat ./configurations/.npmrcx ; echo EOF ) | sh > ./.npmrc
@@ -64,6 +66,8 @@ WORKDIR /app
 
 ENV ENV_MODE production
 ENV NODE_ENV production
+
+ENV PLURID_BUILD_DIRECTORY build
 
 ENV PORT=$PORT
 
