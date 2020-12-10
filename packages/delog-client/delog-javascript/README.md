@@ -15,7 +15,7 @@
 
 
 <h3 align="center">
-    Cloud-Native Logger
+    Cloud Service for Centralized Logging
 </h3>
 
 
