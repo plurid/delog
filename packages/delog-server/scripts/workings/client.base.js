@@ -131,7 +131,7 @@ const baseConfig = {
             }),
         ],
 
-        fallback: {
+        alias: {
             'crypto': false,
             'stream': false,
         },
