@@ -24,7 +24,7 @@ class Batcher<T> {
     private options: BatcherOptions;
     private entity: string;
     private database: Database;
-    private interval: number = 0;
+    private interval: NodeJS.Timeout | undefined = undefined;
 
     constructor(
         entity: string,
@@ -58,8 +58,10 @@ class Batcher<T> {
         }
 
         if (this.batch.length === 0) {
-            clearInterval(this.interval);
-            this.interval = 0;
+            if (this.interval) {
+                clearInterval(this.interval);
+                this.interval = undefined;
+            }
 
             return;
         }

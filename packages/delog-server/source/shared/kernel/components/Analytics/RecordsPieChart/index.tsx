@@ -210,11 +210,6 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                 height={350}
             >
                 <Pie
-                    activeIndex={itemsCount ? activeIndex : -1}
-                    activeShape={(properties) =>renderActiveShape(
-                        properties,
-                        interactionTheme,
-                    )}
                     data={itemsCount
                         ? data : [
                             {
@@ -223,14 +218,19 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                             },
                         ]
                     }
+                    dataKey="value"
+                    activeIndex={itemsCount ? activeIndex : -1}
+                    activeShape={(properties) => renderActiveShape(
+                        properties,
+                        interactionTheme,
+                    ) as any}
                     cx={250}
                     cy={175}
                     innerRadius={50}
                     outerRadius={100}
                     animationDuration={1}
                     fill="#8884d8"
-                    dataKey="value"
-                    onMouseEnter={onPieEnter}
+                    onMouseEnter={onPieEnter as any}
                     style={{
                         opacity: itemsCount ? '1' : '0.1',
                         stroke: 'none',
