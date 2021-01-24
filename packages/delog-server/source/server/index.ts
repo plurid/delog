@@ -32,7 +32,7 @@
 
     import setupHandlers from './handlers';
 
-    import mockLogic from './logic/mock';
+    // import mockLogic from './logic/mock';
     // #endregion internal
 // #endregion imports
 
@@ -43,7 +43,7 @@
 /** ENVIRONMENT */
 const watchMode = process.env.PLURID_WATCH_MODE === 'true';
 const isProduction = process.env.ENV_MODE === 'production';
-const buildDirectory = process.env.PLURID_BUILD_DIRECTORY || 'build';
+const buildDirectory = __dirname;
 const port = process.env.PORT || 56965;
 
 const applicationRoot = 'delog-application';
