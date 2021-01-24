@@ -223,14 +223,14 @@ const RecordsPieChart: React.FC<RecordsPieChartProperties> = (
                     activeShape={(properties) => renderActiveShape(
                         properties,
                         interactionTheme,
-                    ) as any}
+                    )}
                     cx={250}
                     cy={175}
                     innerRadius={50}
                     outerRadius={100}
                     animationDuration={1}
                     fill="#8884d8"
-                    onMouseEnter={onPieEnter as any}
+                    onMouseEnter={onPieEnter}
                     style={{
                         opacity: itemsCount ? '1' : '0.1',
                         stroke: 'none',
