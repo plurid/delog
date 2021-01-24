@@ -15,7 +15,7 @@
 
 
 // #region module
-const endpoint = 'http://localhost:56965/delog';
+const endpoint = 'http://localhost:56365/delog';
 const token = '__TESTS__';
 
 
