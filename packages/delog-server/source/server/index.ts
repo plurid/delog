@@ -146,6 +146,8 @@ if (require.main === module) {
 
 
 // #region exports
+export * from './data/interfaces';
+
 export {
     delogSetup,
 };
