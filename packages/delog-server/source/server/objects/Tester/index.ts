@@ -66,7 +66,7 @@ const parseConfiguration = async (
 
 class Tester {
     private calls: Record<string, TesterCall> = {};
-    private interval: number = 0;
+    private interval: NodeJS.Timeout | undefined = undefined;
 
 
     public async test(
@@ -189,8 +189,10 @@ class Tester {
 
     private testRunnerLoop() {
         if (Object.entries(this.calls).length === 0) {
-            clearInterval(this.interval);
-            this.interval = 0;
+            if (this.interval) {
+                clearInterval(this.interval);
+                this.interval = undefined;
+            }
             return;
         }
 
