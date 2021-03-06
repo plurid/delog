@@ -137,48 +137,52 @@ const main = async (
             'text',
         )
         .option(
-            '--server <server>',
+            '--server [server]',
             'server address',
         )
         .option(
-            '--identonym <identonym>',
+            '--identonym [identonym]',
             'identonym',
         )
         .option(
-            '-l, --level <level>',
+            '-k, --token [token]',
+            'token',
+        )
+        .option(
+            '-l, --level [level]',
             'level',
             '3',
         )
         .option(
-            '-t, --tester <tester>',
+            '-r, --tester [tester]',
             'tester',
         )
         .option(
-            '-p, --project <project>',
+            '-p, --project [project]',
             'project',
         )
         .option(
-            '-s, --space <space>',
+            '-s, --space [space]',
             'space',
         )
         .option(
-            '-f, --format <format>',
+            '-f, --format [format]',
             'format',
         )
         .option(
-            '-m, --method <method>',
+            '-m, --method [method]',
             'method',
         )
         .option(
-            '-e, --error <error>',
+            '-e, --error [error]',
             'error',
         )
         .option(
-            '-x, --extradata <extradata>',
+            '-x, --extradata [extradata]',
             'extradata',
         )
         .option(
-            '-c, --context <context>',
+            '-c, --context [context]',
             'context',
         )
         .description('record to the delog server, default or specified')
@@ -189,6 +193,7 @@ const main = async (
                     identonym,
 
                     text,
+                    token,
                     level,
 
                     project,
@@ -217,6 +222,7 @@ const main = async (
 
                 const data: any = {
                     text,
+                    token,
                     level: levelValue,
 
                     project,

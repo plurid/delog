@@ -37,6 +37,7 @@ const record = async (
             graphqlClient,
 
             text: data.text,
+            token: data.token,
             level: data.level,
 
             project: data.project,
