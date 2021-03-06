@@ -36,7 +36,7 @@ const store = (
     //     themes: localState?.themes,
     // };
 
-    const _store = createStore(
+    const _store: any = createStore(
         reducers,
         preloadedState,
         // persistedState || preloadedState,
