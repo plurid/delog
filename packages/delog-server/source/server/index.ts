@@ -32,6 +32,10 @@
 
     import setupHandlers from './handlers';
 
+    import {
+        GRAPHQL_ENDPOINT,
+    } from './data/constants/graphql';
+
     // import mockLogic from './logic/mock';
     // #endregion internal
 // #endregion imports
@@ -88,12 +92,17 @@ const options: PluridServerPartialOptions = {
     open: openAtStart,
     debug,
     ignore: [
-        '/delog',
+        GRAPHQL_ENDPOINT !== '/' ? GRAPHQL_ENDPOINT : '',
     ],
 };
 
 const template: PluridServerTemplateConfiguration = {
     root: applicationRoot,
+    headScripts: `
+        <script>
+            window.DELOG_GRAPHQL_ENDPOINT = "${GRAPHQL_ENDPOINT}";
+        </script>
+    `,
 };
 // #endregion constants
 

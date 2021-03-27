@@ -8,21 +8,29 @@
         InMemoryCache,
     } from '@apollo/client';
     // #endregion libraries
-
-
-    // #region external
-    import {
-        GRAPHQL_ENDPOINT,
-    } from '~server/data/constants/graphql';
-    // #endregion external
 // #endregion imports
 
 
 
 // #region module
+const DEFAULT_GRAPHQL_ENDPOINT = '/delog';
+
+const graphqlEndpoint = () => {
+    if (typeof window === 'undefined') {
+        return DEFAULT_GRAPHQL_ENDPOINT;
+    }
+
+    if ((window as any).DELOG_GRAPHQL_ENDPOINT) {
+        return (window as any).DELOG_GRAPHQL_ENDPOINT;
+    }
+
+    return DEFAULT_GRAPHQL_ENDPOINT;
+}
+
+
 const client = new ApolloClient({
     link: createHttpLink({
-        uri: GRAPHQL_ENDPOINT,
+        uri: graphqlEndpoint(),
         credentials: 'include',
         /**
          * HACK: types mismatch
