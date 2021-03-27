@@ -15,6 +15,7 @@
         PRIVATE_OWNER_IDENTONYM,
 
         TEST_MODE,
+        TEST_MODE_TOKEN,
     } from '~server/data/constants';
 
     import database from '~server/services/database';
@@ -51,7 +52,7 @@ const getPrivateOwner = async (
         const token = getToken(request);
 
         if (TEST_MODE) {
-            if (token === '__TESTS__') {
+            if (token === TEST_MODE_TOKEN) {
                 return PRIVATE_OWNER_IDENTONYM;
             }
         }

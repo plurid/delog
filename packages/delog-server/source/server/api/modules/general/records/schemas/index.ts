@@ -90,10 +90,10 @@ export const inputs = gql`
         time: Int!
         level: Int!
 
-        project: String!
-        space: String!
+        project: String
+        space: String
 
-        format: String!
+        format: String
 
         method: String
         error: String

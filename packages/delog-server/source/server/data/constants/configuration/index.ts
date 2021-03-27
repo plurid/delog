@@ -41,6 +41,7 @@ export const MONGO_CONNECTION_STRING = process.env.DELOG_MONGO_CONNECTION_STRING
 
 
 export const TEST_MODE = process.env.DELOG_TEST_MODE === 'true';
+export const TEST_MODE_TOKEN = process.env.DELOG_TEST_MODE_TOKEN || '__TEST_MODE__';
 
 
 

@@ -24,7 +24,10 @@ const client = new ApolloClient({
     link: createHttpLink({
         uri: GRAPHQL_ENDPOINT,
         credentials: 'include',
-        fetch,
+        /**
+         * HACK: types mismatch
+         */
+        fetch: fetch as any,
     }),
     cache: new InMemoryCache(),
 });

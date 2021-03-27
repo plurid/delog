@@ -25,7 +25,10 @@ export const requester = (
     link: createHttpLink({
         uri: GITHUB_API,
         credentials: 'include',
-        fetch,
+        /**
+         * HACK: types mismatch
+         */
+        fetch: fetch as any,
         headers: {
             'Authorization': `Bearer ${token}`,
         },

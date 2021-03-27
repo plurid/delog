@@ -79,8 +79,8 @@ const record = async (
             time,
             level,
 
-            project,
-            space,
+            project: project || '',
+            space: space || '',
 
             format: format || '%TIME - %SPACE - %LEVEL : %TEXT',
 
