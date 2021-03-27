@@ -204,6 +204,17 @@ mongodb://admin:1234@localhost:56966/?authSource=admin
 to verify the connection.
 
 
+To record a test delog from the `CLI`, the `cURL` tool can be used
+
+``` bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer __TEST_MODE__" \
+    --data-binary '{"query": "mutation DelogMutationRecord ($input: DelogInputRecord!) { delogMutationRecord(input: $input) { status }}", "variables": {"input":{"text":"test delog record", "time":1616863208, "level":3, "project":"x-project", "space":"x-space"}}}' \
+    'http://localhost:56365/delog'
+```
+
 
 ## Packages
 
