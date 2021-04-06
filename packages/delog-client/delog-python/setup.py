@@ -8,10 +8,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="delog",
-    version="0.0.6",
+    version="0.0.7",
     author="ly3xqhl8g9",
     author_email="ly3xqhl8g9@plurid.com",
-    description="delog client",
+    description="centralized logging client for delog",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/plurid/delog",
