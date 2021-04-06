@@ -1,3 +1,7 @@
+# Run with
+# python -m tests.test_delog
+
+
 #region imports
 import unittest
 
