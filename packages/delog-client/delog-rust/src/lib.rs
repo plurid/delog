@@ -1,3 +1,6 @@
+static DELOG_RECORD: &str = "mutation DelogMutationRecord ($input: DelogInputRecord!) { delogMutationRecord(input: $input) { status }}";
+
+
 #[derive(Default)]
 pub struct DelogData {
     /// Required.
@@ -69,6 +72,8 @@ async fn delog_call (
     method: String,
     extradata: String,
 ) -> Result<(), reqwest::Error> {
+    use serde_json::json;
+    
     println!(
         "{} {} {} {} {} {} {} {}", 
         text, 
@@ -81,11 +86,32 @@ async fn delog_call (
         extradata,
     );
 
-    let p = "";
+    let data = json!({
+        "query": DELOG_RECORD,
+        "variables": {
+            "input": {
+                "text": text,
+                "project": project,
+                "space": space,
+                "format": format,
+                "method": method,
+                "extradata": extradata
+            }
+        }
+    });
 
+    let body = serde_json::to_string(&data).unwrap_or("".to_string());
+
+    if body.is_empty() {
+        // return error
+        return Ok(());
+    }
+ 
     let _response = reqwest::Client::new()
         .post(endpoint)
-        .form(&p)
+        .header("Content-Type", "application/json")
+        .header("Authorization", format!("Bearer {}", token))
+        .body(body)
         .send()
         .await?;
 
@@ -111,7 +137,7 @@ pub async fn delog(
 
     match data {
         Str(data) => {
-            let call = delog_call(
+            delog_call(
                 String::from(data),
                 endpoint,
                 token,
@@ -120,12 +146,7 @@ pub async fn delog(
                 format,
                 method,
                 extradata,
-            ).await;
-
-            match call {
-                Ok(_) => (),
-                Err(_) => (),
-            }
+            ).await?;
         }
         Data(data) => {
             let data_endpoint = String::from(data.endpoint.unwrap_or(&endpoint));
@@ -138,7 +159,7 @@ pub async fn delog(
             let data_method = String::from(data.method.unwrap_or(&method));
             let data_extradata = String::from(data.extradata.unwrap_or(&extradata));
 
-            let call = delog_call(
+            delog_call(
                 String::from(data.text),
                 data_endpoint,
                 data_token,
@@ -147,12 +168,7 @@ pub async fn delog(
                 data_format,
                 data_method,
                 data_extradata,
-            ).await;
-
-            match call {
-                Ok(_) => (),
-                Err(_) => (),
-            }
+            ).await?;
         }
     }
 
