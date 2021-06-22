@@ -100,6 +100,7 @@ The [`delog-server`][delog-server] uses [plurid](https://github.com/plurid/pluri
 + [`CLI`][delog-client-cli]
 + [`NodeJS`][delog-client-javascript]
 + [`Python`][delog-client-python]
++ [`Rust`][delog-client-rust]
 
 
 ### Configuration
@@ -243,6 +244,15 @@ to verify the connection.
 [@plurid/delog-client-python][delog-client-python] • the `Python` client
 
 [delog-client-python]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-python
+
+
+<a target="_blank" href="https://crates.io/crates/plurid_delog">
+    <img src="https://img.shields.io/crates/v/plurid_delog.svg?logo=pypi&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/delog-client-rust][delog-client-rust] • the `Rust` client
+
+[delog-client-rust]: https://github.com/plurid/delog/tree/master/packages/delog-client/delog-rust
 
 
 
