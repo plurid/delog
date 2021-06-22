@@ -1,152 +1,11 @@
-use serde_repr::{ 
-    Serialize_repr, 
-    Deserialize_repr,
+mod call;
+mod data;
+
+use data::{
+    DelogCall,
+    DelogLevel,
 };
 
-
-
-static DELOG_RECORD: &str = "mutation DelogMutationRecord ($input: DelogInputRecord!) { delogMutationRecord(input: $input) { status }}";
-
-
-#[derive(Default)]
-pub struct DelogData {
-    /// Required.
-    text: &'static str,
-
-
-    // Configuration optionals.
-    // graphql_client: ApolloClient<NormalizedCacheObject>,
-
-    endpoint: Option<&'static str>,
-    token: Option<&'static str>,
-
-    project: Option<&'static str>,
-    space: Option<&'static str>,
-
-    format: Option<&'static str>,
-
-
-    // Logging optionals.
-    
-    /// Log level:
-    ///
-    /// + FATAL: 6
-    /// + ERROR: 5
-    /// + WARN: 4
-    /// + INFO: 3
-    /// + DEBUG: 2
-    /// + TRACE: 1
-    level: Option<DelogLevel>,
-
-    // /**
-    // * To be used if the `delog` is meant to be fired only in 'TESTING' `mode` (`context.mode`),
-    // * and the `mode` is set dinamically/from outside the enclosing function.
-    // */
-    // tester: bool,
-
-    // /**
-    // * Name of the method from where the log originates.
-    // */
-    method: Option<&'static str>,
-
-    // error: Error,
-
-    // /**
-    // * Arbitrary data: a simple string, stringified JSON or deon.
-    // */
-    extradata: Option<&'static str>,
-
-    // context: DelogContext,
-}
-
-
-pub enum DelogCall {
-    Str(&'static str),
-    Data(DelogData),
-}
-
-
-#[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
-#[repr(i8)]
-pub enum DelogLevel {
-    Trace = 1,
-    Debug = 2,
-    Info = 3,
-    Warn = 4,
-    Error = 5,
-    Fatal = 6,
-}
-
-
-async fn delog_call (
-    text: String,
-    level: DelogLevel,
-    endpoint: String,
-    token: String,
-    project: String,
-    space: String,
-    format: String,
-    method: String,
-    extradata: String,
-) -> Result<(), reqwest::Error> {
-    use serde_json::json;
-    use std::time::{SystemTime, UNIX_EPOCH};
-    
-    // println!(
-    //     "\ntext: {}\nlevel: {:?}\nendpoint: {}\ntoken: {}\nproject: {}\nspace: {}\nformat {}\nmethod: {}\nextradata {}\n", 
-    //     text, 
-    //     level,
-    //     endpoint,
-    //     token,
-    //     project,
-    //     space,
-    //     format,
-    //     method,
-    //     extradata,
-    // );
-
-    let time = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
-    // println!("{:?}\n", time);
-
-    let data = json!({
-        "query": DELOG_RECORD,
-        "variables": {
-            "input": {
-                "text": text,
-                "time": time,
-                "level": level,
-
-                "project": project,
-                "space": space,
-
-                "format": format,
-
-                "method": method,
-                "error": "",
-                "extradata": extradata
-            }
-        }
-    });
-    // println!("{:?}\n", data);
-    let body = serde_json::to_string(&data).unwrap_or("".to_string());
-    // println!("{:?}\n", body);
-
-    if body.is_empty() {
-        // return error
-        return Ok(());
-    }
- 
-    let _response = reqwest::Client::new()
-        .post(endpoint)
-        .header("Content-Type", "application/json")
-        .header("Authorization", format!("Bearer {}", token))
-        .body(body)
-        .send()
-        .await?;
-    // println!("{:?}", _response);
-
-    Ok(())
-}
 
 
 pub async fn delog(
@@ -170,7 +29,7 @@ pub async fn delog(
 
     match data {
         Str(data) => {
-            delog_call(
+            call::delog_call(
                 String::from(data),
                 level,
                 endpoint,
@@ -195,7 +54,7 @@ pub async fn delog(
             let data_method = String::from(data.method.unwrap_or(&method));
             let data_extradata = String::from(data.extradata.unwrap_or(&extradata));
 
-            delog_call(
+            call::delog_call(
                 String::from(data.text),
                 data_level,
                 data_endpoint,
@@ -216,10 +75,15 @@ pub async fn delog(
 
 #[cfg(test)]
 mod tests {
-    use super::delog;
-    use super::DelogCall;
-    use super::DelogData;
-    use super::DelogLevel;
+    use super::{
+        delog,
+        DelogCall,
+        DelogLevel,
+        data,
+    };
+    use data::{
+        DelogData,
+    };
 
     // #[tokio::test]
     // async fn it_works_string() {
