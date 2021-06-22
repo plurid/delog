@@ -33,6 +33,7 @@ def main():
         'packages/delog-client/delog-cli/README.md',
         'packages/delog-client/delog-javascript/README.md',
         'packages/delog-client/delog-python/README.md',
+        'packages/delog-client/delog-rust/README.md',
         'packages/delog-server/README.md',
     ]
 
