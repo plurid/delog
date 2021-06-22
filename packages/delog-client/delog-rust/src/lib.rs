@@ -1,3 +1,10 @@
+use serde_repr::{ 
+    Serialize_repr, 
+    Deserialize_repr,
+};
+
+
+
 static DELOG_RECORD: &str = "mutation DelogMutationRecord ($input: DelogInputRecord!) { delogMutationRecord(input: $input) { status }}";
 
 
@@ -20,19 +27,16 @@ pub struct DelogData {
 
 
     // Logging optionals.
-    // /**
-    // * Log level:
-    // *
-    // * + NONE: 7;
-    // * + FATAL: 6;
-    // * + ERROR: 5;
-    // * + WARN: 4;
-    // * + INFO: 3;
-    // * + DEBUG: 2;
-    // * + TRACE: 1;
-    // * + ALL: 0.
-    // */
-    // level: i8,
+    
+    /// Log level:
+    ///
+    /// + FATAL: 6
+    /// + ERROR: 5
+    /// + WARN: 4
+    /// + INFO: 3
+    /// + DEBUG: 2
+    /// + TRACE: 1
+    level: Option<DelogLevel>,
 
     // /**
     // * To be used if the `delog` is meant to be fired only in 'TESTING' `mode` (`context.mode`),
@@ -62,8 +66,21 @@ pub enum DelogCall {
 }
 
 
+#[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
+#[repr(i8)]
+pub enum DelogLevel {
+    Trace = 1,
+    Debug = 2,
+    Info = 3,
+    Warn = 4,
+    Error = 5,
+    Fatal = 6,
+}
+
+
 async fn delog_call (
     text: String,
+    level: DelogLevel,
     endpoint: String,
     token: String,
     project: String,
@@ -73,34 +90,46 @@ async fn delog_call (
     extradata: String,
 ) -> Result<(), reqwest::Error> {
     use serde_json::json;
+    use std::time::{SystemTime, UNIX_EPOCH};
     
-    println!(
-        "{} {} {} {} {} {} {} {}", 
-        text, 
-        endpoint,
-        token,
-        project,
-        space,
-        format,
-        method,
-        extradata,
-    );
+    // println!(
+    //     "\ntext: {}\nlevel: {:?}\nendpoint: {}\ntoken: {}\nproject: {}\nspace: {}\nformat {}\nmethod: {}\nextradata {}\n", 
+    //     text, 
+    //     level,
+    //     endpoint,
+    //     token,
+    //     project,
+    //     space,
+    //     format,
+    //     method,
+    //     extradata,
+    // );
+
+    let time = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+    // println!("{:?}\n", time);
 
     let data = json!({
         "query": DELOG_RECORD,
         "variables": {
             "input": {
                 "text": text,
+                "time": time,
+                "level": level,
+
                 "project": project,
                 "space": space,
+
                 "format": format,
+
                 "method": method,
+                "error": "",
                 "extradata": extradata
             }
         }
     });
-
+    // println!("{:?}\n", data);
     let body = serde_json::to_string(&data).unwrap_or("".to_string());
+    // println!("{:?}\n", body);
 
     if body.is_empty() {
         // return error
@@ -114,6 +143,7 @@ async fn delog_call (
         .body(body)
         .send()
         .await?;
+    // println!("{:?}", _response);
 
     Ok(())
 }
@@ -124,6 +154,9 @@ pub async fn delog(
 ) -> Result<(), reqwest::Error> {
     use std::env;
     use DelogCall::*;
+
+    // let level = env::var("DELOG_DEFAULT_LEVEL").unwrap_or("3".to_string()).parse().unwrap_or(DelogLevel::Info);
+    let level = DelogLevel::Info;
 
     let endpoint: String = env::var("DELOG_ENDPOINT").unwrap_or("".to_string());
     let token: String = env::var("DELOG_TOKEN").unwrap_or("".to_string());
@@ -139,6 +172,7 @@ pub async fn delog(
         Str(data) => {
             delog_call(
                 String::from(data),
+                level,
                 endpoint,
                 token,
                 project,
@@ -149,6 +183,8 @@ pub async fn delog(
             ).await?;
         }
         Data(data) => {
+            let data_level: DelogLevel = data.level.unwrap_or(level);
+
             let data_endpoint = String::from(data.endpoint.unwrap_or(&endpoint));
             let data_token = String::from(data.token.unwrap_or(&token));
 
@@ -161,6 +197,7 @@ pub async fn delog(
 
             delog_call(
                 String::from(data.text),
+                data_level,
                 data_endpoint,
                 data_token,
                 data_project,
@@ -182,20 +219,34 @@ mod tests {
     use super::delog;
     use super::DelogCall;
     use super::DelogData;
+    use super::DelogLevel;
 
-    #[test]
-    fn it_works_string() {
-        let sent = delog(DelogCall::Str("it works with string"));
-        assert_eq!(sent, true);
-    }
+    // #[tokio::test]
+    // async fn it_works_string() {
+    //     let _sent = delog(DelogCall::Str("it works with string")).await;
+    //     // assert_eq!(sent, true);
+    // }
 
-    #[test]
-    fn it_works_data() {
+    // #[tokio::test]
+    // async fn it_works_data() {
+    //     let delog_data = DelogData {
+    //         text: "it works with data",
+    //         ..Default::default()
+    //     };
+    //     let _sent = delog(DelogCall::Data(delog_data)).await;
+    //     // assert_eq!(sent, true);
+    // }
+
+    #[tokio::test]
+    async fn it_works_with_test_token() {
         let delog_data = DelogData {
-            text: "it works with data",
+            text: "it works with test token",
+            level: Some(DelogLevel::Trace),
+            endpoint: Some("http://localhost:56365/delog"),
+            token: Some("__TEST_MODE__"),
             ..Default::default()
         };
-        let sent = delog(DelogCall::Data(delog_data));
-        assert_eq!(sent, true);
+        let _sent = delog(DelogCall::Data(delog_data)).await;
+        // assert_eq!(sent, true);
     }
 }
