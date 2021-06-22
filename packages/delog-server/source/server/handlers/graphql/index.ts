@@ -73,6 +73,7 @@ const setupGraphQLServer = async (
             const privateOwnerIdentonym = privateUsage
                 ? await getPrivateOwner(req)
                 : '';
+            logger.log(`[Delog Debug : Context] :: ${privateOwnerIdentonym}`, logLevels.debug);
 
             const {
                 tokens,
