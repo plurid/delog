@@ -1,8 +1,15 @@
 [package]
-name = "delog"
+name = "plurid_delog"
 version = "0.0.0"
 edition = "2018"
-
+description = "client for centralized logging on a delog server"
+repository = "https://github.com/plurid/delog"
+license-file = "LICENSE"
+readme = "README.md"
+homepage = "https://plurid.com"
+documentation = "https://docs.rs/plurid_delog"
+keywords = ["logging", "client", "cloud"]
+categories = ["development-tools::debugging"]
 
 [dependencies]
 reqwest = { version = "0.11", features = ["json"] }
