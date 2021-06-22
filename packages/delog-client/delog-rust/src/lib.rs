@@ -59,7 +59,7 @@ pub enum DelogCall {
 }
 
 
-fn delog_call (
+async fn delog_call (
     text: String,
     endpoint: String,
     token: String,
@@ -68,11 +68,11 @@ fn delog_call (
     format: String,
     method: String,
     extradata: String,
-) {
+) -> Result<(), reqwest::Error> {
     println!(
         "{} {} {} {} {} {} {} {}", 
         text, 
-        endpoint, 
+        endpoint,
         token,
         project,
         space,
@@ -80,12 +80,22 @@ fn delog_call (
         method,
         extradata,
     );
+
+    let p = "";
+
+    let _response = reqwest::Client::new()
+        .post(endpoint)
+        .form(&p)
+        .send()
+        .await?;
+
+    Ok(())
 }
 
 
-pub fn delog(
+pub async fn delog(
     data: DelogCall,
-) -> bool {
+) -> Result<(), reqwest::Error> {
     use std::env;
     use DelogCall::*;
 
@@ -99,10 +109,9 @@ pub fn delog(
     let method: String = env::var("DELOG_METHOD").unwrap_or("".to_string());
     let extradata: String = env::var("DELOG_EXTRADATA").unwrap_or("".to_string());
 
-
     match data {
         Str(data) => {
-            delog_call(
+            let call = delog_call(
                 String::from(data),
                 endpoint,
                 token,
@@ -111,7 +120,12 @@ pub fn delog(
                 format,
                 method,
                 extradata,
-            );
+            ).await;
+
+            match call {
+                Ok(_) => (),
+                Err(_) => (),
+            }
         }
         Data(data) => {
             let data_endpoint = String::from(data.endpoint.unwrap_or(&endpoint));
@@ -124,7 +138,7 @@ pub fn delog(
             let data_method = String::from(data.method.unwrap_or(&method));
             let data_extradata = String::from(data.extradata.unwrap_or(&extradata));
 
-            delog_call(
+            let call = delog_call(
                 String::from(data.text),
                 data_endpoint,
                 data_token,
@@ -133,11 +147,16 @@ pub fn delog(
                 data_format,
                 data_method,
                 data_extradata,
-            );
+            ).await;
+
+            match call {
+                Ok(_) => (),
+                Err(_) => (),
+            }
         }
     }
 
-    true
+    Ok(())
 }
 
 
