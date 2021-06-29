@@ -38,6 +38,7 @@ export const MONGO_USERNAME = process.env.DELOG_MONGO_USERNAME || '';
 export const MONGO_PASSWORD = process.env.DELOG_MONGO_PASSWORD || '';
 export const MONGO_ADDRESS = process.env.DELOG_MONGO_ADDRESS || '';
 export const MONGO_CONNECTION_STRING = process.env.DELOG_MONGO_CONNECTION_STRING || '';
+export const MONGO_DATABASE = process.env.DELOG_MONGO_DATABASE || 'delog';
 
 
 export const TEST_MODE = process.env.DELOG_TEST_MODE === 'true';

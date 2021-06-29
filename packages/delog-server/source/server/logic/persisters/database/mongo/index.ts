@@ -2,6 +2,7 @@
     // #region libraries
     import {
         MongoClient,
+        Db as MongoDatabase,
         ObjectID,
     } from 'mongodb';
 
@@ -32,6 +33,7 @@
         MONGO_PASSWORD,
         MONGO_ADDRESS,
         MONGO_CONNECTION_STRING,
+        MONGO_DATABASE,
     } from '~server/data/constants';
     // #endregion external
 // #endregion imports
@@ -40,10 +42,10 @@
 
 // #region module
 let connection: MongoClient | undefined;
+let database: MongoDatabase | undefined;
 
-const mongoNoConnectionError = 'Delog Error :: No mongo connection.';
+const mongoNoConnectionError = 'Delog Error :: No mongo connection to database.';
 
-const DATABASE = 'delog';
 
 
 const createConnection = async () => {
@@ -66,6 +68,12 @@ const createConnection = async () => {
 
 const initialize: DatabaseInitialize = async () => {
     connection = await createConnection();
+    if (!connection) {
+        return false;
+    }
+
+    database = connection.db(MONGO_DATABASE);
+
     return true;
 }
 
@@ -74,14 +82,12 @@ const get: DatabaseGet = async (
     entity,
     id,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         const item = await collection.findOne({
@@ -98,14 +104,12 @@ const get: DatabaseGet = async (
 const getAll: DatabaseGetAll = async (
     entity,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return [];
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         return [];
@@ -121,14 +125,12 @@ const query: DatabaseQuery = async (
     value,
     pagination,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return [];
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         const filter: any = {};
@@ -185,14 +187,12 @@ const size: DatabaseSize = async (
     entity,
     filter,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         const cursor = collection.find(filter);
@@ -215,14 +215,12 @@ const aggregate: DatabaseAggregate = async (
     entity: string,
     pipeline,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         const cursor = collection.aggregate(pipeline);
@@ -241,14 +239,12 @@ const store: DatabaseStore = async (
     id,
     data,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return false;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         await collection.insertOne(
@@ -266,14 +262,12 @@ const storeBatch: DatabaseStoreBatch = async (
     entity,
     data,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return false;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         collection.insertMany(
@@ -293,14 +287,12 @@ const update: DatabaseUpdate = async (
     field,
     value,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         return true;
@@ -314,14 +306,12 @@ const obliterate: DatabaseObliterate = async (
     entity,
     filter,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         const deletion = await collection.deleteOne({
@@ -343,14 +333,12 @@ const obliterateAll: DatabaseObliterateAll = async (
     entity,
     filter,
 ) => {
-    if (!connection) {
+    if (!database) {
         console.log(mongoNoConnectionError);
         return;
     }
 
     try {
-        const database = connection.db(DATABASE);
-
         const collection = database.collection(entity);
 
         if (!filter) {
