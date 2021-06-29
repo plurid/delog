@@ -19,7 +19,7 @@
     } from '@plurid/plurid-icons-react';
 
     import {
-        PluridComponentProperty,
+        PluridPlaneComponentProperty,
     } from '@plurid/plurid-react';
     // #endregion libraries
 
@@ -51,7 +51,7 @@
 
 // #region module
 export interface TestOwnProperties {
-    plurid: PluridComponentProperty;
+    plurid: PluridPlaneComponentProperty;
 }
 
 export interface TestStateProperties {
@@ -85,7 +85,7 @@ const Test: React.FC<TestProperties> = (
 
     const {
         id,
-    } = plurid.route.plane.parameters;
+    } = plurid.plane.parameters;
     // #endregion properties
 
 

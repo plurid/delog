@@ -15,7 +15,7 @@
     } from '@plurid/plurid-themes';
 
     import {
-        PluridComponentProperty,
+        PluridPlaneComponentProperty,
     } from '@plurid/plurid-react';
 
     import {
@@ -97,7 +97,7 @@ const resolveRepositoryLinks = (
 }
 
 export interface CodeOwnProperties {
-    plurid: PluridComponentProperty;
+    plurid: PluridPlaneComponentProperty,
 }
 
 export interface CodeStateProperties {
@@ -138,7 +138,7 @@ const Code: React.FC<CodeProperties> = (
 
     const {
         id,
-    } = plurid.route.plane.parameters;
+    } = plurid.plane.parameters;
 
     const record = stateRecords.find(record => record.id === id);
     // #endregion properties

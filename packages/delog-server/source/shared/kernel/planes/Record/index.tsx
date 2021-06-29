@@ -14,7 +14,7 @@
     } from '@plurid/plurid-themes';
 
     import {
-        PluridComponentProperty,
+        PluridPlaneComponentProperty,
         PluridLink,
     } from '@plurid/plurid-react';
 
@@ -69,7 +69,7 @@
 
 // #region module
 export interface RecordOwnProperties {
-    plurid: PluridComponentProperty;
+    plurid: PluridPlaneComponentProperty;
 }
 
 export interface RecordStateProperties {
@@ -103,7 +103,7 @@ const Record: React.FC<RecordProperties> = (
 
     const {
         id,
-    } = plurid.route.plane.parameters;
+    } = plurid.plane.parameters;
     // #endregion properties
 
 
