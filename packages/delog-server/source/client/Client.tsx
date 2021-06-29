@@ -27,6 +27,8 @@
     import helmetContext from '~kernel-services/helmet';
 
     import reduxStore from '~kernel-services/state/store';
+    import reduxContext from '~kernel-services/state/context';
+
     import graphqlClient from '~kernel-services/graphql/client';
 
     import {
@@ -55,7 +57,10 @@ const Client: React.FC<any> = () => {
     // #region render
     return (
         <HelmetProvider context={helmetContext}>
-            <ReduxProvider store={store.current}>
+            <ReduxProvider
+                store={store.current}
+                context={reduxContext}
+            >
                 <ApolloProvider client={graphqlClient}>
                     <PluridProvider metastate={pluridMetastate}>
                         <PluridRouterBrowser
