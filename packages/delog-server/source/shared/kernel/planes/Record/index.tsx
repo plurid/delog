@@ -42,6 +42,7 @@
     } from '~server/data/interfaces';
 
     import { AppState } from '~kernel-services/state/store';
+    import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
     // import actions from '~kernel-services/state/actions';
 
@@ -318,6 +319,10 @@ const mapDispatchToProperties = (
 const ConnectedRecord = connect(
     mapStateToProperties,
     mapDispatchToProperties,
+    null,
+    {
+        context: StateContext,
+    },
 )(Record);
 // #endregion module
 

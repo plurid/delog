@@ -37,6 +37,7 @@
     } from '~kernel-services/logic/queries';
 
     import { AppState } from '~kernel-services/state/store';
+    import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
     import actions from '~kernel-services/state/actions';
 
@@ -307,6 +308,10 @@ const mapDispatchToProperties = (
 const ConnectedProvidersView = connect(
     mapStateToProperties,
     mapDispatchToProperties,
+    null,
+    {
+        context: StateContext,
+    },
 )(ProvidersView);
 // #endregion module
 

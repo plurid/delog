@@ -34,6 +34,7 @@
     } from '~kernel-services/logic/queries';
 
     import { AppState } from '~kernel-services/state/store';
+    import StateContext from '~kernel-services/state/context';
     import selectors from '~kernel-services/state/selectors';
     // import actions from '~kernel-services/state/actions';
     // #endregion external
@@ -382,6 +383,10 @@ const mapDispatchToProperties = (
 const ConnectedCode = connect(
     mapStateToProperties,
     mapDispatchToProperties,
+    null,
+    {
+        context: StateContext,
+    },
 )(Code);
 // #endregion module
 
