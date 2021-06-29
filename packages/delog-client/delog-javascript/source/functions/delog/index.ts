@@ -70,10 +70,12 @@ const delog = async (
         tester
         && context?.mode !== 'TESTING'
     ) {
+        consoleLog('Delog Error :: Tester while not in TESTING mode.');
         return;
     }
 
     if (groundLevel > level) {
+        // consoleLog('Delog Error :: Ground level is above level.');
         return;
     }
 
@@ -122,6 +124,7 @@ const delog = async (
         const response = mutation.data.delogMutationRecord;
 
         if (!response.status) {
+            consoleLog('Delog Error :: Could not record on server.');
             return;
         }
 
