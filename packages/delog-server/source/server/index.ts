@@ -3,34 +3,34 @@
     import PluridServer, {
         PluridServerMiddleware,
         PluridServerService,
-        PluridServerServicesData,
         PluridServerPartialOptions,
         PluridServerTemplateConfiguration,
     } from '@plurid/plurid-react-server';
-
-    import helmet from '~kernel-services/helmet';
-
-    import reduxStore from '~kernel-services/state/store';
-    import apolloClient from '~kernel-services/graphql/client';
     // #endregion libraries
 
 
     // #region external
+    import helmet from '~kernel-services/helmet';
+
+    import reduxStore from '~kernel-services/state/store';
+    import reduxContext from '~kernel-services/state/context';
+    import apolloClient from '~kernel-services/graphql/client';
+
     import {
-        routes,
         shell,
+        routes,
     } from '../shared';
     // #endregion external
 
 
     // #region internal
-    import {
-        DelogLogic,
-    } from './data/interfaces';
-
     import preserves from './preserves';
 
     import setupHandlers from './handlers';
+
+    import {
+        DelogLogic,
+    } from './data/interfaces';
 
     import {
         GRAPHQL_ENDPOINT,
@@ -43,22 +43,30 @@
 
 
 // #region module
-// #region constants
 /** ENVIRONMENT */
 const watchMode = process.env.PLURID_WATCH_MODE === 'true';
 const isProduction = process.env.ENV_MODE === 'production';
 const buildDirectory = __dirname;
 const port = process.env.PORT || 56965;
 
+
+
+/** CONSTANTS */
 const applicationRoot = 'delog-application';
 const openAtStart = watchMode
     ? false
     : isProduction
         ? false
         : true;
+
+const quiet = false;
 const debug = isProduction
     ? 'info'
     : 'error';
+
+const usePTTP = false;
+
+
 
 
 /** Custom styles to be loaded into the template. */
@@ -75,22 +83,33 @@ const middleware: PluridServerMiddleware[] = [
 
 /** Services to be used in the application. */
 const services: PluridServerService[] = [
-    'Apollo',
-    'Redux',
+    {
+        name: 'Apollo',
+        package: '@apollo/client',
+        provider: 'ApolloProvider',
+        properties: {
+            client: apolloClient,
+        },
+    },
+
+    {
+        name: 'Redux',
+        package: 'react-redux',
+        provider: 'Provider',
+        properties: {
+            store: reduxStore({}),
+            context: reduxContext,
+        },
+    },
 ];
 
 
-const servicesData: PluridServerServicesData = {
-    apolloClient,
-    reduxStore,
-    reduxStoreValue: {},
-};
-
 const options: PluridServerPartialOptions = {
-    serverName: 'Delog Server',
     buildDirectory,
     open: openAtStart,
+    quiet,
     debug,
+    serverName: 'Delog Server',
     ignore: [
         GRAPHQL_ENDPOINT !== '/' ? GRAPHQL_ENDPOINT : '',
     ],
@@ -98,28 +117,32 @@ const options: PluridServerPartialOptions = {
 
 const template: PluridServerTemplateConfiguration = {
     root: applicationRoot,
-    headScripts: `
-        <script>
-            window.DELOG_GRAPHQL_ENDPOINT = "${GRAPHQL_ENDPOINT}";
-        </script>
-    `,
+    headScripts: [
+        `
+            <script>
+                window.DELOG_GRAPHQL_ENDPOINT = "${GRAPHQL_ENDPOINT}";
+            </script>
+        `,
+    ],
 };
-// #endregion constants
 
 
-// #region server
+
+/** SERVER */
+// generate server
 const delogServer = new PluridServer({
     helmet,
+    shell,
     routes,
     preserves,
-    shell,
     styles,
     middleware,
     services,
-    servicesData,
     options,
     template,
+    usePTTP,
 });
+
 
 
 const delogSetup = (
@@ -130,12 +153,9 @@ const delogSetup = (
         logic,
     );
 }
-// #endregion server
-// #endregion module
 
 
 
-// #region run
 /**
  * If the file is called directly, as in `node build/index.js`,
  * it will run the server.
@@ -150,7 +170,7 @@ if (require.main === module) {
 
     delogServer.start(port);
 }
-// #endregion run
+// #endregion module
 
 
 
