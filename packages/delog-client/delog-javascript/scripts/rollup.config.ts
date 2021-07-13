@@ -30,6 +30,7 @@ export default {
         'cross-fetch',
         'graphql',
         'graphql-tag',
+        'microtime',
         'subscriptions-transport-ws',
     ],
     watch: {
