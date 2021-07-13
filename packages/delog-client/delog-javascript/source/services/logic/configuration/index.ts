@@ -24,6 +24,7 @@
 
     import {
         stringifyError,
+        now,
     } from '~services/utilities';
     // #endregion external
 // #endregion imports
@@ -34,7 +35,10 @@
 const getConfiguration = (
     data: string | DelogData,
 ) => {
-    const time = Date.now();
+    const {
+        time,
+        unit,
+    } = now();
 
     if (typeof data === 'string') {
         const configuration: RequiredDelogData = {
@@ -42,6 +46,7 @@ const getConfiguration = (
 
             text: data,
             time,
+            unit,
         };
 
         return configuration;

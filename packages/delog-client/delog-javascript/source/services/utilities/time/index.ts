@@ -1,6 +1,17 @@
+// #region imports
+    // #region libraries
+    import microtime from 'microtime';
+    // #endregion libraries
+// #endregion imports
+
+
+
 // #region module
 const now = () => {
-    return Math.floor(Date.now() / 1000);
+    return {
+        time: microtime.now(),
+        unit: 'us',
+    };
 }
 // #endregion module
 

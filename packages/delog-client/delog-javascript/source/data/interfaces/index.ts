@@ -78,6 +78,7 @@ export type RequiredDelogData = Required<
     graphqlClient?: ApolloClient<NormalizedCacheObject>,
 
     time: number;
+    unit: string;
 
     groundLevel: number;
 
@@ -157,6 +158,8 @@ export interface DelogInputRecord {
     text: string;
     time: number;
     level: number;
+
+    unit?: string;
 
     project?: string;
     space?: string;

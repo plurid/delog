@@ -38,6 +38,7 @@ const delog = async (
     const {
         text,
         time,
+        unit,
         level,
         tester,
 
@@ -109,6 +110,8 @@ const delog = async (
             time,
             level,
 
+            unit,
+
             format,
 
             project,
@@ -122,7 +125,9 @@ const delog = async (
 
         if (consoleFallback) {
             const level = delogLevelsText[input.level];
-            const time = new Date(input.time).toLocaleString();
+            const time = input.unit === 'us'
+                ? new Date(input.time / 1000).toLocaleString()
+                : new Date().toLocaleString();
 
             console.log(`[${level} ${time}] · ${input.text}`);
             return;
