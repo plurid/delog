@@ -62,6 +62,8 @@ const getConfiguration = (
         time,
         level,
 
+        unit,
+
         graphqlClient: data.graphqlClient,
 
         groundLevel: GROUND_LEVEL,
