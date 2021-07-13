@@ -1,10 +1,10 @@
 // #region imports
     // #region libraries
     import ttypescript from 'ttypescript';
-    import resolve from '@rollup/plugin-node-resolve';
-    import commonjs from '@rollup/plugin-commonjs';
     import typescript from 'rollup-plugin-typescript2';
+    import { terser } from 'rollup-plugin-terser';
     // #endregion libraries
+
 
     // #region external
     import pkg from '../package.json';
@@ -24,12 +24,13 @@ export default {
         },
     ],
     external: [
-        'https',
-        'stream',
-        'http',
-        'url',
-        'zlib',
-        'react',
+        '@apollo/client',
+        '@apollo/client/core',
+        '@plurid/plurid-functions',
+        'cross-fetch',
+        'graphql',
+        'graphql-tag',
+        'subscriptions-transport-ws',
     ],
     watch: {
         include: 'source/**',
@@ -39,10 +40,14 @@ export default {
             typescript: ttypescript,
             tsconfig: './tsconfig.json',
         }),
-        resolve({
-            preferBuiltins: true,
+        terser({
+            mangle: false,
+            compress: false,
+            format: {
+                beautify: true,
+                comments: false,
+            },
         }),
-        commonjs(),
     ],
 };
 // #endregion module
