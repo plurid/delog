@@ -9,6 +9,8 @@
 
 
 // #region module
+const CONSOLE_FALLBACK = process.env.DELOG_CONSOLE_FALLBACK === 'true';
+
 const QUIET = process.env.DELOG_QUIET === 'true';
 
 const GROUND_LEVEL = parseInt(process.env.DELOG_GROUND_LEVEL || '') || DELOG_GROUND_LEVEL_ALL;
@@ -34,6 +36,8 @@ const REPOSITORY_BASEPATH = process.env.DELOG_REPOSITORY_BASEPATH || '__MATCH_CU
 
 // #region exports
 export {
+    CONSOLE_FALLBACK,
+
     QUIET,
 
     GROUND_LEVEL,

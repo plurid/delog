@@ -61,6 +61,11 @@ export interface DelogData {
     extradata?: string;
 
     context?: DelogContext;
+
+    /**
+     * Log into console instead of recording to the server.
+     */
+    consoleFallback?: boolean;
 }
 
 

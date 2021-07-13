@@ -11,6 +11,8 @@
         PROJECT,
         SPACE,
 
+        CONSOLE_FALLBACK,
+
         delogLevels,
         defaultConfiguration,
     } from '#data/constants';
@@ -70,6 +72,8 @@ const getConfiguration = (
         extradata: data.extradata || '',
 
         context: data.context,
+
+        consoleFallback: data.consoleFallback ?? CONSOLE_FALLBACK,
     };
 
     return configuration;

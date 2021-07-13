@@ -1,6 +1,10 @@
 // #region imports
     // #region external
     import {
+        delogLevelsText,
+    } from '#data/constants';
+
+    import {
         DelogData,
         DelogInputRecord,
         DelogInputRecordContext,
@@ -53,15 +57,17 @@ const delog = async (
         extradata,
 
         context,
+
+        consoleFallback,
     } = configuration;
 
 
-    if (!endpoint && !graphqlClient) {
+    if (!endpoint && !graphqlClient && !consoleFallback) {
         consoleLog('Delog Error :: An endpoint is required.');
         return;
     }
 
-    if (!token && !graphqlClient) {
+    if (!token && !graphqlClient && !consoleFallback) {
         consoleLog('Delog Error :: A token is required.');
         return;
     }
@@ -113,6 +119,14 @@ const delog = async (
             extradata,
             context: inputContext,
         };
+
+        if (consoleFallback) {
+            const level = delogLevelsText[input.level];
+            const time = new Date(input.time).toLocaleString();
+
+            console.log(`[${level} ${time}] · ${input.text}`);
+            return;
+        }
 
         const mutation = await graphql.mutate({
             mutation: RECORD,
