@@ -3,7 +3,7 @@
     import {
         RequiredDelogData,
         DelogContext,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         GROUND_LEVEL,
@@ -25,7 +25,7 @@
 
     import {
         now,
-    } from '#services/utilities/time';
+    } from '~services/utilities/time';
     // #endregion external
 // #endregion imports
 

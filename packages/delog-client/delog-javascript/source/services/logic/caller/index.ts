@@ -5,7 +5,7 @@
         DelogInputRecordContextCall,
         DelogInputRecordContextRepository,
         DelogInputRecordContextCaller,
-    } from '../../../data/interfaces';
+    } from '~data/interfaces';
 
     import {
         CALL_CONTEXT,
@@ -16,7 +16,7 @@
         REPOSITORY_BASEPATH,
 
         DEFAULT_CALL_DEPTH,
-    } from '../../../data/constants';
+    } from '~data/constants';
     // #endregion external
 // #endregion imports
 

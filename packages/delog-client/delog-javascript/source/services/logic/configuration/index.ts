@@ -15,17 +15,17 @@
 
         delogLevels,
         defaultConfiguration,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         DelogData,
         RequiredDelogData,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         stringifyError,
         now,
-    } from '../../utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

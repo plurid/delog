@@ -2,28 +2,28 @@
     // #region external
     import {
         delogLevelsText,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         DelogData,
         DelogInputRecord,
         DelogInputRecordContext,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         client,
         RECORD,
-    } from '#services/graphql';
+    } from '~services/graphql';
 
     import {
         getConfiguration,
         getCallContext,
-    } from '#services/logic';
+    } from '~services/logic';
 
     import {
         consoleLog,
         stringifyError,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

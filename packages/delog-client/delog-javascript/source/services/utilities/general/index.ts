@@ -2,7 +2,7 @@
     // #region external
     import {
         QUIET,
-    } from '#data/constants';
+    } from '~data/constants';
     // #endregion external
 // #endregion imports
 
