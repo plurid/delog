@@ -8,7 +8,7 @@
         delogLevels,
     } from '~data/constants';
 
-    import delog from '..';
+    import delog from '../';
     // #endregion external
 // #endregion imports
 
