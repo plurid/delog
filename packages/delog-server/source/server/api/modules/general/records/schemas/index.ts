@@ -35,6 +35,7 @@ export const types = gql`
 
         text: String!
         time: Int!
+        unit: String!
         log: String!
         level: Int!
 
@@ -89,6 +90,8 @@ export const inputs = gql`
         text: String!
         time: Int!
         level: Int!
+
+        unit: String
 
         project: String
         space: String
