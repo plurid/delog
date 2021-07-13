@@ -2,11 +2,11 @@
     // #region external
     import {
         DelogTestingContext,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         delogLevels,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import delog from '..';
     // #endregion external
