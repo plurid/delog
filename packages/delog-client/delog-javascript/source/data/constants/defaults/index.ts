@@ -43,8 +43,10 @@ const defaultContext: DelogContext = {
 
 const defaultConfiguration: RequiredDelogData = {
     text: '',
-    time: now(),
+    time: now().time,
     level: delogLevels.info,
+
+    unit: now().unit,
 
     groundLevel: GROUND_LEVEL,
 
