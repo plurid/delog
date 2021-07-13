@@ -15,6 +15,8 @@
 
         PROJECT,
         SPACE,
+
+        CONSOLE_FALLBACK,
     } from '../general';
 
     import {
@@ -53,6 +55,8 @@ const defaultConfiguration: RequiredDelogData = {
 
     project: PROJECT,
     space: SPACE,
+
+    consoleFallback: CONSOLE_FALLBACK,
 };
 
 
