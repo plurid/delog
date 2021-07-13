@@ -1,6 +1,6 @@
 {
     "name": "@plurid/delog",
-    "version": "0.0.0-2",
+    "version": "0.0.0-3",
     "description": "Cloud Service for Centralized Logging",
     "keywords": [
         "delog",
