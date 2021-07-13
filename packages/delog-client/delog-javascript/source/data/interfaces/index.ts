@@ -40,7 +40,7 @@ export interface DelogData {
      * + TRACE: 1;
      * + ALL: 0.
      */
-    level?: number;
+    level?: number | DelogLevel;
 
     /**
      * To be used if the `delog` is meant to be fired only in 'TESTING' `mode` (`context.mode`),
@@ -71,8 +71,10 @@ export interface DelogData {
 
 
 export type RequiredDelogData = Required<
-    Omit<DelogData, 'graphqlClient' | 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
+    Omit<DelogData, 'level' | 'graphqlClient' | 'project' | 'space' | 'format' | 'tester' | 'method' | 'error' | 'extradata' | 'context'>
 > & {
+    level: number;
+
     graphqlClient?: ApolloClient<NormalizedCacheObject>,
 
     time: number;
@@ -100,6 +102,14 @@ export interface DelogLevels {
     debug: number;
     trace: number;
 }
+
+export type DelogLevel =
+    | 'fatal'
+    | 'error'
+    | 'warn'
+    | 'info'
+    | 'debug'
+    | 'trace';
 
 
 export interface DelogTestingContext {

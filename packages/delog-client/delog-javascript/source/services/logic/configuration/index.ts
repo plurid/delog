@@ -24,7 +24,6 @@
 
     import {
         stringifyError,
-        now,
     } from '~services/utilities';
     // #endregion external
 // #endregion imports
@@ -35,7 +34,7 @@
 const getConfiguration = (
     data: string | DelogData,
 ) => {
-    const time = now();
+    const time = Date.now();
 
     if (typeof data === 'string') {
         const configuration: RequiredDelogData = {
@@ -48,11 +47,15 @@ const getConfiguration = (
         return configuration;
     }
 
+    const level = typeof data.level === 'string'
+        ? delogLevels[data.level]
+        : data.level || delogLevels.info;
+
 
     const configuration: RequiredDelogData = {
         text: data.text,
         time,
-        level: data.level || delogLevels.info,
+        level,
 
         graphqlClient: data.graphqlClient,
 
