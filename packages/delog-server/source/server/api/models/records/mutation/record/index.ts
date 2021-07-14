@@ -61,6 +61,8 @@ const record = async (
             time,
             level,
 
+            unit,
+
             project,
             space,
 
@@ -74,9 +76,15 @@ const record = async (
         // #endregion input unpack
 
 
+        const normalizedTime = unit === 's'
+            ? time * 1_000_000
+            : unit === 'ms'
+                ? time * 1_000
+                : time;
+
         const record: any = {
             text,
-            time,
+            time: normalizedTime,
             level,
 
             project: project || '',

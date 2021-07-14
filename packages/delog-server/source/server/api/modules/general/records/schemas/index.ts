@@ -34,7 +34,7 @@ export const types = gql`
         id: String!
 
         text: String!
-        time: Int!
+        time: Float!
         unit: String!
         log: String!
         level: Int!
@@ -88,7 +88,7 @@ export const inputs = gql`
 
     input DelogInputRecord {
         text: String!
-        time: Int!
+        time: Float!
         level: Int!
 
         unit: String
