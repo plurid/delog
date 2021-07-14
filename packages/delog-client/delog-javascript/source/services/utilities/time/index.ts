@@ -8,6 +8,13 @@
 
 // #region module
 const now = () => {
+    if (typeof window !== 'undefined') {
+        return {
+            time: Date.now(),
+            unit: 'ms',
+        };
+    }
+
     return {
         time: microtime.now(),
         unit: 'us',
