@@ -158,7 +158,7 @@ const Record: React.FC<RecordProperties> = (
         } = record;
 
         const logLevelText = logLevelsText[level];
-        const date = new Date(time * 1000).toLocaleString();
+        const date = new Date(time / 1000).toLocaleString();
 
         return (
             <StyledRecord>
