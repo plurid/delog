@@ -120,6 +120,11 @@ const Record: React.FC<RecordProperties> = (
         expandContext,
         setExpandContext,
     ] = useState(false);
+
+    const [
+        showTrueTime,
+        setShowTrueTime,
+    ] = useState(false);
     // #endregion state
 
 
@@ -194,7 +199,18 @@ const Record: React.FC<RecordProperties> = (
                     <PluridTextItem
                         icon={PluridIconTimeout}
                         name="time"
-                        render={(<>{date}</>)}
+                        render={(
+                            <div
+                                onMouseEnter={() => {
+                                    setShowTrueTime(true);
+                                }}
+                                onMouseLeave={() => {
+                                    setShowTrueTime(false);
+                                }}
+                            >
+                                {showTrueTime ? time : date}
+                            </div>
+                        )}
                     />
                 </StyledRecordLevelTime>
 
