@@ -3,7 +3,7 @@
     import {
         MongoClient,
         Db as MongoDatabase,
-        ObjectID,
+        ObjectId,
     } from 'mongodb';
 
     import {
@@ -54,9 +54,6 @@ const createConnection = async () => {
 
         const connection = await MongoClient.connect(
             uri,
-            {
-                useUnifiedTopology: true,
-            },
         );
 
         return connection;
@@ -151,7 +148,7 @@ const query: DatabaseQuery = async (
                 });
 
                 if (item) {
-                    const lastID = new ObjectID(item._id);
+                    const lastID = new ObjectId(item._id);
                     filter['_id'] = {
                         '$lt': lastID,
                     };
