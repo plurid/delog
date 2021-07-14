@@ -32,7 +32,7 @@ const primitiveFormattingRules: FormattingRules = {
     TIME: (
         data,
     ) => {
-        const date = new Date(data.time * 1000);
+        const date = new Date(data.time / 1000);
 
         return date.toLocaleString();
     },

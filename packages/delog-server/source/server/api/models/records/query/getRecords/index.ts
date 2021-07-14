@@ -88,7 +88,7 @@ const getRecords = async (
             const sortedRecords = records.sort((a: any, b: any) => {
                 // Turn your strings into dates, and then subtract them
                 // to get a value that is either negative, positive, or zero.
-                return (new Date(b.time * 1000) as any) - (new Date(a.time * 1000) as any);
+                return (new Date(b.time / 1000) as any) - (new Date(a.time / 1000) as any);
             });
 
             return {
