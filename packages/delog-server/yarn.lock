@@ -729,10 +729,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@plurid/delog@^0.0.0-3":
-  version "0.0.0-3"
-  resolved "https://npm.plurid.cloud/@plurid%2fdelog/-/delog-0.0.0-3.tgz#58ee2c2100e17a8b771acf1b96c119a4978afcdf"
-  integrity sha512-rYKLW11BZfA0GiJQJ0YAWk2iSZakFQNj88rhhqWv8/rRkH/50108jEf0jXAt95TesCdRqTdQBvWi80Icg/r2Jg==
+"@plurid/delog@^0.0.0-4":
+  version "0.0.0-4"
+  resolved "https://npm.plurid.cloud/@plurid%2fdelog/-/delog-0.0.0-4.tgz#91e73995f62041031fe40860c6d58df359602126"
+  integrity sha512-+QqyMauADUCyT7kKwJybQhx/+F+a7op77lbkECYtgKrc52zR9+N5G39LTGN5MpkEyDp8MRmw6eEIdAvM8fq4SA==
   dependencies:
     "@apollo/client" "^3.3.21"
     "@plurid/plurid-functions" "0.0.0-5"
