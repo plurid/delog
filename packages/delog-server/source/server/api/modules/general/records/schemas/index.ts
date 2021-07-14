@@ -35,7 +35,6 @@ export const types = gql`
 
         text: String!
         time: Float!
-        unit: String!
         log: String!
         level: Int!
 
