@@ -118,6 +118,12 @@ const commandBuildServerProduction = [
     `${crossCommand('rollup')} -c ./scripts/workings/server.production.js`,
 ];
 
+const commandBuildCleanup = [
+    `${crossCommand('rimraf')} ./build/__tests__`,
+    `${crossCommand('rimraf')} ./build/client/Client.d.ts`,
+    `${crossCommand('rimraf')} ./build/client/index.d.ts`,
+];
+
 const commandBuildStills = [
     'node ./scripts/workings/stills.js',
 ];
@@ -139,6 +145,7 @@ const commandBuildProduction = [
     ...commandTest,
     ...commandBuildServerProduction,
     ...commandBuildClientProduction,
+    ...commandBuildCleanup,
 ];
 const commandBuildProductionStills = [
     ...commandBuildProduction,
