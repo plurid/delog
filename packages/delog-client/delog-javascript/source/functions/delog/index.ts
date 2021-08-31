@@ -129,7 +129,11 @@ const delog = async (
                 ? new Date(input.time / 1000).toLocaleString()
                 : new Date().toLocaleString();
 
-            console.log(`[${level} ${time}] · ${input.text}`);
+            const errorString = input.error
+                ? ` · ${input.error}`
+                : '';
+
+            console.log(`[${level} ${time}] · ${input.text}${errorString}`);
             return;
         }
 

@@ -53,7 +53,7 @@ export interface DelogData {
      */
     method?: string;
 
-    error?: Error;
+    error?: any;
 
     /**
      * Arbitrary data: a simple string, stringified JSON or deon.
