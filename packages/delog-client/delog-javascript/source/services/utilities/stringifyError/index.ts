@@ -18,7 +18,7 @@ const replaceErrors = (
 
 
 const stringifyError = (
-    error?: Error,
+    error?: any,
 ) => {
     if (!error) {
         return;
