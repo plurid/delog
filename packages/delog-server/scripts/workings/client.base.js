@@ -48,8 +48,6 @@ const compressionPluginBrotli = new CompressionPlugin({
 });
 const compressionPluginGzip = new CompressionPlugin({
     include: 'vendor.js',
-    filename: 'vendor.js.gzip',
-    deleteOriginalAssets: false,
 });
 
 const processEnvironmentPlugin = new webpack.DefinePlugin({
