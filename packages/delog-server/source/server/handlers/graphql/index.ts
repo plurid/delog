@@ -7,6 +7,11 @@
     import {
         ApolloServer,
     } from 'apollo-server-express';
+
+    import {
+        ApolloServerPluginLandingPageDisabled,
+        ApolloServerPluginLandingPageGraphQLPlayground,
+    } from 'apollo-server-core';
     // #endregion libraries
 
 
@@ -40,6 +45,8 @@
     import {
         getPrivateOwner,
     } from '~server/logic/privateUsage';
+
+    import environment from '~kernel-services/utilities/environment';
     // #endregion external
 // #endregion imports
 
@@ -65,7 +72,6 @@ const setupGraphQLServer = async (
     const graphQLServer = new ApolloServer({
         typeDefs: schemas,
         resolvers,
-        playground,
         context: async ({
             req,
             res,
@@ -115,7 +121,15 @@ const setupGraphQLServer = async (
 
             return context;
         },
+        plugins: [
+            environment.production
+                ? ApolloServerPluginLandingPageDisabled()
+                : ApolloServerPluginLandingPageGraphQLPlayground({
+                    ...playground,
+                }),
+        ],
     });
+    await graphQLServer.start();
 
     graphQLServer.applyMiddleware({
         app: instance,
