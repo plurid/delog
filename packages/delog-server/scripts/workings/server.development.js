@@ -1,8 +1,8 @@
 const {
     input,
     output,
-    plugins,
     externalPackages,
+    plugins,
 } = require('./server.base');
 
 
@@ -22,4 +22,4 @@ export default {
         plugins.typescript(),
         plugins.sourceMaps(),
     ],
-}
+};

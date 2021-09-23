@@ -9,12 +9,17 @@ const resolve = require('@rollup/plugin-node-resolve').default;
 const commonjs = require('@rollup/plugin-commonjs');
 const sourceMaps = require('rollup-plugin-sourcemaps');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const { terser } = require('rollup-plugin-terser');
 
 
+const {
+    BUILD_DIRECTORY,
+    ASSETS_DIRECTORY,
 
-const BUILD_DIRECTORY = process.env.PLURID_BUILD_DIRECTORY || 'build';
+    isProduction,
+} = require ('./shared');
 
-const isProduction = process.env.ENV_MODE === 'production';
+
 
 const input = 'source/server/index.ts';
 
@@ -52,7 +57,7 @@ const plugins = {
         ],
         limit: 0,
         emitFiles: true,
-        fileName: 'client/assets/[name][extname]',
+        fileName: `client/${ASSETS_DIRECTORY}/[name][extname]`,
         sourceDir: path.join(__dirname, 'source'),
     }),
     json: () => json(),
@@ -72,12 +77,17 @@ const plugins = {
     }),
     commonjs: () => commonjs(),
     sourceMaps: () => sourceMaps(),
+    terser: () => terser({
+        format: {
+            comments: false,
+        },
+    }),
 };
 
 
 module.exports = {
     input,
     output,
-    plugins,
     externalPackages,
-}
+    plugins,
+};

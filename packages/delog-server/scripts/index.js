@@ -20,13 +20,17 @@ const environment = {
     local: !command.includes('development') && !command.includes('production'),
 };
 
-require('dotenv').config({
-    path: environment.production
-        ? './environment/.env.production'
-        : environment.development
-            ? './environment/.env.development'
-            : './environment/.env.local',
-});
+try {
+    require('dotenv').config({
+        path: environment.production
+            ? './environment/.env.production'
+            : environment.development
+                ? './environment/.env.development'
+                : './environment/.env.local',
+    });
+} catch (error) {
+    console.log('no dotenv');
+}
 
 
 
@@ -118,12 +122,6 @@ const commandBuildServerProduction = [
     `${crossCommand('rollup')} -c ./scripts/workings/server.production.js`,
 ];
 
-const commandBuildCleanup = [
-    `${crossCommand('rimraf')} ./build/__tests__`,
-    `${crossCommand('rimraf')} ./build/client/Client.d.ts`,
-    `${crossCommand('rimraf')} ./build/client/index.d.ts`,
-];
-
 const commandBuildStills = [
     'node ./scripts/workings/stills.js',
 ];
@@ -145,7 +143,6 @@ const commandBuildProduction = [
     ...commandTest,
     ...commandBuildServerProduction,
     ...commandBuildClientProduction,
-    ...commandBuildCleanup,
 ];
 const commandBuildProductionStills = [
     ...commandBuildProduction,
