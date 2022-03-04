@@ -1,9 +1,6 @@
 // #region imports
     // #region libraries
-    import {
-        Request,
-        Response,
-    } from 'express';
+    import express from 'express';
     // #endregion libraries
 
 
@@ -29,8 +26,8 @@
 
 // #region module
 const handleGithubWebhook = async (
-    request: Request,
-    response: Response,
+    request: express.Request,
+    response: express.Response,
 ) => {
     try {
         if (logLevel <= logLevels.info) {
@@ -109,5 +106,5 @@ const handleGithubWebhook = async (
 
 
 // #region exports
-export default handleGithubWebhook;
+export default handleGithubWebhook as any;
 // #endregion exports
