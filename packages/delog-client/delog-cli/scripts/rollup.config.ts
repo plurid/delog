@@ -18,6 +18,7 @@ export default {
         {
             file: pkg.main,
             format: 'cjs',
+            exports: 'named',
         },
     ],
     external: [
@@ -32,9 +33,14 @@ export default {
         'stream',
         'zlib',
         'react',
-        '@plurid/deon',
+        '@apollo/client',
         '@plurid/delog',
-        '@plurid/performer-requests',
+        '@plurid/deon',
+        '@plurid/plurid-functions',
+        'commander',
+        'cross-fetch',
+        'graphql',
+        'graphql-tag',
     ],
     watch: {
         include: 'source/**',
