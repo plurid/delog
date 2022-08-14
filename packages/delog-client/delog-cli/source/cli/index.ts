@@ -1,7 +1,7 @@
 // #region imports
     // #region libraries
-    import program, {
-        CommanderStatic,
+    import {
+        program,
     } from 'commander';
     // #endregion libraries
 
@@ -24,13 +24,7 @@
 
 
 // #region module
-const main = async (
-    program: CommanderStatic,
-) => {
-    program
-        .storeOptionsAsProperties(false)
-        .passCommandToAction(false);
-
+const cli = async () => {
     program
         .name('delog')
         .usage('<command>')
@@ -251,11 +245,6 @@ const main = async (
 
 
     program.parseAsync(process.argv);
-}
-
-
-const cli = () => {
-    main(program);
 }
 // #endregion module
 
