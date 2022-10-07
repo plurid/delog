@@ -43,6 +43,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.39.0
   ace-builds: ^1.11.2
   adm-zip: ^0.5.9
+  apollo-server-core: ^3.10.2
   apollo-server-express: ^3.10.2
   aws-sdk: ^2.1230.0
   body-parser: ^1.20.1
@@ -121,6 +122,7 @@ dependencies:
   '@reduxjs/toolkit': 1.8.5_kuo2ie247izvzll3jejufdtq3q
   ace-builds: 1.11.2
   adm-zip: 0.5.9
+  apollo-server-core: 3.10.2_graphql@16.6.0
   apollo-server-express: 3.10.2_ikriz6xqtzcvohrhb2pcry7o6y
   aws-sdk: 2.1230.0
   body-parser: 1.20.1
