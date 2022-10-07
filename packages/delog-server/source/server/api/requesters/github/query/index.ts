@@ -2,14 +2,15 @@
     // #region libraries
     import {
         gql,
-    } from 'apollo-server-express';
+        DocumentNode,
+    } from '@apollo/client';
     // #endregion libraries
 // #endregion imports
 
 
 
 // #region module
-export const VIEWER_LOGIN = gql`
+export const VIEWER_LOGIN: DocumentNode = gql`
     query {
         viewer {
             login
@@ -18,7 +19,7 @@ export const VIEWER_LOGIN = gql`
 `;
 
 
-export const QUERY_REPOSITORIES = gql`
+export const QUERY_REPOSITORIES: DocumentNode = gql`
     query {
         viewer {
             repositories(
@@ -46,7 +47,7 @@ export const QUERY_REPOSITORIES = gql`
 `;
 
 
-export const QUERY_REPOSITORY_BY_NAME_OWNER = gql`
+export const QUERY_REPOSITORY_BY_NAME_OWNER: DocumentNode = gql`
     query QueryRepositoryByNameOwner($name: String!, $owner: String!) {
         repository(
             name: $name

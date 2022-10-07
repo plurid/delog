@@ -44,7 +44,7 @@ export const getOwner = async (
     const client = requester(provider.token);
 
     const query = await client.query({
-        query: VIEWER_LOGIN,
+        query: VIEWER_LOGIN as any,
     });
 
     const {
@@ -124,7 +124,7 @@ export const getRepositoriesData = async (
         const client = requester(provider.token);
 
         const query = await client.query({
-            query: QUERY_REPOSITORIES,
+            query: QUERY_REPOSITORIES as any,
         });
 
         const {
@@ -177,7 +177,7 @@ export const getRepositoryDataByNameWithOwner = async (
         const name = split[1];
 
         const query = await client.query({
-            query: QUERY_REPOSITORY_BY_NAME_OWNER,
+            query: QUERY_REPOSITORY_BY_NAME_OWNER as any,
             variables: {
                 name,
                 owner,
