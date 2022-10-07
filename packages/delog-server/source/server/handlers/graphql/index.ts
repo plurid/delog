@@ -11,6 +11,7 @@
     import {
         ApolloServerPluginLandingPageDisabled,
         ApolloServerPluginLandingPageGraphQLPlayground,
+        Config,
     } from 'apollo-server-core';
     // #endregion libraries
 
@@ -70,7 +71,7 @@ const setupGraphQLServer = async (
         : defaultLogger;
 
     const graphQLServer = new ApolloServer({
-        typeDefs: schemas,
+        typeDefs: schemas as Config['typeDefs'],
         resolvers,
         context: async ({
             req,
