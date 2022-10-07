@@ -2,7 +2,8 @@
     // #region libraries
     import {
         gql,
-    } from 'apollo-server-express';
+        DocumentNode,
+    } from '@apollo/client';
     // #endregion libraries
 
 
@@ -51,7 +52,7 @@ const baseSchema = gql`
 `;
 
 
-const schemas = [
+const schemas: DocumentNode[] = [
     baseSchema,
 
     ...General,
