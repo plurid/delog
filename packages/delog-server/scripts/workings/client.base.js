@@ -47,12 +47,13 @@ const compressionPluginBrotli = new CompressionPlugin({
     deleteOriginalAssets: false,
 });
 const compressionPluginGzip = new CompressionPlugin({
-    include: 'vendor.js',
+    include: /vendor.js$/,
+    // filename: 'vendor.js.gzip',
 });
 
 const processEnvironmentPlugin = new webpack.DefinePlugin({
     'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
-    'process.env.SC_DISABLE_SPEEDY': true, /** HACK: styled components not rendering in production */
+    'process.env.SC_DISABLE_SPEEDY': JSON.stringify(true), /** HACK: styled components not rendering in production */
 });
 
 
@@ -80,6 +81,7 @@ const fileRule = {
     type: 'asset/resource',
     generator: {
         filename: `${ASSETS_DIRECTORY}/[name][ext]`,
+        publicPath: '/',
     },
 };
 
@@ -130,8 +132,7 @@ const baseConfig = {
         ],
 
         alias: {
-            'crypto': false,
-            'stream': false,
+            crypto: false,
         },
     },
 
