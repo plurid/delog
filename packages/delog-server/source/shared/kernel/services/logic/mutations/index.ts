@@ -2,7 +2,7 @@
     // #region libraries
     import {
         DocumentNode,
-    } from 'graphql';
+    } from '@apollo/client';
 
     import {
         graphql,
