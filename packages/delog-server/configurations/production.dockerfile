@@ -1,11 +1,4 @@
-FROM node:14-alpine AS builder
-
-
-WORKDIR /app
-
-
-COPY . .
-
+FROM node:16.14-alpine AS builder
 
 ARG NPM_TOKEN
 ARG NPM_REGISTRY=registry.npmjs.org
@@ -18,20 +11,26 @@ ENV PLURID_BUILD_DIRECTORY build
 ENV NPM_TOKEN $NPM_TOKEN
 ENV NPM_REGISTRY $NPM_REGISTRY
 
+WORKDIR /app
+
+COPY configurations ./configurations
+COPY package.json ./
+
 # Write environment variables into .npmrc
 RUN ( echo "cat <<EOF" ; cat ./configurations/.npmrcx ; echo EOF ) | sh > ./.npmrc
 
-
 RUN yarn install --production false --network-timeout 1000000
 
+COPY . .
 
 RUN yarn build.production
 
+RUN npm prune --production
+RUN yarn cache clean
 
 
 
-FROM node:14-alpine
-
+FROM node:16.14-alpine
 
 ARG PORT=56965
 
@@ -58,11 +57,6 @@ ARG DELOG_TEST_MODE
 
 ARG DELOG_OPTIMIZATION_BATCH_WRITE_SIZE
 ARG DELOG_OPTIMIZATION_BATCH_WRITE_TIME
-
-
-
-WORKDIR /app
-
 
 ENV ENV_MODE production
 ENV NODE_ENV production
@@ -95,16 +89,11 @@ ENV DELOG_TEST_MODE=$DELOG_TEST_MODE
 ENV DELOG_OPTIMIZATION_BATCH_WRITE_SIZE=$DELOG_OPTIMIZATION_BATCH_WRITE_SIZE
 ENV DELOG_OPTIMIZATION_BATCH_WRITE_TIME=$DELOG_OPTIMIZATION_BATCH_WRITE_TIME
 
+WORKDIR /app
 
-COPY --from=builder /app/.npmrc ./
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/scripts ./scripts
-
-
-RUN yarn install --production --network-timeout 1000000
-
-RUN rm -f .npmrc
-
+COPY --from=builder /app/node_modules ./node_modules
 
 CMD ["yarn", "start"]
