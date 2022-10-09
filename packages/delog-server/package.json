@@ -33,6 +33,7 @@
     "scripts": {
         "start": "node scripts start",
         "start.local": "node scripts start.local",
+        "live": "node scripts live",
         "check": "node scripts check",
         "clean": "node scripts clean",
         "clean.tests": "find ./build -type d -name '*__tests__' -exec rm -rf {} +",
