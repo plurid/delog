@@ -33,10 +33,7 @@
     "scripts": {
         "start": "node scripts start",
         "start.local": "node scripts start.local",
-        "start.development": "node scripts start.development",
-        "watch.client": "node scripts watch.client",
-        "watch.server": "node scripts watch.server",
-        "watch": "node scripts watch",
+        "check": "node scripts check",
         "clean": "node scripts clean",
         "clean.tests": "find ./build -type d -name '*__tests__' -exec rm -rf {} +",
         "lint": "node scripts lint",
