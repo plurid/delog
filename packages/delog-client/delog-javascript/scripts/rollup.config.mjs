@@ -7,7 +7,7 @@
 
 
     // #region external
-    import pkg from '../package.json';
+    import pkg from '../package.json' assert { type: 'json' };
     // #endregion external
 // #endregion imports
 
@@ -20,6 +20,11 @@ export default {
         {
             file: pkg.main,
             format: 'cjs',
+            exports: 'named',
+        },
+        {
+            file: pkg.module,
+            format: 'es',
             exports: 'named',
         },
     ],

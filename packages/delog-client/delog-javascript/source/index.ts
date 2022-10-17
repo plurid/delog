@@ -17,6 +17,7 @@ export * from './data/interfaces';
 export * from './data/constants';
 
 export {
+    delog,
     stringifyError,
 };
 
