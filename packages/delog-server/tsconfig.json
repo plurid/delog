@@ -66,7 +66,9 @@
         "noUnusedParameters": false,
 
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+
+        "ignoreDeprecations": "5.0"
     },
     "include": [
         "source"
