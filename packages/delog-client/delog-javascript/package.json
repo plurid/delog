@@ -33,11 +33,10 @@
     ],
     "scripts": {
         "test": "jest -c ./configurations/jest.config.js --coverage ./source",
-        "start": "rollup -c ./scripts/rollup.config.ts -w",
         "build.removeTests": "rm -rf `find ./distribution/ -type d -name __tests__`",
         "build.types": "ttsc --emitDeclarationOnly",
-        "build.development": "rollup -c ./scripts/rollup.config.mjs --bundleconfigascjs",
-        "build.production": "rollup -c ./scripts/rollup.config.mjs --bundleconfigascjs",
+        "build.development": "rollup -c ./scripts/rollup.config.mjs --bundleConfigAsCjs",
+        "build.production": "rollup -c ./scripts/rollup.config.mjs --bundleConfigAsCjs",
         "build": "pnpm build.production && pnpm build.types && pnpm build.removeTests",
         "prebuild": "rm -rf distribution",
         "prepublishOnly": "pnpm build"
