@@ -56,6 +56,7 @@ const watchMode = process.env.PLURID_WATCH_MODE === 'true';
 const isProduction = process.env.ENV_MODE === 'production';
 const buildDirectory = __dirname;
 const port = process.env.PORT || 56965;
+const hostname = process.env.DELOG_HOSTNAME || `localhost:${port}`;
 
 
 
@@ -115,6 +116,7 @@ const options: PluridServerPartialOptions = {
     quiet,
     debug,
     serverName: 'Delog Server',
+    hostname,
     ignore: [
         GRAPHQL_ENDPOINT !== '/' ? GRAPHQL_ENDPOINT : '',
     ],

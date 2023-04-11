@@ -1,7 +1,10 @@
 // #region imports
     // #region libraries
     import React from 'react';
-    import ReactDOM from 'react-dom';
+
+    import {
+        hydrate,
+    } from 'react-dom';
     // #endregion libraries
 
     // #region internal
@@ -17,10 +20,10 @@
 //     navigator.serviceWorker.register('/service-worker.js');
 // }
 
-const delogApp = document.getElementById('delog-application');
+const delogApp = document.getElementById('delog-application')!;
 
 
-ReactDOM.hydrate(
+hydrate(
     <Client />,
     delogApp,
 );
