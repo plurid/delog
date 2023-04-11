@@ -3,9 +3,10 @@
     import React from 'react';
 
     import {
-        hydrate,
-    } from 'react-dom';
+        hydrateRoot,
+    } from 'react-dom/client';
     // #endregion libraries
+
 
     // #region internal
     import Client from './Client';
@@ -23,8 +24,8 @@
 const delogApp = document.getElementById('delog-application')!;
 
 
-hydrate(
-    <Client />,
+hydrateRoot(
     delogApp,
+    <Client />,
 );
 // #endregion module
