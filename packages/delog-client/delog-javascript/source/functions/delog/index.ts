@@ -124,7 +124,7 @@ const delog = async (
         };
 
         if (consoleFallback) {
-            const level = delogLevelsText[input.level];
+            const level = (delogLevelsText as any)[input.level];
             const time = input.unit === 'us'
                 ? new Date(input.time / 1000).toLocaleString()
                 : new Date().toLocaleString();

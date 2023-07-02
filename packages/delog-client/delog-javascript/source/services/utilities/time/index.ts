@@ -1,12 +1,17 @@
-// #region imports
-    // #region libraries
-    import microtime from 'microtime';
-    // #endregion libraries
-// #endregion imports
-
-
-
 // #region module
+let microtime: any;
+
+const loadMicrotime = async () => {
+    if (typeof window !== 'undefined') {
+        return;
+    }
+
+    const name = 'microtime';
+    microtime = await import(name);
+}
+
+loadMicrotime();
+
 const now = () => {
     if (typeof window !== 'undefined') {
         return {
