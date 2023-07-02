@@ -6,6 +6,10 @@ const loadMicrotime = async () => {
         return;
     }
 
+    if (typeof process === 'undefined') {
+        return;
+    }
+
     const name = 'microtime';
     microtime = await import(name);
 }
@@ -13,7 +17,7 @@ const loadMicrotime = async () => {
 loadMicrotime();
 
 const now = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' || typeof process === 'undefined') {
         return {
             time: Date.now(),
             unit: 'ms',
