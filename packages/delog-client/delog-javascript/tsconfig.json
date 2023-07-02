@@ -28,7 +28,6 @@
         "downlevelIteration": true,
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
-        "suppressImplicitAnyIndexErrors": true,
         "resolveJsonModule": true,
 
         "strict": true,
@@ -43,15 +42,9 @@
         "emitDecoratorMetadata": true,
 
         "plugins": [
-            {
-                "transform": "typescript-transform-paths",
-                "afterDeclarations": true,
-            },
-            {
-                "transform": "@zerollup/ts-transform-paths",
-                "exclude": ["*"]
-            }
-        ]
+            { "transform": "typescript-transform-paths" },
+            { "transform": "typescript-transform-paths", "afterDeclarations": true }
+        ],
     },
     "include": [
         "source"
