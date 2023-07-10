@@ -17,17 +17,24 @@ const loadMicrotime = async () => {
 loadMicrotime();
 
 const now = () => {
-    if (typeof window !== 'undefined' || typeof process === 'undefined') {
+    try {
+        if (typeof window !== 'undefined' || typeof process === 'undefined') {
+            return {
+                time: Date.now(),
+                unit: 'ms',
+            };
+        }
+
+        return {
+            time: microtime.now(),
+            unit: 'us',
+        };
+    } catch (error) {
         return {
             time: Date.now(),
             unit: 'ms',
         };
     }
-
-    return {
-        time: microtime.now(),
-        unit: 'us',
-    };
 }
 // #endregion module
 
