@@ -1,35 +1,19 @@
-const delog = require('@plurid/delog').default;
+import { createDelogClient } from '@plurid/delog';
 
-const {
-    delogLevels,
-}= require('@plurid/delog');
-
-
-
-const main = () => {
-    const endpoint = 'http://localhost:56965/delog';
-    const token = '__TESTS__';
-
-    const small = 1_001;
-    const medium = 10_001;
-    const large = 20_001;
-
-    for (let i = 0; i < large; i++) {
-        delog({
-            text: 'works ' + i,
-
-            endpoint,
-            token,
-
-            project: 'project-name',
-            space: 'space-name',
-
-            level: delogLevels.trace,
-            method: 'method-name',
-            format: '%LEVEL %TIME %TEXT',
-            extradata: JSON.stringify({one: 'two'}),
-        });
-    }
+const count = Number(process.env.DELOG_STRESS_COUNT ?? 1000);
+if (!Number.isInteger(count) || count < 1 || count > 1000000) {
+  throw new Error('DELOG_STRESS_COUNT must be between 1 and 1000000.');
 }
 
-main();
+const client = createDelogClient({ project: 'example', space: 'stress' });
+const concurrency = 10;
+for (let offset = 0; offset < count; offset += concurrency) {
+  const batch = Math.min(concurrency, count - offset);
+  await Promise.all(
+    Array.from({ length: batch }, (_, index) =>
+      client.trace({ text: `Stress record ${offset + index}`, method: 'stress' }),
+    ),
+  );
+}
+await client.flush();
+console.log(`Acknowledged ${count} records.`);

@@ -1,12 +1,3 @@
-const {
-    someFunction,
-} = require('./afile');
+import { someFunction } from './afile.js';
 
-
-
-const main = () => {
-    someFunction();
-}
-
-
-main();
+await someFunction();

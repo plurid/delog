@@ -1,39 +1,15 @@
-const delog = require('@plurid/delog').default;
-const {
-    delogLevels,
-}= require('@plurid/delog');
+import { createDelogClient } from '@plurid/delog';
 
+const client = createDelogClient({
+  project: 'example',
+  space: 'caller',
+  context: { call: { repository: { basePath: process.cwd() } } },
+});
 
-
-const anotherFunction = () => {
-    const endpoint = 'http://localhost:56965/delog';
-    const token = '__TESTS__';
-
-    delog({
-        endpoint,
-        token,
-
-        project: 'project-name',
-        space: 'space-name',
-
-        level: delogLevels.error,
-        method: 'method-name',
-        format: '%TIME %TEXT',
-        sharedID: 'one',
-        sharedOrder: 0,
-        extradata: JSON.stringify({one: 'two'}),
-
-        text: 'works',
-    });
+export async function anotherFunction() {
+  await client.error({ text: 'Caller context example', method: 'anotherFunction' });
 }
 
-
-const someFunction = () => {
-    anotherFunction();
+export async function someFunction() {
+  await anotherFunction();
 }
-
-
-module.exports = {
-    anotherFunction,
-    someFunction,
-};

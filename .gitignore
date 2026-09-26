@@ -122,3 +122,13 @@ Thumbs.db
 
 ### SPECIFIC ###
 /data/
+
+# Modern workspace
+.pnpm-store/
+**/build/
+playwright-report/
+test-results/
+**/target/
+**/__pycache__/
+*.egg-info/
+.venv/

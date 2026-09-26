@@ -1,8 +1,12 @@
 {
-    "name": "fixtures",
-    "version": "0.0.0",
-    "license": "UNLICENSED",
-    "dependencies": {
-        "@plurid/delog": "^0.0.9"
-    }
+  "name": "@delog-fixtures/testers",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@plurid/delog": "workspace:*"
+  }
 }

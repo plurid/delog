@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "delog"
+version = "0.2.0"
+description = "Centralized logging client for self-hosted Delog"
+requires-python = ">=3.10"
+readme = "README.md"
+license = "LicenseRef-Delog"
+license-files = ["LICENSE"]
+authors = [{ name = "ly3xqhl8g9" }]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/plurid/delog"
+
+[tool.setuptools.packages.find]
+include = ["delog*"]

@@ -1,0 +1,25 @@
+services:
+  delog:
+    build: .
+    init: true
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:56965:56965'
+    environment:
+      DELOG_OWNER_IDENTONYM: ${DELOG_OWNER_IDENTONYM:-owner}
+      DELOG_OWNER_KEY: ${DELOG_OWNER_KEY:?Set DELOG_OWNER_KEY in .env}
+      DELOG_INGEST_TOKEN: ${DELOG_INGEST_TOKEN:?Set DELOG_INGEST_TOKEN in .env}
+      DELOG_RETENTION_DAYS: ${DELOG_RETENTION_DAYS:-30}
+    volumes:
+      - delog-data:/data
+    stop_grace_period: 30s
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  delog-data:

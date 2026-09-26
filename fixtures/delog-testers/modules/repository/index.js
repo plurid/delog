@@ -1,40 +1,18 @@
-const delog = require('@plurid/delog').default;
+import { createDelogClient } from '@plurid/delog';
 
-const {
-    delogLevels,
-}= require('@plurid/delog');
+const client = createDelogClient({
+  project: 'delog',
+  space: 'fixtures',
+  context: {
+    call: {
+      repository: {
+        provider: process.env.DELOG_REPOSITORY_PROVIDER ?? 'github',
+        name: process.env.DELOG_REPOSITORY_NAME ?? 'plurid/delog',
+        branch: process.env.DELOG_REPOSITORY_BRANCH ?? 'master',
+        basePath: process.cwd(),
+      },
+    },
+  },
+});
 
-
-
-const main = () => {
-    const endpoint = 'http://localhost:56965/delog';
-    const token = '__TESTS__';
-
-    delog({
-        text: 'Delogged from main().',
-
-        endpoint,
-        token,
-
-        project: 'delog',
-        space: 'fixtures/delog-testers',
-
-        level: delogLevels.info,
-        method: 'repository',
-        format: '%LEVEL %TIME %TEXT',
-
-        context: {
-            call: {
-                repository: {
-                    provider: 'github',
-                    name: 'plurid/delog',
-                    branch: 'master',
-                    commit: 'latest',
-                    // basePath: '',
-                },
-            },
-        },
-    });
-}
-
-main();
+await client.info({ text: 'Logged from repository example', method: 'repository' });

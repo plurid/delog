@@ -1,19 +1,17 @@
 [package]
 name = "plurid_delog"
-version = "0.0.0"
-edition = "2018"
-description = "client for centralized logging on a delog server"
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Centralized logging client for self-hosted Delog"
 repository = "https://github.com/plurid/delog"
 license-file = "LICENSE"
 readme = "README.md"
-homepage = "https://plurid.com"
-documentation = "https://docs.rs/plurid_delog"
-keywords = ["logging", "client", "cloud"]
-categories = ["development-tools::debugging"]
 
 [dependencies]
-reqwest = { version = "0.11", features = ["json"] }
-serde = "1.0"
-serde_json = "1.0.64"
-serde_repr = "0.1"
-tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.13.4", default-features = false, features = ["json", "rustls"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+
+[dev-dependencies]
+tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread"] }
